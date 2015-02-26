@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="5056" systemVersion="13D65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none">
+    <dependencies>
+        <deployment defaultVersion="1536" identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3733"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" rowHeight="267" id="l0A-Fl-tZQ" customClass="SchoolPartyCell">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="267"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="l0A-Fl-tZQ" id="CR3-aY-vsQ">
+                <rect key="frame" x="0.0" y="0.0" width="320" height="266"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="cellBG.png" id="K7w-vk-ToO" userLabel="Image View - 底色">
+                        <rect key="frame" x="5" y="108" width="310" height="115"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    </imageView>
+                    <view contentMode="scaleToFill" id="FvC-mt-ukr" userLabel="View - friendDIV">
+                        <rect key="frame" x="5" y="3" width="310" height="40"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="avatar.png" id="7La-ea-Kdw" userLabel="Image View - Avatar">
+                                <rect key="frame" x="0.0" y="4" width="30" height="30"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                            </imageView>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Movie Caker" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="RiA-ej-rnY" userLabel="Label - ID">
+                                <rect key="frame" x="34" y="4" width="276" height="17"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="13"/>
+                                <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="創辦人：王小明" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="lmf-CY-Loc" userLabel="Label - Founder">
+                                <rect key="frame" x="34" y="18" width="161" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="11"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </label>
+                        </subviews>
+                    </view>
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" id="F2M-pd-tn8" userLabel="Image View - 劇照">
+                        <rect key="frame" x="5" y="41" width="309" height="120"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <color key="backgroundColor" red="0.93333333330000001" green="0.93333333330000001" blue="0.93333333330000001" alpha="1" colorSpace="calibratedRGB"/>
+                    </imageView>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="publicBg.png" id="xX3-Dr-NNY">
+                        <rect key="frame" x="266" y="51" width="49" height="19"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    </imageView>
+                    <view contentMode="scaleToFill" id="88J-wJ-ImE" userLabel="View - btnDIV">
+                        <rect key="frame" x="5" y="225" width="310" height="44"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <button contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="zAk-FR-1zU">
+                                <rect key="frame" x="1" y="4" width="98" height="32"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="9"/>
+                                <state key="normal" image="Societies_small.png">
+                                    <color key="titleColor" red="0.93333333330000001" green="0.93333333330000001" blue="0.93333333330000001" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <state key="selected">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <state key="highlighted">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="joinButtonPressed:" destination="l0A-Fl-tZQ" eventType="touchUpInside" id="NeV-Ga-GP1"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="Mlb-gr-Omb">
+                                <rect key="frame" x="106" y="4" width="98" height="32"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                <state key="normal" image="Share_small.png">
+                                    <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <state key="highlighted">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="shareButtonPressed:" destination="l0A-Fl-tZQ" eventType="touchUpInside" id="w7h-fE-UBF"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="cgJ-Qj-OAl" userLabel="Button - 瀏覽數">
+                                <rect key="frame" x="210" y="4" width="98" height="32"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="11"/>
+                                <state key="normal" image="memberCountButton.png">
+                                    <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <state key="highlighted">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                            </button>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0 " textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="BTg-Wn-W5R" userLabel="Label - 瀏覽數">
+                                <rect key="frame" x="237" y="9" width="62" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="11"/>
+                                <color key="textColor" red="0.54901960780000003" green="0.54901960780000003" blue="0.54901960780000003" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    </view>
+                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="馮導的作品風格京味十足，幽默風趣。他是以普通觀眾的口碑建立起自已電影風格的導演。他是最具票房號稱力的導演之一" lineBreakMode="wordWrap" numberOfLines="3" baselineAdjustment="none" adjustsLetterSpacingToFitWidth="YES" adjustsFontSizeToFit="NO" id="z6M-mx-gfd" userLabel="Label - 內容">
+                        <rect key="frame" x="9" y="166" width="301" height="52"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="14"/>
+                        <color key="textColor" red="0.42352941179999998" green="0.47843137250000001" blue="0.47843137250000001" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </label>
+                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="不公開" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="4Vn-cj-K1z">
+                        <rect key="frame" x="272" y="51" width="42" height="21"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <fontDescription key="fontDescription" type="boldSystem" pointSize="11"/>
+                        <color key="textColor" red="0.93333333330000001" green="0.93333333330000001" blue="0.93333333330000001" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                </subviews>
+            </tableViewCellContentView>
+            <connections>
+                <outlet property="avatar" destination="7La-ea-Kdw" id="hTg-kq-ObL"/>
+                <outlet property="content" destination="z6M-mx-gfd" id="Z1X-d0-Gg2"/>
+                <outlet property="creator" destination="lmf-CY-Loc" id="VDd-hS-Oq4"/>
+                <outlet property="joinButton" destination="zAk-FR-1zU" id="Ph6-qD-86K"/>
+                <outlet property="memberCount" destination="BTg-Wn-W5R" id="abQ-1x-mdb"/>
+                <outlet property="partyBanner" destination="F2M-pd-tn8" id="UOe-sN-eYr"/>
+                <outlet property="partyName" destination="RiA-ej-rnY" id="7EL-NR-Lx9"/>
+                <outlet property="publicImageView" destination="xX3-Dr-NNY" id="WM8-ZB-zZs"/>
+                <outlet property="publicLabel" destination="4Vn-cj-K1z" id="frI-CF-3Sj"/>
+                <outlet property="shareButton" destination="Mlb-gr-Omb" id="UUi-LW-IfU"/>
+            </connections>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <image name="Share_small.png" width="99" height="33"/>
+        <image name="Societies_small.png" width="99" height="33"/>
+        <image name="avatar.png" width="66" height="66"/>
+        <image name="cellBG.png" width="310" height="196"/>
+        <image name="memberCountButton.png" width="99" height="32"/>
+        <image name="publicBg.png" width="49" height="19"/>
+    </resources>
+</document>

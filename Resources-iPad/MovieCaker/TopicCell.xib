@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.iPad.XIB" version="3.0" toolsVersion="5056" systemVersion="13E28" targetRuntime="iOS.CocoaTouch.iPad" variant="6xAndEarlier" propertyAccessControl="none">
+    <dependencies>
+        <deployment defaultVersion="1536" identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3733"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" rowHeight="310" id="ZUr-wV-jWV" customClass="TopicCell">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="310"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="ZUr-wV-jWV" id="xp6-Pp-BJ6">
+                <rect key="frame" x="0.0" y="0.0" width="320" height="309"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <view clipsSubviews="YES" contentMode="scaleToFill" id="qYS-5z-yZp">
+                        <rect key="frame" x="5" y="43" width="309" height="230"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="cellBG.png" id="6QR-0T-faZ" userLabel="Image View - 底色">
+                                <rect key="frame" x="-1" y="111" width="310" height="115"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="專題劇照.png" id="rUo-8k-EXX">
+                                <rect key="frame" x="0.0" y="0.0" width="110" height="150"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="專題劇照.png" id="Zr7-yy-uLp">
+                                <rect key="frame" x="62" y="0.0" width="110" height="150"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="專題劇照.png" id="kT1-oQ-EwS">
+                                <rect key="frame" x="124" y="0.0" width="110" height="150"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="專題劇照.png" id="1Kb-oM-mar">
+                                <rect key="frame" x="186" y="0.0" width="110" height="150"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="專題劇照.png" id="wgx-dF-w6T">
+                                <rect key="frame" x="248" y="0.0" width="110" height="150"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="看電影學管理" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="8Be-cm-Uxn">
+                                <rect key="frame" x="4" y="153" width="302" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="14"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="馮導的作品風格京味十足，幽默風趣。他是以普通觀眾的口碑建立起自已電影風格的導演。他是最具票房號稱力的導演之一" lineBreakMode="wordWrap" numberOfLines="3" baselineAdjustment="none" adjustsLetterSpacingToFitWidth="YES" adjustsFontSizeToFit="NO" id="FNN-IH-WGx" userLabel="Label - 內容">
+                                <rect key="frame" x="4" y="171" width="301" height="52"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="14"/>
+                                <color key="textColor" red="0.42352941179999998" green="0.47843137250000001" blue="0.47843137250000001" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    </view>
+                    <view contentMode="scaleToFill" id="OTJ-UP-0WS" userLabel="View - btnDIV">
+                        <rect key="frame" x="5" y="264" width="310" height="44"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="X2R-1u-zKE">
+                                <rect key="frame" x="1" y="9" width="98" height="32"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="9"/>
+                                <state key="normal" title="喜歡" image="like.png">
+                                    <color key="titleColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <state key="selected" image="love_a.png"/>
+                                <state key="highlighted">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="likeButtonPressed:" destination="ZUr-wV-jWV" eventType="touchUpInside" id="lG3-bD-ZAn"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="8t3-mH-g8f">
+                                <rect key="frame" x="106" y="9" width="98" height="32"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                <state key="normal" title="分享" image="share.png">
+                                    <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <state key="highlighted">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="shareButtonPressed:" destination="ZUr-wV-jWV" eventType="touchUpInside" id="plT-Dy-kbf"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="gBU-9b-zKh" userLabel="Button - 瀏覽數">
+                                <rect key="frame" x="210" y="9" width="98" height="32"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="11"/>
+                                <state key="normal" image="專題瀏覽數按鈕.png">
+                                    <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <state key="highlighted">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                            </button>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0 瀏覽" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Hil-N3-Bjh" userLabel="Label - 瀏覽數">
+                                <rect key="frame" x="236" y="14" width="61" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="11"/>
+                                <color key="textColor" red="0.54901960780000003" green="0.54901960780000003" blue="0.54901960780000003" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    </view>
+                    <view contentMode="scaleToFill" id="j7V-6h-nHg" userLabel="View - friendDIV">
+                        <rect key="frame" x="5" y="3" width="310" height="40"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="avatar.png" id="tZx-Xg-Ufs" userLabel="Image View - Avatar">
+                                <rect key="frame" x="0.0" y="4" width="30" height="30"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                            </imageView>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Movie Caker" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="A0g-5l-1KQ" userLabel="Label - ID">
+                                <rect key="frame" x="34" y="4" width="276" height="17"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="13"/>
+                                <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="2013-05-05 23:00" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="FYn-hM-Hbc" userLabel="Label - 時間">
+                                <rect key="frame" x="34" y="19" width="140" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="11"/>
+                                <color key="textColor" red="0.49803921569999998" green="0.54901960780000003" blue="0.55294117649999996" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                    </view>
+                </subviews>
+            </tableViewCellContentView>
+            <connections>
+                <outlet property="avatarView" destination="tZx-Xg-Ufs" id="Spn-gX-sea"/>
+                <outlet property="buttonView" destination="OTJ-UP-0WS" id="FlO-y6-6w2"/>
+                <outlet property="content" destination="FNN-IH-WGx" id="CPa-f1-1wf"/>
+                <outlet property="createdOn" destination="FYn-hM-Hbc" id="20N-oE-woN"/>
+                <outlet property="friendView" destination="j7V-6h-nHg" id="r2v-OW-1Y3"/>
+                <outlet property="header" destination="8Be-cm-Uxn" id="ygJ-fb-iOB"/>
+                <outlet property="imageView1" destination="rUo-8k-EXX" id="s5h-h4-tUX"/>
+                <outlet property="imageView2" destination="Zr7-yy-uLp" id="nOS-uG-CZJ"/>
+                <outlet property="imageView3" destination="kT1-oQ-EwS" id="Ed8-i2-vLu"/>
+                <outlet property="imageView4" destination="1Kb-oM-mar" id="zSg-k5-zNW"/>
+                <outlet property="imageView5" destination="wgx-dF-w6T" id="Cgg-BE-02M"/>
+                <outlet property="likeButton" destination="X2R-1u-zKE" id="i62-tK-vvY"/>
+                <outlet property="nickName" destination="A0g-5l-1KQ" id="cXZ-WK-x0M"/>
+                <outlet property="shareButton" destination="8t3-mH-g8f" id="4I8-iS-4P7"/>
+                <outlet property="topicView" destination="qYS-5z-yZp" id="xet-Hw-9hY"/>
+                <outlet property="viewNumLabel" destination="Hil-N3-Bjh" id="VAy-xE-MIT"/>
+            </connections>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <image name="avatar.png" width="66" height="66"/>
+        <image name="cellBG.png" width="310" height="196"/>
+        <image name="like.png" width="196" height="63"/>
+        <image name="love_a.png" width="99" height="32"/>
+        <image name="share.png" width="196" height="63"/>
+        <image name="專題劇照.png" width="310" height="150"/>
+        <image name="專題瀏覽數按鈕.png" width="99" height="33"/>
+    </resources>
+</document>

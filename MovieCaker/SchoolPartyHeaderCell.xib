@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="5056" systemVersion="13D65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none">
+    <dependencies>
+        <deployment defaultVersion="1536" identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3733"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" rowHeight="335" id="nTG-iJ-wPu" customClass="SchoolPartyHeaderCell">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="332"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="nTG-iJ-wPu" id="Iq5-QL-9wo">
+                <rect key="frame" x="0.0" y="0.0" width="320" height="331"/>
+                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                <subviews>
+                    <view contentMode="scaleToFill" id="SHJ-Bf-p3R">
+                        <rect key="frame" x="0.0" y="165" width="320" height="166"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="picon.png" id="Iud-3N-2Tz">
+                                <rect key="frame" x="10" y="145" width="12" height="12"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                            </imageView>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="0 會員" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="V3c-Q5-K7a" userLabel="Label - 成員數">
+                                <rect key="frame" x="28" y="141" width="132" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="創辦人：" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="0fV-Zo-XH9" userLabel="Label - 創辦人 ">
+                                <rect key="frame" x="50" y="6" width="268" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                <color key="textColor" red="0.20392156859999999" green="0.28627450980000002" blue="0.36862745099999999" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" id="kz1-pM-NAi" userLabel="Image View - 童鞋會大頭照">
+                                <rect key="frame" x="10" y="0.0" width="34" height="34"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="馮導的作品風格京味十足" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="none" adjustsFontSizeToFit="NO" id="Uk9-PD-TsX" userLabel="Label - 內容">
+                                <rect key="frame" x="10" y="42" width="301" height="15"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="14"/>
+                                <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" red="0.93333333330000001" green="0.93333333330000001" blue="0.93333333330000001" alpha="1" colorSpace="calibratedRGB"/>
+                    </view>
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" id="R9Q-Gx-8ci" userLabel="Image View - 劇照">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="123"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    </imageView>
+                    <view contentMode="scaleToFill" id="lpB-K1-1iz">
+                        <rect key="frame" x="0.0" y="120" width="320" height="40"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="Beu-Rl-biO">
+                                <rect key="frame" x="7" y="5" width="150" height="33"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" image="Societies.png">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="joinButtonPressed:" destination="nTG-iJ-wPu" eventType="touchUpInside" id="xoW-R3-rEj"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="iKm-Kt-Bsr">
+                                <rect key="frame" x="163" y="5" width="150" height="33"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" image="Share1.png">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="shareButtonPressed:" destination="nTG-iJ-wPu" eventType="touchUpInside" id="apt-gt-gam"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                    </view>
+                    <view contentMode="scaleToFill" id="kR9-Ab-0jF">
+                        <rect key="frame" x="0.0" y="121" width="320" height="40"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="1ED-DS-lYY">
+                                <rect key="frame" x="111" y="4" width="98" height="32"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                <state key="normal" image="Share_small.png">
+                                    <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <state key="highlighted">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="shareButtonPressed:" destination="nTG-iJ-wPu" eventType="touchUpInside" id="PT5-ns-KgK"/>
+                                </connections>
+                            </button>
+                            <button contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="OpR-UM-8ar">
+                                <rect key="frame" x="7" y="4" width="98" height="32"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="9"/>
+                                <state key="normal" image="Societies_small.png">
+                                    <color key="titleColor" red="0.93333333330000001" green="0.93333333330000001" blue="0.93333333330000001" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <state key="selected">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <state key="highlighted">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="joinButtonPressed:" destination="nTG-iJ-wPu" eventType="touchUpInside" id="NCl-gq-ov9"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="uro-uL-AgJ">
+                                <rect key="frame" x="215" y="4" width="98" height="32"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                <state key="normal" image="發起話題.png">
+                                    <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <state key="highlighted">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="addTalkButtonPressed:" destination="nTG-iJ-wPu" eventType="touchUpInside" id="hFi-gd-LLl"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" red="0.93333333330000001" green="0.93333333330000001" blue="0.93333333330000001" alpha="1" colorSpace="calibratedRGB"/>
+                    </view>
+                </subviews>
+                <color key="backgroundColor" red="0.93333333330000001" green="0.93333333330000001" blue="0.93333333330000001" alpha="1" colorSpace="calibratedRGB"/>
+            </tableViewCellContentView>
+            <connections>
+                <outlet property="addTalkButton" destination="uro-uL-AgJ" id="v9a-YT-c5L"/>
+                <outlet property="avatar" destination="kz1-pM-NAi" id="Scs-xv-wXQ"/>
+                <outlet property="banner" destination="R9Q-Gx-8ci" id="JAb-SK-49D"/>
+                <outlet property="btnView2" destination="lpB-K1-1iz" id="LJV-Ca-vlg"/>
+                <outlet property="btnView3" destination="kR9-Ab-0jF" id="KhU-M8-Pz4"/>
+                <outlet property="creator" destination="0fV-Zo-XH9" id="XT3-So-hxr"/>
+                <outlet property="desc" destination="Uk9-PD-TsX" id="Ofi-2c-IY9"/>
+                <outlet property="introView" destination="SHJ-Bf-p3R" id="Ekf-hh-UTS"/>
+                <outlet property="join2Button" destination="OpR-UM-8ar" id="K16-U1-cQj"/>
+                <outlet property="joinButton" destination="Beu-Rl-biO" id="E8a-1f-rpo"/>
+                <outlet property="memberCount" destination="V3c-Q5-K7a" id="Ja4-4U-vSn"/>
+                <outlet property="shareButton" destination="1ED-DS-lYY" id="d8B-Bl-N0R"/>
+            </connections>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <image name="Share1.png" width="150" height="33"/>
+        <image name="Share_small.png" width="99" height="33"/>
+        <image name="Societies.png" width="150" height="33"/>
+        <image name="Societies_small.png" width="99" height="33"/>
+        <image name="picon.png" width="11" height="12"/>
+        <image name="發起話題.png" width="99" height="32"/>
+    </resources>
+</document>
