@@ -12,22 +12,34 @@
 	<dict>
 		<key>08A07B6A988F555EF8D7643F87E09E80B6C9091F</key>
 		<string>https://github.com/miniasp/MovieCaker.git</string>
+		<key>5B75559A2EC959430A495758D33B74FCD7FC479A</key>
+		<string>https://bitbucket.org/78shawn/ios_moviecaker.git</string>
 	</dict>
 	<key>IDESourceControlProjectPath</key>
 	<string>MovieCaker.xcodeproj</string>
 	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
 	<dict>
 		<key>08A07B6A988F555EF8D7643F87E09E80B6C9091F</key>
+		<string>../../../MovieCaker</string>
+		<key>5B75559A2EC959430A495758D33B74FCD7FC479A</key>
 		<string>../..</string>
 	</dict>
 	<key>IDESourceControlProjectURL</key>
-	<string>https://github.com/miniasp/MovieCaker.git</string>
+	<string>https://bitbucket.org/78shawn/ios_moviecaker.git</string>
 	<key>IDESourceControlProjectVersion</key>
 	<integer>111</integer>
 	<key>IDESourceControlProjectWCCIdentifier</key>
-	<string>08A07B6A988F555EF8D7643F87E09E80B6C9091F</string>
+	<string>5B75559A2EC959430A495758D33B74FCD7FC479A</string>
 	<key>IDESourceControlProjectWCConfigurations</key>
 	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>5B75559A2EC959430A495758D33B74FCD7FC479A</string>
+			<key>IDESourceControlWCCName</key>
+			<string>iOS_MovieCaker</string>
+		</dict>
 		<dict>
 			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
 			<string>public.vcs.git</string>

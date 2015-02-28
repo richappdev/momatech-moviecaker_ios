@@ -500,7 +500,6 @@
 		0488271918C3B3A1008DA741 /* love_a@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0488271718C3B3A1008DA741 /* love_a@2x.png */; };
 		0488271D18C3B70C008DA741 /* love_disable@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0488271B18C3B70C008DA741 /* love_disable@2x.png */; };
 		0488272018C3BAD0008DA741 /* TopicObj.m in Sources */ = {isa = PBXBuildFile; fileRef = 0488271F18C3BAD0008DA741 /* TopicObj.m */; };
-		048C83841959F56300EACD67 /* MovieCaker-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 048C83831959F56300EACD67 /* MovieCaker-Info.plist */; };
 		049BB7CF1940E147007FDB89 /* dating@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 049BB7CC1940E147007FDB89 /* dating@2x.png */; };
 		049BB7D01940E147007FDB89 /* mail@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 049BB7CD1940E147007FDB89 /* mail@2x.png */; };
 		049BB7D11940E147007FDB89 /* new@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 049BB7CE1940E147007FDB89 /* new@2x.png */; };
@@ -3428,11 +3427,11 @@
 		045EB4991833945A00F6DF43 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0510;
+				LastUpgradeCheck = 0610;
 				ORGANIZATIONNAME = iKevin;
 				TargetAttributes = {
 					045EB4A01833945A00F6DF43 = {
-						DevelopmentTeam = 396J7S2959;
+						DevelopmentTeam = S5443HE7B2;
 						SystemCapabilities = {
 							com.apple.iOS = {
 								enabled = 0;
@@ -3542,7 +3541,6 @@
 				043C3F5118F42F980082153F /* Societies_small.png in Resources */,
 				0409F0D818B25BCA00EEAA75 /* location.png in Resources */,
 				04B8EA6318840AF800106915 /* ActivityViewController.xib in Resources */,
-				048C83841959F56300EACD67 /* MovieCaker-Info.plist in Resources */,
 				045EB5071833B02F00F6DF43 /* TopicViewController.xib in Resources */,
 				0409F11518B25BCA00EEAA75 /* 我的頁面Icon05.png in Resources */,
 				04378AA3192E3F76005AEF13 /* noPublicBg@2x.png in Resources */,
@@ -4125,10 +4123,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = (
-					armv7,
-					armv7s,
-				);
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
@@ -4167,10 +4161,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = (
-					armv7,
-					armv7s,
-				);
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
@@ -4203,10 +4193,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = YES;
-				ARCHS = (
-					armv7,
-					armv7s,
-				);
 				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-2";
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ENABLE_MODULES = YES;
@@ -4240,10 +4226,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = YES;
-				ARCHS = (
-					armv7,
-					armv7s,
-				);
 				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-2";
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ENABLE_MODULES = YES;
