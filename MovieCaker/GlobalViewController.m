@@ -323,7 +323,7 @@
     
     NSInteger b4tilte=month+1;
     if (b4tilte>12) {
-        b4tilte=b1tilte-12;
+        b4tilte=b4tilte-12;
     }
     
     NSInteger b5tilte=month+2;
