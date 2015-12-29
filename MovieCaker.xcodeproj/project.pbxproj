@@ -621,6 +621,7 @@
 		04EFAE8818B4B4C800627559 /* Topic.m in Sources */ = {isa = PBXBuildFile; fileRef = 04EFAE8718B4B4C800627559 /* Topic.m */; };
 		04F45FD4183A4B380058E843 /* TopicReply.m in Sources */ = {isa = PBXBuildFile; fileRef = 04F45FD3183A4B380058E843 /* TopicReply.m */; };
 		04F8673C18C3A11F00808D3E /* dot.png in Resources */ = {isa = PBXBuildFile; fileRef = 04F8673B18C3A11F00808D3E /* dot.png */; };
+		BB2832C91C3287600066AB70 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = BB2832C81C3287600066AB70 /* Default-568h@2x.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -1639,6 +1640,7 @@
 		04F45FD2183A4B380058E843 /* TopicReply.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TopicReply.h; sourceTree = "<group>"; };
 		04F45FD3183A4B380058E843 /* TopicReply.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TopicReply.m; sourceTree = "<group>"; };
 		04F8673B18C3A11F00808D3E /* dot.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = dot.png; sourceTree = "<group>"; };
+		BB2832C81C3287600066AB70 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -2942,6 +2944,7 @@
 		045EB4981833945A00F6DF43 = {
 			isa = PBXGroup;
 			children = (
+				BB2832C81C3287600066AB70 /* Default-568h@2x.png */,
 				04D539F319A5D406005B4528 /* icon29.png */,
 				04D539F219A5D3D5005B4528 /* icon58.png */,
 				04D539F119A5D3C3005B4528 /* icon80.png */,
@@ -3692,6 +3695,7 @@
 				0409F0DD18B25BCA00EEAA75 /* message@2x.png in Resources */,
 				0409F0B918B25BCA00EEAA75 /* facebook.png in Resources */,
 				04CA9F43187B0BE600242C4B /* MyFriendsViewController.xib in Resources */,
+				BB2832C91C3287600066AB70 /* Default-568h@2x.png in Resources */,
 				04A2196318B90D36006606E8 /* 寫影誌.png in Resources */,
 				0409F10418B25BCA00EEAA75 /* 加入朋友.png in Resources */,
 				0409F0CC18B25BCA00EEAA75 /* leftIcon04@2x.png in Resources */,
