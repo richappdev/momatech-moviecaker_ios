@@ -4167,7 +4167,7 @@
 				ONLY_ACTIVE_ARCH = YES;
 				PROVISIONING_PROFILE = "952cce1f-258c-489c-8b53-f106860d9ace";
 				SDKROOT = iphoneos;
-				VALID_ARCHS = armv7;
+				VALID_ARCHS = "";
 			};
 			name = Debug;
 		};
@@ -4204,7 +4204,7 @@
 				PROVISIONING_PROFILE = "952cce1f-258c-489c-8b53-f106860d9ace";
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
-				VALID_ARCHS = armv7;
+				VALID_ARCHS = "";
 			};
 			name = Release;
 		};
