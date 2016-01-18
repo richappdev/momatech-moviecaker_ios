@@ -56,14 +56,13 @@
 		</dict>
 	</array>
 	<key>CFBundleVersion</key>
-	<string>1.2</string>
+	<string>3</string>
 	<key>FacebookAppID</key>
 	<string>538616469549250</string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>UIBackgroundModes</key>
 	<array>
-		<string>external-accessory</string>
 		<string>fetch</string>
 		<string>remote-notification</string>
 	</array>
