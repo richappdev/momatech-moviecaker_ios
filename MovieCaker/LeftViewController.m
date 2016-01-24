@@ -97,6 +97,15 @@
     }
 }
 
+-(void)goToMain{
+    TopicViewController *t10vc = [[TopicViewController alloc] init];
+    t10vc.channel=@"Ten";
+    t10vc.showLogin=NO;
+    UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:t10vc];
+    [nav.view addGestureRecognizer:self.revealViewController.panGestureRecognizer];
+    self.topic10ViewController = nav;
+    [self configureCenterViewController:self.searchViewController];
+}
 #pragma mark - UITableViewDataSource
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section

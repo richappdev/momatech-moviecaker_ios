@@ -16,7 +16,7 @@
 
 
 @interface AppDelegate() <SWRevealViewControllerDelegate>
-    
+@property LeftViewController *left;
 @end
 
 @implementation AppDelegate
@@ -24,6 +24,12 @@
 @synthesize managedObjectContext = _managedObjectContext;
 @synthesize managedObjectModel = _managedObjectModel;
 @synthesize persistentStoreCoordinator = _persistentStoreCoordinator;
+@synthesize left;
+
+-(BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation{
+    [left goToMain];
+    return TRUE;
+}
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
@@ -52,7 +58,7 @@
     LeftViewController *rearViewController = [[LeftViewController alloc] initWithNibName:@"LeftViewController" bundle:nil];
     UINavigationController *rearNavigationController = [[UINavigationController alloc] initWithRootViewController:rearViewController];
     [rearNavigationController setNavigationBarHidden:YES];
-    
+    left = rearViewController;
     /*
     self.rvc = [[SWRevealViewController alloc] initWithRearViewController:nav_left frontViewController:nil];
     
@@ -376,7 +382,7 @@
 }
  */
 
-- (BOOL)application:(UIApplication *)application
+/*- (BOOL)application:(UIApplication *)application
             openURL:(NSURL *)url
   sourceApplication:(NSString *)sourceApplication
          annotation:(id)annotation {
@@ -415,7 +421,7 @@
     
     
 
-}
+}*/
 
 // A function for parsing URL parameters
 - (NSDictionary*)parseURLParams:(NSString *)query {

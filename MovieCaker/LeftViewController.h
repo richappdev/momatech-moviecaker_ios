@@ -13,5 +13,5 @@
 @interface LeftViewController : BaseViewController<UITableViewDataSource,UITableViewDelegate>
 
 @property (strong, nonatomic) IBOutlet UITableView *myTableView;
-
+-(void)goToMain;
 @end
