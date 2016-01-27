@@ -147,7 +147,7 @@
     
     [self.manager getTopicFromDbWithId:self.uid.stringValue channel:self.channel withPage:self.page callback:^(NSArray *topicArray, NSString *errorMsg, NSError *error) {
         
-        self.topicArray=topicArray;
+        //self.topicArray=topicArray;
         [self.myTableView reloadData];
         [self.myTableView scrollRectToVisible:CGRectMake(0, 0, 1, 1) animated:NO];
         
@@ -210,13 +210,45 @@
             [self alertShow:NSLocalizedStringFromTable(@"目前沒有資料！",@"InfoPlist",nil)];
         }
  
-        
         [WaitingAlert dismiss];
         
     }];
     
 }
+-(void)goToTopicDetail:(NSNumber *)topicId{
+    NSMutableArray *array = [[NSMutableArray alloc]initWithArray: [[PersistentManager sharedInstance] getTopicWithChannel:@"Ten"]];
+    [array addObjectsFromArray:[[PersistentManager sharedInstance] getTopicWithChannel:@"Week"]];
+    TopicObj *test = nil;
+    for (TopicObj *row in array) {
+        if (row.topicID == topicId) {
+            test = row;
+        }
+    }
+    if(test!=nil){
+        TopicDetailViewController *topicDetailVC=[[TopicDetailViewController alloc] initWithNibName:@"TopicDetailViewController" bundle:nil];
+        topicDetailVC.topic = test;
+        topicDetailVC.channel = @"InTopic";
+        [self.navigationController pushViewController:topicDetailVC animated:YES];
+    }else{
+        
+      [self.manager getTopicWithTopicID:topicId callback:^(TopicObj *topic, NSString *errorMsg, NSError *error) {
+        TopicObj *test = topic;
+          if (test==nil) {
+              UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error"
+                                                              message:@"不存在的專題"
+                                                             delegate:self
+                                                    cancelButtonTitle:@"OK"
+                                                    otherButtonTitles:nil];
+              [alert show];
+          }else{
+        TopicDetailViewController *topicDetailVC=[[TopicDetailViewController alloc] initWithNibName:@"TopicDetailViewController" bundle:nil];
+        topicDetailVC.topic = test;
+        topicDetailVC.channel = @"InTopic";
+        [self.navigationController pushViewController:topicDetailVC animated:YES];
+          }
+    }];}
 
+}
 #pragma mark - UITableViewDataSource
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section

@@ -547,7 +547,10 @@
         
         NSDictionary *JSON = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingAllowFragments error:nil];
         
-        TopicObj *topic=[[TopicObj alloc] init];
+        TopicObj *topic=nil;
+        
+        if([(NSArray *)[JSON objectForKey:@"Data"] count]!=0){
+        topic = [[TopicObj alloc] init];
         
         NSDictionary *dict=JSON[@"Data"][0];
         
@@ -570,7 +573,7 @@
         //topic.channel=channel;
         topic.isLiked=dict[@"IsLiked"];
         
-        
+        }
         
         if(callback)
             callback(topic, nil,nil);

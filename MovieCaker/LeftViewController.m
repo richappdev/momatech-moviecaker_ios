@@ -104,7 +104,8 @@
     UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:t10vc];
     [nav.view addGestureRecognizer:self.revealViewController.panGestureRecognizer];
     self.topic10ViewController = nav;
-    [self configureCenterViewController:self.searchViewController];
+    [self configureCenterViewController:self.topic10ViewController];
+    [t10vc goToTopicDetail:[NSNumber numberWithInt:3240]];
 }
 #pragma mark - UITableViewDataSource
 

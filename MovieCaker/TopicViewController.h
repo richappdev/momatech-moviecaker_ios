@@ -19,5 +19,6 @@
 @property (strong, nonatomic) IBOutlet UIButton *topButton;
 - (IBAction)topButtonPressed:(id)sender;
 @property (strong, nonatomic) IBOutlet UILabel *moreLabel;
+-(void)goToTopicDetail:(NSNumber*)topicId;
 
 @end
