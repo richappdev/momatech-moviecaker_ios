@@ -43,6 +43,7 @@
 {
     [super viewDidLoad];
     //self.myTableView.rowHeight = 460;
+    NSLog(@"%@asdsdasd",self.channel);
     self.df = [[NSDateFormatter alloc] init];
     
     self.page=[NSNumber numberWithInt:1];
@@ -645,7 +646,25 @@
 }
 
 
+-(void)goToMovieDetail:(NSString *)videoID{
+    [self.manager getVideoWithVideoID:videoID callback:^(VideoObj *video, NSMutableArray *actorArray, NSString *errorMsg, NSError *error) {
+        
+        if(video==nil){
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error"
+                                                            message:@"不存在的專題"
+                                                           delegate:self
+                                                  cancelButtonTitle:@"OK"
+                                                  otherButtonTitles:nil];
+            [alert show];
 
+        }else{
+        
+        VideoContentViewController *vcvc=[[VideoContentViewController alloc] initWithNibName:@"VideoContentViewController" bundle:nil];
+        
+        vcvc.video=video;
+        [self.navigationController pushViewController:vcvc animated:YES];}
+    }];
+}
 
 - (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate
 {

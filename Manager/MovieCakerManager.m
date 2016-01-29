@@ -487,7 +487,12 @@
     [self.apiManager downloadVideoWithVideoID:videoId success:^(NSData *data) {
         NSDictionary *JSON = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingAllowFragments error:nil];
         
-        VideoObj *video =[[VideoObj alloc] init];
+        VideoObj *video = nil;
+        NSMutableArray *actorArray=[[NSMutableArray alloc] init];
+        
+        if([(NSArray *)[JSON objectForKey:@"Data"] count]!=0){
+        
+        video = [[VideoObj alloc] init];
         NSDictionary *dict=JSON[@"Data"][0];
         
         video.videoID=[self replaceNullString:dict[@"Id"]];
@@ -513,8 +518,7 @@
             
         video.releaseDate=[self replaceNullString:dict[@"ReleaseDate"]];
         video.update=[NSDate date];
-        
-        NSMutableArray *actorArray=[[NSMutableArray alloc] init];
+
         NSArray *ary=dict[@"Actor"];
         for (int i=0; i<ary.count; i++) {
             
@@ -529,7 +533,7 @@
             actor.roleType=ary[i][@"RoleType"];
             [actorArray addObject:actor];
         }
-        
+        }
         if(callback)
             callback(video,actorArray, nil,nil);
         

@@ -30,5 +30,5 @@
 @property (strong, nonatomic) IBOutlet UILabel *moreLabel;
 @property (strong, nonatomic) IBOutlet UIButton *topButton;
 - (IBAction)topButtonPressed:(id)sender;
-
+-(void)goToMovieDetail:(NSString*)videoID;
 @end
