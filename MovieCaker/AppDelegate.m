@@ -27,7 +27,9 @@
 @synthesize left;
 
 -(BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation{
-    [left goToMain];
+    if([[url host] isEqualToString:@"topic"]||[[url host]isEqualToString:@"movie"]){
+        [left goToMain:url];
+    }
     return TRUE;
 }
 

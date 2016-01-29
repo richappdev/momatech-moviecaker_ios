@@ -97,8 +97,8 @@
     }
 }
 
--(void)goToMain{
-    /*
+-(void)goToMain:(NSURL *)url{
+    if([[url host] isEqualToString:@"topic"]){
     TopicViewController *t10vc = [[TopicViewController alloc] init];
     t10vc.channel=@"Ten";
     t10vc.showLogin=NO;
@@ -106,8 +106,8 @@
     [nav.view addGestureRecognizer:self.revealViewController.panGestureRecognizer];
     self.topic10ViewController = nav;
     [self configureCenterViewController:self.topic10ViewController];
-    [t10vc goToTopicDetail:[NSNumber numberWithInt:3240]];*/
-    
+        [t10vc goToTopicDetail:[NSNumber numberWithInt:[[[url path]stringByReplacingOccurrencesOfString:@"/" withString:@""] intValue]]];}
+    else if([[url host] isEqualToString:@"movie"]){
     TopicDetailViewController *vc = [[TopicDetailViewController alloc] init];
     vc.channel = @"Week";
     UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:vc];
@@ -115,7 +115,8 @@
     self.videoWeekViewController = nav;
     
     [self configureCenterViewController:self.videoWeekViewController];
-    [vc goToMovieDetail:@"M00000000092390"];
+        //M00000000092390
+        [vc goToMovieDetail:[[url path] stringByReplacingOccurrencesOfString:@"/" withString:@""]];}
 }
 #pragma mark - UITableViewDataSource
 
