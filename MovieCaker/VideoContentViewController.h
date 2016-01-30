@@ -17,6 +17,7 @@
 @property (strong, nonatomic) NSString *videoId;
 @property (strong, nonatomic) IBOutlet UISegmentedControl *segmentedControl;
 @property (assign, nonatomic) int landingNo;
+@property BOOL gotoMovieReview;
 
 - (IBAction)didChangeSegmentControl:(id)sender;
 

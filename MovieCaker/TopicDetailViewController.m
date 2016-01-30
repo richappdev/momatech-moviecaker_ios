@@ -662,7 +662,10 @@
         VideoContentViewController *vcvc=[[VideoContentViewController alloc] initWithNibName:@"VideoContentViewController" bundle:nil];
         
         vcvc.video=video;
-        [self.navigationController pushViewController:vcvc animated:YES];}
+        vcvc.gotoMovieReview = YES;
+        [self.navigationController pushViewController:vcvc animated:YES];
+        [vcvc gotoMovieReview];
+        }
     }];
 }
 

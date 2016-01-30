@@ -19,12 +19,13 @@
 @end
 
 @implementation VideoContentViewController
+@synthesize gotoMovieReview;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-        // Custom initialization
+        gotoMovieReview = NO;
     }
     return self;
 }
@@ -65,6 +66,12 @@
         
         if (self.video.reviewNum.intValue<=0) {
             [self.segmentedControl removeSegmentAtIndex:1 animated:NO];
+        }else if (gotoMovieReview){
+            self.segmentedControl.selectedSegmentIndex = 1;
+            [self hideViewController:self.lineUpViewController animated:YES];
+            [self hideViewController:self.videoDetailViewController animated:YES];
+            self.filmReviewViewController.video=self.video;
+            [self showViewController:self.filmReviewViewController animated:YES];
         }
         [self childPages];
         self.videoDetailViewController.video=self.video;
@@ -105,9 +112,8 @@
         }];
         
     }
-    
-    
-    
+
+
 }
 
 //設定childViewController
