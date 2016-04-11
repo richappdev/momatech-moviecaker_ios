@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		6CA52C5B1CB9587400C5FDC8 /* scrollBoxView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CA52C5A1CB9587400C5FDC8 /* scrollBoxView.m */; };
 		6CD58C421CACBD3F0089DB38 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CD58C411CACBD3F0089DB38 /* main.m */; };
 		6CD58C451CACBD3F0089DB38 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CD58C441CACBD3F0089DB38 /* AppDelegate.m */; };
 		6CD58C481CACBD3F0089DB38 /* FirstViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CD58C471CACBD3F0089DB38 /* FirstViewController.m */; };
@@ -17,6 +18,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		6CA52C591CB9587400C5FDC8 /* scrollBoxView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = scrollBoxView.h; sourceTree = "<group>"; };
+		6CA52C5A1CB9587400C5FDC8 /* scrollBoxView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = scrollBoxView.m; sourceTree = "<group>"; };
 		6CD58C3D1CACBD3F0089DB38 /* MovieCaker_iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MovieCaker_iOS.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6CD58C411CACBD3F0089DB38 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		6CD58C431CACBD3F0089DB38 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -72,6 +75,8 @@
 				6CD58C511CACBD3F0089DB38 /* LaunchScreen.storyboard */,
 				6CD58C541CACBD3F0089DB38 /* Info.plist */,
 				6CD58C401CACBD3F0089DB38 /* Supporting Files */,
+				6CA52C591CB9587400C5FDC8 /* scrollBoxView.h */,
+				6CA52C5A1CB9587400C5FDC8 /* scrollBoxView.m */,
 			);
 			path = MovieCaker_iOS;
 			sourceTree = "<group>";
@@ -159,6 +164,7 @@
 				6CD58C451CACBD3F0089DB38 /* AppDelegate.m in Sources */,
 				6CD58C481CACBD3F0089DB38 /* FirstViewController.m in Sources */,
 				6CD58C421CACBD3F0089DB38 /* main.m in Sources */,
+				6CA52C5B1CB9587400C5FDC8 /* scrollBoxView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -307,6 +313,7 @@
 				6CD58C591CACBD3F0089DB38 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
