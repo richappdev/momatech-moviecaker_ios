@@ -9,7 +9,7 @@
         <!--電影-->
         <scene sceneID="hNz-n2-bh7">
             <objects>
-                <viewController id="9pv-A4-QxB" customClass="FirstViewController" sceneMemberID="viewController">
+                <viewController id="9pv-A4-QxB" customClass="MovieController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Ia1-K6-d13"/>
                         <viewControllerLayoutGuide type="bottom" id="4ug-Mw-9AY"/>
@@ -19,27 +19,53 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="x7G-q5-YWA" customClass="scrollBoxView">
-                                <rect key="frame" x="0.0" y="60" width="414" height="250"/>
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="310"/>
                                 <subviews>
                                     <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="VeJ-MH-lHy">
-                                        <rect key="frame" x="132" y="0.0" width="150" height="250"/>
-                                        <constraints>
-                                            <constraint firstAttribute="width" constant="150" id="TAb-OF-aGq"/>
-                                            <constraint firstAttribute="height" constant="250" id="fwI-h5-fB0"/>
-                                        </constraints>
+                                        <rect key="frame" x="132" y="79" width="150" height="250"/>
                                     </scrollView>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="star" translatesAutoresizingMaskIntoConstraints="NO" id="6ly-x3-r8L">
+                                        <rect key="frame" x="150" y="239" width="50" height="50"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="50" id="gz6-8L-KBs"/>
+                                            <constraint firstAttribute="width" constant="50" id="t0U-Qc-W4w"/>
+                                        </constraints>
+                                    </imageView>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="標題" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Vh4-1C-ejS">
+                                        <rect key="frame" x="132" y="42" width="150" height="21"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="150" id="0Xe-h5-UGu"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="10" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vI7-lq-yvf">
+                                        <rect key="frame" x="167" y="285" width="18" height="21"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" red="0.045712802669999997" green="0.75511254670000005" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
                                 </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <constraints>
-                                    <constraint firstAttribute="bottom" secondItem="VeJ-MH-lHy" secondAttribute="bottom" id="DH7-fr-Fn0"/>
-                                    <constraint firstAttribute="height" constant="250" id="M4i-Cn-bqy"/>
+                                    <constraint firstItem="Vh4-1C-ejS" firstAttribute="trailing" secondItem="VeJ-MH-lHy" secondAttribute="trailing" id="2hP-xb-wV8"/>
+                                    <constraint firstItem="Vh4-1C-ejS" firstAttribute="leading" secondItem="VeJ-MH-lHy" secondAttribute="leading" id="8G5-fy-vNm"/>
+                                    <constraint firstAttribute="bottom" secondItem="VeJ-MH-lHy" secondAttribute="bottom" constant="-19" id="DH7-fr-Fn0"/>
+                                    <constraint firstItem="VeJ-MH-lHy" firstAttribute="top" secondItem="Vh4-1C-ejS" secondAttribute="bottom" constant="16" id="Esp-XM-0yK"/>
+                                    <constraint firstItem="6ly-x3-r8L" firstAttribute="top" secondItem="Vh4-1C-ejS" secondAttribute="bottom" constant="176" id="F15-vy-ifX"/>
+                                    <constraint firstAttribute="height" constant="310" id="M4i-Cn-bqy"/>
+                                    <constraint firstItem="Vh4-1C-ejS" firstAttribute="top" secondItem="x7G-q5-YWA" secondAttribute="top" constant="42" id="R62-KY-Piz"/>
                                     <constraint firstItem="VeJ-MH-lHy" firstAttribute="centerX" secondItem="x7G-q5-YWA" secondAttribute="centerX" id="jQ0-WS-vxr"/>
+                                    <constraint firstItem="6ly-x3-r8L" firstAttribute="top" secondItem="vI7-lq-yvf" secondAttribute="bottom" constant="-67" id="piG-2S-Mrg"/>
+                                    <constraint firstItem="Vh4-1C-ejS" firstAttribute="centerX" secondItem="vI7-lq-yvf" secondAttribute="centerX" constant="31" id="qvL-eq-BvW"/>
+                                    <constraint firstItem="6ly-x3-r8L" firstAttribute="centerX" secondItem="x7G-q5-YWA" secondAttribute="centerX" constant="-32" id="rLc-cE-gpz"/>
                                 </constraints>
                             </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="x7G-q5-YWA" firstAttribute="top" secondItem="Ia1-K6-d13" secondAttribute="bottom" constant="40" id="XKA-II-gd6"/>
+                            <constraint firstItem="x7G-q5-YWA" firstAttribute="top" secondItem="Ia1-K6-d13" secondAttribute="bottom" constant="-20" id="XKA-II-gd6"/>
                             <constraint firstItem="x7G-q5-YWA" firstAttribute="leading" secondItem="tsR-hK-woN" secondAttribute="leadingMargin" constant="-20" id="oHl-Sf-9oA"/>
                             <constraint firstAttribute="trailingMargin" secondItem="x7G-q5-YWA" secondAttribute="trailing" constant="-20" id="qlU-GK-zTa"/>
                         </constraints>
@@ -49,11 +75,14 @@
                     <connections>
                         <outlet property="imageScroll" destination="VeJ-MH-lHy" id="PLH-PW-mea"/>
                         <outlet property="scrollView" destination="x7G-q5-YWA" id="cK1-Hr-9vN"/>
+                        <outlet property="uirating" destination="vI7-lq-yvf" id="lxg-kv-wXb"/>
+                        <outlet property="uistar" destination="6ly-x3-r8L" id="ChG-3M-o8C"/>
+                        <outlet property="uititle" destination="Vh4-1C-ejS" id="kYy-fA-8mN"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="W5J-7L-Pyd" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="400" y="-303"/>
+            <point key="canvasLocation" x="400" y="-363"/>
         </scene>
         <!--專題-->
         <scene sceneID="wg7-f3-ORb">
@@ -138,5 +167,6 @@
     <resources>
         <image name="first" width="30" height="30"/>
         <image name="second" width="30" height="30"/>
+        <image name="star" width="100" height="100"/>
     </resources>
 </document>

@@ -18,7 +18,6 @@
 }
 */
 - (UIView *)hitTest:(CGPoint)point withEvent:(UIEvent *)event {
-    NSLog(@"work");
     return [self pointInside:point withEvent:event] ? scrollView : nil;
 }
 

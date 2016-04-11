@@ -8,9 +8,10 @@
 
 /* Begin PBXBuildFile section */
 		6CA52C5B1CB9587400C5FDC8 /* scrollBoxView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CA52C5A1CB9587400C5FDC8 /* scrollBoxView.m */; };
+		6CA52C841CBB547A00C5FDC8 /* movieModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CA52C831CBB547A00C5FDC8 /* movieModel.m */; };
 		6CD58C421CACBD3F0089DB38 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CD58C411CACBD3F0089DB38 /* main.m */; };
 		6CD58C451CACBD3F0089DB38 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CD58C441CACBD3F0089DB38 /* AppDelegate.m */; };
-		6CD58C481CACBD3F0089DB38 /* FirstViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CD58C471CACBD3F0089DB38 /* FirstViewController.m */; };
+		6CD58C481CACBD3F0089DB38 /* MovieController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CD58C471CACBD3F0089DB38 /* MovieController.m */; };
 		6CD58C4B1CACBD3F0089DB38 /* SecondViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CD58C4A1CACBD3F0089DB38 /* SecondViewController.m */; };
 		6CD58C4E1CACBD3F0089DB38 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6CD58C4C1CACBD3F0089DB38 /* Main.storyboard */; };
 		6CD58C501CACBD3F0089DB38 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6CD58C4F1CACBD3F0089DB38 /* Assets.xcassets */; };
@@ -20,12 +21,14 @@
 /* Begin PBXFileReference section */
 		6CA52C591CB9587400C5FDC8 /* scrollBoxView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = scrollBoxView.h; sourceTree = "<group>"; };
 		6CA52C5A1CB9587400C5FDC8 /* scrollBoxView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = scrollBoxView.m; sourceTree = "<group>"; };
+		6CA52C821CBB547A00C5FDC8 /* movieModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = movieModel.h; sourceTree = "<group>"; };
+		6CA52C831CBB547A00C5FDC8 /* movieModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = movieModel.m; sourceTree = "<group>"; };
 		6CD58C3D1CACBD3F0089DB38 /* MovieCaker_iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MovieCaker_iOS.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6CD58C411CACBD3F0089DB38 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		6CD58C431CACBD3F0089DB38 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		6CD58C441CACBD3F0089DB38 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		6CD58C461CACBD3F0089DB38 /* FirstViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FirstViewController.h; sourceTree = "<group>"; };
-		6CD58C471CACBD3F0089DB38 /* FirstViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FirstViewController.m; sourceTree = "<group>"; };
+		6CD58C461CACBD3F0089DB38 /* MovieController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MovieController.h; sourceTree = "<group>"; };
+		6CD58C471CACBD3F0089DB38 /* MovieController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MovieController.m; sourceTree = "<group>"; };
 		6CD58C491CACBD3F0089DB38 /* SecondViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SecondViewController.h; sourceTree = "<group>"; };
 		6CD58C4A1CACBD3F0089DB38 /* SecondViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SecondViewController.m; sourceTree = "<group>"; };
 		6CD58C4D1CACBD3F0089DB38 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -45,6 +48,35 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		6CA52C7F1CBB52C900C5FDC8 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				6CD58C461CACBD3F0089DB38 /* MovieController.h */,
+				6CD58C471CACBD3F0089DB38 /* MovieController.m */,
+				6CD58C491CACBD3F0089DB38 /* SecondViewController.h */,
+				6CD58C4A1CACBD3F0089DB38 /* SecondViewController.m */,
+			);
+			name = Controllers;
+			sourceTree = "<group>";
+		};
+		6CA52C801CBB52DB00C5FDC8 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				6CA52C821CBB547A00C5FDC8 /* movieModel.h */,
+				6CA52C831CBB547A00C5FDC8 /* movieModel.m */,
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
+		6CA52C811CBB52E600C5FDC8 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				6CA52C591CB9587400C5FDC8 /* scrollBoxView.h */,
+				6CA52C5A1CB9587400C5FDC8 /* scrollBoxView.m */,
+			);
+			name = View;
+			sourceTree = "<group>";
+		};
 		6CD58C341CACBD3F0089DB38 = {
 			isa = PBXGroup;
 			children = (
@@ -64,19 +96,16 @@
 		6CD58C3F1CACBD3F0089DB38 /* MovieCaker_iOS */ = {
 			isa = PBXGroup;
 			children = (
+				6CA52C801CBB52DB00C5FDC8 /* Model */,
+				6CA52C811CBB52E600C5FDC8 /* View */,
+				6CA52C7F1CBB52C900C5FDC8 /* Controllers */,
 				6CD58C431CACBD3F0089DB38 /* AppDelegate.h */,
 				6CD58C441CACBD3F0089DB38 /* AppDelegate.m */,
-				6CD58C461CACBD3F0089DB38 /* FirstViewController.h */,
-				6CD58C471CACBD3F0089DB38 /* FirstViewController.m */,
-				6CD58C491CACBD3F0089DB38 /* SecondViewController.h */,
-				6CD58C4A1CACBD3F0089DB38 /* SecondViewController.m */,
 				6CD58C4C1CACBD3F0089DB38 /* Main.storyboard */,
 				6CD58C4F1CACBD3F0089DB38 /* Assets.xcassets */,
 				6CD58C511CACBD3F0089DB38 /* LaunchScreen.storyboard */,
 				6CD58C541CACBD3F0089DB38 /* Info.plist */,
 				6CD58C401CACBD3F0089DB38 /* Supporting Files */,
-				6CA52C591CB9587400C5FDC8 /* scrollBoxView.h */,
-				6CA52C5A1CB9587400C5FDC8 /* scrollBoxView.m */,
 			);
 			path = MovieCaker_iOS;
 			sourceTree = "<group>";
@@ -162,7 +191,8 @@
 			files = (
 				6CD58C4B1CACBD3F0089DB38 /* SecondViewController.m in Sources */,
 				6CD58C451CACBD3F0089DB38 /* AppDelegate.m in Sources */,
-				6CD58C481CACBD3F0089DB38 /* FirstViewController.m in Sources */,
+				6CA52C841CBB547A00C5FDC8 /* movieModel.m in Sources */,
+				6CD58C481CACBD3F0089DB38 /* MovieController.m in Sources */,
 				6CD58C421CACBD3F0089DB38 /* main.m in Sources */,
 				6CA52C5B1CB9587400C5FDC8 /* scrollBoxView.m in Sources */,
 			);
