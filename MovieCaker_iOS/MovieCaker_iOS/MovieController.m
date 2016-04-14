@@ -25,6 +25,8 @@
     [super viewDidLoad];
     self.scrollView.scrollView = self.imageScroll;
     self.imageScroll.delegate = self;
+            UITapGestureRecognizer *singleTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(movieDetail:)];
+    [self.imageScroll addGestureRecognizer:singleTap];
     
     self.imageScroll.pagingEnabled = YES;
     //self.imageScroll.backgroundColor = [UIColor blueColor];
@@ -34,6 +36,12 @@
     [self generateMovie];
     // Do any additional setup after loading the view, typically from a nib.
 }
+
+
+-(void)viewWillAppear:(BOOL)animated{
+    self.navigationController.navigationBarHidden = YES;
+}
+
 
 -(void)generateList{
 
@@ -66,10 +74,18 @@
     for (movieModel *row in self.movieArray) {
         
         UIImageView *image = [[UIImageView alloc] initWithImage:row.movieImage];
+        image.userInteractionEnabled = YES;
+        
         image.frame = CGRectMake(margin+width*count, 0, width-margin*2, height);
         [self.imageScroll addSubview:image];
         count++;
     }
+}
+
+-(void)movieDetail:(id)sender{
+    int indexOfPage = self.imageScroll.contentOffset.x / self.imageScroll.frame.size.width;
+    NSLog(@"%d",indexOfPage);
+    [self performSegueWithIdentifier:@"movieDetail" sender:self];
 }
 
 - (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView{
