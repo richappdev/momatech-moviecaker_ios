@@ -10,13 +10,7 @@
 
 #import "WXApi.h"
 #import "AFNetworking.h"
-
-
-#define WECHAT_APP_ID         @"wxd0d7b13dff0c2d5e" //WXD0D7B13DFF0C2D5E
-#define WECHAT_MCH_ID         @"1272035301"
-#define WECHAT_KEY            @"AOGAKNHPNOJSZRA10KQDEJY5OGAYQYC5" //@"aogaknhpnojszra10kqdejy5ogayqyc5" //AOGAKNHPNOJSZRA10KQDEJY5OGAYQYC5
-#define WECHAT_APP_SECRET     @"b509f23d24440efe31fff96c476d4761" //@"b509f23d24440efe31fff96c476d4761"B509F23D24440EFE31FFF96C476D4761
-
+#import "WechatAccess.h"
 
 @interface LoginController ()
 - (IBAction)Login:(id)sender;
@@ -46,10 +40,13 @@
 */
 
 - (IBAction)Login:(id)sender {
-    NSLog(@"was");
-    [WXApi registerApp:WECHAT_APP_ID];
-    SendAuthReq *req = [[SendAuthReq alloc] init];
-    [req setScope:@"snsapi_userinfo"];
-    [WXApi sendAuthReq:req viewController:self delegate:self];
+    [[[WechatAccess sharedInstance] defaultAccess]login:^(BOOL succeeded, id object) {
+        if(succeeded){
+        //do Login Proccess
+        }else{
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"登入訊息" message:@"登入取消" delegate:self cancelButtonTitle:@"关闭" otherButtonTitles:nil,nil];
+            [alert show];
+        }
+    } viewController:self];
 }
 @end
