@@ -97,6 +97,34 @@
             </objects>
             <point key="canvasLocation" x="1353" y="-276"/>
         </scene>
+        <!--登入-->
+        <scene sceneID="Yw6-q6-vxF">
+            <objects>
+                <viewController id="XeJ-Ni-9cD" customClass="LoginController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="uGD-z8-xaj"/>
+                        <viewControllerLayoutGuide type="bottom" id="W0N-F0-10G"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="iOw-gh-3GM">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HC2-6D-K6M">
+                                <rect key="frame" x="137" y="241" width="46" height="30"/>
+                                <state key="normal" title="Button"/>
+                                <connections>
+                                    <action selector="Login:" destination="XeJ-Ni-9cD" eventType="touchUpInside" id="Ien-k4-W6m"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" tag="4" title="登入" id="iWJ-V2-6Xn"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="6pU-v1-2uY" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1250" y="481"/>
+        </scene>
         <!--Movie Detail Controller-->
         <scene sceneID="qsf-q2-yA7">
             <objects>
@@ -170,6 +198,7 @@
                         <segue destination="Ja8-DH-oBY" kind="relationship" relationship="viewControllers" id="u7Y-xg-7CH"/>
                         <segue destination="8rJ-Kc-sve" kind="relationship" relationship="viewControllers" id="lzU-1b-eKA"/>
                         <segue destination="JgQ-hk-5PD" kind="relationship" relationship="viewControllers" id="V1Z-Rw-rG6"/>
+                        <segue destination="XeJ-Ni-9cD" kind="relationship" relationship="viewControllers" id="iAW-ts-5cc"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="HuB-VB-40B" sceneMemberID="firstResponder"/>
@@ -229,7 +258,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Vyh-C5-hzH" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="912" y="-242"/>
+            <point key="canvasLocation" x="894" y="-576"/>
         </scene>
     </scenes>
     <resources>

@@ -7,9 +7,26 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		6C1250621CC37E4F0009549B /* libWeChatSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6C12505E1CC37E4F0009549B /* libWeChatSDK.a */; };
+		6C1250631CC37E4F0009549B /* read_me.txt in Resources */ = {isa = PBXBuildFile; fileRef = 6C12505F1CC37E4F0009549B /* read_me.txt */; };
+		6C1250651CC37E9F0009549B /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6C1250641CC37E9F0009549B /* CoreTelephony.framework */; };
+		6C1250681CC37ED50009549B /* LoginController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C1250671CC37ED50009549B /* LoginController.m */; };
+		6C12507D1CC3857B0009549B /* AFHTTPRequestOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C12506B1CC3857A0009549B /* AFHTTPRequestOperation.m */; };
+		6C12507E1CC3857B0009549B /* AFHTTPRequestOperationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C12506D1CC3857B0009549B /* AFHTTPRequestOperationManager.m */; };
+		6C12507F1CC3857B0009549B /* AFHTTPSessionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C12506F1CC3857B0009549B /* AFHTTPSessionManager.m */; };
+		6C1250801CC3857B0009549B /* AFNetworkReachabilityManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C1250721CC3857B0009549B /* AFNetworkReachabilityManager.m */; };
+		6C1250811CC3857B0009549B /* AFSecurityPolicy.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C1250741CC3857B0009549B /* AFSecurityPolicy.m */; };
+		6C1250821CC3857B0009549B /* AFURLConnectionOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C1250761CC3857B0009549B /* AFURLConnectionOperation.m */; };
+		6C1250831CC3857B0009549B /* AFURLRequestSerialization.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C1250781CC3857B0009549B /* AFURLRequestSerialization.m */; };
+		6C1250841CC3857B0009549B /* AFURLResponseSerialization.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C12507A1CC3857B0009549B /* AFURLResponseSerialization.m */; };
+		6C1250851CC3857B0009549B /* AFURLSessionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C12507C1CC3857B0009549B /* AFURLSessionManager.m */; };
 		6CA52C5B1CB9587400C5FDC8 /* scrollBoxView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CA52C5A1CB9587400C5FDC8 /* scrollBoxView.m */; };
 		6CA52C841CBB547A00C5FDC8 /* movieModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CA52C831CBB547A00C5FDC8 /* movieModel.m */; };
 		6CA52C871CBEC3A900C5FDC8 /* MovieDetailController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CA52C861CBEC3A900C5FDC8 /* MovieDetailController.m */; };
+		6CD0DEDE1CC3867300878995 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6CD0DEDD1CC3867300878995 /* SystemConfiguration.framework */; };
+		6CD0DEE01CC3867900878995 /* libsqlite3.0.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 6CD0DEDF1CC3867900878995 /* libsqlite3.0.tbd */; };
+		6CD0DEE21CC3868000878995 /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 6CD0DEE11CC3868000878995 /* libz.tbd */; };
+		6CD0DEE41CC386B800878995 /* libstdc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 6CD0DEE31CC386B800878995 /* libstdc++.tbd */; };
 		6CD58C421CACBD3F0089DB38 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CD58C411CACBD3F0089DB38 /* main.m */; };
 		6CD58C451CACBD3F0089DB38 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CD58C441CACBD3F0089DB38 /* AppDelegate.m */; };
 		6CD58C481CACBD3F0089DB38 /* MovieController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CD58C471CACBD3F0089DB38 /* MovieController.m */; };
@@ -20,12 +37,42 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		6C12505E1CC37E4F0009549B /* libWeChatSDK.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libWeChatSDK.a; sourceTree = "<group>"; };
+		6C12505F1CC37E4F0009549B /* read_me.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = read_me.txt; sourceTree = "<group>"; };
+		6C1250601CC37E4F0009549B /* WXApi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXApi.h; sourceTree = "<group>"; };
+		6C1250611CC37E4F0009549B /* WXApiObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXApiObject.h; sourceTree = "<group>"; };
+		6C1250641CC37E9F0009549B /* CoreTelephony.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreTelephony.framework; path = System/Library/Frameworks/CoreTelephony.framework; sourceTree = SDKROOT; };
+		6C1250661CC37ED50009549B /* LoginController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginController.h; sourceTree = "<group>"; };
+		6C1250671CC37ED50009549B /* LoginController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginController.m; sourceTree = "<group>"; };
+		6C12506A1CC3857A0009549B /* AFHTTPRequestOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFHTTPRequestOperation.h; sourceTree = "<group>"; };
+		6C12506B1CC3857A0009549B /* AFHTTPRequestOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFHTTPRequestOperation.m; sourceTree = "<group>"; };
+		6C12506C1CC3857B0009549B /* AFHTTPRequestOperationManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFHTTPRequestOperationManager.h; sourceTree = "<group>"; };
+		6C12506D1CC3857B0009549B /* AFHTTPRequestOperationManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFHTTPRequestOperationManager.m; sourceTree = "<group>"; };
+		6C12506E1CC3857B0009549B /* AFHTTPSessionManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFHTTPSessionManager.h; sourceTree = "<group>"; };
+		6C12506F1CC3857B0009549B /* AFHTTPSessionManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFHTTPSessionManager.m; sourceTree = "<group>"; };
+		6C1250701CC3857B0009549B /* AFNetworking.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFNetworking.h; sourceTree = "<group>"; };
+		6C1250711CC3857B0009549B /* AFNetworkReachabilityManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFNetworkReachabilityManager.h; sourceTree = "<group>"; };
+		6C1250721CC3857B0009549B /* AFNetworkReachabilityManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFNetworkReachabilityManager.m; sourceTree = "<group>"; };
+		6C1250731CC3857B0009549B /* AFSecurityPolicy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFSecurityPolicy.h; sourceTree = "<group>"; };
+		6C1250741CC3857B0009549B /* AFSecurityPolicy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFSecurityPolicy.m; sourceTree = "<group>"; };
+		6C1250751CC3857B0009549B /* AFURLConnectionOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFURLConnectionOperation.h; sourceTree = "<group>"; };
+		6C1250761CC3857B0009549B /* AFURLConnectionOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFURLConnectionOperation.m; sourceTree = "<group>"; };
+		6C1250771CC3857B0009549B /* AFURLRequestSerialization.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFURLRequestSerialization.h; sourceTree = "<group>"; };
+		6C1250781CC3857B0009549B /* AFURLRequestSerialization.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFURLRequestSerialization.m; sourceTree = "<group>"; };
+		6C1250791CC3857B0009549B /* AFURLResponseSerialization.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFURLResponseSerialization.h; sourceTree = "<group>"; };
+		6C12507A1CC3857B0009549B /* AFURLResponseSerialization.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFURLResponseSerialization.m; sourceTree = "<group>"; };
+		6C12507B1CC3857B0009549B /* AFURLSessionManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFURLSessionManager.h; sourceTree = "<group>"; };
+		6C12507C1CC3857B0009549B /* AFURLSessionManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFURLSessionManager.m; sourceTree = "<group>"; };
 		6CA52C591CB9587400C5FDC8 /* scrollBoxView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = scrollBoxView.h; sourceTree = "<group>"; };
 		6CA52C5A1CB9587400C5FDC8 /* scrollBoxView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = scrollBoxView.m; sourceTree = "<group>"; };
 		6CA52C821CBB547A00C5FDC8 /* movieModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = movieModel.h; sourceTree = "<group>"; };
 		6CA52C831CBB547A00C5FDC8 /* movieModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = movieModel.m; sourceTree = "<group>"; };
 		6CA52C851CBEC3A900C5FDC8 /* MovieDetailController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MovieDetailController.h; sourceTree = "<group>"; };
 		6CA52C861CBEC3A900C5FDC8 /* MovieDetailController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MovieDetailController.m; sourceTree = "<group>"; };
+		6CD0DEDD1CC3867300878995 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		6CD0DEDF1CC3867900878995 /* libsqlite3.0.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.0.tbd; path = usr/lib/libsqlite3.0.tbd; sourceTree = SDKROOT; };
+		6CD0DEE11CC3868000878995 /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
+		6CD0DEE31CC386B800878995 /* libstdc++.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libstdc++.tbd"; path = "usr/lib/libstdc++.tbd"; sourceTree = SDKROOT; };
 		6CD58C3D1CACBD3F0089DB38 /* MovieCaker_iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MovieCaker_iOS.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6CD58C411CACBD3F0089DB38 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		6CD58C431CACBD3F0089DB38 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -45,21 +92,75 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6CD0DEE41CC386B800878995 /* libstdc++.tbd in Frameworks */,
+				6CD0DEE21CC3868000878995 /* libz.tbd in Frameworks */,
+				6CD0DEE01CC3867900878995 /* libsqlite3.0.tbd in Frameworks */,
+				6CD0DEDE1CC3867300878995 /* SystemConfiguration.framework in Frameworks */,
+				6C1250651CC37E9F0009549B /* CoreTelephony.framework in Frameworks */,
+				6C1250621CC37E4F0009549B /* libWeChatSDK.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		6C12505C1CC37E110009549B /* Library */ = {
+			isa = PBXGroup;
+			children = (
+				6C1250691CC3857A0009549B /* AFNetworking */,
+				6C12505D1CC37E4F0009549B /* WeChatSDK_1.6 */,
+			);
+			name = Library;
+			sourceTree = "<group>";
+		};
+		6C12505D1CC37E4F0009549B /* WeChatSDK_1.6 */ = {
+			isa = PBXGroup;
+			children = (
+				6C12505E1CC37E4F0009549B /* libWeChatSDK.a */,
+				6C12505F1CC37E4F0009549B /* read_me.txt */,
+				6C1250601CC37E4F0009549B /* WXApi.h */,
+				6C1250611CC37E4F0009549B /* WXApiObject.h */,
+			);
+			path = WeChatSDK_1.6;
+			sourceTree = "<group>";
+		};
+		6C1250691CC3857A0009549B /* AFNetworking */ = {
+			isa = PBXGroup;
+			children = (
+				6C12506A1CC3857A0009549B /* AFHTTPRequestOperation.h */,
+				6C12506B1CC3857A0009549B /* AFHTTPRequestOperation.m */,
+				6C12506C1CC3857B0009549B /* AFHTTPRequestOperationManager.h */,
+				6C12506D1CC3857B0009549B /* AFHTTPRequestOperationManager.m */,
+				6C12506E1CC3857B0009549B /* AFHTTPSessionManager.h */,
+				6C12506F1CC3857B0009549B /* AFHTTPSessionManager.m */,
+				6C1250701CC3857B0009549B /* AFNetworking.h */,
+				6C1250711CC3857B0009549B /* AFNetworkReachabilityManager.h */,
+				6C1250721CC3857B0009549B /* AFNetworkReachabilityManager.m */,
+				6C1250731CC3857B0009549B /* AFSecurityPolicy.h */,
+				6C1250741CC3857B0009549B /* AFSecurityPolicy.m */,
+				6C1250751CC3857B0009549B /* AFURLConnectionOperation.h */,
+				6C1250761CC3857B0009549B /* AFURLConnectionOperation.m */,
+				6C1250771CC3857B0009549B /* AFURLRequestSerialization.h */,
+				6C1250781CC3857B0009549B /* AFURLRequestSerialization.m */,
+				6C1250791CC3857B0009549B /* AFURLResponseSerialization.h */,
+				6C12507A1CC3857B0009549B /* AFURLResponseSerialization.m */,
+				6C12507B1CC3857B0009549B /* AFURLSessionManager.h */,
+				6C12507C1CC3857B0009549B /* AFURLSessionManager.m */,
+			);
+			path = AFNetworking;
+			sourceTree = "<group>";
+		};
 		6CA52C7F1CBB52C900C5FDC8 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
 				6CD58C461CACBD3F0089DB38 /* MovieController.h */,
 				6CD58C471CACBD3F0089DB38 /* MovieController.m */,
-				6CD58C491CACBD3F0089DB38 /* SecondViewController.h */,
-				6CD58C4A1CACBD3F0089DB38 /* SecondViewController.m */,
 				6CA52C851CBEC3A900C5FDC8 /* MovieDetailController.h */,
 				6CA52C861CBEC3A900C5FDC8 /* MovieDetailController.m */,
+				6C1250661CC37ED50009549B /* LoginController.h */,
+				6C1250671CC37ED50009549B /* LoginController.m */,
+				6CD58C491CACBD3F0089DB38 /* SecondViewController.h */,
+				6CD58C4A1CACBD3F0089DB38 /* SecondViewController.m */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -85,6 +186,11 @@
 		6CD58C341CACBD3F0089DB38 = {
 			isa = PBXGroup;
 			children = (
+				6CD0DEE31CC386B800878995 /* libstdc++.tbd */,
+				6CD0DEE11CC3868000878995 /* libz.tbd */,
+				6CD0DEDF1CC3867900878995 /* libsqlite3.0.tbd */,
+				6CD0DEDD1CC3867300878995 /* SystemConfiguration.framework */,
+				6C1250641CC37E9F0009549B /* CoreTelephony.framework */,
 				6CD58C3F1CACBD3F0089DB38 /* MovieCaker_iOS */,
 				6CD58C3E1CACBD3F0089DB38 /* Products */,
 			);
@@ -101,6 +207,7 @@
 		6CD58C3F1CACBD3F0089DB38 /* MovieCaker_iOS */ = {
 			isa = PBXGroup;
 			children = (
+				6C12505C1CC37E110009549B /* Library */,
 				6CA52C801CBB52DB00C5FDC8 /* Model */,
 				6CA52C811CBB52E600C5FDC8 /* View */,
 				6CA52C7F1CBB52C900C5FDC8 /* Controllers */,
@@ -183,6 +290,7 @@
 			files = (
 				6CD58C531CACBD3F0089DB38 /* LaunchScreen.storyboard in Resources */,
 				6CD58C501CACBD3F0089DB38 /* Assets.xcassets in Resources */,
+				6C1250631CC37E4F0009549B /* read_me.txt in Resources */,
 				6CD58C4E1CACBD3F0089DB38 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -194,12 +302,22 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6C1250851CC3857B0009549B /* AFURLSessionManager.m in Sources */,
+				6C1250821CC3857B0009549B /* AFURLConnectionOperation.m in Sources */,
+				6C12507D1CC3857B0009549B /* AFHTTPRequestOperation.m in Sources */,
 				6CD58C4B1CACBD3F0089DB38 /* SecondViewController.m in Sources */,
+				6C12507E1CC3857B0009549B /* AFHTTPRequestOperationManager.m in Sources */,
+				6C1250681CC37ED50009549B /* LoginController.m in Sources */,
 				6CD58C451CACBD3F0089DB38 /* AppDelegate.m in Sources */,
+				6C12507F1CC3857B0009549B /* AFHTTPSessionManager.m in Sources */,
 				6CA52C841CBB547A00C5FDC8 /* movieModel.m in Sources */,
 				6CD58C481CACBD3F0089DB38 /* MovieController.m in Sources */,
 				6CD58C421CACBD3F0089DB38 /* main.m in Sources */,
+				6C1250811CC3857B0009549B /* AFSecurityPolicy.m in Sources */,
 				6CA52C5B1CB9587400C5FDC8 /* scrollBoxView.m in Sources */,
+				6C1250831CC3857B0009549B /* AFURLRequestSerialization.m in Sources */,
+				6C1250801CC3857B0009549B /* AFNetworkReachabilityManager.m in Sources */,
+				6C1250841CC3857B0009549B /* AFURLResponseSerialization.m in Sources */,
 				6CA52C871CBEC3A900C5FDC8 /* MovieDetailController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -314,6 +432,10 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = MovieCaker_iOS/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/MovieCaker_iOS/WeChatSDK_1.6",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = "com.moma-tech.MovieCaker-iOS";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
@@ -325,6 +447,10 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = MovieCaker_iOS/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/MovieCaker_iOS/WeChatSDK_1.6",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = "com.moma-tech.MovieCaker-iOS";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
