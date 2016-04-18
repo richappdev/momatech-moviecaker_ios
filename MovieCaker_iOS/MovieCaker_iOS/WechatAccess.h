@@ -13,4 +13,5 @@
 + (instancetype) sharedInstance;
 - (BOOL)handleOpenURL:(NSURL *)url;
 - (void)login:(void(^)(BOOL succeeded, id object))result viewController:(UIViewController*)controller;
+- (BOOL)isWechatAppInstalled;
 @end

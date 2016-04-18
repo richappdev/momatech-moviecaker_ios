@@ -40,6 +40,8 @@
 */
 
 - (IBAction)Login:(id)sender {
+    if([[WechatAccess sharedInstance]isWechatAppInstalled]){
+    
     [[[WechatAccess sharedInstance] defaultAccess]login:^(BOOL succeeded, id object) {
         if(succeeded){
         //do Login Proccess
@@ -47,6 +49,11 @@
             UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"登入訊息" message:@"登入取消" delegate:self cancelButtonTitle:@"关闭" otherButtonTitles:nil,nil];
             [alert show];
         }
-    } viewController:self];
+    } viewController:self];}
+    else{
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"注意" message:@"请使用微信登入" delegate:self cancelButtonTitle:@"关闭" otherButtonTitles:nil,nil];
+        [alert show];
+        NSLog(@"Wechat not installed");
+    }
 }
 @end

@@ -108,4 +108,7 @@
           }];
 }
 
+- (BOOL)isWechatAppInstalled{
+    return [WXApi isWXAppInstalled];
+}
 @end
