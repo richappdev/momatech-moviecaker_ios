@@ -47,7 +47,6 @@
 
 - (void)login:(void(^)(BOOL succeeded, id object))result viewController:(UIViewController*)controller{
     _result = result;
-    NSLog(@"was");
     [WXApi registerApp:WECHAT_APP_ID];
     SendAuthReq *req = [[SendAuthReq alloc] init];
     [req setScope:@"snsapi_userinfo"];
@@ -55,7 +54,6 @@
 }
 
 - (void)onResp:(BaseResp *)resp{
-    NSLog(@"work%d",[resp errCode]);
     if (0 == [resp errCode]) {
         [self getUserInfoWith:[(SendAuthResp*)resp code]];
     } else {
@@ -109,6 +107,6 @@
 }
 
 - (BOOL)isWechatAppInstalled{
-    return [WXApi isWXAppInstalled];
+    return [[UIApplication sharedApplication]canOpenURL:[NSURL URLWithString:[NSString stringWithFormat:@"weixin://%@",WECHAT_APP_ID]]];
 }
 @end
