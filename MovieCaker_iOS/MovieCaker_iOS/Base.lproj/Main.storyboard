@@ -27,6 +27,14 @@
                                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="VeJ-MH-lHy">
                                                 <rect key="frame" x="132" y="79" width="150" height="250"/>
                                             </scrollView>
+                                            <view alpha="0.59999999999999998" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Sy0-1L-Wen">
+                                                <rect key="frame" x="142" y="263" width="66" height="66"/>
+                                                <color key="backgroundColor" red="0.39215686274509803" green="0.72941176470588232" blue="0.3411764705882353" alpha="1" colorSpace="calibratedRGB"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="66" id="6Q7-HR-KRi"/>
+                                                    <constraint firstAttribute="width" constant="66" id="mEO-Tk-FUP"/>
+                                                </constraints>
+                                            </view>
                                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="star" translatesAutoresizingMaskIntoConstraints="NO" id="6ly-x3-r8L">
                                                 <rect key="frame" x="150" y="239" width="50" height="50"/>
                                                 <constraints>
@@ -59,6 +67,8 @@
                                             <constraint firstItem="6ly-x3-r8L" firstAttribute="top" secondItem="Vh4-1C-ejS" secondAttribute="bottom" constant="176" id="F15-vy-ifX"/>
                                             <constraint firstAttribute="height" constant="310" id="M4i-Cn-bqy"/>
                                             <constraint firstItem="Vh4-1C-ejS" firstAttribute="top" secondItem="x7G-q5-YWA" secondAttribute="top" constant="42" id="R62-KY-Piz"/>
+                                            <constraint firstItem="Sy0-1L-Wen" firstAttribute="centerY" secondItem="x7G-q5-YWA" secondAttribute="centerY" constant="141" id="fxd-4K-uE2"/>
+                                            <constraint firstItem="Sy0-1L-Wen" firstAttribute="centerX" secondItem="Vh4-1C-ejS" secondAttribute="centerX" constant="-32" id="gPJ-wO-pWl"/>
                                             <constraint firstItem="VeJ-MH-lHy" firstAttribute="centerX" secondItem="x7G-q5-YWA" secondAttribute="centerX" id="jQ0-WS-vxr"/>
                                             <constraint firstItem="6ly-x3-r8L" firstAttribute="top" secondItem="vI7-lq-yvf" secondAttribute="bottom" constant="-67" id="piG-2S-Mrg"/>
                                             <constraint firstItem="Vh4-1C-ejS" firstAttribute="centerX" secondItem="vI7-lq-yvf" secondAttribute="centerX" constant="31" id="qvL-eq-BvW"/>
@@ -87,6 +97,7 @@
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina55"/>
                     <connections>
                         <outlet property="imageScroll" destination="VeJ-MH-lHy" id="PLH-PW-mea"/>
+                        <outlet property="ratingBg" destination="Sy0-1L-Wen" id="nzz-NX-bI5"/>
                         <outlet property="scrollView" destination="x7G-q5-YWA" id="cK1-Hr-9vN"/>
                         <outlet property="uirating" destination="vI7-lq-yvf" id="lxg-kv-wXb"/>
                         <outlet property="uistar" destination="6ly-x3-r8L" id="ChG-3M-o8C"/>

@@ -16,6 +16,7 @@
 @property (strong, nonatomic) IBOutlet UIImageView *uistar;
 @property (strong, nonatomic) IBOutlet UILabel *uirating;
 @property (strong, nonatomic) IBOutlet UILabel *uititle;
+@property (strong, nonatomic) IBOutlet UIView *ratingBg;
 @property NSMutableArray *movieArray;
 @end
 
@@ -34,7 +35,8 @@
     
     [self generateList];
     [self generateMovie];
-    // Do any additional setup after loading the view, typically from a nib.
+    
+    [self curvedMask:self.ratingBg];
 }
 
 
@@ -103,6 +105,24 @@
     self.uititle.text = model.title;
     self.uirating.text = [NSString stringWithFormat:@"%d",model.rating];
 }
+-(void)curvedMask:(UIView*)view{
+    UIBezierPath *aPath = [UIBezierPath bezierPath];
+
+    CGSize viewSize = view.bounds.size;
+    CGPoint startPoint = CGPointZero;
+    
+    [aPath moveToPoint:startPoint];
+    
+    [aPath addLineToPoint:CGPointMake(startPoint.x,viewSize.height)]; //(489,0)
+    [aPath addLineToPoint:CGPointMake(viewSize.width,viewSize.height)];
+    [aPath addQuadCurveToPoint:CGPointMake(0,0) controlPoint:CGPointMake(viewSize.width, 0)];
+    
+    [aPath closePath];
+    
+    CAShapeLayer *layer = [CAShapeLayer layer];
+    layer.frame = view.bounds;
+    layer.path = aPath.CGPath;
+    view.layer.mask = layer;}
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
