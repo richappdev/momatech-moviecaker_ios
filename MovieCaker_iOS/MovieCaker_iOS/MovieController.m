@@ -9,6 +9,7 @@
 #import "MovieController.h"
 #import "scrollBoxView.h"
 #import "movieModel.h"
+#import "UIImage+FontAwesome.h"
 
 @interface MovieController ()
 @property (strong, nonatomic) IBOutlet scrollBoxView *scrollView;
@@ -37,6 +38,7 @@
     [self generateMovie];
     
     [self curvedMask:self.ratingBg];
+    self.uistar.image = [UIImage imageWithIcon:@"fa-star" backgroundColor:[UIColor clearColor] iconColor:[UIColor whiteColor] andSize:CGSizeMake(18, 18)];
 }
 
 
@@ -93,13 +95,14 @@
 - (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView{
     self.uistar.hidden = YES;
     self.uirating.hidden = YES;
+    self.ratingBg.hidden = YES;
 }
 - (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView{
     int indexOfPage = scrollView.contentOffset.x / scrollView.frame.size.width;
     [self setMovieDetails:[self.movieArray objectAtIndex:indexOfPage]];
     self.uistar.hidden = NO;
     self.uirating.hidden = NO;
-    
+    self.ratingBg.hidden = NO;
 }
 -(void)setMovieDetails:(movieModel*)model{
     self.uititle.text = model.title;

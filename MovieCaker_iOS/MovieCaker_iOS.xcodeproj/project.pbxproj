@@ -36,9 +36,18 @@
 		6CD58C4E1CACBD3F0089DB38 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6CD58C4C1CACBD3F0089DB38 /* Main.storyboard */; };
 		6CD58C501CACBD3F0089DB38 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6CD58C4F1CACBD3F0089DB38 /* Assets.xcassets */; };
 		6CD58C531CACBD3F0089DB38 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6CD58C511CACBD3F0089DB38 /* LaunchScreen.storyboard */; };
+		6CFC09841CCBC0B50045C93E /* FAImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CFC09781CCBC0B50045C93E /* FAImageView.m */; };
+		6CFC09851CCBC0B50045C93E /* NSString+FontAwesome.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CFC097A1CCBC0B50045C93E /* NSString+FontAwesome.m */; };
+		6CFC09861CCBC0B50045C93E /* README.md in Sources */ = {isa = PBXBuildFile; fileRef = 6CFC097B1CCBC0B50045C93E /* README.md */; };
+		6CFC09871CCBC0B50045C93E /* fontawesome-github.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 6CFC097D1CCBC0B50045C93E /* fontawesome-github.jpg */; };
+		6CFC09881CCBC0B50045C93E /* FontAwesome.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 6CFC097E1CCBC0B50045C93E /* FontAwesome.ttf */; };
+		6CFC098A1CCBC0B50045C93E /* UIFont+FontAwesome.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CFC09811CCBC0B50045C93E /* UIFont+FontAwesome.m */; };
+		6CFC098B1CCBC0B50045C93E /* UIImage+FontAwesome.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CFC09831CCBC0B50045C93E /* UIImage+FontAwesome.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		6C084AC01CCBBF3200DB07E5 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		6C084AC21CCBBF5100DB07E5 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		6C12505E1CC37E4F0009549B /* libWeChatSDK.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libWeChatSDK.a; sourceTree = "<group>"; };
 		6C12505F1CC37E4F0009549B /* read_me.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = read_me.txt; sourceTree = "<group>"; };
 		6C1250601CC37E4F0009549B /* WXApi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXApi.h; sourceTree = "<group>"; };
@@ -91,6 +100,17 @@
 		6CD58C4F1CACBD3F0089DB38 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		6CD58C521CACBD3F0089DB38 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		6CD58C541CACBD3F0089DB38 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		6CFC09771CCBC0B50045C93E /* FAImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FAImageView.h; sourceTree = "<group>"; };
+		6CFC09781CCBC0B50045C93E /* FAImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FAImageView.m; sourceTree = "<group>"; };
+		6CFC09791CCBC0B50045C93E /* NSString+FontAwesome.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+FontAwesome.h"; sourceTree = "<group>"; };
+		6CFC097A1CCBC0B50045C93E /* NSString+FontAwesome.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+FontAwesome.m"; sourceTree = "<group>"; };
+		6CFC097B1CCBC0B50045C93E /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		6CFC097D1CCBC0B50045C93E /* fontawesome-github.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "fontawesome-github.jpg"; sourceTree = "<group>"; };
+		6CFC097E1CCBC0B50045C93E /* FontAwesome.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = FontAwesome.ttf; sourceTree = "<group>"; };
+		6CFC09801CCBC0B50045C93E /* UIFont+FontAwesome.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIFont+FontAwesome.h"; sourceTree = "<group>"; };
+		6CFC09811CCBC0B50045C93E /* UIFont+FontAwesome.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIFont+FontAwesome.m"; sourceTree = "<group>"; };
+		6CFC09821CCBC0B50045C93E /* UIImage+FontAwesome.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+FontAwesome.h"; sourceTree = "<group>"; };
+		6CFC09831CCBC0B50045C93E /* UIImage+FontAwesome.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+FontAwesome.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -113,6 +133,7 @@
 		6C12505C1CC37E110009549B /* Library */ = {
 			isa = PBXGroup;
 			children = (
+				6CFC09761CCBC0B50045C93E /* ios-fontawesome-master */,
 				6C1250691CC3857A0009549B /* AFNetworking */,
 				6C12505D1CC37E4F0009549B /* WeChatSDK_1.6 */,
 			);
@@ -203,6 +224,8 @@
 		6CD58C341CACBD3F0089DB38 = {
 			isa = PBXGroup;
 			children = (
+				6C084AC21CCBBF5100DB07E5 /* Foundation.framework */,
+				6C084AC01CCBBF3200DB07E5 /* CoreGraphics.framework */,
 				6CD0DEE31CC386B800878995 /* libstdc++.tbd */,
 				6CD0DEE11CC3868000878995 /* libz.tbd */,
 				6CD0DEDF1CC3867900878995 /* libsqlite3.0.tbd */,
@@ -248,6 +271,32 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		6CFC09761CCBC0B50045C93E /* ios-fontawesome-master */ = {
+			isa = PBXGroup;
+			children = (
+				6CFC09771CCBC0B50045C93E /* FAImageView.h */,
+				6CFC09781CCBC0B50045C93E /* FAImageView.m */,
+				6CFC09791CCBC0B50045C93E /* NSString+FontAwesome.h */,
+				6CFC097A1CCBC0B50045C93E /* NSString+FontAwesome.m */,
+				6CFC097B1CCBC0B50045C93E /* README.md */,
+				6CFC097C1CCBC0B50045C93E /* Resources */,
+				6CFC09801CCBC0B50045C93E /* UIFont+FontAwesome.h */,
+				6CFC09811CCBC0B50045C93E /* UIFont+FontAwesome.m */,
+				6CFC09821CCBC0B50045C93E /* UIImage+FontAwesome.h */,
+				6CFC09831CCBC0B50045C93E /* UIImage+FontAwesome.m */,
+			);
+			path = "ios-fontawesome-master";
+			sourceTree = "<group>";
+		};
+		6CFC097C1CCBC0B50045C93E /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				6CFC097D1CCBC0B50045C93E /* fontawesome-github.jpg */,
+				6CFC097E1CCBC0B50045C93E /* FontAwesome.ttf */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -256,8 +305,8 @@
 			buildConfigurationList = 6CD58C571CACBD3F0089DB38 /* Build configuration list for PBXNativeTarget "MovieCaker_iOS" */;
 			buildPhases = (
 				6CD58C391CACBD3F0089DB38 /* Sources */,
-				6CD58C3A1CACBD3F0089DB38 /* Frameworks */,
 				6CD58C3B1CACBD3F0089DB38 /* Resources */,
+				6CD58C3A1CACBD3F0089DB38 /* Frameworks */,
 			);
 			buildRules = (
 			);
@@ -310,6 +359,8 @@
 				6CD58C501CACBD3F0089DB38 /* Assets.xcassets in Resources */,
 				6C1250631CC37E4F0009549B /* read_me.txt in Resources */,
 				6CD58C4E1CACBD3F0089DB38 /* Main.storyboard in Resources */,
+				6CFC09871CCBC0B50045C93E /* fontawesome-github.jpg in Resources */,
+				6CFC09881CCBC0B50045C93E /* FontAwesome.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -334,11 +385,16 @@
 				6CD58C481CACBD3F0089DB38 /* MovieController.m in Sources */,
 				6CD58C421CACBD3F0089DB38 /* main.m in Sources */,
 				6C1250811CC3857B0009549B /* AFSecurityPolicy.m in Sources */,
+				6CFC09851CCBC0B50045C93E /* NSString+FontAwesome.m in Sources */,
 				6CA52C5B1CB9587400C5FDC8 /* scrollBoxView.m in Sources */,
 				6C1250831CC3857B0009549B /* AFURLRequestSerialization.m in Sources */,
 				6C1250801CC3857B0009549B /* AFNetworkReachabilityManager.m in Sources */,
+				6CFC09841CCBC0B50045C93E /* FAImageView.m in Sources */,
 				6C1250841CC3857B0009549B /* AFURLResponseSerialization.m in Sources */,
+				6CFC09861CCBC0B50045C93E /* README.md in Sources */,
 				6CA52C871CBEC3A900C5FDC8 /* MovieDetailController.m in Sources */,
+				6CFC098B1CCBC0B50045C93E /* UIImage+FontAwesome.m in Sources */,
+				6CFC098A1CCBC0B50045C93E /* UIFont+FontAwesome.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
