@@ -28,10 +28,13 @@
                                                 <rect key="frame" x="0.0" y="-66" width="414" height="424"/>
                                             </imageView>
                                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="VeJ-MH-lHy">
-                                                <rect key="frame" x="132" y="37" width="150" height="250"/>
+                                                <rect key="frame" x="80" y="36" width="255" height="250"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="255" id="qsw-rA-Om1"/>
+                                                </constraints>
                                             </scrollView>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Sy0-1L-Wen">
-                                                <rect key="frame" x="142" y="220" width="66" height="66"/>
+                                                <rect key="frame" x="94" y="220" width="66" height="66"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="10" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vI7-lq-yvf">
                                                         <rect key="frame" x="3" y="38" width="48" height="21"/>
@@ -69,17 +72,16 @@
                                         </subviews>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         <constraints>
-                                            <constraint firstItem="Vh4-1C-ejS" firstAttribute="trailing" secondItem="VeJ-MH-lHy" secondAttribute="trailing" id="2hP-xb-wV8"/>
-                                            <constraint firstItem="Vh4-1C-ejS" firstAttribute="leading" secondItem="VeJ-MH-lHy" secondAttribute="leading" id="8G5-fy-vNm"/>
-                                            <constraint firstAttribute="bottom" secondItem="VeJ-MH-lHy" secondAttribute="bottom" constant="62" id="DH7-fr-Fn0"/>
-                                            <constraint firstItem="VeJ-MH-lHy" firstAttribute="top" secondItem="Vh4-1C-ejS" secondAttribute="bottom" constant="16" id="Esp-XM-0yK"/>
+                                            <constraint firstItem="VeJ-MH-lHy" firstAttribute="bottom" secondItem="Sy0-1L-Wen" secondAttribute="bottom" id="L74-5Q-pXJ"/>
                                             <constraint firstAttribute="height" constant="349" id="M4i-Cn-bqy"/>
                                             <constraint firstItem="Vh4-1C-ejS" firstAttribute="top" secondItem="x7G-q5-YWA" secondAttribute="top" id="R62-KY-Piz"/>
                                             <constraint firstItem="7P2-G7-1Iu" firstAttribute="leading" secondItem="x7G-q5-YWA" secondAttribute="leading" id="fs3-na-cCp"/>
                                             <constraint firstItem="Sy0-1L-Wen" firstAttribute="centerY" secondItem="x7G-q5-YWA" secondAttribute="centerY" constant="78.5" id="fxd-4K-uE2"/>
-                                            <constraint firstItem="Sy0-1L-Wen" firstAttribute="centerX" secondItem="Vh4-1C-ejS" secondAttribute="centerX" constant="-32" id="gPJ-wO-pWl"/>
-                                            <constraint firstItem="VeJ-MH-lHy" firstAttribute="centerX" secondItem="x7G-q5-YWA" secondAttribute="centerX" id="jQ0-WS-vxr"/>
+                                            <constraint firstItem="Sy0-1L-Wen" firstAttribute="centerX" secondItem="Vh4-1C-ejS" secondAttribute="centerX" constant="-80" id="gPJ-wO-pWl"/>
+                                            <constraint firstItem="VeJ-MH-lHy" firstAttribute="top" secondItem="Vh4-1C-ejS" secondAttribute="bottom" constant="15" id="h80-Bd-hht"/>
+                                            <constraint firstItem="VeJ-MH-lHy" firstAttribute="centerX" secondItem="7P2-G7-1Iu" secondAttribute="centerX" id="mW3-we-suv"/>
                                             <constraint firstAttribute="bottom" secondItem="7P2-G7-1Iu" secondAttribute="bottom" constant="-9" id="nwI-5B-G0u"/>
+                                            <constraint firstItem="VeJ-MH-lHy" firstAttribute="centerX" secondItem="Vh4-1C-ejS" secondAttribute="centerX" id="oHY-pe-HMU"/>
                                             <constraint firstItem="7P2-G7-1Iu" firstAttribute="top" secondItem="x7G-q5-YWA" secondAttribute="top" constant="-66" id="v5i-AH-x97"/>
                                             <constraint firstAttribute="trailing" secondItem="7P2-G7-1Iu" secondAttribute="trailing" id="yoS-fw-9hc"/>
                                         </constraints>

@@ -72,8 +72,8 @@
 }
 
 -(void)generateMovie{
-    int margin = 10;
-    int width = 150;
+    int margin = 15;
+    int width = 255;
     int height = 250;
     int count = 0;
     
@@ -113,7 +113,7 @@
 -(void)setMovieDetails:(movieModel*)model{
     self.uititle.text = model.title;
     self.uirating.text = [NSString stringWithFormat:@"%d",model.rating];
-    self.blurredBg.image =[self blurImage:model.movieImage withBottomInset:0 blurRadius:43];
+   // self.blurredBg.image =[self blurImage:model.movieImage withBottomInset:0 blurRadius:43];
 }
 -(void)curvedMask:(UIView*)view{
     UIBezierPath *aPath = [UIBezierPath bezierPath];
