@@ -18,7 +18,9 @@
 @property (strong, nonatomic) IBOutlet UILabel *uirating;
 @property (strong, nonatomic) IBOutlet UILabel *uititle;
 @property (strong, nonatomic) IBOutlet UIView *ratingBg;
+@property (strong, nonatomic) IBOutlet UIImageView *blurredBg;
 @property NSMutableArray *movieArray;
+@property int lastIndex;
 @end
 
 @implementation MovieController
@@ -36,6 +38,8 @@
     
     [self generateList];
     [self generateMovie];
+    self.lastIndex = 0;
+    [self setMovieDetails:[self.movieArray objectAtIndex:0]];
     
     [self curvedMask:self.ratingBg];
     self.uistar.image = [UIImage imageWithIcon:@"fa-star" backgroundColor:[UIColor clearColor] iconColor:[UIColor whiteColor] andSize:CGSizeMake(18, 18)];
@@ -95,11 +99,13 @@
 - (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView{
     self.uistar.hidden = YES;
     self.uirating.hidden = YES;
-    self.ratingBg.hidden = YES;
 }
 - (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView{
     int indexOfPage = scrollView.contentOffset.x / scrollView.frame.size.width;
+    if(self.lastIndex!=indexOfPage){
     [self setMovieDetails:[self.movieArray objectAtIndex:indexOfPage]];
+        self.lastIndex = indexOfPage;
+    }
     self.uistar.hidden = NO;
     self.uirating.hidden = NO;
     self.ratingBg.hidden = NO;
@@ -107,6 +113,7 @@
 -(void)setMovieDetails:(movieModel*)model{
     self.uititle.text = model.title;
     self.uirating.text = [NSString stringWithFormat:@"%d",model.rating];
+    self.blurredBg.image =[self blurImage:model.movieImage withBottomInset:0 blurRadius:43];
 }
 -(void)curvedMask:(UIView*)view{
     UIBezierPath *aPath = [UIBezierPath bezierPath];
@@ -131,4 +138,18 @@
     // Dispose of any resources that can be recreated.
 }
 
+- (UIImage*)blurImage:(UIImage*)image withBottomInset:(CGFloat)inset blurRadius:(CGFloat)radius{
+    
+    
+    CIImage *ciImage = [CIImage imageWithCGImage:image.CGImage];
+    CIFilter *filter = [CIFilter filterWithName:@"CIGaussianBlur"];
+    [filter setValue:ciImage forKey:kCIInputImageKey];
+    [filter setValue:@(radius) forKey:kCIInputRadiusKey];
+    
+    CIImage *outputCIImage = filter.outputImage;
+    CIContext *context = [CIContext contextWithOptions:nil];
+    
+    return [UIImage imageWithCGImage: [context createCGImage:outputCIImage fromRect:ciImage.extent]];
+    
+}
 @end
