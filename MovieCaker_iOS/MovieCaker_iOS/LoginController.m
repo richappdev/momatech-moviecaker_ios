@@ -27,7 +27,8 @@
 }
 -(void)viewWillAppear:(BOOL)animated{
     NSDictionary *returnData = [NSKeyedUnarchiver unarchiveObjectWithData:[[NSUserDefaults standardUserDefaults] objectForKey:USERKEY]];
-    [self.Button setTitle:[NSString stringWithFormat:@"%@:log out",[[returnData objectForKey:@"Data"] objectForKey:@"NickName"]] forState:UIControlStateNormal];
+    if(returnData!=nil){
+        [self.Button setTitle:[NSString stringWithFormat:@"%@:log out",[[returnData objectForKey:@"Data"] objectForKey:@"NickName"]] forState:UIControlStateNormal];}
 }
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

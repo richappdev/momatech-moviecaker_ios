@@ -43,6 +43,7 @@
 		6CFC09881CCBC0B50045C93E /* FontAwesome.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 6CFC097E1CCBC0B50045C93E /* FontAwesome.ttf */; };
 		6CFC098A1CCBC0B50045C93E /* UIFont+FontAwesome.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CFC09811CCBC0B50045C93E /* UIFont+FontAwesome.m */; };
 		6CFC098B1CCBC0B50045C93E /* UIImage+FontAwesome.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CFC09831CCBC0B50045C93E /* UIImage+FontAwesome.m */; };
+		6CFC098E1CCD529C0045C93E /* MainVerticalScroller.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CFC098D1CCD529C0045C93E /* MainVerticalScroller.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -111,6 +112,8 @@
 		6CFC09811CCBC0B50045C93E /* UIFont+FontAwesome.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIFont+FontAwesome.m"; sourceTree = "<group>"; };
 		6CFC09821CCBC0B50045C93E /* UIImage+FontAwesome.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+FontAwesome.h"; sourceTree = "<group>"; };
 		6CFC09831CCBC0B50045C93E /* UIImage+FontAwesome.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+FontAwesome.m"; sourceTree = "<group>"; };
+		6CFC098C1CCD529C0045C93E /* MainVerticalScroller.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainVerticalScroller.h; sourceTree = "<group>"; };
+		6CFC098D1CCD529C0045C93E /* MainVerticalScroller.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainVerticalScroller.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -184,6 +187,8 @@
 				6C67800E1CC5033E005AEB35 /* WechatAccess.m */,
 				6C6780101CC7C826005AEB35 /* AustinApi.h */,
 				6C6780111CC7C826005AEB35 /* AustinApi.m */,
+				6CFC098C1CCD529C0045C93E /* MainVerticalScroller.h */,
+				6CFC098D1CCD529C0045C93E /* MainVerticalScroller.m */,
 			);
 			name = Helpers;
 			sourceTree = "<group>";
@@ -384,6 +389,7 @@
 				6CA52C841CBB547A00C5FDC8 /* movieModel.m in Sources */,
 				6CD58C481CACBD3F0089DB38 /* MovieController.m in Sources */,
 				6CD58C421CACBD3F0089DB38 /* main.m in Sources */,
+				6CFC098E1CCD529C0045C93E /* MainVerticalScroller.m in Sources */,
 				6C1250811CC3857B0009549B /* AFSecurityPolicy.m in Sources */,
 				6CFC09851CCBC0B50045C93E /* NSString+FontAwesome.m in Sources */,
 				6CA52C5B1CB9587400C5FDC8 /* scrollBoxView.m in Sources */,

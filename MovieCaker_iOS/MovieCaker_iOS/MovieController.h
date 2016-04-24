@@ -9,7 +9,6 @@
 #import <UIKit/UIKit.h>
 
 @interface MovieController : UIViewController<UIScrollViewDelegate>
-
-
+@property (strong, nonatomic) IBOutlet UIView *statubarBg;
 @end
 

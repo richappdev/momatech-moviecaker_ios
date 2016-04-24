@@ -10,6 +10,7 @@
 #import "scrollBoxView.h"
 #import "movieModel.h"
 #import "UIImage+FontAwesome.h"
+#import "MainVerticalScroller.h"
 
 @interface MovieController ()
 @property (strong, nonatomic) IBOutlet scrollBoxView *scrollView;
@@ -23,7 +24,9 @@
 @property (strong, nonatomic) IBOutlet UIView *iconLikeBtn;
 @property (strong, nonatomic) IBOutlet UIView *iconPocketBtn;
 @property (strong, nonatomic) IBOutlet UIView *iconPenBtn;
+@property (strong, nonatomic) IBOutlet UIScrollView *MainScroll;
 @property NSMutableArray *movieArray;
+@property MainVerticalScroller *scrollDelegate;
 @property int lastIndex;
 @end
 
@@ -52,17 +55,27 @@
     [self addIndexGesture:self.iconPenBtn];
     [self addIndexGesture:self.iconPocketBtn];
     [self addIndexGesture:self.iconLikeBtn];
-                                         
+    self.title = @"首頁";
+    
+    self.scrollDelegate = [[MainVerticalScroller alloc] init];
+    self.MainScroll.delegate = self.scrollDelegate;
+    self.scrollDelegate.movieView = self;
+    
+    [self.navigationController.navigationBar setBackgroundImage:[UIImage new]
+                                                  forBarMetrics:UIBarMetricsDefault]; //UIImageNamed:@"transparent.png"
+    self.navigationController.navigationBar.shadowImage = [UIImage new];////UIImageNamed:@"transparent.png"
+    self.navigationController.navigationBar.backgroundColor = [UIColor clearColor];
+    [self.navigationController.navigationBar setTitleTextAttributes:
+     @{NSForegroundColorAttributeName:[UIColor clearColor]}];
+    
+ //   CGPoint position = CGPointMake(0,0);
+  //  [self.MainScroll setContentOffset:position];
 }
 
 -(void)addIndexGesture:(UIView*)view{
     UITapGestureRecognizer *indexTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(indexClick:)];
     [view addGestureRecognizer:indexTap];
 }
--(void)viewWillAppear:(BOOL)animated{
-    self.navigationController.navigationBarHidden = YES;
-}
-
 
 -(void)generateList{
 
@@ -168,4 +181,5 @@
 -(void)indexClick:(UITapGestureRecognizer *)sender{
     NSLog(@"asd%ld",sender.view.tag);
 }
+
 @end
