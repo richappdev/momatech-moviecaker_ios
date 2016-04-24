@@ -19,6 +19,10 @@
 @property (strong, nonatomic) IBOutlet UILabel *uititle;
 @property (strong, nonatomic) IBOutlet UIView *ratingBg;
 @property (strong, nonatomic) IBOutlet UIImageView *blurredBg;
+@property (strong, nonatomic) IBOutlet UIView *iconEyeBtn;
+@property (strong, nonatomic) IBOutlet UIView *iconLikeBtn;
+@property (strong, nonatomic) IBOutlet UIView *iconPocketBtn;
+@property (strong, nonatomic) IBOutlet UIView *iconPenBtn;
 @property NSMutableArray *movieArray;
 @property int lastIndex;
 @end
@@ -43,9 +47,18 @@
     
     [self curvedMask:self.ratingBg];
     self.uistar.image = [UIImage imageWithIcon:@"fa-star" backgroundColor:[UIColor clearColor] iconColor:[UIColor whiteColor] andSize:CGSizeMake(18, 18)];
+    
+    [self addIndexGesture:self.iconEyeBtn];
+    [self addIndexGesture:self.iconPenBtn];
+    [self addIndexGesture:self.iconPocketBtn];
+    [self addIndexGesture:self.iconLikeBtn];
+                                         
 }
 
-
+-(void)addIndexGesture:(UIView*)view{
+    UITapGestureRecognizer *indexTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(indexClick:)];
+    [view addGestureRecognizer:indexTap];
+}
 -(void)viewWillAppear:(BOOL)animated{
     self.navigationController.navigationBarHidden = YES;
 }
@@ -113,7 +126,7 @@
 -(void)setMovieDetails:(movieModel*)model{
     self.uititle.text = model.title;
     self.uirating.text = [NSString stringWithFormat:@"%d",model.rating];
-   // self.blurredBg.image =[self blurImage:model.movieImage withBottomInset:0 blurRadius:43];
+    self.blurredBg.image =[self blurImage:model.movieImage withBottomInset:0 blurRadius:43];
 }
 -(void)curvedMask:(UIView*)view{
     UIBezierPath *aPath = [UIBezierPath bezierPath];
@@ -151,5 +164,8 @@
     
     return [UIImage imageWithCGImage: [context createCGImage:outputCIImage fromRect:ciImage.extent]];
     
+}
+-(void)indexClick:(UITapGestureRecognizer *)sender{
+    NSLog(@"asd%ld",sender.view.tag);
 }
 @end
