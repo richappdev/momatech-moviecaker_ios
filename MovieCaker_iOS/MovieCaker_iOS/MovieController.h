@@ -10,5 +10,6 @@
 
 @interface MovieController : UIViewController<UIScrollViewDelegate>
 @property (strong, nonatomic) IBOutlet UIView *statubarBg;
+@property (strong, nonatomic) IBOutlet UIView *movingButtons;
 @end
 

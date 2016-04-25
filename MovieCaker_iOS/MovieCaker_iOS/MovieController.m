@@ -25,6 +25,9 @@
 @property (strong, nonatomic) IBOutlet UIView *iconPocketBtn;
 @property (strong, nonatomic) IBOutlet UIView *iconPenBtn;
 @property (strong, nonatomic) IBOutlet UIScrollView *MainScroll;
+@property (strong, nonatomic) IBOutlet UIView *iconMovieNew;
+@property (strong, nonatomic) IBOutlet UIView *iconMovieHot;
+@property (strong, nonatomic) IBOutlet UIView *iconTopicIndex;
 @property NSMutableArray *movieArray;
 @property MainVerticalScroller *scrollDelegate;
 @property int lastIndex;
@@ -55,6 +58,9 @@
     [self addIndexGesture:self.iconPenBtn];
     [self addIndexGesture:self.iconPocketBtn];
     [self addIndexGesture:self.iconLikeBtn];
+    [self addIndexGesture:self.iconMovieNew];
+    [self addIndexGesture:self.iconMovieHot];
+    [self addIndexGesture:self.iconTopicIndex];
     self.title = @"首頁";
     
     self.scrollDelegate = [[MainVerticalScroller alloc] init];
@@ -70,6 +76,11 @@
     
  //   CGPoint position = CGPointMake(0,0);
   //  [self.MainScroll setContentOffset:position];
+    
+}
+
+-(void)viewDidAppear:(BOOL)animated{
+    self.MainScroll.contentSize = CGSizeMake(self.view.bounds.size.width, 4000);
 }
 
 -(void)addIndexGesture:(UIView*)view{
