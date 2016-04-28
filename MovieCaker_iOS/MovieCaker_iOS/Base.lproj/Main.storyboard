@@ -241,10 +241,10 @@
                                                         <rect key="frame" x="138" y="0.0" width="138" height="45"/>
                                                         <subviews>
                                                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="iconMovieHot" translatesAutoresizingMaskIntoConstraints="NO" id="DoP-dt-RCH">
-                                                                <rect key="frame" x="18" y="14" width="20" height="16"/>
+                                                                <rect key="frame" x="21" y="14" width="20" height="16"/>
                                                             </imageView>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="熱門電影" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ws9-l7-O4H">
-                                                                <rect key="frame" x="46" y="12" width="68" height="21"/>
+                                                                <rect key="frame" x="49" y="12" width="68" height="21"/>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                                 <nil key="highlightedColor"/>
@@ -253,9 +253,8 @@
                                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                         <constraints>
                                                             <constraint firstItem="Ws9-l7-O4H" firstAttribute="top" secondItem="DoP-dt-RCH" secondAttribute="top" constant="-2" id="4td-My-Pv1"/>
-                                                            <constraint firstItem="Ws9-l7-O4H" firstAttribute="centerX" secondItem="wK5-ak-frA" secondAttribute="centerX" constant="11" id="E0K-Nf-4RS"/>
+                                                            <constraint firstItem="Ws9-l7-O4H" firstAttribute="centerX" secondItem="wK5-ak-frA" secondAttribute="centerX" constant="14" id="E0K-Nf-4RS"/>
                                                             <constraint firstItem="Ws9-l7-O4H" firstAttribute="centerY" secondItem="wK5-ak-frA" secondAttribute="centerY" id="Km4-M1-rkA"/>
-                                                            <constraint firstAttribute="width" constant="138" id="h8f-LD-gEf"/>
                                                             <constraint firstItem="Ws9-l7-O4H" firstAttribute="leading" secondItem="DoP-dt-RCH" secondAttribute="trailing" constant="8" id="mwK-vr-S7P"/>
                                                         </constraints>
                                                     </view>
@@ -289,9 +288,11 @@
                                                     <constraint firstItem="P7v-mo-2zQ" firstAttribute="bottom" secondItem="EZI-O8-KnB" secondAttribute="bottom" id="79e-TB-q1E"/>
                                                     <constraint firstItem="EZI-O8-KnB" firstAttribute="leading" secondItem="wK5-ak-frA" secondAttribute="trailing" constant="1" id="FH8-OH-7FV"/>
                                                     <constraint firstItem="P7v-mo-2zQ" firstAttribute="top" secondItem="wK5-ak-frA" secondAttribute="top" id="LLM-Wy-eNY"/>
+                                                    <constraint firstItem="P7v-mo-2zQ" firstAttribute="width" secondItem="wK5-ak-frA" secondAttribute="width" constant="-1" id="Mmq-Jn-2vF"/>
                                                     <constraint firstItem="P7v-mo-2zQ" firstAttribute="leading" secondItem="s2d-cA-qys" secondAttribute="leading" id="OuU-tu-gy6"/>
                                                     <constraint firstItem="wK5-ak-frA" firstAttribute="leading" secondItem="P7v-mo-2zQ" secondAttribute="trailing" constant="1" id="Q8w-M8-HwE"/>
                                                     <constraint firstItem="P7v-mo-2zQ" firstAttribute="top" secondItem="EZI-O8-KnB" secondAttribute="top" id="RX7-n4-NNC"/>
+                                                    <constraint firstItem="wK5-ak-frA" firstAttribute="width" secondItem="EZI-O8-KnB" secondAttribute="width" constant="1" id="YNF-Ua-zuZ"/>
                                                     <constraint firstItem="wK5-ak-frA" firstAttribute="centerX" secondItem="s2d-cA-qys" secondAttribute="centerX" id="eqX-Bz-39f"/>
                                                     <constraint firstItem="P7v-mo-2zQ" firstAttribute="bottom" secondItem="wK5-ak-frA" secondAttribute="bottom" id="i5q-W0-hgP"/>
                                                     <constraint firstAttribute="bottom" secondItem="wK5-ak-frA" secondAttribute="bottom" id="m5b-xv-OFQ"/>
