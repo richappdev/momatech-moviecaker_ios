@@ -30,6 +30,7 @@
 @property (strong, nonatomic) IBOutlet UIView *iconMovieHot;
 @property (strong, nonatomic) IBOutlet UIView *iconTopicIndex;
 @property (strong, nonatomic) IBOutlet NSLayoutConstraint *movieTableHeight;
+@property (strong, nonatomic) IBOutlet UIImageView *FirstChevron;
 @property MovieTableViewController *movieTableController;
 @property NSMutableArray *movieArray;
 @property MainVerticalScroller *scrollDelegate;
@@ -76,6 +77,8 @@
     self.navigationController.navigationBar.backgroundColor = [UIColor clearColor];
     [self.navigationController.navigationBar setTitleTextAttributes:
      @{NSForegroundColorAttributeName:[UIColor clearColor]}];
+    
+    self.FirstChevron.image = [UIImage imageWithIcon:@"fa-chevron-right" backgroundColor:[UIColor clearColor] iconColor:[UIColor colorWithRed:0.97 green:0.39 blue:0.00 alpha:1.0] andSize:CGSizeMake(10, 14)];
     
     self.movieTableController = [[MovieTableViewController alloc] init];
     self.movieTable.delegate = self.movieTableController;

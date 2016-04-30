@@ -7,7 +7,7 @@
 //
 
 #import "MovieTableViewController.h"
-
+#import "MovieCell.h"
 
 @interface MovieTableViewController ()
 @property int cellHeight;
@@ -48,9 +48,9 @@
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"MovieCell" forIndexPath:indexPath];
-    cell.textLabel.text = @"test";
-    // Configure the cell...
+    MovieCell *cell = [tableView dequeueReusableCellWithIdentifier:@"MovieCell" forIndexPath:indexPath];
+    cell.title.text = @"amillionwordsamillionwordsamillionwordsamillionwordsamillionwordsamillionwordsamillionwordsamillionwordsamillionwordsamillionwordsamillionwordsamillionwordsamillionwordsamillionwordsamillionwordsamillionwordsamillionwordsamillionwordsamillionwords";
+    
     
     return cell;
 }
