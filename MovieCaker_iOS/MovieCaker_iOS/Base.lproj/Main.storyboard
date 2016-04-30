@@ -310,18 +310,58 @@
                                             <constraint firstAttribute="height" constant="84" id="wYA-ix-9dW"/>
                                         </constraints>
                                     </view>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="s3q-2x-N3m">
+                                        <rect key="frame" x="0.0" y="400" width="414" height="45"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="45" id="QJx-2j-b8O"/>
+                                        </constraints>
+                                    </view>
+                                    <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="0mz-OR-jEz">
+                                        <rect key="frame" x="0.0" y="445" width="414" height="128"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="128" id="bXW-Av-LuU"/>
+                                        </constraints>
+                                        <prototypes>
+                                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="MovieCell" rowHeight="46" id="XP9-bQ-opm">
+                                                <rect key="frame" x="0.0" y="28" width="414" height="46"/>
+                                                <autoresizingMask key="autoresizingMask"/>
+                                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="XP9-bQ-opm" id="QqX-xt-5jP">
+                                                    <rect key="frame" x="0.0" y="0.0" width="414" height="45"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                </tableViewCellContentView>
+                                            </tableViewCell>
+                                        </prototypes>
+                                    </tableView>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="F0Q-XN-iwS">
+                                        <rect key="frame" x="0.0" y="573" width="414" height="12"/>
+                                        <color key="backgroundColor" red="0.90980392156862744" green="0.91764705882352937" blue="0.92549019607843142" alpha="1" colorSpace="calibratedRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="12" id="FEZ-wg-DBJ"/>
+                                        </constraints>
+                                    </view>
                                 </subviews>
                                 <constraints>
+                                    <constraint firstItem="F0Q-XN-iwS" firstAttribute="top" secondItem="0mz-OR-jEz" secondAttribute="bottom" id="0wD-io-cEx"/>
                                     <constraint firstItem="x7G-q5-YWA" firstAttribute="centerX" secondItem="slk-43-3J0" secondAttribute="centerX" id="64x-Uq-IhL"/>
+                                    <constraint firstAttribute="trailing" secondItem="s3q-2x-N3m" secondAttribute="trailing" id="9L0-Lh-VlT"/>
                                     <constraint firstItem="y0s-1Q-1YV" firstAttribute="leading" secondItem="x7G-q5-YWA" secondAttribute="leading" id="BpE-ep-bOR"/>
+                                    <constraint firstItem="0mz-OR-jEz" firstAttribute="top" secondItem="s3q-2x-N3m" secondAttribute="bottom" id="Cw3-9C-CEz"/>
                                     <constraint firstAttribute="trailing" secondItem="x7G-q5-YWA" secondAttribute="trailing" id="DZQ-iC-JeG"/>
+                                    <constraint firstItem="F0Q-XN-iwS" firstAttribute="leading" secondItem="slk-43-3J0" secondAttribute="leading" id="DyI-eP-PMT"/>
                                     <constraint firstItem="y0s-1Q-1YV" firstAttribute="trailing" secondItem="x7G-q5-YWA" secondAttribute="trailing" id="Kto-3Z-Cdb"/>
+                                    <constraint firstAttribute="trailing" secondItem="0mz-OR-jEz" secondAttribute="trailing" id="Uiv-x4-cYA"/>
+                                    <constraint firstItem="s3q-2x-N3m" firstAttribute="leading" secondItem="slk-43-3J0" secondAttribute="leading" id="WmF-Gq-oPh"/>
                                     <constraint firstItem="mfC-B1-GS6" firstAttribute="centerX" secondItem="slk-43-3J0" secondAttribute="centerX" id="WvD-MK-vRg"/>
+                                    <constraint firstItem="0mz-OR-jEz" firstAttribute="leading" secondItem="slk-43-3J0" secondAttribute="leading" id="cUx-Je-bwP"/>
                                     <constraint firstAttribute="bottom" secondItem="x7G-q5-YWA" secondAttribute="bottom" constant="419" id="cpN-2E-nW7"/>
+                                    <constraint firstAttribute="trailing" secondItem="F0Q-XN-iwS" secondAttribute="trailing" id="csh-dC-oJw"/>
                                     <constraint firstItem="mfC-B1-GS6" firstAttribute="top" secondItem="slk-43-3J0" secondAttribute="top" constant="263" id="kQy-nW-rji"/>
                                     <constraint firstItem="x7G-q5-YWA" firstAttribute="top" secondItem="slk-43-3J0" secondAttribute="top" constant="-32" id="lhi-51-oM6"/>
                                     <constraint firstItem="y0s-1Q-1YV" firstAttribute="top" secondItem="mfC-B1-GS6" secondAttribute="bottom" constant="3" id="lku-nU-Iqm"/>
                                     <constraint firstItem="x7G-q5-YWA" firstAttribute="leading" secondItem="slk-43-3J0" secondAttribute="leading" id="m2s-JI-1vo"/>
+                                    <constraint firstItem="s3q-2x-N3m" firstAttribute="top" secondItem="y0s-1Q-1YV" secondAttribute="bottom" id="uFa-gt-BGz"/>
                                 </constraints>
                             </scrollView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zgD-q5-fFZ">
@@ -355,6 +395,8 @@
                         <outlet property="iconPocketBtn" destination="PNF-Zp-Ffx" id="5a5-R9-5Ac"/>
                         <outlet property="iconTopicIndex" destination="EZI-O8-KnB" id="ewe-Z8-Hkh"/>
                         <outlet property="imageScroll" destination="VeJ-MH-lHy" id="PLH-PW-mea"/>
+                        <outlet property="movieTable" destination="0mz-OR-jEz" id="BWV-WA-FCU"/>
+                        <outlet property="movieTableHeight" destination="bXW-Av-LuU" id="9oC-oX-4q1"/>
                         <outlet property="movingButtons" destination="s2d-cA-qys" id="o4X-DK-kcO"/>
                         <outlet property="ratingBg" destination="Sy0-1L-Wen" id="nzz-NX-bI5"/>
                         <outlet property="scrollView" destination="x7G-q5-YWA" id="cK1-Hr-9vN"/>

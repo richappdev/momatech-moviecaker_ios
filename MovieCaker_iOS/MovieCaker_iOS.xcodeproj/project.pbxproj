@@ -44,6 +44,7 @@
 		6CFC098A1CCBC0B50045C93E /* UIFont+FontAwesome.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CFC09811CCBC0B50045C93E /* UIFont+FontAwesome.m */; };
 		6CFC098B1CCBC0B50045C93E /* UIImage+FontAwesome.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CFC09831CCBC0B50045C93E /* UIImage+FontAwesome.m */; };
 		6CFC098E1CCD529C0045C93E /* MainVerticalScroller.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CFC098D1CCD529C0045C93E /* MainVerticalScroller.m */; };
+		6CFC09911CD2668E0045C93E /* MovieTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CFC09901CD2668E0045C93E /* MovieTableViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -114,6 +115,8 @@
 		6CFC09831CCBC0B50045C93E /* UIImage+FontAwesome.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+FontAwesome.m"; sourceTree = "<group>"; };
 		6CFC098C1CCD529C0045C93E /* MainVerticalScroller.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainVerticalScroller.h; sourceTree = "<group>"; };
 		6CFC098D1CCD529C0045C93E /* MainVerticalScroller.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainVerticalScroller.m; sourceTree = "<group>"; };
+		6CFC098F1CD2668E0045C93E /* MovieTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MovieTableViewController.h; sourceTree = "<group>"; };
+		6CFC09901CD2668E0045C93E /* MovieTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MovieTableViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -204,6 +207,8 @@
 				6C1250671CC37ED50009549B /* LoginController.m */,
 				6CD58C491CACBD3F0089DB38 /* SecondViewController.h */,
 				6CD58C4A1CACBD3F0089DB38 /* SecondViewController.m */,
+				6CFC098F1CD2668E0045C93E /* MovieTableViewController.h */,
+				6CFC09901CD2668E0045C93E /* MovieTableViewController.m */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -390,6 +395,7 @@
 				6CD58C481CACBD3F0089DB38 /* MovieController.m in Sources */,
 				6CD58C421CACBD3F0089DB38 /* main.m in Sources */,
 				6CFC098E1CCD529C0045C93E /* MainVerticalScroller.m in Sources */,
+				6CFC09911CD2668E0045C93E /* MovieTableViewController.m in Sources */,
 				6C1250811CC3857B0009549B /* AFSecurityPolicy.m in Sources */,
 				6CFC09851CCBC0B50045C93E /* NSString+FontAwesome.m in Sources */,
 				6CA52C5B1CB9587400C5FDC8 /* scrollBoxView.m in Sources */,

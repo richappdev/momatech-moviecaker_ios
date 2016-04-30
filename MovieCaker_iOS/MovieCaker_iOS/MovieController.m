@@ -11,6 +11,7 @@
 #import "movieModel.h"
 #import "UIImage+FontAwesome.h"
 #import "MainVerticalScroller.h"
+#import "MovieTableViewController.h"
 
 @interface MovieController ()
 @property (strong, nonatomic) IBOutlet scrollBoxView *scrollView;
@@ -28,6 +29,8 @@
 @property (strong, nonatomic) IBOutlet UIView *iconMovieNew;
 @property (strong, nonatomic) IBOutlet UIView *iconMovieHot;
 @property (strong, nonatomic) IBOutlet UIView *iconTopicIndex;
+@property (strong, nonatomic) IBOutlet NSLayoutConstraint *movieTableHeight;
+@property MovieTableViewController *movieTableController;
 @property NSMutableArray *movieArray;
 @property MainVerticalScroller *scrollDelegate;
 @property int lastIndex;
@@ -73,6 +76,12 @@
     self.navigationController.navigationBar.backgroundColor = [UIColor clearColor];
     [self.navigationController.navigationBar setTitleTextAttributes:
      @{NSForegroundColorAttributeName:[UIColor clearColor]}];
+    
+    self.movieTableController = [[MovieTableViewController alloc] init];
+    self.movieTable.delegate = self.movieTableController;
+    self.movieTable.dataSource = self.movieTableController;
+    self.movieTableController.tableHeight = self.movieTableHeight;
+    self.movieTableController.tableView = self.movieTable;
     
  //   CGPoint position = CGPointMake(0,0);
   //  [self.MainScroll setContentOffset:position];
