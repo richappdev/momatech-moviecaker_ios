@@ -51,7 +51,7 @@
     MovieCell *cell = [tableView dequeueReusableCellWithIdentifier:@"MovieCell" forIndexPath:indexPath];
     cell.title.text = @"amillionwordsamillionwordsamillionwordsamillionwordsamillionwordsamillionwordsamillionwordsamillionwordsamillionwordsamillionwordsamillionwordsamillionwordsamillionwordsamillionwordsamillionwordsamillionwordsamillionwordsamillionwordsamillionwords";
     
-    
+    [cell setCirclePercentage:(float)arc4random()/0x100000000];
     return cell;
 }
 

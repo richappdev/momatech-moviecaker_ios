@@ -7,8 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
-
+#import "CircleView.h"
 @interface MovieCell : UITableViewCell
 @property (strong, nonatomic) IBOutlet UILabel *title;
-
+@property (strong, nonatomic) IBOutlet CircleView *Circle;
+@property (strong, nonatomic) IBOutlet UILabel *percentageLabel;
+@property (strong, nonatomic) IBOutlet UILabel *finishLabel;
+-(void)setCirclePercentage:(float) percent;
 @end

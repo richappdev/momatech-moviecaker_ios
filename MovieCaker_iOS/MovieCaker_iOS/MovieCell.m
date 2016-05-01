@@ -20,5 +20,22 @@
 
     // Configure the view for the selected state
 }
-
+-(void)setCirclePercentage:(float)percent{
+    self.Circle.percentage = percent;
+    UIColor *circleColor;
+    if(percent<=1&&percent>=.75){
+        circleColor = [UIColor colorWithRed:0.39 green:0.73 blue:0.34 alpha:1.0];
+    }else if (percent<=.75&&percent>=.5){
+        circleColor = [UIColor colorWithRed:0.97 green:0.39 blue:0.34 alpha:1.0];
+    }else if(percent<=.5&&percent>=.25){
+        circleColor = [UIColor orangeColor];
+    }else{
+        circleColor = [UIColor blackColor];
+    }
+    
+    self.Circle.color = circleColor;
+    self.percentageLabel.textColor = circleColor;
+    self.finishLabel.textColor = circleColor;
+    self.percentageLabel.text = [NSString stringWithFormat:@"%d%%",(int)(percent*100)];
+}
 @end
