@@ -724,10 +724,10 @@
                                                                         <constraint firstAttribute="width" constant="14" id="QcY-AI-BEo"/>
                                                                     </constraints>
                                                                 </imageView>
-                                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="iconStar" translatesAutoresizingMaskIntoConstraints="NO" id="wSu-ub-wXL">
-                                                                    <rect key="frame" x="48" y="3" width="14" height="14"/>
+                                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="iconStar" translatesAutoresizingMaskIntoConstraints="NO" id="72H-OG-NCI">
+                                                                    <rect key="frame" x="16" y="3" width="14" height="14"/>
                                                                     <constraints>
-                                                                        <constraint firstAttribute="width" constant="14" id="uFg-Yw-ESp"/>
+                                                                        <constraint firstAttribute="width" constant="14" id="W5B-ec-hNU"/>
                                                                     </constraints>
                                                                 </imageView>
                                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="iconStar" translatesAutoresizingMaskIntoConstraints="NO" id="ZvF-77-9TF">
@@ -736,14 +736,14 @@
                                                                         <constraint firstAttribute="width" constant="14" id="52s-SF-rxR"/>
                                                                     </constraints>
                                                                 </imageView>
+                                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="iconStar" translatesAutoresizingMaskIntoConstraints="NO" id="wSu-ub-wXL">
+                                                                    <rect key="frame" x="48" y="3" width="14" height="14"/>
+                                                                    <constraints>
+                                                                        <constraint firstAttribute="width" constant="14" id="uFg-Yw-ESp"/>
+                                                                    </constraints>
+                                                                </imageView>
                                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="iconStar" translatesAutoresizingMaskIntoConstraints="NO" id="1aR-3t-ac0">
                                                                     <rect key="frame" x="64" y="3" width="13" height="14"/>
-                                                                </imageView>
-                                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="iconStar" translatesAutoresizingMaskIntoConstraints="NO" id="72H-OG-NCI">
-                                                                    <rect key="frame" x="16" y="3" width="14" height="14"/>
-                                                                    <constraints>
-                                                                        <constraint firstAttribute="width" constant="14" id="W5B-ec-hNU"/>
-                                                                    </constraints>
                                                                 </imageView>
                                                             </subviews>
                                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -957,6 +957,11 @@
                                                 <connections>
                                                     <outlet property="likeBtn" destination="fHG-JM-2bq" id="CFA-IH-k7Q"/>
                                                     <outlet property="shareBtn" destination="tFz-Jm-JT0" id="UkI-Hs-QgQ"/>
+                                                    <outlet property="star1" destination="5mc-Qo-h0H" id="CDg-F1-xpF"/>
+                                                    <outlet property="star2" destination="72H-OG-NCI" id="q1F-gD-ZUn"/>
+                                                    <outlet property="star3" destination="ZvF-77-9TF" id="ejM-uD-N7p"/>
+                                                    <outlet property="star4" destination="wSu-ub-wXL" id="qEg-bL-16R"/>
+                                                    <outlet property="star5" destination="1aR-3t-ac0" id="51G-mV-9s4"/>
                                                 </connections>
                                             </tableViewCell>
                                         </prototypes>

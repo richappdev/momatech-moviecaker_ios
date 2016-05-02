@@ -66,7 +66,7 @@
         return cell;
     }else{
             Movie2Cell *cell = [tableView dequeueReusableCellWithIdentifier:@"Movie2Cell" forIndexPath:indexPath];
- 
+            [cell setStars:floor((float)arc4random()/0x100000000*11)];
             return cell;
     
 

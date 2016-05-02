@@ -14,6 +14,7 @@
     [super awakeFromNib];
     [self addIndexGesture:self.likeBtn];
     [self addIndexGesture:self.shareBtn];
+    self.starArray = [[NSArray alloc] initWithObjects:self.star1,self.star2,self.star3,self.star4,self.star5, nil];
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
@@ -29,5 +30,22 @@
 
 -(void)indexClick:(UITapGestureRecognizer *)sender{
     [buttonHelper likeShareClick:sender.view];
+}
+-(void)setStars:(int)rating{
+    int main =floor(rating/2);
+    int remain = rating%2;
+    int count = 1;
+    for (UIImageView *row in self.starArray) {
+        if(main>=count){
+            row.image = [UIImage imageNamed:@"iconStar.png"];
+        }else if (remain==1&&count==(main+1)){
+            row.image = [UIImage imageNamed:@"iconSatrHalfO.png"];
+        }else{
+            row.image = [UIImage imageNamed:@"iconStarO"];
+        }
+        
+        count++;
+    }
+
 }
 @end
