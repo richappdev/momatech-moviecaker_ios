@@ -12,5 +12,6 @@
 @property (strong, nonatomic) IBOutlet UIView *statubarBg;
 @property (strong, nonatomic) IBOutlet UIView *movingButtons;
 @property (strong, nonatomic) IBOutlet UITableView *movieTable;
+@property (strong, nonatomic) IBOutlet UITableView *movieTable2;
 @end
 

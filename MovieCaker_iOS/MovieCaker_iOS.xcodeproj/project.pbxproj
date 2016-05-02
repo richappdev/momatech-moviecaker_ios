@@ -22,6 +22,7 @@
 		6C1250851CC3857B0009549B /* AFURLSessionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C12507C1CC3857B0009549B /* AFURLSessionManager.m */; };
 		6C61EAEE1CD68E1B0026CCCC /* CircleView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C61EAED1CD68E1B0026CCCC /* CircleView.m */; };
 		6C61EAF11CD6D7E90026CCCC /* buttonHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C61EAF01CD6D7E90026CCCC /* buttonHelper.m */; };
+		6C61EAF41CD7772F0026CCCC /* Movie2Cell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C61EAF31CD7772F0026CCCC /* Movie2Cell.m */; };
 		6C67800F1CC5033E005AEB35 /* WechatAccess.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C67800E1CC5033E005AEB35 /* WechatAccess.m */; };
 		6C6780121CC7C826005AEB35 /* AustinApi.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C6780111CC7C826005AEB35 /* AustinApi.m */; };
 		6CA52C5B1CB9587400C5FDC8 /* scrollBoxView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CA52C5A1CB9587400C5FDC8 /* scrollBoxView.m */; };
@@ -83,6 +84,8 @@
 		6C61EAED1CD68E1B0026CCCC /* CircleView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CircleView.m; sourceTree = "<group>"; };
 		6C61EAEF1CD6D7E90026CCCC /* buttonHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = buttonHelper.h; sourceTree = "<group>"; };
 		6C61EAF01CD6D7E90026CCCC /* buttonHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = buttonHelper.m; sourceTree = "<group>"; };
+		6C61EAF21CD7772F0026CCCC /* Movie2Cell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Movie2Cell.h; sourceTree = "<group>"; };
+		6C61EAF31CD7772F0026CCCC /* Movie2Cell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Movie2Cell.m; sourceTree = "<group>"; };
 		6C67800D1CC5033E005AEB35 /* WechatAccess.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WechatAccess.h; sourceTree = "<group>"; };
 		6C67800E1CC5033E005AEB35 /* WechatAccess.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WechatAccess.m; sourceTree = "<group>"; };
 		6C6780101CC7C826005AEB35 /* AustinApi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AustinApi.h; sourceTree = "<group>"; };
@@ -240,6 +243,8 @@
 				6CA52C5A1CB9587400C5FDC8 /* scrollBoxView.m */,
 				6CFC09921CD50E2E0045C93E /* MovieCell.h */,
 				6CFC09931CD50E2E0045C93E /* MovieCell.m */,
+				6C61EAF21CD7772F0026CCCC /* Movie2Cell.h */,
+				6C61EAF31CD7772F0026CCCC /* Movie2Cell.m */,
 				6C61EAEC1CD68E1B0026CCCC /* CircleView.h */,
 				6C61EAED1CD68E1B0026CCCC /* CircleView.m */,
 			);
@@ -401,6 +406,7 @@
 				6C1250821CC3857B0009549B /* AFURLConnectionOperation.m in Sources */,
 				6C12507D1CC3857B0009549B /* AFHTTPRequestOperation.m in Sources */,
 				6C61EAEE1CD68E1B0026CCCC /* CircleView.m in Sources */,
+				6C61EAF41CD7772F0026CCCC /* Movie2Cell.m in Sources */,
 				6CD58C4B1CACBD3F0089DB38 /* SecondViewController.m in Sources */,
 				6C61EAF11CD6D7E90026CCCC /* buttonHelper.m in Sources */,
 				6C12507E1CC3857B0009549B /* AFHTTPRequestOperationManager.m in Sources */,

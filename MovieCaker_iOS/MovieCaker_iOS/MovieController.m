@@ -32,9 +32,13 @@
 @property (strong, nonatomic) IBOutlet NSLayoutConstraint *movieTableHeight;
 @property (strong, nonatomic) IBOutlet UIImageView *FirstChevron;
 @property (strong, nonatomic) IBOutlet UIView *moreBtn;
+@property (strong, nonatomic) IBOutlet UIImageView *SecondChevron;
+@property (strong, nonatomic) IBOutlet UIView *moreBtn2;
 @property MovieTableViewController *movieTableController;
+@property MovieTableViewController *movieTable2Controller;
 @property NSMutableArray *movieArray;
 @property MainVerticalScroller *scrollDelegate;
+@property (strong, nonatomic) IBOutlet NSLayoutConstraint *movieTable2Height;
 @property int lastIndex;
 @end
 
@@ -67,6 +71,7 @@
     [self addIndexGesture:self.iconMovieHot];
     [self addIndexGesture:self.iconTopicIndex];
     [self addIndexGesture:self.moreBtn];
+    [self addIndexGesture:self.moreBtn2];
     self.title = @"首頁";
     
     self.scrollDelegate = [[MainVerticalScroller alloc] init];
@@ -80,21 +85,28 @@
     [self.navigationController.navigationBar setTitleTextAttributes:
      @{NSForegroundColorAttributeName:[UIColor clearColor]}];
     
-    self.FirstChevron.image = [UIImage imageWithIcon:@"fa-chevron-right" backgroundColor:[UIColor clearColor] iconColor:[UIColor colorWithRed:0.97 green:0.39 blue:0.00 alpha:1.0] andSize:CGSizeMake(10, 14)];
+    self.FirstChevron.image = self.SecondChevron.image = [UIImage imageWithIcon:@"fa-chevron-right" backgroundColor:[UIColor clearColor] iconColor:[UIColor colorWithRed:0.97 green:0.39 blue:0.00 alpha:1.0] andSize:CGSizeMake(10, 14)];
     
-    self.movieTableController = [[MovieTableViewController alloc] init];
+    self.movieTableController = [[MovieTableViewController alloc] init:0];
     self.movieTable.delegate = self.movieTableController;
     self.movieTable.dataSource = self.movieTableController;
     self.movieTableController.tableHeight = self.movieTableHeight;
     self.movieTableController.tableView = self.movieTable;
-    
+
+    self.movieTable2Controller = [[MovieTableViewController alloc] init:1];
+    self.movieTable2.delegate = self.movieTable2Controller;
+    self.movieTable2.dataSource = self.movieTable2Controller;
+    self.movieTable2Controller.tableHeight = self.movieTable2Height;
+    self.movieTable2Controller.tableView = self.movieTable2;
  //   CGPoint position = CGPointMake(0,0);
   //  [self.MainScroll setContentOffset:position];
     
 }
 
 -(void)viewDidAppear:(BOOL)animated{
-    self.MainScroll.contentSize = CGSizeMake(self.view.bounds.size.width, 4000);
+    int height;
+    height = [self.movieTableController returnTotalHeight]+[self.movieTable2Controller returnTotalHeight]+550;
+    self.MainScroll.contentSize = CGSizeMake(self.view.bounds.size.width, height);
 }
 
 -(void)addIndexGesture:(UIView*)view{

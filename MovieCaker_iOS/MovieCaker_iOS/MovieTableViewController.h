@@ -10,4 +10,7 @@
 
 @interface MovieTableViewController : UITableViewController
 @property NSLayoutConstraint *tableHeight;
+- (id)init:(int)type;
+-(int)returnTotalHeight;
+@property int type;
 @end

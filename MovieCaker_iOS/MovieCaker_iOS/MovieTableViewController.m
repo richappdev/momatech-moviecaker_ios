@@ -8,15 +8,21 @@
 
 #import "MovieTableViewController.h"
 #import "MovieCell.h"
+#import "Movie2Cell.h"
 
 @interface MovieTableViewController ()
 @property int cellHeight;
 @end
 
 @implementation MovieTableViewController
-- (id)init {
+- (id)init:(int)type {
     if (self = [super init]) {
-        self.cellHeight =300;
+        self.type = type;
+        if(type==0){
+            self.cellHeight = 300;}
+        else{
+            self.cellHeight = 200;
+        }
     }
     return self;
 }
@@ -28,7 +34,7 @@
     self.tableView.scrollEnabled = false;
     self.tableHeight.constant = self.cellHeight*5;
     self.tableView.allowsSelection = NO;
-
+    [self.tableView setSeparatorColor:[UIColor clearColor]];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -45,15 +51,26 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
 #warning Incomplete implementation, return the number of rows
-    return 20;
+    return 5;
 }
 
+-(int)returnTotalHeight{
+    return 5*_cellHeight;
+}
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    if(self.type==0){
     MovieCell *cell = [tableView dequeueReusableCellWithIdentifier:@"MovieCell" forIndexPath:indexPath];
     cell.title.text = @"amillionwordsamillionwordsamillionwordsamillionwordsamillionwordsamillionwordsamillionwordsamillionwordsamillionwordsamillionwordsamillionwordsamillionwordsamillionwordsamillionwordsamillionwordsamillionwordsamillionwordsamillionwordsamillionwords";
     
     [cell setCirclePercentage:(float)arc4random()/0x100000000];
-    return cell;
+        return cell;
+    }else{
+            Movie2Cell *cell = [tableView dequeueReusableCellWithIdentifier:@"Movie2Cell" forIndexPath:indexPath];
+ 
+            return cell;
+    
+
+    }
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
