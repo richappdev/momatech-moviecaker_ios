@@ -7,12 +7,13 @@
 //
 
 #import "MovieCell.h"
-
+#import "buttonHelper.h"
 @implementation MovieCell
 
 - (void)awakeFromNib {
     [super awakeFromNib];
-    // Initialization code
+    [self addIndexGesture:self.likeBtn];
+    [self addIndexGesture:self.shareBtn];
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
@@ -38,4 +39,14 @@
     self.finishLabel.textColor = circleColor;
     self.percentageLabel.text = [NSString stringWithFormat:@"%d%%",(int)(percent*100)];
 }
+
+-(void)addIndexGesture:(UIView*)view{
+    UITapGestureRecognizer *indexTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(indexClick:)];
+    [view addGestureRecognizer:indexTap];
+}
+
+-(void)indexClick:(UITapGestureRecognizer *)sender{
+    [buttonHelper likeShareClick:sender.view];
+}
+
 @end

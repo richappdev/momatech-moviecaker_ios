@@ -31,6 +31,7 @@
 @property (strong, nonatomic) IBOutlet UIView *iconTopicIndex;
 @property (strong, nonatomic) IBOutlet NSLayoutConstraint *movieTableHeight;
 @property (strong, nonatomic) IBOutlet UIImageView *FirstChevron;
+@property (strong, nonatomic) IBOutlet UIView *moreBtn;
 @property MovieTableViewController *movieTableController;
 @property NSMutableArray *movieArray;
 @property MainVerticalScroller *scrollDelegate;
@@ -65,6 +66,7 @@
     [self addIndexGesture:self.iconMovieNew];
     [self addIndexGesture:self.iconMovieHot];
     [self addIndexGesture:self.iconTopicIndex];
+    [self addIndexGesture:self.moreBtn];
     self.title = @"首頁";
     
     self.scrollDelegate = [[MainVerticalScroller alloc] init];
@@ -203,6 +205,9 @@
 }
 -(void)indexClick:(UITapGestureRecognizer *)sender{
     NSLog(@"asd%ld",sender.view.tag);
+    if(sender.view.tag==7){
+        self.tabBarController.selectedIndex = 1;
+    }
 }
 
 @end

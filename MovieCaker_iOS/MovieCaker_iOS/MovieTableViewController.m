@@ -27,6 +27,7 @@
 -(void)viewWillLayoutSubviews{
     self.tableView.scrollEnabled = false;
     self.tableHeight.constant = self.cellHeight*5;
+    self.tableView.allowsSelection = NO;
 
 }
 
