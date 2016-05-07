@@ -12,6 +12,7 @@
 #import "UIImage+FontAwesome.h"
 #import "MainVerticalScroller.h"
 #import "MovieTableViewController.h"
+#import "AustinApi.h"
 
 @interface MovieController ()
 @property (strong, nonatomic) IBOutlet scrollBoxView *scrollView;
@@ -100,7 +101,11 @@
     self.movieTable2Controller.tableView = self.movieTable2;
  //   CGPoint position = CGPointMake(0,0);
   //  [self.MainScroll setContentOffset:position];
-    
+    [[AustinApi sharedInstance] movieList:^(NSMutableDictionary *returnData) {
+        NSLog(@"%@",returnData);
+    } error:^(NSError *error) {
+        NSLog(@"%@",error);
+    }];
 }
 
 -(void)viewDidAppear:(BOOL)animated{

@@ -82,4 +82,43 @@
     }];
 }
 
+-(void)apiGetMethod:(NSString *)getUrl parameter:parameters addTokenHeader:(NSString*)addToken completion:(void (^)(id response))completion error:(void (^)(NSError *error))error
+{
+    //[[LoadingView sharedView] open];
+    
+    NSURL *baseURL = [NSURL URLWithString:SERVERAPI];
+    AFHTTPSessionManager *manager = [[AFHTTPSessionManager alloc] initWithBaseURL:baseURL];
+    manager.requestSerializer = [AFHTTPRequestSerializer serializer];
+    manager.responseSerializer = [AFJSONResponseSerializer serializer];
+    manager.responseSerializer.acceptableContentTypes = [manager.responseSerializer.acceptableContentTypes setByAddingObject:@"text/html"];
+    manager.responseSerializer.acceptableContentTypes = [manager.responseSerializer.acceptableContentTypes setByAddingObject:@"application/json"];
+    
+  /*  if (addToken != nil) {
+        NSString * access_token_s = (NSString*)[[Api sharedInstance] loadSetting:@"access_token_s"];
+        NSString *token = [NSString stringWithFormat:@"Bearer %@",access_token_s];
+        [manager.requestSerializer setValue:token forHTTPHeaderField:@"Authorization"];
+    }*/
+    
+    [manager GET:getUrl parameters:parameters success:^(NSURLSessionDataTask *task, id responseObject) {
+        //[[LoadingView sharedView] close];
+        completion(responseObject);
+        
+    } failure:^(NSURLSessionDataTask *task, NSError *err) {
+        //[[LoadingView sharedView] close];
+        error(err);
+    }];
+}
+
+-(void)movieList:(void (^)(NSMutableDictionary *returnData))completion error:(void (^)(NSError *error))error{
+    NSDictionary *parameter = @{@"type": @"6",
+                                @"locationid": @"100",
+                                @"m":@"6"
+                                };
+    [self apiGetMethod:@"api/video" parameter:parameter addTokenHeader:@"1" completion:^(id response) {
+       
+        completion([response objectForKey:@"Data"]);
+    } error:^(NSError *error2) {
+        error(error2);
+    }];
+}
 @end
