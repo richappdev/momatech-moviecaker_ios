@@ -13,4 +13,5 @@
 @property NSString *title;
 @property int rating;
 @property UIImage *movieImage;
+@property UIImageView *movieImageView;
 @end

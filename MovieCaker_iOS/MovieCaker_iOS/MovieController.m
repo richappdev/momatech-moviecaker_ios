@@ -13,6 +13,7 @@
 #import "MainVerticalScroller.h"
 #import "MovieTableViewController.h"
 #import "AustinApi.h"
+#import "SDWebImage/UIImageView+WebCache.h"
 
 @interface MovieController ()
 @property (strong, nonatomic) IBOutlet scrollBoxView *scrollView;
@@ -56,11 +57,8 @@
     //self.imageScroll.backgroundColor = [UIColor blueColor];
     self.imageScroll.clipsToBounds = NO;
     
-    [self generateList];
-    [self generateMovie];
     self.lastIndex = 0;
-    [self setMovieDetails:[self.movieArray objectAtIndex:0]];
-    
+
     [self curvedMask:self.ratingBg];
     self.uistar.image = [UIImage imageWithIcon:@"fa-star" backgroundColor:[UIColor clearColor] iconColor:[UIColor whiteColor] andSize:CGSizeMake(18, 18)];
     
@@ -103,6 +101,45 @@
   //  [self.MainScroll setContentOffset:position];
     [[AustinApi sharedInstance] movieList:^(NSMutableDictionary *returnData) {
         NSLog(@"%@",returnData);
+        
+        self.movieArray = [[NSMutableArray alloc]init];
+        
+        int margin = 15;
+        int width = 255;
+        int height = 250;
+        int count = 0;
+        self.imageScroll.contentSize = CGSizeMake(width* [returnData count], self.imageScroll.frame.size.height);
+        for(NSDictionary *row in returnData){
+            
+        movieModel *temp = [movieModel alloc];
+        temp.title = [row objectForKey:@"CNName"];
+        temp.rating = 10;
+        temp.movieImage = [UIImage imageNamed:@"on.png"];
+        
+        UIImageView *image = [[UIImageView alloc] initWithImage:temp.movieImage];
+       
+        NSString *url = [NSString stringWithFormat:@"http://www.funmovie.tv/Content/pictures/files/%@?width=235",[row objectForKey:@"Picture"]];
+            
+        if(count==0){
+            [image sd_setImageWithURL:[NSURL URLWithString:url] placeholderImage:nil completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
+                [self setMovieDetails:[self.movieArray objectAtIndex:0]];
+            }];
+        }
+        else{
+            [image sd_setImageWithURL:[NSURL URLWithString:url]];
+        }
+        
+        
+        image.userInteractionEnabled = YES;
+            
+        image.frame = CGRectMake(margin+width*count, 0, width-margin*2, height);
+        [self.imageScroll addSubview:image];
+        
+        temp.movieImageView = image;
+        count++;
+        [self.movieArray addObject:temp];
+        }
+        
     } error:^(NSError *error) {
         NSLog(@"%@",error);
     }];
@@ -117,45 +154,6 @@
 -(void)addIndexGesture:(UIView*)view{
     UITapGestureRecognizer *indexTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(indexClick:)];
     [view addGestureRecognizer:indexTap];
-}
-
--(void)generateList{
-
-    self.movieArray = [[NSMutableArray alloc]init];
-    movieModel *temp = [movieModel alloc];
-    temp.title = @"title1";
-    temp.rating = 2;
-    temp.movieImage = [UIImage imageNamed:@"on.png"];
-    [self.movieArray addObject:temp];
-    temp = [movieModel alloc];
-    temp.title = @"title2";
-    temp.rating = 3;
-    temp.movieImage = [UIImage imageNamed:@"on.png"];
-    [self.movieArray addObject:temp];
-    temp = [movieModel alloc];
-    temp.title = @"title3";
-    temp.rating = 5;
-    temp.movieImage = [UIImage imageNamed:@"on.png"];
-    [self.movieArray addObject:temp];
-}
-
--(void)generateMovie{
-    int margin = 15;
-    int width = 255;
-    int height = 250;
-    int count = 0;
-    
-    self.imageScroll.contentSize = CGSizeMake(width* [self.movieArray count], self.imageScroll.frame.size.height);
-    
-    for (movieModel *row in self.movieArray) {
-        
-        UIImageView *image = [[UIImageView alloc] initWithImage:row.movieImage];
-        image.userInteractionEnabled = YES;
-        
-        image.frame = CGRectMake(margin+width*count, 0, width-margin*2, height);
-        [self.imageScroll addSubview:image];
-        count++;
-    }
 }
 
 -(void)movieDetail:(id)sender{
@@ -181,7 +179,8 @@
 -(void)setMovieDetails:(movieModel*)model{
     self.uititle.text = model.title;
     self.uirating.text = [NSString stringWithFormat:@"%d",model.rating];
-    self.blurredBg.image =[self blurImage:model.movieImage withBottomInset:0 blurRadius:43];
+    
+    self.blurredBg.image =[self blurImage:model.movieImageView.image  withBottomInset:0 blurRadius:43];
 }
 -(void)curvedMask:(UIView*)view{
     UIBezierPath *aPath = [UIBezierPath bezierPath];
