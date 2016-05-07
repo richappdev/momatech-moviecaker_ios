@@ -114,19 +114,19 @@
         movieModel *temp = [movieModel alloc];
         temp.title = [row objectForKey:@"CNName"];
         temp.rating = 10;
-        temp.movieImage = [UIImage imageNamed:@"on.png"];
+        UIImage *placeholder = [UIImage imageNamed:@"img-placeholder.jpg"];
         
         UIImageView *image = [[UIImageView alloc] initWithImage:temp.movieImage];
        
         NSString *url = [NSString stringWithFormat:@"http://www.funmovie.tv/Content/pictures/files/%@?width=235",[row objectForKey:@"Picture"]];
             
         if(count==0){
-            [image sd_setImageWithURL:[NSURL URLWithString:url] placeholderImage:nil completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
+            [image sd_setImageWithURL:[NSURL URLWithString:url] placeholderImage:placeholder completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
                 [self setMovieDetails:[self.movieArray objectAtIndex:0]];
             }];
         }
         else{
-            [image sd_setImageWithURL:[NSURL URLWithString:url]];
+            [image sd_setImageWithURL:[NSURL URLWithString:url] placeholderImage:placeholder];
         }
         
         
