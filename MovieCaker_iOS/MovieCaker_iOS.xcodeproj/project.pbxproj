@@ -655,7 +655,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/MovieCaker_iOS/WeChatSDK_1.6",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "com.moma-tech.MovieCaker-iOS";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.moma-tech.MovieCaker";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
@@ -671,7 +671,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/MovieCaker_iOS/WeChatSDK_1.6",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "com.moma-tech.MovieCaker-iOS";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.moma-tech.MovieCaker";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;
