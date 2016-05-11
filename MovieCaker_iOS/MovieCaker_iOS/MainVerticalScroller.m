@@ -20,13 +20,13 @@
         
     }
 
-    self.movieView.navigationController.navigationBar.backgroundColor = [UIColor colorWithRed:(100/255.0) green:(186/255.0) blue:(87/255.0) alpha:alpha];
-    self.movieView.statubarBg.backgroundColor = [UIColor colorWithRed:(100/255.0) green:(186/255.0) blue:(87/255.0) alpha:alpha];
+    self.movieView.navigationController.navigationBar.backgroundColor = [UIColor colorWithRed:(128/255.0) green:(203/255.0) blue:(196/255.0) alpha:alpha];
+    self.movieView.statubarBg.backgroundColor = [UIColor colorWithRed:(77/255.0) green:(182/255.0) blue:(172/255.0) alpha:alpha];
     [self.movieView.navigationController.navigationBar setTitleTextAttributes:
      @{NSForegroundColorAttributeName:[UIColor colorWithRed:(255/255.0) green:(255/255.0) blue:(255/255.0) alpha:alpha]}];
     
-    if(scrollView.contentOffset.y>=272){
-        self.movieView.movingButtons.frame = CGRectMake(self.movieView.movingButtons.frame.origin.x,19+scrollView.contentOffset.y -272 , self.movieView.movingButtons.frame.size.width, self.movieView.movingButtons.frame.size.height);
+    if(scrollView.contentOffset.y>=363){
+        self.movieView.movingButtons.frame = CGRectMake(self.movieView.movingButtons.frame.origin.x,19+scrollView.contentOffset.y - 363 , self.movieView.movingButtons.frame.size.width, self.movieView.movingButtons.frame.size.height);
     
     }else{
         self.movieView.movingButtons.frame = CGRectMake(self.movieView.movingButtons.frame.origin.x,19, self.movieView.movingButtons.frame.size.width, self.movieView.movingButtons.frame.size.height);
