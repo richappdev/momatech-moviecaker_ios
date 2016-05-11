@@ -1058,7 +1058,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="W5J-7L-Pyd" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1353" y="-276"/>
+            <point key="canvasLocation" x="1885" y="-276"/>
         </scene>
         <!--登入-->
         <scene sceneID="Yw6-q6-vxF">
@@ -1095,7 +1095,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6pU-v1-2uY" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1250" y="481"/>
+            <point key="canvasLocation" x="1782" y="481"/>
         </scene>
         <!--Movie Detail Controller-->
         <scene sceneID="qsf-q2-yA7">
@@ -1128,12 +1128,12 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8zu-1g-zUn" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1906" y="-219"/>
+            <point key="canvasLocation" x="2438" y="-219"/>
         </scene>
-        <!--專題-->
+        <!--Movie View Controller-->
         <scene sceneID="wg7-f3-ORb">
             <objects>
-                <viewController id="8rJ-Kc-sve" customClass="SecondViewController" sceneMemberID="viewController">
+                <viewController id="8rJ-Kc-sve" customClass="MovieViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="L7p-HK-0SC"/>
                         <viewControllerLayoutGuide type="bottom" id="Djb-ko-YwX"/>
@@ -1142,33 +1142,70 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" text="Second View" textAlignment="center" lineBreakMode="tailTruncation" minimumFontSize="10" translatesAutoresizingMaskIntoConstraints="NO" id="zEq-FU-wV5">
-                                <rect key="frame" x="55" y="263" width="210" height="42"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="36"/>
-                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Loaded by SecondViewController" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NDk-cv-Gan">
-                                <rect key="frame" x="192" y="313" width="216" height="17"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
+                            <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="aq3-gf-LKn">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="20"/>
+                                <color key="backgroundColor" red="0.30196078431372547" green="0.71372549019607845" blue="0.67450980392156867" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="20" id="ecm-9z-6qd"/>
+                                </constraints>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lvx-ye-8rc">
+                                <rect key="frame" x="-4" y="20" width="328" height="66"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="朋友在看" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="r9G-Aw-gPJ">
+                                        <rect key="frame" x="142" y="22" width="70" height="21"/>
+                                        <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="16"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="熱映" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Mwd-56-u4T">
+                                        <rect key="frame" x="47" y="22" width="42" height="21"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="42" id="2tB-nY-xgw"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="16"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="熱門" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Xbg-DK-F1t">
+                                        <rect key="frame" x="89" y="22" width="42" height="21"/>
+                                        <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="16"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="影評" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vnL-VO-kqV">
+                                        <rect key="frame" x="239" y="22" width="42" height="21"/>
+                                        <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="16"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" red="0.50196078431372548" green="0.79607843137254897" blue="0.76862745098039209" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="66" id="0cZ-zL-eyh"/>
+                                    <constraint firstItem="Xbg-DK-F1t" firstAttribute="width" secondItem="vnL-VO-kqV" secondAttribute="width" id="9br-rT-sBG"/>
+                                    <constraint firstItem="Xbg-DK-F1t" firstAttribute="centerY" secondItem="lvx-ye-8rc" secondAttribute="centerY" id="E3g-Nf-PwG"/>
+                                    <constraint firstItem="Mwd-56-u4T" firstAttribute="width" secondItem="Xbg-DK-F1t" secondAttribute="width" id="dKZ-2p-siu"/>
+                                    <constraint firstItem="vnL-VO-kqV" firstAttribute="centerY" secondItem="lvx-ye-8rc" secondAttribute="centerY" id="fRF-jq-Oe0"/>
+                                    <constraint firstItem="Mwd-56-u4T" firstAttribute="centerY" secondItem="lvx-ye-8rc" secondAttribute="centerY" id="pik-um-EXJ"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="NDk-cv-Gan" firstAttribute="top" secondItem="zEq-FU-wV5" secondAttribute="bottom" constant="8" symbolic="YES" id="Day-4N-Vmt"/>
-                            <constraint firstItem="NDk-cv-Gan" firstAttribute="centerX" secondItem="zEq-FU-wV5" secondAttribute="centerX" id="JgO-Fn-dHn"/>
-                            <constraint firstAttribute="centerX" secondItem="zEq-FU-wV5" secondAttribute="centerX" id="qqM-NS-xev"/>
-                            <constraint firstAttribute="centerY" secondItem="zEq-FU-wV5" secondAttribute="centerY" id="qzY-Ky-pLD"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="aq3-gf-LKn" secondAttribute="trailing" constant="-20" id="53i-Ka-WhL"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="lvx-ye-8rc" secondAttribute="trailing" constant="-20" id="IK9-tn-Jva"/>
+                            <constraint firstItem="lvx-ye-8rc" firstAttribute="top" secondItem="L7p-HK-0SC" secondAttribute="bottom" id="amE-vD-UYu"/>
+                            <constraint firstItem="lvx-ye-8rc" firstAttribute="leading" secondItem="QS5-Rx-YEW" secondAttribute="leadingMargin" constant="-20" id="gQl-Zd-rY4"/>
+                            <constraint firstItem="aq3-gf-LKn" firstAttribute="top" secondItem="QS5-Rx-YEW" secondAttribute="topMargin" id="hlb-Pk-40o"/>
+                            <constraint firstItem="aq3-gf-LKn" firstAttribute="leading" secondItem="QS5-Rx-YEW" secondAttribute="leadingMargin" constant="-20" id="ipE-6T-nH4"/>
                         </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" title="專題" image="second" id="cPa-gy-q4n"/>
+                    <navigationItem key="navigationItem" id="hVN-xJ-KkP"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4Nw-L8-lE0" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="400" y="340.80000000000007"/>
+            <point key="canvasLocation" x="1110" y="656"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="yl2-sM-qoP">
@@ -1182,7 +1219,7 @@
                     </tabBar>
                     <connections>
                         <segue destination="Ja8-DH-oBY" kind="relationship" relationship="viewControllers" id="u7Y-xg-7CH"/>
-                        <segue destination="8rJ-Kc-sve" kind="relationship" relationship="viewControllers" id="lzU-1b-eKA"/>
+                        <segue destination="HDG-S0-Ffz" kind="relationship" relationship="viewControllers" id="lzU-1b-eKA"/>
                         <segue destination="JgQ-hk-5PD" kind="relationship" relationship="viewControllers" id="V1Z-Rw-rG6"/>
                         <segue destination="XeJ-Ni-9cD" kind="relationship" relationship="viewControllers" id="iAW-ts-5cc"/>
                     </connections>
@@ -1225,13 +1262,13 @@
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="23s-pe-NLL" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="353" y="-333"/>
+            <point key="canvasLocation" x="274" y="-647"/>
         </scene>
-        <!--電影-->
+        <!--首頁-->
         <scene sceneID="76f-Wy-Ncd">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Ja8-DH-oBY" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="電影" image="first" id="acW-dT-cKf"/>
+                    <tabBarItem key="tabBarItem" title="首頁" image="first" id="acW-dT-cKf"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="ucZ-JS-r5y">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -1244,7 +1281,26 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Vyh-C5-hzH" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="894" y="-576"/>
+            <point key="canvasLocation" x="793" y="-601"/>
+        </scene>
+        <!--電影-->
+        <scene sceneID="0a1-eE-Ods">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" navigationBarHidden="YES" id="HDG-S0-Ffz" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="電影" image="second" id="cPa-gy-q4n"/>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="Hj5-Wh-YdF">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="8rJ-Kc-sve" kind="relationship" relationship="rootViewController" id="5jl-QL-SDV"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="DHd-Wf-dq0" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="682" y="656"/>
         </scene>
     </scenes>
     <resources>
@@ -1266,6 +1322,6 @@
         <image name="second" width="30" height="30"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="u7Y-xg-7CH"/>
+        <segue reference="62v-Qr-xDm"/>
     </inferredMetricsTieBreakers>
 </document>

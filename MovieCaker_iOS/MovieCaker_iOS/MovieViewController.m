@@ -6,17 +6,16 @@
 //  Copyright © 2016 Albert Hsu. All rights reserved.
 //
 
-#import "SecondViewController.h"
+#import "MovieViewController.h"
 
-@interface SecondViewController ()
+@interface MovieViewController ()
 
 @end
 
-@implementation SecondViewController
+@implementation MovieViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view, typically from a nib.
 }
 
 - (void)didReceiveMemoryWarning {
