@@ -1060,7 +1060,7 @@
             </objects>
             <point key="canvasLocation" x="1885" y="-276"/>
         </scene>
-        <!--登入-->
+        <!--我的-->
         <scene sceneID="Yw6-q6-vxF">
             <objects>
                 <viewController id="XeJ-Ni-9cD" customClass="LoginController" sceneMemberID="viewController">
@@ -1088,7 +1088,7 @@
                             <constraint firstItem="HC2-6D-K6M" firstAttribute="leading" secondItem="iOw-gh-3GM" secondAttribute="leadingMargin" constant="4" id="kTS-w3-UQ9"/>
                         </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" tag="4" title="登入" id="iWJ-V2-6Xn"/>
+                    <tabBarItem key="tabBarItem" tag="4" title="我的" image="iconUserMenu" selectedImage="iconUserMenuSelected" id="iWJ-V2-6Xn"/>
                     <connections>
                         <outlet property="Button" destination="HC2-6D-K6M" id="6yC-Ya-AoU"/>
                     </connections>
@@ -1158,15 +1158,6 @@
                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="熱映" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Mwd-56-u4T">
-                                        <rect key="frame" x="47" y="22" width="42" height="21"/>
-                                        <constraints>
-                                            <constraint firstAttribute="width" constant="42" id="2tB-nY-xgw"/>
-                                        </constraints>
-                                        <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="16"/>
-                                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="熱門" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Xbg-DK-F1t">
                                         <rect key="frame" x="89" y="22" width="42" height="21"/>
                                         <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="16"/>
@@ -1179,15 +1170,32 @@
                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <nil key="highlightedColor"/>
                                     </label>
+                                    <stackView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="lT7-S0-reF">
+                                        <rect key="frame" x="47" y="22" width="42" height="19"/>
+                                        <subviews>
+                                            <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="qNP-2R-QBn">
+                                                <rect key="frame" x="0.0" y="0.0" width="42" height="19"/>
+                                                <subviews>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="熱映" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Mwd-56-u4T">
+                                                        <rect key="frame" x="0.0" y="0.0" width="42" height="19"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="width" constant="42" id="2tB-nY-xgw"/>
+                                                        </constraints>
+                                                        <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="16"/>
+                                                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                </subviews>
+                                            </stackView>
+                                        </subviews>
+                                    </stackView>
                                 </subviews>
                                 <color key="backgroundColor" red="0.50196078431372548" green="0.79607843137254897" blue="0.76862745098039209" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="66" id="0cZ-zL-eyh"/>
                                     <constraint firstItem="Xbg-DK-F1t" firstAttribute="width" secondItem="vnL-VO-kqV" secondAttribute="width" id="9br-rT-sBG"/>
                                     <constraint firstItem="Xbg-DK-F1t" firstAttribute="centerY" secondItem="lvx-ye-8rc" secondAttribute="centerY" id="E3g-Nf-PwG"/>
-                                    <constraint firstItem="Mwd-56-u4T" firstAttribute="width" secondItem="Xbg-DK-F1t" secondAttribute="width" id="dKZ-2p-siu"/>
                                     <constraint firstItem="vnL-VO-kqV" firstAttribute="centerY" secondItem="lvx-ye-8rc" secondAttribute="centerY" id="fRF-jq-Oe0"/>
-                                    <constraint firstItem="Mwd-56-u4T" firstAttribute="centerY" secondItem="lvx-ye-8rc" secondAttribute="centerY" id="pik-um-EXJ"/>
                                 </constraints>
                             </view>
                         </subviews>
@@ -1210,25 +1218,61 @@
         <!--Tab Bar Controller-->
         <scene sceneID="yl2-sM-qoP">
             <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="HuB-VB-40B" sceneMemberID="firstResponder"/>
                 <tabBarController id="49e-Tb-3d3" sceneMemberID="viewController">
                     <nil key="simulatedBottomBarMetrics"/>
                     <tabBar key="tabBar" contentMode="scaleToFill" id="W28-zg-YXA">
                         <rect key="frame" x="0.0" y="975" width="768" height="49"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
-                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" red="0.96862745098039216" green="0.96862745098039216" blue="0.96862745098039216" alpha="0.0" colorSpace="calibratedRGB"/>
+                        <color key="tintColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="color" keyPath="tintColor">
+                                <color key="value" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                            </userDefinedRuntimeAttribute>
+                            <userDefinedRuntimeAttribute type="color" keyPath="backgroundColor">
+                                <color key="value" red="0.97254901960784312" green="0.96862745098039216" blue="0.96862745098039216" alpha="1" colorSpace="calibratedRGB"/>
+                            </userDefinedRuntimeAttribute>
+                            <userDefinedRuntimeAttribute type="image" keyPath="selectionIndicatorImage" value="tabbarBg"/>
+                        </userDefinedRuntimeAttributes>
                     </tabBar>
                     <connections>
                         <segue destination="Ja8-DH-oBY" kind="relationship" relationship="viewControllers" id="u7Y-xg-7CH"/>
                         <segue destination="HDG-S0-Ffz" kind="relationship" relationship="viewControllers" id="lzU-1b-eKA"/>
+                        <segue destination="kwc-OT-55W" kind="relationship" relationship="viewControllers" id="GFN-cc-SP1"/>
                         <segue destination="JgQ-hk-5PD" kind="relationship" relationship="viewControllers" id="V1Z-Rw-rG6"/>
                         <segue destination="XeJ-Ni-9cD" kind="relationship" relationship="viewControllers" id="iAW-ts-5cc"/>
                     </connections>
                 </tabBarController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="HuB-VB-40B" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-57.600000000000001" y="-68.159999999999997"/>
         </scene>
-        <!--影評-->
+        <!--View Controller-->
+        <scene sceneID="THL-g5-WTt">
+            <objects>
+                <viewController id="kwc-OT-55W" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="h2M-dw-q1U"/>
+                        <viewControllerLayoutGuide type="bottom" id="gi1-mk-Wvx"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="qHU-29-YEP">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="" image="iconMoreMenu" id="VBc-pE-VFm">
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="color" keyPath="tintColor">
+                                <color key="value" red="0.50196078431372548" green="0.79607843137254897" blue="0.76862745098039209" alpha="1" colorSpace="calibratedRGB"/>
+                            </userDefinedRuntimeAttribute>
+                        </userDefinedRuntimeAttributes>
+                    </tabBarItem>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="SI8-yZ-vv3" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="369" y="200"/>
+        </scene>
+        <!--專題-->
         <scene sceneID="8ci-y9-foM">
             <objects>
                 <viewController id="JgQ-hk-5PD" sceneMemberID="viewController">
@@ -1241,34 +1285,17 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="影評" id="eCT-ek-nO3"/>
+                    <tabBarItem key="tabBarItem" title="專題" image="iconTopicMenu" selectedImage="iconTopicMenuSelected" id="eCT-ek-nO3"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5uK-2c-asN" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-2.1333333333333333" y="698.63999999999999"/>
         </scene>
-        <!--Tab Bar Controller-->
-        <scene sceneID="mzP-F9-kIP">
-            <objects>
-                <tabBarController automaticallyAdjustsScrollViewInsets="NO" id="N60-Hw-AJm" sceneMemberID="viewController">
-                    <toolbarItems/>
-                    <tabBar key="tabBar" contentMode="scaleToFill" id="YPh-3x-wk4">
-                        <autoresizingMask key="autoresizingMask"/>
-                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                    </tabBar>
-                    <connections>
-                        <segue destination="Ja8-DH-oBY" kind="relationship" relationship="viewControllers" id="62v-Qr-xDm"/>
-                    </connections>
-                </tabBarController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="23s-pe-NLL" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="274" y="-647"/>
-        </scene>
         <!--首頁-->
         <scene sceneID="76f-Wy-Ncd">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Ja8-DH-oBY" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="首頁" image="first" id="acW-dT-cKf"/>
+                    <tabBarItem key="tabBarItem" title="首頁" image="iconIndexMenu" selectedImage="iconIndexMenuSelected" id="acW-dT-cKf"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="ucZ-JS-r5y">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -1287,7 +1314,7 @@
         <scene sceneID="0a1-eE-Ods">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" navigationBarHidden="YES" id="HDG-S0-Ffz" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="電影" image="second" id="cPa-gy-q4n"/>
+                    <tabBarItem key="tabBarItem" title="電影" image="iconMovieMenu" selectedImage="iconMovieMenuSelected" id="cPa-gy-q4n"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="Hj5-Wh-YdF">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -1304,24 +1331,29 @@
         </scene>
     </scenes>
     <resources>
-        <image name="first" width="30" height="30"/>
         <image name="iconCommentList" width="14" height="11"/>
         <image name="iconEyeIndex" width="24" height="17"/>
         <image name="iconHeartList" width="15" height="12"/>
+        <image name="iconIndexMenu" width="20" height="20"/>
+        <image name="iconIndexMenuSelected" width="20" height="20"/>
         <image name="iconLikeIndex" width="23" height="20"/>
+        <image name="iconMoreMenu" width="28" height="29"/>
         <image name="iconMovieHot" width="20" height="16"/>
+        <image name="iconMovieMenu" width="22" height="20"/>
+        <image name="iconMovieMenuSelected" width="22" height="20"/>
         <image name="iconMovieNew" width="17" height="18"/>
         <image name="iconPenIndex" width="21" height="20"/>
         <image name="iconPoketIndex" width="18" height="20"/>
         <image name="iconShareList" width="12" height="12"/>
         <image name="iconStar" width="13" height="13"/>
         <image name="iconTopicIndex" width="17" height="18"/>
+        <image name="iconTopicMenu" width="18" height="21"/>
+        <image name="iconTopicMenuSelected" width="18" height="21"/>
+        <image name="iconUserMenu" width="14" height="21"/>
+        <image name="iconUserMenuSelected" width="14" height="21"/>
         <image name="iconViewerList" width="16" height="14"/>
         <image name="on" width="1024" height="768"/>
         <image name="rabbit-512" width="512" height="512"/>
-        <image name="second" width="30" height="30"/>
+        <image name="tabbarBg" width="80" height="49"/>
     </resources>
-    <inferredMetricsTieBreakers>
-        <segue reference="62v-Qr-xDm"/>
-    </inferredMetricsTieBreakers>
 </document>
