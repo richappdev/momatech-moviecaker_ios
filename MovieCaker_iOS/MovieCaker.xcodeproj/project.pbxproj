@@ -149,7 +149,7 @@
 		6CD0DEDF1CC3867900878995 /* libsqlite3.0.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.0.tbd; path = usr/lib/libsqlite3.0.tbd; sourceTree = SDKROOT; };
 		6CD0DEE11CC3868000878995 /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
 		6CD0DEE31CC386B800878995 /* libstdc++.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libstdc++.tbd"; path = "usr/lib/libstdc++.tbd"; sourceTree = SDKROOT; };
-		6CD58C3D1CACBD3F0089DB38 /* MovieCaker_iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MovieCaker_iOS.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		6CD58C3D1CACBD3F0089DB38 /* MovieCaker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MovieCaker.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6CD58C411CACBD3F0089DB38 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		6CD58C431CACBD3F0089DB38 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		6CD58C441CACBD3F0089DB38 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -359,7 +359,7 @@
 		6CD58C3E1CACBD3F0089DB38 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				6CD58C3D1CACBD3F0089DB38 /* MovieCaker_iOS.app */,
+				6CD58C3D1CACBD3F0089DB38 /* MovieCaker.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -420,9 +420,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		6CD58C3C1CACBD3F0089DB38 /* MovieCaker_iOS */ = {
+		6CD58C3C1CACBD3F0089DB38 /* MovieCaker */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 6CD58C571CACBD3F0089DB38 /* Build configuration list for PBXNativeTarget "MovieCaker_iOS" */;
+			buildConfigurationList = 6CD58C571CACBD3F0089DB38 /* Build configuration list for PBXNativeTarget "MovieCaker" */;
 			buildPhases = (
 				6CD58C391CACBD3F0089DB38 /* Sources */,
 				6CD58C3B1CACBD3F0089DB38 /* Resources */,
@@ -432,9 +432,9 @@
 			);
 			dependencies = (
 			);
-			name = MovieCaker_iOS;
+			name = MovieCaker;
 			productName = MovieCaker_iOS;
-			productReference = 6CD58C3D1CACBD3F0089DB38 /* MovieCaker_iOS.app */;
+			productReference = 6CD58C3D1CACBD3F0089DB38 /* MovieCaker.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -452,7 +452,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 6CD58C381CACBD3F0089DB38 /* Build configuration list for PBXProject "MovieCaker_iOS" */;
+			buildConfigurationList = 6CD58C381CACBD3F0089DB38 /* Build configuration list for PBXProject "MovieCaker" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -465,7 +465,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				6CD58C3C1CACBD3F0089DB38 /* MovieCaker_iOS */,
+				6CD58C3C1CACBD3F0089DB38 /* MovieCaker */,
 			);
 		};
 /* End PBXProject section */
@@ -582,6 +582,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_BITCODE = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -626,6 +627,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_BITCODE = NO;
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -679,7 +681,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		6CD58C381CACBD3F0089DB38 /* Build configuration list for PBXProject "MovieCaker_iOS" */ = {
+		6CD58C381CACBD3F0089DB38 /* Build configuration list for PBXProject "MovieCaker" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				6CD58C551CACBD3F0089DB38 /* Debug */,
@@ -688,7 +690,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		6CD58C571CACBD3F0089DB38 /* Build configuration list for PBXNativeTarget "MovieCaker_iOS" */ = {
+		6CD58C571CACBD3F0089DB38 /* Build configuration list for PBXNativeTarget "MovieCaker" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				6CD58C581CACBD3F0089DB38 /* Debug */,
