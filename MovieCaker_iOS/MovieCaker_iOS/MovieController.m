@@ -18,10 +18,7 @@
 @interface MovieController ()
 @property (strong, nonatomic) IBOutlet scrollBoxView *scrollView;
 @property (strong, nonatomic) IBOutlet UIScrollView *imageScroll;
-@property (strong, nonatomic) IBOutlet UIImageView *uistar;
-@property (strong, nonatomic) IBOutlet UILabel *uirating;
 @property (strong, nonatomic) IBOutlet UILabel *uititle;
-@property (strong, nonatomic) IBOutlet UIView *ratingBg;
 @property (strong, nonatomic) IBOutlet UIImageView *blurredBg;
 @property (strong, nonatomic) IBOutlet UIView *iconEyeBtn;
 @property (strong, nonatomic) IBOutlet UIView *iconLikeBtn;
@@ -58,9 +55,6 @@
     self.imageScroll.clipsToBounds = NO;
     
     self.lastIndex = 0;
-
-    [self curvedMask:self.ratingBg];
-    self.uistar.image = [UIImage imageWithIcon:@"fa-star" backgroundColor:[UIColor clearColor] iconColor:[UIColor whiteColor] andSize:CGSizeMake(18, 18)];
     
     [self addIndexGesture:self.iconEyeBtn];
     [self addIndexGesture:self.iconPenBtn];
@@ -106,7 +100,7 @@
         
         int margin = 15;
         int width = 255;
-        int height = 250;
+        int height = 341;
         int count = 0;
         self.imageScroll.contentSize = CGSizeMake(width* [returnData count], self.imageScroll.frame.size.height);
         for(NSDictionary *row in returnData){
@@ -120,6 +114,28 @@
        
         NSString *url = [NSString stringWithFormat:@"http://www.funmovie.tv/Content/pictures/files/%@?width=235",[row objectForKey:@"Picture"]];
             
+        image.userInteractionEnabled = YES;
+            
+        image.frame = CGRectMake(margin+width*count, 0, width-margin*2, height);
+        [self.imageScroll addSubview:image];
+        
+        temp.movieImageView = image;
+            
+            UIView *ratingBg = [[UIView alloc]initWithFrame:CGRectMake(margin+width*count, 275, 66, 66)];
+            ratingBg.backgroundColor = [UIColor colorWithRed:(77.0f/255.0f) green:(182.0f/255.0f) blue:(172.0f/255.0f) alpha:0.6];
+            [self curvedMask:ratingBg];
+            [self.imageScroll addSubview:ratingBg];
+            UIImageView *star = [[UIImageView alloc]initWithFrame:CGRectMake(18, 20, 18, 18)];
+            star.image = [UIImage imageWithIcon:@"fa-star" backgroundColor:[UIColor clearColor] iconColor:[UIColor whiteColor] andSize:CGSizeMake(18, 18)];
+            [ratingBg addSubview:star];
+            UILabel *label = [[UILabel alloc]initWithFrame:CGRectMake(3, 38, 48, 21)];
+            label.text = @"10";
+            label.textColor = [UIColor whiteColor];
+            label.textAlignment = NSTextAlignmentCenter;
+            [ratingBg addSubview:label];
+        
+        [self.movieArray addObject:temp];
+            
         if(count==0){
             [image sd_setImageWithURL:[NSURL URLWithString:url] placeholderImage:placeholder completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
                 [self setMovieDetails:[self.movieArray objectAtIndex:0]];
@@ -128,17 +144,9 @@
         else{
             [image sd_setImageWithURL:[NSURL URLWithString:url] placeholderImage:placeholder];
         }
+            count++;
         
-        
-        image.userInteractionEnabled = YES;
-            
-        image.frame = CGRectMake(margin+width*count, 0, width-margin*2, height);
-        [self.imageScroll addSubview:image];
-        
-        temp.movieImageView = image;
-        count++;
-        [self.movieArray addObject:temp];
-        }
+    }
         
     } error:^(NSError *error) {
         NSLog(@"%@",error);
@@ -162,24 +170,16 @@
     [self performSegueWithIdentifier:@"movieDetail" sender:self];
 }
 
-- (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView{
-    self.uistar.hidden = YES;
-    self.uirating.hidden = YES;
-}
 - (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView{
     int indexOfPage = scrollView.contentOffset.x / scrollView.frame.size.width;
     if(self.lastIndex!=indexOfPage){
     [self setMovieDetails:[self.movieArray objectAtIndex:indexOfPage]];
         self.lastIndex = indexOfPage;
     }
-    self.uistar.hidden = NO;
-    self.uirating.hidden = NO;
-    self.ratingBg.hidden = NO;
+
 }
 -(void)setMovieDetails:(movieModel*)model{
     self.uititle.text = model.title;
-    self.uirating.text = [NSString stringWithFormat:@"%d",model.rating];
-    
     self.blurredBg.image =[self blurImage:model.movieImageView.image  withBottomInset:0 blurRadius:43];
 }
 -(void)curvedMask:(UIView*)view{
@@ -213,10 +213,29 @@
     [filter setValue:ciImage forKey:kCIInputImageKey];
     [filter setValue:@(radius) forKey:kCIInputRadiusKey];
     
-    CIImage *outputCIImage = filter.outputImage;
     CIContext *context = [CIContext contextWithOptions:nil];
     
-    return [UIImage imageWithCGImage: [context createCGImage:outputCIImage fromRect:ciImage.extent]];
+    //First, we'll use CIAffineClamp to prevent black edges on our blurred image
+    //CIAffineClamp extends the edges off to infinity (check the docs, yo)
+    CGAffineTransform transform = CGAffineTransformIdentity;
+    CIFilter *clampFilter = [CIFilter filterWithName:@"CIAffineClamp"];
+    [clampFilter setValue:filter.outputImage forKeyPath:kCIInputImageKey];
+    [clampFilter setValue:[NSValue valueWithBytes:&transform objCType:@encode(CGAffineTransform)] forKeyPath:@"inputTransform"];
+    CIImage *clampedImage = [clampFilter outputImage];
+    
+    //Next, create some darkness
+    CIFilter* blackGenerator = [CIFilter filterWithName:@"CIConstantColorGenerator"];
+    CIColor* black = [CIColor colorWithRed:0.0f green:0.0f blue:0.0f alpha:0.52];
+    [blackGenerator setValue:black forKey:@"inputColor"];
+    CIImage* blackImage = [blackGenerator valueForKey:@"outputImage"];
+    
+    //Apply that black
+    CIFilter *compositeFilter = [CIFilter filterWithName:@"CIMultiplyBlendMode"];
+    [compositeFilter setValue:blackImage forKey:@"inputImage"];
+    [compositeFilter setValue:clampedImage forKey:@"inputBackgroundImage"];
+    CIImage *darkenedImage = [compositeFilter outputImage];
+    
+    return [UIImage imageWithCGImage: [context createCGImage:darkenedImage fromRect:ciImage.extent]];
     
 }
 -(void)indexClick:(UITapGestureRecognizer *)sender{

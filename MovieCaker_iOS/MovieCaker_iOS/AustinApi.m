@@ -8,7 +8,7 @@
 
 #import "AustinApi.h"
 #import "AFNetworking.h"
-#define SERVERAPI @"http://test.moviecaker.com"
+#define SERVERAPI @"http://moviecaker.com"
 
 
 @implementation AustinApi
@@ -114,7 +114,7 @@
                                 @"locationid": @"100",
                                 @"m":@"6"
                                 };
-    [self apiGetMethod:@"api/video" parameter:parameter addTokenHeader:@"1" completion:^(id response) {
+    [self apiGetMethod:@"api/video" parameter:nil addTokenHeader:@"1" completion:^(id response) {
        
         completion([response objectForKey:@"Data"]);
     } error:^(NSError *error2) {

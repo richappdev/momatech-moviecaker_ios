@@ -51,7 +51,7 @@
 		6CD58C421CACBD3F0089DB38 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CD58C411CACBD3F0089DB38 /* main.m */; };
 		6CD58C451CACBD3F0089DB38 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CD58C441CACBD3F0089DB38 /* AppDelegate.m */; };
 		6CD58C481CACBD3F0089DB38 /* MovieController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CD58C471CACBD3F0089DB38 /* MovieController.m */; };
-		6CD58C4B1CACBD3F0089DB38 /* SecondViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CD58C4A1CACBD3F0089DB38 /* SecondViewController.m */; };
+		6CD58C4B1CACBD3F0089DB38 /* MovieViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CD58C4A1CACBD3F0089DB38 /* MovieViewController.m */; };
 		6CD58C4E1CACBD3F0089DB38 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6CD58C4C1CACBD3F0089DB38 /* Main.storyboard */; };
 		6CD58C501CACBD3F0089DB38 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6CD58C4F1CACBD3F0089DB38 /* Assets.xcassets */; };
 		6CD58C531CACBD3F0089DB38 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6CD58C511CACBD3F0089DB38 /* LaunchScreen.storyboard */; };
@@ -155,8 +155,8 @@
 		6CD58C441CACBD3F0089DB38 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		6CD58C461CACBD3F0089DB38 /* MovieController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MovieController.h; sourceTree = "<group>"; };
 		6CD58C471CACBD3F0089DB38 /* MovieController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MovieController.m; sourceTree = "<group>"; };
-		6CD58C491CACBD3F0089DB38 /* SecondViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SecondViewController.h; sourceTree = "<group>"; };
-		6CD58C4A1CACBD3F0089DB38 /* SecondViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SecondViewController.m; sourceTree = "<group>"; };
+		6CD58C491CACBD3F0089DB38 /* MovieViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MovieViewController.h; sourceTree = "<group>"; };
+		6CD58C4A1CACBD3F0089DB38 /* MovieViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MovieViewController.m; sourceTree = "<group>"; };
 		6CD58C4D1CACBD3F0089DB38 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		6CD58C4F1CACBD3F0089DB38 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		6CD58C521CACBD3F0089DB38 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -309,8 +309,8 @@
 				6CA52C861CBEC3A900C5FDC8 /* MovieDetailController.m */,
 				6C1250661CC37ED50009549B /* LoginController.h */,
 				6C1250671CC37ED50009549B /* LoginController.m */,
-				6CD58C491CACBD3F0089DB38 /* SecondViewController.h */,
-				6CD58C4A1CACBD3F0089DB38 /* SecondViewController.m */,
+				6CD58C491CACBD3F0089DB38 /* MovieViewController.h */,
+				6CD58C4A1CACBD3F0089DB38 /* MovieViewController.m */,
 				6CFC098F1CD2668E0045C93E /* MovieTableViewController.h */,
 				6CFC09901CD2668E0045C93E /* MovieTableViewController.m */,
 			);
@@ -500,7 +500,7 @@
 				6C7F9F691CDE9870001BE238 /* UIImageView+HighlightedWebCache.m in Sources */,
 				6C61EAEE1CD68E1B0026CCCC /* CircleView.m in Sources */,
 				6C61EAF41CD7772F0026CCCC /* Movie2Cell.m in Sources */,
-				6CD58C4B1CACBD3F0089DB38 /* SecondViewController.m in Sources */,
+				6CD58C4B1CACBD3F0089DB38 /* MovieViewController.m in Sources */,
 				6C7F9F681CDE9870001BE238 /* UIImage+WebP.m in Sources */,
 				6C7F9F601CDE9870001BE238 /* SDWebImageDecoder.m in Sources */,
 				6C7F9F671CDE9870001BE238 /* UIImage+MultiFormat.m in Sources */,
