@@ -1139,11 +1139,23 @@
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
                                     </view>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="上映地區" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jR2-e3-6nw">
+                                        <rect key="frame" x="17" y="0.0" width="42" height="21"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="42" id="aUs-1K-Ara"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="10"/>
+                                        <color key="textColor" red="0.47450980392156861" green="0.48627450980392156" blue="0.51372549019607838" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstItem="Ysx-Xm-446" firstAttribute="centerX" secondItem="KCp-uL-u5b" secondAttribute="centerX" id="6r9-4o-AwN"/>
+                                    <constraint firstItem="jR2-e3-6nw" firstAttribute="top" secondItem="KCp-uL-u5b" secondAttribute="top" id="HY3-gc-8LH"/>
                                     <constraint firstAttribute="height" constant="120" id="Iam-0q-8oQ"/>
+                                    <constraint firstAttribute="bottom" secondItem="jR2-e3-6nw" secondAttribute="bottom" constant="99" id="KjW-Vn-SKe"/>
+                                    <constraint firstItem="jR2-e3-6nw" firstAttribute="leading" secondItem="KCp-uL-u5b" secondAttribute="leading" constant="17" id="NgP-Q2-YNz"/>
                                     <constraint firstAttribute="bottom" secondItem="Ysx-Xm-446" secondAttribute="bottom" constant="8" id="Rn5-td-azb"/>
                                 </constraints>
                             </view>
@@ -1237,13 +1249,13 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="GoJ-ZI-8sW">
-                                        <rect key="frame" x="8" y="1" width="72" height="36"/>
+                                        <rect key="frame" x="8" y="1" width="90" height="36"/>
                                         <subviews>
                                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="iconMovieLocation" translatesAutoresizingMaskIntoConstraints="NO" id="xRB-bY-LX3">
                                                 <rect key="frame" x="7" y="12" width="7" height="12"/>
                                             </imageView>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="台灣" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9lt-w9-kfX">
-                                                <rect key="frame" x="22" y="7" width="50" height="21"/>
+                                                <rect key="frame" x="22" y="7" width="72" height="21"/>
                                                 <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="16"/>
                                                 <color key="textColor" red="0.95686274509803915" green="0.60392156862745094" blue="0.26666666666666666" alpha="1" colorSpace="calibratedRGB"/>
                                                 <nil key="highlightedColor"/>
@@ -1259,7 +1271,7 @@
                                     <constraint firstItem="Hms-d7-AGm" firstAttribute="baseline" secondItem="BpG-Sf-ggT" secondAttribute="baseline" id="JrY-ko-hOI"/>
                                     <constraint firstItem="0JB-Qt-hDN" firstAttribute="baseline" secondItem="Hms-d7-AGm" secondAttribute="baseline" id="MJ7-eo-QeE"/>
                                     <constraint firstItem="BpG-Sf-ggT" firstAttribute="leading" secondItem="Hms-d7-AGm" secondAttribute="trailing" constant="28" id="NTN-h1-HbW"/>
-                                    <constraint firstItem="0JB-Qt-hDN" firstAttribute="leading" secondItem="GoJ-ZI-8sW" secondAttribute="trailing" constant="21" id="TLA-Tr-vXO"/>
+                                    <constraint firstItem="0JB-Qt-hDN" firstAttribute="leading" secondItem="GoJ-ZI-8sW" secondAttribute="trailing" constant="3" id="TLA-Tr-vXO"/>
                                     <constraint firstItem="Hms-d7-AGm" firstAttribute="leading" secondItem="0JB-Qt-hDN" secondAttribute="trailing" constant="24" id="YnV-Nb-cgy"/>
                                     <constraint firstItem="0JB-Qt-hDN" firstAttribute="centerY" secondItem="nJV-2C-3CF" secondAttribute="centerY" id="aER-dw-rTM"/>
                                     <constraint firstItem="GoJ-ZI-8sW" firstAttribute="leading" secondItem="nJV-2C-3CF" secondAttribute="leadingMargin" id="acd-VQ-XcY"/>
@@ -1380,6 +1392,7 @@
                         <outlet property="locationConfirmBtn" destination="Ysx-Xm-446" id="gCi-km-ywM"/>
                         <outlet property="locationConstrant" destination="yBv-Ld-Ca9" id="B3P-R0-OBn"/>
                         <outlet property="locationFilter" destination="KCp-uL-u5b" id="0lj-do-Jpa"/>
+                        <outlet property="locationLabel" destination="9lt-w9-kfX" id="LCu-y0-Fbd"/>
                         <outlet property="lowerBar" destination="crd-t1-V3U" id="9mZ-Kr-eaB"/>
                         <outlet property="secondFilter" destination="uSG-Y5-6NJ" id="8mg-oI-ekV"/>
                         <outlet property="secondLabel" destination="Mwd-56-u4T" id="tDH-p0-G8g"/>

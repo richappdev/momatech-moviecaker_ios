@@ -7,6 +7,7 @@
 //
 
 #import "MovieViewController.h"
+#import "AustinApi.h"
 
 @interface MovieViewController ()
 @property (strong, nonatomic) IBOutlet UILabel *firstLabel;
@@ -24,7 +25,10 @@
 @property UIView *currentFilter;
 @property int filterIndex;
 @property NSArray *labelArray;
+@property NSArray *locationArray;
+@property int locationIndex;
 @property int index;
+@property (strong, nonatomic) IBOutlet UILabel *locationLabel;
 @end
 
 @implementation MovieViewController
@@ -72,6 +76,69 @@
 
     UITapGestureRecognizer *showLocation =[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(showLocation:)];
     [self.locationBtn addGestureRecognizer:showLocation];
+    
+    self.locationIndex = 0;
+    [self createLocationIcons];
+}
+-(void)createLocationIcons{
+    
+    
+    [[AustinApi sharedInstance] locationList:^(NSMutableDictionary *returnData) {
+        NSMutableArray *tempArray = [[NSMutableArray alloc]init];
+        int count = 0;
+        for (NSDictionary *row in returnData) {
+            UIView *view;
+            if(self.view.frame.size.width>=375){
+                view = [[UIView alloc]initWithFrame:CGRectMake(18+count*72, 30, 62, 28)];
+            }else{
+                if(count<4){
+                view = [[UIView alloc]initWithFrame:CGRectMake(18+count*72, 20, 62, 28)];
+                }else{
+                view = [[UIView alloc]initWithFrame:CGRectMake(18, 52, 62, 28)];
+                }
+            }
+            view.tag = count;
+            view.layer.borderWidth = 1.0f;
+            view.layer.borderColor = [UIColor colorWithRed:(244.0f/255.0f) green:(154.0f/255.0f) blue:(68.0f/255.0f) alpha:1].CGColor;
+            view.layer.cornerRadius = 4;
+            UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(locationBtnClick:)];
+            [view addGestureRecognizer:tap];
+            
+            UILabel *label = [[UILabel alloc]initWithFrame:CGRectMake(0, 0, 62, 28)];
+            label.font = [UIFont fontWithName:@"Heiti SC" size:15.0f];
+            label.textColor = [UIColor colorWithRed:(244.0f/255.0f) green:(154.0f/255.0f) blue:(68.0f/255.0f) alpha:1];
+            label.text = [row objectForKey:@"Name"];
+            label.textAlignment = NSTextAlignmentCenter;
+            [view addSubview:label];
+            [self.locationFilter addSubview:view];
+            count++;
+            NSDictionary *dict = [[NSDictionary alloc] initWithObjectsAndKeys:view,@"view",label,@"label", nil];
+            [tempArray addObject:dict];
+        }
+        self.locationArray = tempArray;
+        [self setLocationBtnColor:0];
+    } error:^(NSError *error) {
+        NSLog(@"%@",error);
+    }];
+
+
+}
+-(void)setLocationBtnColor:(int)index{
+    NSDictionary *temp = [self.locationArray objectAtIndex:self.locationIndex];
+    UIView *view = [temp objectForKey:@"view"];
+    UILabel *label = [temp objectForKey:@"label"];
+    view.backgroundColor =[UIColor whiteColor];
+    label.textColor = [UIColor colorWithRed:(244.0f/255.0f) green:(154.0f/255.0f) blue:(68.0f/255.0f) alpha:1];
+    
+    temp = [self.locationArray objectAtIndex:index];
+    view = [temp objectForKey:@"view"];
+    label = [temp objectForKey:@"label"];
+    view.backgroundColor =[UIColor colorWithRed:(244.0f/255.0f) green:(154.0f/255.0f) blue:(68.0f/255.0f) alpha:1];
+    label.textColor = [UIColor whiteColor];
+    self.locationIndex = index;
+}
+-(void)locationBtnClick:(UITapGestureRecognizer*)gestureRecongnizer{
+    [self setLocationBtnColor:(int)gestureRecongnizer.view.tag];
 }
 -(void)confirmLocation:(UISwipeGestureRecognizer*)gestureRecongnizer{
     [self.view layoutIfNeeded];
@@ -81,6 +148,10 @@
                      animations:^{
                          [self.view layoutIfNeeded]; // Called on parent view
                      }];
+    NSDictionary *temp = [self.locationArray objectAtIndex:self.locationIndex];
+    UILabel *label = [temp objectForKey:@"label"];
+    self.locationLabel.text = label.text;
+    self.locationLabel.tag = self.locationIndex;
 }
 
 -(void)showLocation:(UISwipeGestureRecognizer*)gestureRecongnizer{
@@ -115,6 +186,8 @@
     [self setFilter];
 }
 -(void)setFilter{
+    //cancel location selection
+    [self setLocationBtnColor:(int)self.locationLabel.tag];
     [self confirmLocation:nil];
     if(self.index!=self.filterIndex){
         self.filterIndex = self.index;
