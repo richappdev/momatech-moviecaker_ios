@@ -18,6 +18,9 @@
 @property (strong, nonatomic) IBOutlet UIView *secondFilter;
 @property (strong, nonatomic) IBOutlet UIView *thirdFilter;
 @property (strong, nonatomic) IBOutlet UIView *locationBtn;
+@property (strong, nonatomic) IBOutlet UIView *locationFilter;
+@property (strong, nonatomic) IBOutlet UIView *locationConfirmBtn;
+@property (strong, nonatomic) IBOutlet NSLayoutConstraint *locationConstrant;
 @property UIView *currentFilter;
 @property int filterIndex;
 @property NSArray *labelArray;
@@ -54,6 +57,41 @@
     rightBorder.frame = CGRectMake(-1, -1, CGRectGetWidth(self.locationBtn.frame), CGRectGetHeight(self.locationBtn.frame)+2);
     
     [self.locationBtn.layer addSublayer:rightBorder];
+
+    CALayer *top = [CALayer layer];
+    top.borderColor = [UIColor colorWithRed:(221.0f/255.0f) green:(221.0f/255.0f) blue:(221.0f/255.0f) alpha:1].CGColor;
+    top.borderWidth = 1;
+    top.frame = CGRectMake(0,0, CGRectGetWidth(self.view.frame), 1.0f);
+    
+    
+    self.locationFilter.clipsToBounds = YES;
+    [self.locationFilter.layer addSublayer:top];
+    
+    UITapGestureRecognizer *locationConfirm =[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(confirmLocation:)];
+    [self.locationConfirmBtn addGestureRecognizer:locationConfirm];
+
+    UITapGestureRecognizer *showLocation =[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(showLocation:)];
+    [self.locationBtn addGestureRecognizer:showLocation];
+}
+-(void)confirmLocation:(UISwipeGestureRecognizer*)gestureRecongnizer{
+    [self.view layoutIfNeeded];
+    
+    self.locationConstrant.constant = -150;
+    [UIView animateWithDuration:0.2
+                     animations:^{
+                         [self.view layoutIfNeeded]; // Called on parent view
+                     }];
+}
+
+-(void)showLocation:(UISwipeGestureRecognizer*)gestureRecongnizer{
+    [self.view layoutIfNeeded];
+    
+    self.locationConstrant.constant = 0;
+    [UIView animateWithDuration:0.2
+                     animations:^{
+                         [self.view layoutIfNeeded]; // Called on parent view
+                     }];
+    
 }
 
 -(void)handleSingleTap:(UIGestureRecognizer*)gestureRecongnizer{
@@ -77,6 +115,7 @@
     [self setFilter];
 }
 -(void)setFilter{
+    [self confirmLocation:nil];
     if(self.index!=self.filterIndex){
         self.filterIndex = self.index;
         [UIView beginAnimations:nil context:nil];
@@ -114,4 +153,5 @@
     [UIView commitAnimations];
 
 }
+
 @end
