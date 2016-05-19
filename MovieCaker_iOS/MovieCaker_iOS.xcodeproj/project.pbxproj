@@ -25,6 +25,8 @@
 		6C61EAF41CD7772F0026CCCC /* Movie2Cell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C61EAF31CD7772F0026CCCC /* Movie2Cell.m */; };
 		6C67800F1CC5033E005AEB35 /* WechatAccess.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C67800E1CC5033E005AEB35 /* WechatAccess.m */; };
 		6C6780121CC7C826005AEB35 /* AustinApi.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C6780111CC7C826005AEB35 /* AustinApi.m */; };
+		6C758B911CED42EC001E5252 /* MovieTwoTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C758B901CED42EC001E5252 /* MovieTwoTableViewController.m */; };
+		6C758B941CEE4A0A001E5252 /* MovieTabCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C758B931CEE4A0A001E5252 /* MovieTabCell.m */; };
 		6C7F9F5C1CDE9870001BE238 /* MKAnnotationView+WebCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C7F9F3C1CDE9870001BE238 /* MKAnnotationView+WebCache.m */; };
 		6C7F9F5D1CDE9870001BE238 /* NSData+ImageContentType.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C7F9F3E1CDE9870001BE238 /* NSData+ImageContentType.m */; };
 		6C7F9F5E1CDE9870001BE238 /* SDImageCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C7F9F401CDE9870001BE238 /* SDImageCache.m */; };
@@ -106,6 +108,10 @@
 		6C67800E1CC5033E005AEB35 /* WechatAccess.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WechatAccess.m; sourceTree = "<group>"; };
 		6C6780101CC7C826005AEB35 /* AustinApi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AustinApi.h; sourceTree = "<group>"; };
 		6C6780111CC7C826005AEB35 /* AustinApi.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AustinApi.m; sourceTree = "<group>"; };
+		6C758B8F1CED42EC001E5252 /* MovieTwoTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MovieTwoTableViewController.h; sourceTree = "<group>"; };
+		6C758B901CED42EC001E5252 /* MovieTwoTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MovieTwoTableViewController.m; sourceTree = "<group>"; };
+		6C758B921CEE4A0A001E5252 /* MovieTabCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MovieTabCell.h; sourceTree = "<group>"; };
+		6C758B931CEE4A0A001E5252 /* MovieTabCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MovieTabCell.m; sourceTree = "<group>"; };
 		6C7F9F3B1CDE9870001BE238 /* MKAnnotationView+WebCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "MKAnnotationView+WebCache.h"; sourceTree = "<group>"; };
 		6C7F9F3C1CDE9870001BE238 /* MKAnnotationView+WebCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "MKAnnotationView+WebCache.m"; sourceTree = "<group>"; };
 		6C7F9F3D1CDE9870001BE238 /* NSData+ImageContentType.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSData+ImageContentType.h"; sourceTree = "<group>"; };
@@ -313,6 +319,8 @@
 				6CD58C4A1CACBD3F0089DB38 /* MovieViewController.m */,
 				6CFC098F1CD2668E0045C93E /* MovieTableViewController.h */,
 				6CFC09901CD2668E0045C93E /* MovieTableViewController.m */,
+				6C758B8F1CED42EC001E5252 /* MovieTwoTableViewController.h */,
+				6C758B901CED42EC001E5252 /* MovieTwoTableViewController.m */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -337,6 +345,8 @@
 				6C61EAF31CD7772F0026CCCC /* Movie2Cell.m */,
 				6C61EAEC1CD68E1B0026CCCC /* CircleView.h */,
 				6C61EAED1CD68E1B0026CCCC /* CircleView.m */,
+				6C758B921CEE4A0A001E5252 /* MovieTabCell.h */,
+				6C758B931CEE4A0A001E5252 /* MovieTabCell.m */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -507,6 +517,7 @@
 				6C7F9F5E1CDE9870001BE238 /* SDImageCache.m in Sources */,
 				6C61EAF11CD6D7E90026CCCC /* buttonHelper.m in Sources */,
 				6C12507E1CC3857B0009549B /* AFHTTPRequestOperationManager.m in Sources */,
+				6C758B941CEE4A0A001E5252 /* MovieTabCell.m in Sources */,
 				6C6780121CC7C826005AEB35 /* AustinApi.m in Sources */,
 				6C7F9F5F1CDE9870001BE238 /* SDWebImageCompat.m in Sources */,
 				6C1250681CC37ED50009549B /* LoginController.m in Sources */,
@@ -537,6 +548,7 @@
 				6C7F9F651CDE9870001BE238 /* UIButton+WebCache.m in Sources */,
 				6CFC098B1CCBC0B50045C93E /* UIImage+FontAwesome.m in Sources */,
 				6CFC098A1CCBC0B50045C93E /* UIFont+FontAwesome.m in Sources */,
+				6C758B911CED42EC001E5252 /* MovieTwoTableViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -8,6 +8,7 @@
 
 #import "MovieViewController.h"
 #import "AustinApi.h"
+#import "MovieTwoTableViewController.h"
 
 @interface MovieViewController ()
 @property (strong, nonatomic) IBOutlet UILabel *firstLabel;
@@ -29,6 +30,8 @@
 @property int locationIndex;
 @property int index;
 @property (strong, nonatomic) IBOutlet UILabel *locationLabel;
+@property (strong, nonatomic) IBOutlet UITableView *movieTable;
+@property MovieTwoTableViewController *movieTableController;
 @end
 
 @implementation MovieViewController
@@ -79,6 +82,9 @@
     
     self.locationIndex = 0;
     [self createLocationIcons];
+    
+    self.movieTableController = [[MovieTwoTableViewController alloc] init];
+    self.movieTableController.tableView = self.movieTable;
 }
 -(void)createLocationIcons{
     
