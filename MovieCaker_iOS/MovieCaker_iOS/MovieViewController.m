@@ -84,6 +84,7 @@
     [self createLocationIcons];
     
     self.movieTableController = [[MovieTwoTableViewController alloc] init];
+    self.movieTable.allowsSelection = NO;
     self.movieTableController.tableView = self.movieTable;
 }
 -(void)createLocationIcons{
@@ -93,6 +94,9 @@
         NSMutableArray *tempArray = [[NSMutableArray alloc]init];
         int count = 0;
         for (NSDictionary *row in returnData) {
+            if(count==0){
+                self.locationLabel.text = [row objectForKey:@"Name"];
+            }
             UIView *view;
             if(self.view.frame.size.width>=375){
                 view = [[UIView alloc]initWithFrame:CGRectMake(18+count*72, 30, 62, 28)];
