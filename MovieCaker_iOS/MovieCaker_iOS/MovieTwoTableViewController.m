@@ -48,7 +48,10 @@
     cell.ratingLabel.text = [NSString stringWithFormat:@"%ld",(long)indexPath.row+1];
     return cell;
     }else if (self.type == 2){
-    cell = [tableView dequeueReusableCellWithIdentifier:@"MovieTableTwo" forIndexPath:indexPath];
+    MovieTabCell *cell = [tableView dequeueReusableCellWithIdentifier:@"MovieTableTwo" forIndexPath:indexPath];
+        
+    cell.ratingLabel.text = [NSString stringWithFormat:@"%ld",(long)indexPath.row+1];
+        return cell;
     }else if (self.type ==3){
     cell = [tableView dequeueReusableCellWithIdentifier:@"MovieTableThree" forIndexPath:indexPath];
     }
