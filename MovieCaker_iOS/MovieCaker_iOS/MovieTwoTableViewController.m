@@ -41,9 +41,17 @@
 
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    UITableViewCell *cell;
+    if(self.type == 0||self.type == 1){
     MovieTabCell *cell = [tableView dequeueReusableCellWithIdentifier:@"movieTableOne" forIndexPath:indexPath];
     
     cell.ratingLabel.text = [NSString stringWithFormat:@"%ld",(long)indexPath.row+1];
+    return cell;
+    }else if (self.type == 2){
+    cell = [tableView dequeueReusableCellWithIdentifier:@"MovieTableTwo" forIndexPath:indexPath];
+    }else if (self.type ==3){
+    cell = [tableView dequeueReusableCellWithIdentifier:@"MovieTableThree" forIndexPath:indexPath];
+    }
     return cell;
 }
 

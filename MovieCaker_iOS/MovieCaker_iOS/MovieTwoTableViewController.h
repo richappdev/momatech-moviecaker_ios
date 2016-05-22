@@ -9,5 +9,5 @@
 #import <UIKit/UIKit.h>
 
 @interface MovieTwoTableViewController : UITableViewController
-
+@property int type;
 @end

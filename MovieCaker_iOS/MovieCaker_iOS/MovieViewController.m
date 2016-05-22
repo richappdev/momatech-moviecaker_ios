@@ -221,6 +221,9 @@
         if(change){
             self.currentFilter.alpha = 1;}
         [UIView commitAnimations];
+        
+        self.movieTableController.type = self.filterIndex;
+        [self.movieTableController.tableView reloadData];
     }
 }
 - (void)didReceiveMemoryWarning {
