@@ -21,7 +21,6 @@
 @property (strong, nonatomic) IBOutlet UIView *thirdFilter;
 @property (strong, nonatomic) IBOutlet UIView *locationBtn;
 @property (strong, nonatomic) IBOutlet UIView *locationFilter;
-@property (strong, nonatomic) IBOutlet UIView *locationConfirmBtn;
 @property (strong, nonatomic) IBOutlet NSLayoutConstraint *locationConstrant;
 @property UIView *currentFilter;
 @property int filterIndex;
@@ -75,10 +74,8 @@
     self.locationFilter.clipsToBounds = YES;
     [self.locationFilter.layer addSublayer:top];
     
-    UITapGestureRecognizer *locationConfirm =[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(confirmLocation:)];
-    [self.locationConfirmBtn addGestureRecognizer:locationConfirm];
-
     UITapGestureRecognizer *showLocation =[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(showLocation:)];
+    
     [self.locationBtn addGestureRecognizer:showLocation];
     
     self.locationIndex = 0;
@@ -87,6 +84,10 @@
     self.movieTableController = [[MovieTwoTableViewController alloc] init];
     self.movieTable.allowsSelection = NO;
     self.movieTableController.tableView = self.movieTable;
+    
+    self.view.backgroundColor = [UIColor blackColor];
+    UITapGestureRecognizer *cancel = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(cancelLocation)];
+    [self.movieTable addGestureRecognizer:cancel];
 }
 -(void)createLocationIcons{
     
@@ -150,8 +151,9 @@
 }
 -(void)locationBtnClick:(UITapGestureRecognizer*)gestureRecongnizer{
     [self setLocationBtnColor:(int)gestureRecongnizer.view.tag];
+    [self confirmLocation:gestureRecongnizer];
 }
--(void)confirmLocation:(UISwipeGestureRecognizer*)gestureRecongnizer{
+-(void)confirmLocation:(UITapGestureRecognizer*)gestureRecongnizer{
     [self.view layoutIfNeeded];
     
     self.locationConstrant.constant = -150;
@@ -163,9 +165,15 @@
     UILabel *label = [temp objectForKey:@"label"];
     self.locationLabel.text = label.text;
     self.locationLabel.tag = self.locationIndex;
+    self.movieTable.alpha = 1;
+}
+-(void)cancelLocation{
+    [self setLocationBtnColor:(int)self.locationLabel.tag];
+    [self confirmLocation:nil];
 }
 
 -(void)showLocation:(UISwipeGestureRecognizer*)gestureRecongnizer{
+    self.movieTable.alpha = 0.5;
     [self.view layoutIfNeeded];
     
     self.locationConstrant.constant = 0;
@@ -197,9 +205,7 @@
     [self setFilter];
 }
 -(void)setFilter{
-    //cancel location selection
-    [self setLocationBtnColor:(int)self.locationLabel.tag];
-    [self confirmLocation:nil];
+    [self cancelLocation];
     if(self.index!=self.filterIndex){
         self.filterIndex = self.index;
         [UIView beginAnimations:nil context:nil];

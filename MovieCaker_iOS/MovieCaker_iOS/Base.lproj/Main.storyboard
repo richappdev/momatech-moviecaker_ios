@@ -2061,31 +2061,6 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="KCp-uL-u5b">
                                 <rect key="frame" x="-4" y="-48" width="328" height="120"/>
                                 <subviews>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ysx-Xm-446">
-                                        <rect key="frame" x="74" y="80" width="180" height="32"/>
-                                        <subviews>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="確認" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Fjz-PJ-Prf">
-                                                <rect key="frame" x="69" y="6" width="42" height="21"/>
-                                                <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="16"/>
-                                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
-                                        </subviews>
-                                        <color key="backgroundColor" red="0.95686274509803915" green="0.60392156862745094" blue="0.26666666666666666" alpha="1" colorSpace="calibratedRGB"/>
-                                        <constraints>
-                                            <constraint firstItem="Fjz-PJ-Prf" firstAttribute="centerY" secondItem="Ysx-Xm-446" secondAttribute="centerY" id="9mZ-DU-8aK"/>
-                                            <constraint firstItem="Fjz-PJ-Prf" firstAttribute="leading" secondItem="Ysx-Xm-446" secondAttribute="leading" constant="69" id="CW7-jA-tkw"/>
-                                            <constraint firstAttribute="height" constant="32" id="Xjv-PV-4jq"/>
-                                            <constraint firstItem="Fjz-PJ-Prf" firstAttribute="centerX" secondItem="Ysx-Xm-446" secondAttribute="centerX" id="hh2-I4-S9L"/>
-                                            <constraint firstItem="Fjz-PJ-Prf" firstAttribute="top" secondItem="Ysx-Xm-446" secondAttribute="top" constant="6" id="i9k-yq-bkv"/>
-                                            <constraint firstAttribute="width" constant="180" id="u1X-DU-aqZ"/>
-                                        </constraints>
-                                        <userDefinedRuntimeAttributes>
-                                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                                <integer key="value" value="15"/>
-                                            </userDefinedRuntimeAttribute>
-                                        </userDefinedRuntimeAttributes>
-                                    </view>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="上映地區" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jR2-e3-6nw">
                                         <rect key="frame" x="17" y="0.0" width="42" height="21"/>
                                         <constraints>
@@ -2098,12 +2073,10 @@
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
-                                    <constraint firstItem="Ysx-Xm-446" firstAttribute="centerX" secondItem="KCp-uL-u5b" secondAttribute="centerX" id="6r9-4o-AwN"/>
                                     <constraint firstItem="jR2-e3-6nw" firstAttribute="top" secondItem="KCp-uL-u5b" secondAttribute="top" id="HY3-gc-8LH"/>
                                     <constraint firstAttribute="height" constant="120" id="Iam-0q-8oQ"/>
                                     <constraint firstAttribute="bottom" secondItem="jR2-e3-6nw" secondAttribute="bottom" constant="99" id="KjW-Vn-SKe"/>
                                     <constraint firstItem="jR2-e3-6nw" firstAttribute="leading" secondItem="KCp-uL-u5b" secondAttribute="leading" constant="17" id="NgP-Q2-YNz"/>
-                                    <constraint firstAttribute="bottom" secondItem="Ysx-Xm-446" secondAttribute="bottom" constant="8" id="Rn5-td-azb"/>
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="aq3-gf-LKn">
@@ -2340,7 +2313,6 @@
                         <outlet property="firstLabel" destination="Xbg-DK-F1t" id="aLu-Qc-BEq"/>
                         <outlet property="fourthLabel" destination="vnL-VO-kqV" id="hYf-K1-sQH"/>
                         <outlet property="locationBtn" destination="GoJ-ZI-8sW" id="Zh0-ev-Vue"/>
-                        <outlet property="locationConfirmBtn" destination="Ysx-Xm-446" id="gCi-km-ywM"/>
                         <outlet property="locationConstrant" destination="yBv-Ld-Ca9" id="B3P-R0-OBn"/>
                         <outlet property="locationFilter" destination="KCp-uL-u5b" id="0lj-do-Jpa"/>
                         <outlet property="locationLabel" destination="9lt-w9-kfX" id="LCu-y0-Fbd"/>
