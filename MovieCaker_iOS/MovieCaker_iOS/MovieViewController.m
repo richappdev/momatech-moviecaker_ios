@@ -31,6 +31,7 @@
 @property int index;
 @property (strong, nonatomic) IBOutlet UILabel *locationLabel;
 @property (strong, nonatomic) IBOutlet UITableView *movieTable;
+@property (strong, nonatomic) IBOutlet NSLayoutConstraint *topMargin;
 @property MovieTwoTableViewController *movieTableController;
 @end
 
@@ -205,6 +206,7 @@
         [UIView setAnimationDuration:0.2];
         
         self.currentFilter.alpha = 0;
+        self.topMargin.constant = 0;
         BOOL change = false;
         if(self.filterIndex ==0){
             self.currentFilter = self.firstFilter;
@@ -213,6 +215,9 @@
         if(self.filterIndex==1){
             self.currentFilter = self.secondFilter;
             change = true;
+        }
+        if(self.filterIndex==2){
+            self.topMargin.constant = -36;
         }
         if(self.filterIndex==3){
             self.currentFilter = self.thirdFilter;
