@@ -32,6 +32,20 @@
 @property (strong, nonatomic) IBOutlet UITableView *movieTable;
 @property (strong, nonatomic) IBOutlet NSLayoutConstraint *topMargin;
 @property MovieTwoTableViewController *movieTableController;
+@property (strong, nonatomic) IBOutlet UILabel *oneOneL;
+@property (strong, nonatomic) IBOutlet UILabel *oneTwoL;
+@property (strong, nonatomic) IBOutlet UILabel *oneThreeL;
+@property (strong, nonatomic) IBOutlet UILabel *twoOneL;
+@property (strong, nonatomic) IBOutlet UILabel *twoTwoL;
+@property (strong, nonatomic) IBOutlet UILabel *twoThreeL;
+@property (strong, nonatomic) IBOutlet UILabel *threeOneL;
+@property (strong, nonatomic) IBOutlet UILabel *threeTwoL;
+@property (strong, nonatomic) IBOutlet UILabel *threeThreeL;
+
+@property UILabel* fOneIndex;
+@property UILabel* fTwoIndex;
+@property UILabel* fFourIndex;
+
 @end
 
 @implementation MovieViewController
@@ -77,7 +91,7 @@
     UITapGestureRecognizer *showLocation =[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(showLocation:)];
     
     [self.locationBtn addGestureRecognizer:showLocation];
-    
+
     self.locationIndex = 0;
     [self createLocationIcons];
     
@@ -88,7 +102,56 @@
     self.view.backgroundColor = [UIColor blackColor];
     UITapGestureRecognizer *cancel = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(cancelLocation)];
     [self.movieTable addGestureRecognizer:cancel];
+    
+    [self setupFilterBtns];
+    
 }
+-(void)addLabelTap:(UILabel*)label{
+    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(filterClick:)];
+    [label setUserInteractionEnabled:YES];
+    [label addGestureRecognizer:tap];
+
+}
+-(void)setupFilterBtns{
+    self.fOneIndex = self.oneOneL;
+    self.fTwoIndex = self.twoOneL;
+    self.fFourIndex = self.threeOneL;
+    
+    
+    [self addLabelTap:self.oneOneL];
+    [self addLabelTap:self.oneTwoL];
+    [self addLabelTap:self.oneThreeL];
+    
+    [self addLabelTap:self.twoOneL];
+    [self addLabelTap:self.twoTwoL];
+    [self addLabelTap:self.twoThreeL];
+    
+    [self addLabelTap:self.threeOneL];
+    [self addLabelTap:self.threeTwoL];
+    [self addLabelTap:self.threeThreeL];
+
+}
+-(void)filterClick:(UITapGestureRecognizer*)gesture{
+    UILabel *previous;
+    UILabel *current = (UILabel*)gesture.view;
+    if(self.currentFilter.tag==0){
+        previous = self.fOneIndex;
+        self.fOneIndex = current;
+    }
+    if (self.currentFilter.tag==1){
+        previous = self.fTwoIndex;
+        self.fTwoIndex = current;
+    }
+    
+    if (self.currentFilter.tag==2){
+        previous = self.fFourIndex;
+        self.fFourIndex = current;
+    }
+    
+    previous.textColor = [UIColor blackColor];
+    current.textColor = [UIColor colorWithRed:(244.0f/255.0f) green:(154.0f/255.0f) blue:(68.0/255.0f) alpha:1];
+}
+
 -(void)createLocationIcons{
     
     
