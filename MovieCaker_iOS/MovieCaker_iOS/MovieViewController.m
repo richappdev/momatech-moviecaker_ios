@@ -8,6 +8,7 @@
 
 #import "MovieViewController.h"
 #import "AustinApi.h"
+#import "MovieTwoTableViewController.h"
 
 @interface MovieViewController ()
 @property (strong, nonatomic) IBOutlet UILabel *firstLabel;
@@ -20,7 +21,6 @@
 @property (strong, nonatomic) IBOutlet UIView *thirdFilter;
 @property (strong, nonatomic) IBOutlet UIView *locationBtn;
 @property (strong, nonatomic) IBOutlet UIView *locationFilter;
-@property (strong, nonatomic) IBOutlet UIView *locationConfirmBtn;
 @property (strong, nonatomic) IBOutlet NSLayoutConstraint *locationConstrant;
 @property UIView *currentFilter;
 @property int filterIndex;
@@ -29,6 +29,23 @@
 @property int locationIndex;
 @property int index;
 @property (strong, nonatomic) IBOutlet UILabel *locationLabel;
+@property (strong, nonatomic) IBOutlet UITableView *movieTable;
+@property (strong, nonatomic) IBOutlet NSLayoutConstraint *topMargin;
+@property MovieTwoTableViewController *movieTableController;
+@property (strong, nonatomic) IBOutlet UILabel *oneOneL;
+@property (strong, nonatomic) IBOutlet UILabel *oneTwoL;
+@property (strong, nonatomic) IBOutlet UILabel *oneThreeL;
+@property (strong, nonatomic) IBOutlet UILabel *twoOneL;
+@property (strong, nonatomic) IBOutlet UILabel *twoTwoL;
+@property (strong, nonatomic) IBOutlet UILabel *twoThreeL;
+@property (strong, nonatomic) IBOutlet UILabel *threeOneL;
+@property (strong, nonatomic) IBOutlet UILabel *threeTwoL;
+@property (strong, nonatomic) IBOutlet UILabel *threeThreeL;
+
+@property UILabel* fOneIndex;
+@property UILabel* fTwoIndex;
+@property UILabel* fFourIndex;
+
 @end
 
 @implementation MovieViewController
@@ -71,15 +88,70 @@
     self.locationFilter.clipsToBounds = YES;
     [self.locationFilter.layer addSublayer:top];
     
-    UITapGestureRecognizer *locationConfirm =[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(confirmLocation:)];
-    [self.locationConfirmBtn addGestureRecognizer:locationConfirm];
-
     UITapGestureRecognizer *showLocation =[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(showLocation:)];
-    [self.locationBtn addGestureRecognizer:showLocation];
     
+    [self.locationBtn addGestureRecognizer:showLocation];
+
     self.locationIndex = 0;
     [self createLocationIcons];
+    
+    self.movieTableController = [[MovieTwoTableViewController alloc] init];
+    self.movieTable.allowsSelection = NO;
+    self.movieTableController.tableView = self.movieTable;
+    
+    self.view.backgroundColor = [UIColor blackColor];
+    UITapGestureRecognizer *cancel = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(cancelLocation)];
+    [self.movieTable addGestureRecognizer:cancel];
+    
+    [self setupFilterBtns];
+    
 }
+-(void)addLabelTap:(UILabel*)label{
+    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(filterClick:)];
+    [label setUserInteractionEnabled:YES];
+    [label addGestureRecognizer:tap];
+
+}
+-(void)setupFilterBtns{
+    self.fOneIndex = self.oneOneL;
+    self.fTwoIndex = self.twoOneL;
+    self.fFourIndex = self.threeOneL;
+    
+    
+    [self addLabelTap:self.oneOneL];
+    [self addLabelTap:self.oneTwoL];
+    [self addLabelTap:self.oneThreeL];
+    
+    [self addLabelTap:self.twoOneL];
+    [self addLabelTap:self.twoTwoL];
+    [self addLabelTap:self.twoThreeL];
+    
+    [self addLabelTap:self.threeOneL];
+    [self addLabelTap:self.threeTwoL];
+    [self addLabelTap:self.threeThreeL];
+
+}
+-(void)filterClick:(UITapGestureRecognizer*)gesture{
+    UILabel *previous;
+    UILabel *current = (UILabel*)gesture.view;
+    if(self.currentFilter.tag==0){
+        previous = self.fOneIndex;
+        self.fOneIndex = current;
+    }
+    if (self.currentFilter.tag==1){
+        previous = self.fTwoIndex;
+        self.fTwoIndex = current;
+    }
+    
+    if (self.currentFilter.tag==2){
+        previous = self.fFourIndex;
+        self.fFourIndex = current;
+    }
+    
+    previous.textColor = [UIColor blackColor];
+    current.textColor = [UIColor colorWithRed:(244.0f/255.0f) green:(154.0f/255.0f) blue:(68.0/255.0f) alpha:1];
+}
+
 -(void)createLocationIcons{
     
     
@@ -87,6 +159,9 @@
         NSMutableArray *tempArray = [[NSMutableArray alloc]init];
         int count = 0;
         for (NSDictionary *row in returnData) {
+            if(count==0){
+                self.locationLabel.text = [row objectForKey:@"Name"];
+            }
             UIView *view;
             if(self.view.frame.size.width>=375){
                 view = [[UIView alloc]initWithFrame:CGRectMake(18+count*72, 30, 62, 28)];
@@ -139,8 +214,9 @@
 }
 -(void)locationBtnClick:(UITapGestureRecognizer*)gestureRecongnizer{
     [self setLocationBtnColor:(int)gestureRecongnizer.view.tag];
+    [self confirmLocation:gestureRecongnizer];
 }
--(void)confirmLocation:(UISwipeGestureRecognizer*)gestureRecongnizer{
+-(void)confirmLocation:(UITapGestureRecognizer*)gestureRecongnizer{
     [self.view layoutIfNeeded];
     
     self.locationConstrant.constant = -150;
@@ -152,9 +228,15 @@
     UILabel *label = [temp objectForKey:@"label"];
     self.locationLabel.text = label.text;
     self.locationLabel.tag = self.locationIndex;
+    self.movieTable.alpha = 1;
+}
+-(void)cancelLocation{
+    [self setLocationBtnColor:(int)self.locationLabel.tag];
+    [self confirmLocation:nil];
 }
 
 -(void)showLocation:(UISwipeGestureRecognizer*)gestureRecongnizer{
+    self.movieTable.alpha = 0.5;
     [self.view layoutIfNeeded];
     
     self.locationConstrant.constant = 0;
@@ -186,15 +268,14 @@
     [self setFilter];
 }
 -(void)setFilter{
-    //cancel location selection
-    [self setLocationBtnColor:(int)self.locationLabel.tag];
-    [self confirmLocation:nil];
+    [self cancelLocation];
     if(self.index!=self.filterIndex){
         self.filterIndex = self.index;
         [UIView beginAnimations:nil context:nil];
         [UIView setAnimationDuration:0.2];
         
         self.currentFilter.alpha = 0;
+        self.topMargin.constant = 0;
         BOOL change = false;
         if(self.filterIndex ==0){
             self.currentFilter = self.firstFilter;
@@ -204,6 +285,9 @@
             self.currentFilter = self.secondFilter;
             change = true;
         }
+        if(self.filterIndex==2){
+            self.topMargin.constant = -36;
+        }
         if(self.filterIndex==3){
             self.currentFilter = self.thirdFilter;
             change = true;
@@ -211,6 +295,9 @@
         if(change){
             self.currentFilter.alpha = 1;}
         [UIView commitAnimations];
+        
+        self.movieTableController.type = self.filterIndex;
+        [self.movieTableController.tableView reloadData];
     }
 }
 - (void)didReceiveMemoryWarning {
