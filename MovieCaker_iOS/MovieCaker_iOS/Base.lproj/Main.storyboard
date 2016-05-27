@@ -1078,19 +1078,18 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Peh-EQ-uc1">
-                                <rect key="frame" x="0.0" y="0.0" width="414" height="20"/>
-                                <color key="backgroundColor" red="0.3921568627" green="0.72941176470000002" blue="0.3411764706" alpha="1" colorSpace="calibratedRGB"/>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="on" translatesAutoresizingMaskIntoConstraints="NO" id="ApQ-on-j71">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="200"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="20" id="moz-R4-fZz"/>
+                                    <constraint firstAttribute="height" constant="200" id="hxG-Vl-ZFh"/>
                                 </constraints>
-                            </view>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstAttribute="trailing" secondItem="Peh-EQ-uc1" secondAttribute="trailing" id="00w-5j-phr"/>
-                            <constraint firstItem="Peh-EQ-uc1" firstAttribute="leading" secondItem="IcI-yD-HpT" secondAttribute="leading" id="TYC-AY-A74"/>
-                            <constraint firstItem="Peh-EQ-uc1" firstAttribute="top" secondItem="IcI-yD-HpT" secondAttribute="top" id="qZI-j5-Dka"/>
+                            <constraint firstItem="ApQ-on-j71" firstAttribute="top" secondItem="Zne-Zo-8gV" secondAttribute="bottom" constant="-64" id="4kU-tR-1On"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="ApQ-on-j71" secondAttribute="trailing" constant="-20" id="63Z-if-QKE"/>
+                            <constraint firstItem="ApQ-on-j71" firstAttribute="leading" secondItem="IcI-yD-HpT" secondAttribute="leadingMargin" constant="-20" id="Ste-gW-6v7"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="6GM-qn-FPk"/>

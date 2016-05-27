@@ -16,9 +16,20 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
-}
+    UIBarButtonItem *barButtonItem =[[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"iconPageBackNoheader.png"] style:UIBarButtonItemStylePlain target:self action:@selector(goBack)];
+    barButtonItem.tintColor = [UIColor whiteColor];
+    [self.navigationItem setLeftBarButtonItem:barButtonItem];
 
+    [self.navigationController.navigationBar setBackgroundImage:[UIImage new]
+                                                  forBarMetrics:UIBarMetricsDefault];
+    self.navigationController.navigationBar.shadowImage = [UIImage new];
+    self.navigationController.navigationBar.translucent = YES;
+    self.navigationController.view.backgroundColor = [UIColor clearColor];
+    self.navigationController.navigationBar.backgroundColor = [UIColor clearColor];
+}
+-(void)goBack{
+    [self.navigationController popViewControllerAnimated:YES];
+}
 -(void)viewWillAppear:(BOOL)animated{
     self.navigationController.navigationBarHidden = NO;
 }
