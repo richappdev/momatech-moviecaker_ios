@@ -1078,25 +1078,41 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="on" translatesAutoresizingMaskIntoConstraints="NO" id="ApQ-on-j71">
-                                <rect key="frame" x="0.0" y="0.0" width="414" height="200"/>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hpU-nl-EIH">
+                                <rect key="frame" x="0.0" y="-64" width="414" height="751"/>
+                                <subviews>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="on" translatesAutoresizingMaskIntoConstraints="NO" id="ApQ-on-j71">
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="200"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="200" id="hxG-Vl-ZFh"/>
+                                        </constraints>
+                                    </imageView>
+                                </subviews>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="200" id="hxG-Vl-ZFh"/>
+                                    <constraint firstItem="ApQ-on-j71" firstAttribute="top" secondItem="hpU-nl-EIH" secondAttribute="top" id="3j0-52-WAS"/>
+                                    <constraint firstItem="ApQ-on-j71" firstAttribute="leading" secondItem="hpU-nl-EIH" secondAttribute="leading" id="KQh-ps-fbs"/>
+                                    <constraint firstItem="ApQ-on-j71" firstAttribute="centerX" secondItem="hpU-nl-EIH" secondAttribute="centerX" id="WZ5-TS-Tor"/>
+                                    <constraint firstAttribute="trailing" secondItem="ApQ-on-j71" secondAttribute="trailing" id="h3h-lr-1SZ"/>
+                                    <constraint firstAttribute="bottom" secondItem="ApQ-on-j71" secondAttribute="bottom" constant="493" id="tKX-bc-kP2"/>
                                 </constraints>
-                            </imageView>
+                            </scrollView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="ApQ-on-j71" firstAttribute="top" secondItem="Zne-Zo-8gV" secondAttribute="bottom" constant="-64" id="4kU-tR-1On"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="ApQ-on-j71" secondAttribute="trailing" constant="-20" id="63Z-if-QKE"/>
-                            <constraint firstItem="ApQ-on-j71" firstAttribute="leading" secondItem="IcI-yD-HpT" secondAttribute="leadingMargin" constant="-20" id="Ste-gW-6v7"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="hpU-nl-EIH" secondAttribute="trailing" constant="-20" id="B8f-hl-DQ1"/>
+                            <constraint firstItem="hpU-nl-EIH" firstAttribute="top" secondItem="Zne-Zo-8gV" secondAttribute="bottom" constant="-128" id="bLm-CW-F14"/>
+                            <constraint firstItem="JyC-mY-0OC" firstAttribute="top" secondItem="hpU-nl-EIH" secondAttribute="bottom" id="ful-gH-vry"/>
+                            <constraint firstItem="hpU-nl-EIH" firstAttribute="leading" secondItem="IcI-yD-HpT" secondAttribute="leadingMargin" constant="-20" id="nyk-E6-c2B"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="6GM-qn-FPk"/>
+                    <connections>
+                        <outlet property="bgImage" destination="ApQ-on-j71" id="b1r-hg-Pul"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8zu-1g-zUn" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2438" y="-219"/>
+            <point key="canvasLocation" x="2442" y="-239"/>
         </scene>
         <!--Movie View Controller-->
         <scene sceneID="wg7-f3-ORb">

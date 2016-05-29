@@ -9,6 +9,7 @@
 #import "MovieDetailController.h"
 
 @interface MovieDetailController ()
+@property (strong, nonatomic) IBOutlet UIImageView *bgImage;
 
 @end
 
@@ -26,7 +27,13 @@
     self.navigationController.navigationBar.translucent = YES;
     self.navigationController.view.backgroundColor = [UIColor clearColor];
     self.navigationController.navigationBar.backgroundColor = [UIColor clearColor];
-}
+    
+    CAGradientLayer *gradientLayer = [CAGradientLayer layer];
+    gradientLayer.frame = self.bgImage.bounds;
+    gradientLayer.colors = [NSArray arrayWithObjects:(id)[UIColor whiteColor].CGColor, (id)[UIColor clearColor].CGColor, nil];
+    gradientLayer.startPoint = CGPointMake(1.0f, 0.7f);
+    gradientLayer.endPoint = CGPointMake(1.0f, 1.0f);
+    self.bgImage.layer.mask = gradientLayer;}
 -(void)goBack{
     [self.navigationController popViewControllerAnimated:YES];
 }
