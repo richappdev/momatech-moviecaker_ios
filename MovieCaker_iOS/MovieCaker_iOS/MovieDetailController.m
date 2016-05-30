@@ -10,6 +10,7 @@
 
 @interface MovieDetailController ()
 @property (strong, nonatomic) IBOutlet UIImageView *bgImage;
+@property (strong, nonatomic) IBOutlet UIScrollView *actorScroll;
 
 @end
 
@@ -33,7 +34,39 @@
     gradientLayer.colors = [NSArray arrayWithObjects:(id)[UIColor whiteColor].CGColor, (id)[UIColor clearColor].CGColor, nil];
     gradientLayer.startPoint = CGPointMake(1.0f, 0.7f);
     gradientLayer.endPoint = CGPointMake(1.0f, 1.0f);
-    self.bgImage.layer.mask = gradientLayer;}
+    self.bgImage.layer.mask = gradientLayer;
+    [self createActorSlider];
+
+}
+
+-(void)createActorSlider{
+    int width = 100;
+    int margin =10;
+    int height = 150;
+    int count = 0;
+    
+    for (int i=0; i<11; i++) {
+    
+    UIImageView *view = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"on.png"]];
+    view.frame = CGRectMake(margin+width*count, 0, width-margin*2, height);
+    UILabel *label  = [[UILabel alloc]initWithFrame:CGRectMake(margin+width*count, height, width-margin*2, 20)];
+    label.textAlignment =NSTextAlignmentLeft;
+    label.textColor  = [[UIColor alloc]initWithRed:51.0/255.0f green:68.0/255.0f blue:85.0/255.0f alpha:1];
+    label.text = @"actor";
+    label.font =  [UIFont fontWithName:@"Heiti SC" size:14.0f];
+        
+    [self.actorScroll addSubview:label];
+    [self.actorScroll addSubview:view];
+    count++;
+    }
+
+}
+
+-(void)viewDidLayoutSubviews{
+
+    self.actorScroll.contentSize = CGSizeMake(100*11, self.actorScroll.frame.size.height);
+    
+}
 -(void)goBack{
     [self.navigationController popViewControllerAnimated:YES];
 }
@@ -46,14 +79,5 @@
     // Dispose of any resources that can be recreated.
 }
 
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 @end
