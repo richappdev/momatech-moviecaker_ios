@@ -15,7 +15,10 @@
 @property (strong, nonatomic) IBOutlet UITableView *topicTable;
 @property (strong, nonatomic) IBOutlet NSLayoutConstraint *topicTableHeight;
 @property (strong, nonatomic) IBOutlet UIScrollView *mainScroll;
+@property (strong, nonatomic) IBOutlet UITableView *reviewTable;
+@property (strong, nonatomic) IBOutlet NSLayoutConstraint *reviewTableHeight;
 @property MovieTableViewController *movieTableController;
+@property MovieTableViewController *movieTable2Controller;
 @end
 
 @implementation MovieDetailController
@@ -46,6 +49,12 @@
     self.topicTable.dataSource = self.movieTableController;
     self.movieTableController.tableHeight = self.topicTableHeight;
     self.movieTableController.tableView = self.topicTable;
+    
+    self.movieTable2Controller = [[MovieTableViewController alloc] init:1];
+    self.reviewTable.delegate = self.movieTable2Controller;
+    self.reviewTable.dataSource = self.movieTable2Controller;
+    self.movieTable2Controller.tableHeight = self.reviewTableHeight;
+    self.movieTable2Controller.tableView = self.reviewTable;
 }
 
 -(void)createActorSlider{
@@ -74,7 +83,7 @@
 -(void)viewDidLayoutSubviews{
 
     self.actorScroll.contentSize = CGSizeMake(100*11, self.actorScroll.frame.size.height);
-    self.mainScroll.contentSize  = CGSizeMake(self.view.frame.size.width,2300);
+    self.mainScroll.contentSize  = CGSizeMake(self.view.frame.size.width,3400);
 }
 -(void)goBack{
     [self.navigationController popViewControllerAnimated:YES];
