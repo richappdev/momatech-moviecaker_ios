@@ -7,11 +7,15 @@
 //
 
 #import "MovieDetailController.h"
+#import "MovieTableViewController.h"
 
 @interface MovieDetailController ()
 @property (strong, nonatomic) IBOutlet UIImageView *bgImage;
 @property (strong, nonatomic) IBOutlet UIScrollView *actorScroll;
-
+@property (strong, nonatomic) IBOutlet UITableView *topicTable;
+@property (strong, nonatomic) IBOutlet NSLayoutConstraint *topicTableHeight;
+@property (strong, nonatomic) IBOutlet UIScrollView *mainScroll;
+@property MovieTableViewController *movieTableController;
 @end
 
 @implementation MovieDetailController
@@ -36,7 +40,12 @@
     gradientLayer.endPoint = CGPointMake(1.0f, 1.0f);
     self.bgImage.layer.mask = gradientLayer;
     [self createActorSlider];
-
+    
+    self.movieTableController = [[MovieTableViewController alloc] init:0];
+    self.topicTable.delegate = self.movieTableController;
+    self.topicTable.dataSource = self.movieTableController;
+    self.movieTableController.tableHeight = self.topicTableHeight;
+    self.movieTableController.tableView = self.topicTable;
 }
 
 -(void)createActorSlider{
@@ -65,7 +74,7 @@
 -(void)viewDidLayoutSubviews{
 
     self.actorScroll.contentSize = CGSizeMake(100*11, self.actorScroll.frame.size.height);
-    
+    self.mainScroll.contentSize  = CGSizeMake(self.view.frame.size.width,2300);
 }
 -(void)goBack{
     [self.navigationController popViewControllerAnimated:YES];
