@@ -152,7 +152,12 @@
         NSLog(@"%@",error);
     }];
 }
-
+-(void)viewWillDisappear:(BOOL)animated{
+    self.MainScroll.delegate = nil;
+}
+-(void)viewWillAppear:(BOOL)animated{
+    self.MainScroll.delegate = self.scrollDelegate;
+}
 -(void)viewDidAppear:(BOOL)animated{
     int height;
     height = [self.movieTableController returnTotalHeight]+[self.movieTable2Controller returnTotalHeight]+550;
