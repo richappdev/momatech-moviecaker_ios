@@ -7,6 +7,7 @@
 //
 
 #import "MovieController.h"
+#import "MovieDetailController.h"
 #import "scrollBoxView.h"
 #import "movieModel.h"
 #import "UIImage+FontAwesome.h"
@@ -39,12 +40,15 @@
 @property MainVerticalScroller *scrollDelegate;
 @property (strong, nonatomic) IBOutlet NSLayoutConstraint *movieTable2Height;
 @property int lastIndex;
+@property BOOL notSelected;
+@property NSArray *returnData;
 @end
 
 @implementation MovieController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.notSelected = YES;
     self.scrollView.scrollView = self.imageScroll;
     self.imageScroll.delegate = self;
             UITapGestureRecognizer *singleTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(movieDetail:)];
@@ -94,8 +98,8 @@
  //   CGPoint position = CGPointMake(0,0);
   //  [self.MainScroll setContentOffset:position];
     [[AustinApi sharedInstance] movieList:^(NSMutableDictionary *returnData) {
-        NSLog(@"%@",returnData);
-        
+        //NSLog(@"%@",returnData);
+        self.returnData = returnData;
         self.movieArray = [[NSMutableArray alloc]init];
         
         int margin = 15;
@@ -107,9 +111,8 @@
             
         movieModel *temp = [movieModel alloc];
         temp.title = [row objectForKey:@"CNName"];
-        temp.rating = 10;
+        temp.rating = [NSString stringWithFormat:@"%@", [row objectForKey:@"AverageScore"]];
         UIImage *placeholder = [UIImage imageNamed:@"img-placeholder.jpg"];
-        
         UIImageView *image = [[UIImageView alloc] initWithImage:temp.movieImage];
        
         NSString *url = [NSString stringWithFormat:@"http://www.funmovie.tv/Content/pictures/files/%@?width=235",[row objectForKey:@"Picture"]];
@@ -129,7 +132,7 @@
             star.image = [UIImage imageWithIcon:@"fa-star" backgroundColor:[UIColor clearColor] iconColor:[UIColor whiteColor] andSize:CGSizeMake(18, 18)];
             [ratingBg addSubview:star];
             UILabel *label = [[UILabel alloc]initWithFrame:CGRectMake(3, 38, 48, 21)];
-            label.text = @"10";
+            label.text = [NSString stringWithFormat:@"%@", [row objectForKey:@"AverageScore"]];
             label.textColor = [UIColor whiteColor];
             label.textAlignment = NSTextAlignmentCenter;
             [ratingBg addSubview:label];
@@ -156,6 +159,7 @@
     self.MainScroll.delegate = nil;
 }
 -(void)viewWillAppear:(BOOL)animated{
+    self.notSelected = YES;
     self.MainScroll.delegate = self.scrollDelegate;
 }
 -(void)viewDidAppear:(BOOL)animated{
@@ -170,9 +174,17 @@
 }
 
 -(void)movieDetail:(id)sender{
+    if(self.notSelected){
+    [self performSegueWithIdentifier:@"movieDetail" sender:self];
+        self.notSelected = NO;}
+}
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
     int indexOfPage = self.imageScroll.contentOffset.x / self.imageScroll.frame.size.width;
     NSLog(@"%d",indexOfPage);
-    [self performSegueWithIdentifier:@"movieDetail" sender:self];
+    MovieDetailController *detailVc = segue.destinationViewController;
+    detailVc.movieDetailInfo = [self.returnData objectAtIndex:indexOfPage];
 }
 
 - (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView{
@@ -187,6 +199,7 @@
     self.uititle.text = model.title;
     self.blurredBg.image =[self blurImage:model.movieImageView.image  withBottomInset:0 blurRadius:43];
 }
+
 -(void)curvedMask:(UIView*)view{
     UIBezierPath *aPath = [UIBezierPath bezierPath];
 

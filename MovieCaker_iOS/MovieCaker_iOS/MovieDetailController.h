@@ -9,5 +9,5 @@
 #import "MovieController.h"
 
 @interface MovieDetailController : MovieController
-
+@property NSDictionary *movieDetailInfo;
 @end
