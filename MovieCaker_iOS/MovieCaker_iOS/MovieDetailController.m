@@ -8,6 +8,7 @@
 
 #import "MovieDetailController.h"
 #import "MovieTableViewController.h"
+#import "SDWebImage/UIImageView+WebCache.h"
 
 @interface MovieDetailController ()
 @property (strong, nonatomic) IBOutlet UIImageView *bgImage;
@@ -19,6 +20,18 @@
 @property (strong, nonatomic) IBOutlet NSLayoutConstraint *reviewTableHeight;
 @property MovieTableViewController *movieTableController;
 @property MovieTableViewController *movieTable2Controller;
+@property NSArray *starArray;
+@property (strong, nonatomic) IBOutlet UIImageView *starOne;
+@property (strong, nonatomic) IBOutlet UIImageView *starTwo;
+@property (strong, nonatomic) IBOutlet UIImageView *starThree;
+@property (strong, nonatomic) IBOutlet UIImageView *starFour;
+@property (strong, nonatomic) IBOutlet UIImageView *starFive;
+@property (strong, nonatomic) IBOutlet UILabel *ChineseName;
+@property (strong, nonatomic) IBOutlet UILabel *EnglishName;
+@property (strong, nonatomic) IBOutlet UILabel *releaseDate;
+@property (strong, nonatomic) IBOutlet UIImageView *smallImage;
+@property (strong, nonatomic) IBOutlet NSLayoutConstraint *movieDescriptionHeight;
+@property (strong, nonatomic) IBOutlet UILabel *movieDescription;
 @end
 
 @implementation MovieDetailController
@@ -55,6 +68,18 @@
     self.reviewTable.dataSource = self.movieTable2Controller;
     self.movieTable2Controller.tableHeight = self.reviewTableHeight;
     self.movieTable2Controller.tableView = self.reviewTable;
+    
+    self.starArray = [[NSArray alloc]initWithObjects:self.starOne,self.starTwo,self.starThree,self.starFour,self.starFive, nil];
+    [self setStars:[[self.movieDetailInfo objectForKey:@"AverageScore"]intValue]];
+    self.ChineseName.text = [self.movieDetailInfo objectForKey:@"CNName"];
+    self.EnglishName.text = [self.movieDetailInfo objectForKey:@"ENName"];
+    [self.smallImage sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://www.funmovie.tv/Content/pictures/files/%@?width=90",[self.movieDetailInfo objectForKey:@"Picture"]]] placeholderImage:[UIImage imageNamed:@"img-placeholder.jpg"]];
+    
+    [self.bgImage sd_setImageWithURL:[NSURL URLWithString:[self.movieDetailInfo objectForKey:@"PosterPath"]] placeholderImage:[UIImage imageNamed:@"img-placeholder.jpg"]];
+    self.releaseDate.text = [NSString stringWithFormat:@"%@ 上映",[[self.movieDetailInfo objectForKey:@"ReleaseDate"]stringByReplacingOccurrencesOfString:@"-" withString:@"/"]];
+    self.movieDescription.text = [self.movieDetailInfo objectForKey:@"Intro"];
+    self.movieDescriptionHeight.constant = [self.movieDescription.text length]/26*30;
+    NSLog(@"%@",self.movieDetailInfo);
 }
 
 -(void)createActorSlider{
@@ -79,7 +104,23 @@
     }
 
 }
-
+-(void)setStars:(int)rating{
+    int main =floor(rating/2);
+    int remain = rating%2;
+    int count = 1;
+    for (UIImageView *row in self.starArray) {
+        if(main>=count){
+            row.image = [UIImage imageNamed:@"iconStarSitetotal.png"];
+        }else if (remain==1&&count==(main+1)){
+            row.image = [UIImage imageNamed:@"iconStarHalfSitetotal.png"];
+        }else{
+            row.image = [UIImage imageNamed:@"iconStarOSitetotal.png"];
+        }
+        
+        count++;
+    }
+    
+}
 -(void)viewDidLayoutSubviews{
 
     self.actorScroll.contentSize = CGSizeMake(100*11, self.actorScroll.frame.size.height);

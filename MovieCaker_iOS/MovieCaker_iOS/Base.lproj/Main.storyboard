@@ -1136,6 +1136,12 @@
                                                     <constraint firstAttribute="width" constant="14" id="JiW-ZP-FsA"/>
                                                 </constraints>
                                             </imageView>
+                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="iconStarSitetotal" translatesAutoresizingMaskIntoConstraints="NO" id="h47-DF-EUP">
+                                                <rect key="frame" x="32" y="3" width="14" height="14"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="14" id="Hvb-rp-0wG"/>
+                                                </constraints>
+                                            </imageView>
                                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="iconStarSitetotal" translatesAutoresizingMaskIntoConstraints="NO" id="0QI-1f-cdM">
                                                 <rect key="frame" x="48" y="3" width="14" height="14"/>
                                                 <constraints>
@@ -1144,12 +1150,6 @@
                                             </imageView>
                                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="iconStarSitetotal" translatesAutoresizingMaskIntoConstraints="NO" id="PyK-6c-une">
                                                 <rect key="frame" x="64" y="3" width="13" height="14"/>
-                                            </imageView>
-                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="iconStarSitetotal" translatesAutoresizingMaskIntoConstraints="NO" id="h47-DF-EUP">
-                                                <rect key="frame" x="32" y="3" width="14" height="14"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="width" constant="14" id="Hvb-rp-0wG"/>
-                                                </constraints>
                                             </imageView>
                                         </subviews>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -1981,11 +1981,22 @@
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <size key="freeformSize" width="414" height="736"/>
                     <connections>
+                        <outlet property="ChineseName" destination="81h-qL-LxI" id="xWz-Ks-oiq"/>
+                        <outlet property="EnglishName" destination="Sec-ic-6sy" id="Mv5-TL-YvF"/>
                         <outlet property="actorScroll" destination="BpZ-Me-Nt1" id="hTH-NL-uIR"/>
-                        <outlet property="bgImage" destination="ApQ-on-j71" id="b1r-hg-Pul"/>
+                        <outlet property="bgImage" destination="ApQ-on-j71" id="Igh-hv-17r"/>
                         <outlet property="mainScroll" destination="hpU-nl-EIH" id="8ES-jP-Fo1"/>
+                        <outlet property="movieDescription" destination="cIQ-qb-MJd" id="quD-Po-yd5"/>
+                        <outlet property="movieDescriptionHeight" destination="UN4-mm-x7j" id="ElS-oO-bNq"/>
+                        <outlet property="releaseDate" destination="HLU-pF-Gbg" id="Y9J-ae-B0P"/>
                         <outlet property="reviewTable" destination="Efy-2A-qWQ" id="73i-Pj-poS"/>
                         <outlet property="reviewTableHeight" destination="zrd-E3-V2H" id="plm-db-WDt"/>
+                        <outlet property="smallImage" destination="YgX-On-ze2" id="Tw0-Jw-xUR"/>
+                        <outlet property="starFive" destination="PyK-6c-une" id="I0A-or-BSs"/>
+                        <outlet property="starFour" destination="0QI-1f-cdM" id="RhD-Vu-FXl"/>
+                        <outlet property="starOne" destination="IIV-GJ-g5i" id="U5U-0n-gSG"/>
+                        <outlet property="starThree" destination="h47-DF-EUP" id="YJ8-wq-tbv"/>
+                        <outlet property="starTwo" destination="wKX-Du-oLC" id="iCH-lG-mTH"/>
                         <outlet property="topicTable" destination="Oc3-18-2yn" id="Chd-cl-b18"/>
                         <outlet property="topicTableHeight" destination="z7a-Jh-loc" id="rgx-ax-gkv"/>
                     </connections>
