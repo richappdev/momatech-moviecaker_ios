@@ -9,6 +9,7 @@
 #import "MovieDetailController.h"
 #import "MovieTableViewController.h"
 #import "SDWebImage/UIImageView+WebCache.h"
+#import "AustinApi.h"
 
 @interface MovieDetailController ()
 @property (strong, nonatomic) IBOutlet UIImageView *bgImage;
@@ -55,7 +56,6 @@
     gradientLayer.startPoint = CGPointMake(1.0f, 0.7f);
     gradientLayer.endPoint = CGPointMake(1.0f, 1.0f);
     self.bgImage.layer.mask = gradientLayer;
-    [self createActorSlider];
     
     self.movieTableController = [[MovieTableViewController alloc] init:0];
     self.topicTable.delegate = self.movieTableController;
@@ -80,22 +80,41 @@
     self.movieDescription.text = [self.movieDetailInfo objectForKey:@"Intro"];
     self.movieDescriptionHeight.constant = [self.movieDescription.text length]/26*30;
     NSLog(@"%@",self.movieDetailInfo);
+    
+    [[AustinApi sharedInstance] movieDetail:[self.movieDetailInfo objectForKey:@"Id"] function:^(NSMutableDictionary *returnData) {
+       // NSLog(@"%@",[returnData objectForKey:@"Actor"]);
+        int count = 0;
+        NSMutableArray *array = [[NSMutableArray alloc]initWithArray:[returnData objectForKey:@"Actor"]];
+        for (NSDictionary *row in array) {
+            if([[row objectForKey:@"RoleType"]isEqualToString:@"Director"]){
+                id obj = array[count];
+                [array removeObjectAtIndex:count];
+                [array insertObject:obj atIndex:0];
+                break;
+            }
+            count++;
+        }
+        [self createActorSlider:array];
+        
+    } error:^(NSError *error) {
+        NSLog(@"%@",error);
+    }];
 }
 
--(void)createActorSlider{
+-(void)createActorSlider:(NSArray*)actors{
     int width = 100;
     int margin =10;
     int height = 150;
     int count = 0;
-    
-    for (int i=0; i<11; i++) {
+    self.actorScroll.contentSize = CGSizeMake(100*[actors count], self.actorScroll.frame.size.height);
+    for (NSDictionary *row in actors) {
     
     UIImageView *view = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"on.png"]];
     view.frame = CGRectMake(margin+width*count, 0, width-margin*2, height);
     UILabel *label  = [[UILabel alloc]initWithFrame:CGRectMake(margin+width*count, height, width-margin*2, 20)];
     label.textAlignment =NSTextAlignmentLeft;
     label.textColor  = [[UIColor alloc]initWithRed:51.0/255.0f green:68.0/255.0f blue:85.0/255.0f alpha:1];
-    label.text = @"actor";
+    label.text = [row objectForKey:@"CNName"];
     label.font =  [UIFont fontWithName:@"Heiti SC" size:14.0f];
         
     [self.actorScroll addSubview:label];
@@ -122,8 +141,6 @@
     
 }
 -(void)viewDidLayoutSubviews{
-
-    self.actorScroll.contentSize = CGSizeMake(100*11, self.actorScroll.frame.size.height);
     self.mainScroll.contentSize  = CGSizeMake(self.view.frame.size.width,3400);
 }
 -(void)goBack{

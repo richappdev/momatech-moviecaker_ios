@@ -174,7 +174,7 @@
 }
 
 -(void)movieDetail:(id)sender{
-    if(self.notSelected){
+    if(self.notSelected&&[self.movieArray count]>0){
     [self performSegueWithIdentifier:@"movieDetail" sender:self];
         self.notSelected = NO;}
 }

@@ -110,15 +110,21 @@
 }
 
 -(void)movieList:(void (^)(NSMutableDictionary *returnData))completion error:(void (^)(NSError *error))error{
-    NSDictionary *parameter = @{@"type": @"6",
-                                @"locationid": @"100",
-                                @"m":@"6"
-                                };
     [self apiGetMethod:@"api/video" parameter:nil addTokenHeader:@"1" completion:^(id response) {
        
         completion([response objectForKey:@"Data"]);
     } error:^(NSError *error2) {
         error(error2);
+    }];
+}
+
+-(void)movieDetail:(NSString*)vid function:(void (^)(NSMutableDictionary *returnData))completion error:(void (^)(NSError *error))error{
+    NSDictionary *parameter = @{@"vid":vid};
+    [self apiGetMethod:@"api/video" parameter:parameter addTokenHeader:@"1" completion:^(id response) {
+        
+        completion([[response objectForKey:@"Data"]objectAtIndex:0]);
+    } error:^(NSError *error2) {
+        error(error2);	
     }];
 }
 -(void)locationList:(void (^)(NSMutableDictionary *returnData))completion error:(void (^)(NSError *error))error{
