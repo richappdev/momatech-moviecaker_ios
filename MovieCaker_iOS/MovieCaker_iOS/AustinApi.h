@@ -18,5 +18,6 @@
 -(void)locationList:(void (^)(NSMutableDictionary *returnData))completion error:(void (^)(NSError *error))error;
 -(void)movieDetail:(NSString*)vid function:(void (^)(NSMutableDictionary *returnData))completion error:(void (^)(NSError *error))error;
 -(void)getTopic:(NSString*)type function:(void (^)(NSArray *returnData))completion error:(void (^)(NSError *error))error;
+-(void)getReview:(NSString*)order function:(void (^)(NSArray *returnData))completion error:(void (^)(NSError *error))error;
 -(NSString*)getBaseUrl;
 @end

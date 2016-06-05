@@ -53,11 +53,11 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
 #warning Incomplete implementation, return the number of rows
-    return 1;
+    return [self.data count];
 }
 
 -(int)returnTotalHeight{
-    return 3*_cellHeight;
+    return [self.data count]*_cellHeight;
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     if(self.type==0){

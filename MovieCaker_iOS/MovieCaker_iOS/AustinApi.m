@@ -142,6 +142,17 @@
     }];
 }
 
+-(void)getReview:(NSString*)order function:(void (^)(NSArray *returnData))completion error:(void (^)(NSError *error))error{
+    NSDictionary *parameter = @{@"order":order,@"limit":@"5"};
+    [self apiGetMethod:@"v1/topic" parameter:parameter addTokenHeader:@"1" completion:^(id response) {
+        
+        completion([response objectForKey:@"Data"]);
+    } error:^(NSError *error2) {
+        error(error2);
+    }];
+}
+
+
 -(void)locationList:(void (^)(NSMutableDictionary *returnData))completion error:(void (^)(NSError *error))error{
     NSDictionary *parameter = @{@"type": @"1"};
     [self apiGetMethod:@"api/location" parameter:parameter addTokenHeader:@"1" completion:^(id response) {
