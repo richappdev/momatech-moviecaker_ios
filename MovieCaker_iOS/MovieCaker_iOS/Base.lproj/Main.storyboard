@@ -540,7 +540,11 @@
                                                     </constraints>
                                                 </tableViewCellContentView>
                                                 <connections>
+                                                    <outlet property="Author" destination="EJR-gd-3ii" id="T6b-X5-KK9"/>
+                                                    <outlet property="AvatarPic" destination="kBx-xi-TJl" id="kNa-vb-O52"/>
                                                     <outlet property="Circle" destination="AFo-fg-AIx" id="ohm-Rg-29P"/>
+                                                    <outlet property="Content" destination="3IZ-C5-k3C" id="9nm-Lh-ZEq"/>
+                                                    <outlet property="Date" destination="ZdH-mW-60u" id="E1T-S5-ntd"/>
                                                     <outlet property="finishLabel" destination="Tbh-Kt-LSR" id="mDO-qa-7WP"/>
                                                     <outlet property="likeBtn" destination="ZtF-nm-wZB" id="sib-LW-kEp"/>
                                                     <outlet property="percentageLabel" destination="6E4-d2-f2L" id="GAw-cC-sGL"/>

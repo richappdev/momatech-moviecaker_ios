@@ -8,7 +8,8 @@
 
 #import "AustinApi.h"
 #import "AFNetworking.h"
-#define SERVERAPI @"http://moviecaker.com"
+#define SERVERAPI @"http://112.124.24.14"
+#define SERVERAPI2 @"http://112.124.24.14:8082"
 
 
 @implementation AustinApi
@@ -85,8 +86,12 @@
 -(void)apiGetMethod:(NSString *)getUrl parameter:parameters addTokenHeader:(NSString*)addToken completion:(void (^)(id response))completion error:(void (^)(NSError *error))error
 {
     //[[LoadingView sharedView] open];
-    
+
     NSURL *baseURL = [NSURL URLWithString:SERVERAPI];
+
+    if([getUrl containsString:@"topic"]){
+        baseURL = [NSURL URLWithString:SERVERAPI2];
+    }
     AFHTTPSessionManager *manager = [[AFHTTPSessionManager alloc] initWithBaseURL:baseURL];
     manager.requestSerializer = [AFHTTPRequestSerializer serializer];
     manager.responseSerializer = [AFJSONResponseSerializer serializer];
@@ -127,6 +132,16 @@
         error(error2);	
     }];
 }
+-(void)getTopic:(NSString*)type function:(void (^)(NSArray *returnData))completion error:(void (^)(NSError *error))error{
+    NSDictionary *parameter = @{@"type":type};
+    [self apiGetMethod:@"v1/topic" parameter:parameter addTokenHeader:@"1" completion:^(id response) {
+        
+        completion([response objectForKey:@"Data"]);
+    } error:^(NSError *error2) {
+        error(error2);
+    }];
+}
+
 -(void)locationList:(void (^)(NSMutableDictionary *returnData))completion error:(void (^)(NSError *error))error{
     NSDictionary *parameter = @{@"type": @"1"};
     [self apiGetMethod:@"api/location" parameter:parameter addTokenHeader:@"1" completion:^(id response) {
@@ -135,5 +150,8 @@
     } error:^(NSError *error2) {
         error(error2);
     }];
+}
+-(NSString*)getBaseUrl{
+    return SERVERAPI;
 }
 @end

@@ -9,6 +9,8 @@
 #import "MovieTableViewController.h"
 #import "MovieCell.h"
 #import "Movie2Cell.h"
+#import "AustinApi.h"
+#import "SDWebImage/UIImageView+WebCache.h"
 
 @interface MovieTableViewController ()
 @property int cellHeight;
@@ -51,16 +53,20 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
 #warning Incomplete implementation, return the number of rows
-    return 5;
+    return 1;
 }
 
 -(int)returnTotalHeight{
-    return 5*_cellHeight;
+    return 3*_cellHeight;
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     if(self.type==0){
     MovieCell *cell = [tableView dequeueReusableCellWithIdentifier:@"MovieCell" forIndexPath:indexPath];
-    cell.title.text = @"amillionwordsamillionwordsamillionwordsamillionwordsamillionwordsamillionwordsamillionwordsamillionwordsamillionwordsamillionwordsamillionwordsamillionwordsamillionwordsamillionwordsamillionwordsamillionwordsamillionwordsamillionwordsamillionwords";
+        cell.title.text = [[self.data objectAtIndex:indexPath.row]objectForKey:@"Title"];
+        cell.Author.text =  [[[self.data objectAtIndex:indexPath.row]objectForKey:@"Author"]objectForKey:@"NickName"];
+        cell.Content.text =  [[self.data objectAtIndex:indexPath.row]objectForKey:@"Content"];
+        cell.Date.text = [[[self.data objectAtIndex:indexPath.row]objectForKey:@"ModifiedOn"]stringByReplacingOccurrencesOfString:@"-" withString:@"/"];
+        [cell.AvatarPic sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@/Uploads/UserAvatar/%@",[[AustinApi sharedInstance] getBaseUrl],[[[self.data objectAtIndex:indexPath.row]objectForKey:@"Author"] objectForKey:@"Avatar"]]] placeholderImage:[UIImage imageNamed:@"img-placeholder.jpg"]];
     
     [cell setCirclePercentage:(float)arc4random()/0x100000000];
         return cell;

@@ -83,12 +83,6 @@
      @{NSForegroundColorAttributeName:[UIColor clearColor]}];
     
     self.FirstChevron.image = self.SecondChevron.image = [UIImage imageWithIcon:@"fa-chevron-right" backgroundColor:[UIColor clearColor] iconColor:[UIColor colorWithRed:0.97 green:0.39 blue:0.00 alpha:1.0] andSize:CGSizeMake(10, 14)];
-    
-    self.movieTableController = [[MovieTableViewController alloc] init:0];
-    self.movieTable.delegate = self.movieTableController;
-    self.movieTable.dataSource = self.movieTableController;
-    self.movieTableController.tableHeight = self.movieTableHeight;
-    self.movieTableController.tableView = self.movieTable;
 
     self.movieTable2Controller = [[MovieTableViewController alloc] init:1];
     self.movieTable2.delegate = self.movieTable2Controller;
@@ -151,6 +145,19 @@
         
     }
         
+    } error:^(NSError *error) {
+        NSLog(@"%@",error);
+    }];
+    
+    [[AustinApi sharedInstance]getTopic:@"6" function:^(NSArray *returnData) {
+        NSLog(@"bbb%@",returnData);
+        self.movieTableController = [[MovieTableViewController alloc] init:0];
+        self.movieTableController.data =returnData;
+        self.movieTable.delegate = self.movieTableController;
+        self.movieTable.dataSource = self.movieTableController;
+        self.movieTableController.tableHeight = self.movieTableHeight;
+        self.movieTableController.tableView = self.movieTable;
+        [self.movieTableController.tableView reloadData];
     } error:^(NSError *error) {
         NSLog(@"%@",error);
     }];
