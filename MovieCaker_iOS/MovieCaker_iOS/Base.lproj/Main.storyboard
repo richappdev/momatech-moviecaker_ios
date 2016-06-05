@@ -304,12 +304,6 @@
                                                     <rect key="frame" x="0.0" y="0.0" width="414" height="299"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <subviews>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Khb-Up-IRQ">
-                                                            <rect key="frame" x="8" y="0.0" width="398" height="20"/>
-                                                            <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="17"/>
-                                                            <color key="textColor" red="0.20000000000000001" green="0.26666666666666666" blue="0.33333333333333331" alpha="1" colorSpace="calibratedRGB"/>
-                                                            <nil key="highlightedColor"/>
-                                                        </label>
                                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="rabbit-512" translatesAutoresizingMaskIntoConstraints="NO" id="kBx-xi-TJl">
                                                             <rect key="frame" x="8" y="23" width="20" height="20"/>
                                                             <constraints>
@@ -497,6 +491,12 @@
                                                             <color key="textColor" red="0.20000000000000001" green="0.26666666666666666" blue="0.33333333333333331" alpha="1" colorSpace="calibratedRGB"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Khb-Up-IRQ">
+                                                            <rect key="frame" x="8" y="0.0" width="398" height="20"/>
+                                                            <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="17"/>
+                                                            <color key="textColor" red="0.20000000000000001" green="0.26666666666666666" blue="0.33333333333333331" alpha="1" colorSpace="calibratedRGB"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
                                                     </subviews>
                                                     <constraints>
                                                         <constraint firstItem="1ZY-19-HnJ" firstAttribute="top" secondItem="EJR-gd-3ii" secondAttribute="bottom" constant="72" id="3go-vB-KGa"/>
@@ -546,10 +546,16 @@
                                                     <outlet property="Content" destination="3IZ-C5-k3C" id="9nm-Lh-ZEq"/>
                                                     <outlet property="Date" destination="ZdH-mW-60u" id="E1T-S5-ntd"/>
                                                     <outlet property="finishLabel" destination="Tbh-Kt-LSR" id="mDO-qa-7WP"/>
+                                                    <outlet property="five" destination="8w2-dV-j5a" id="XPb-cZ-ASZ"/>
+                                                    <outlet property="four" destination="nrG-0K-1gd" id="2BA-08-wHq"/>
                                                     <outlet property="likeBtn" destination="ZtF-nm-wZB" id="sib-LW-kEp"/>
+                                                    <outlet property="one" destination="1ZY-19-HnJ" id="ocI-iK-0a0"/>
                                                     <outlet property="percentageLabel" destination="6E4-d2-f2L" id="GAw-cC-sGL"/>
                                                     <outlet property="shareBtn" destination="hDi-F2-l5D" id="Jaj-vz-oor"/>
+                                                    <outlet property="three" destination="XFs-O4-XZ4" id="QX7-c3-sej"/>
                                                     <outlet property="title" destination="Khb-Up-IRQ" id="97W-5s-g3N"/>
+                                                    <outlet property="two" destination="FXM-tH-U6W" id="fT0-SR-xyF"/>
+                                                    <outlet property="viewCount" destination="ucN-lA-Ow2" id="f61-zA-HRW"/>
                                                 </connections>
                                             </tableViewCell>
                                         </prototypes>

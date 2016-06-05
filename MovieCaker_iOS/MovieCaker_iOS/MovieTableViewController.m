@@ -67,6 +67,18 @@
         cell.Content.text =  [[self.data objectAtIndex:indexPath.row]objectForKey:@"Content"];
         cell.Date.text = [[[self.data objectAtIndex:indexPath.row]objectForKey:@"ModifiedOn"]stringByReplacingOccurrencesOfString:@"-" withString:@"/"];
         [cell.AvatarPic sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@/Uploads/UserAvatar/%@",[[AustinApi sharedInstance] getBaseUrl],[[[self.data objectAtIndex:indexPath.row]objectForKey:@"Author"] objectForKey:@"Avatar"]]] placeholderImage:[UIImage imageNamed:@"img-placeholder.jpg"]];
+        cell.viewCount.text = [[[self.data objectAtIndex:indexPath.row]objectForKey:@"ViewNum"]stringValue];
+        NSLog(@"%lu",[[[self.data objectAtIndex:indexPath.row]objectForKey:@"Picture"]count]);
+        for(int i =0;i<5;i++){
+            UIImageView *view = [cell.imageArray objectAtIndex:i];
+            if([[[self.data objectAtIndex:indexPath.row]objectForKey:@"Picture"]count]>i){
+                NSString *url = [NSString stringWithFormat:@"http://www.funmovie.tv/Content/pictures/files/%@?width=88",[[[self.data objectAtIndex:indexPath.row]objectForKey:@"Picture"]objectAtIndex:i]];
+                [view sd_setImageWithURL:url placeholderImage:[UIImage imageNamed:@"img-placeholder.jpg"]];
+            }else{
+                view.hidden = YES;
+            }
+        
+        }
     
     [cell setCirclePercentage:(float)arc4random()/0x100000000];
         return cell;

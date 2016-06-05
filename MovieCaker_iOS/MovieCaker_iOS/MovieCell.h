@@ -19,6 +19,13 @@
 @property (strong, nonatomic) IBOutlet UILabel *Content;
 @property (strong, nonatomic) IBOutlet UILabel *Date;
 @property (strong, nonatomic) IBOutlet UIImageView *AvatarPic;
+@property (strong, nonatomic) IBOutlet UIImageView *one;
+@property (strong, nonatomic) IBOutlet UIImageView *two;
+@property (strong, nonatomic) IBOutlet UIImageView *three;
+@property (strong, nonatomic) IBOutlet UIImageView *four;
+@property (strong, nonatomic) IBOutlet UIImageView *five;
+@property (strong, nonatomic) IBOutlet UILabel *viewCount;
+@property NSArray *imageArray;
 @property NSArray *labelArray;
 -(void)setCirclePercentage:(float) percent;
 @end
