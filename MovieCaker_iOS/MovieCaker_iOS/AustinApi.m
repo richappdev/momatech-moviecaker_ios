@@ -89,7 +89,7 @@
 
     NSURL *baseURL = [NSURL URLWithString:SERVERAPI];
 
-    if([getUrl containsString:@"topic"]){
+    if([getUrl containsString:@"topic"]||[getUrl containsString:@"Review"]){
         baseURL = [NSURL URLWithString:SERVERAPI2];
     }
     AFHTTPSessionManager *manager = [[AFHTTPSessionManager alloc] initWithBaseURL:baseURL];
@@ -144,7 +144,7 @@
 
 -(void)getReview:(NSString*)order function:(void (^)(NSArray *returnData))completion error:(void (^)(NSError *error))error{
     NSDictionary *parameter = @{@"order":order,@"limit":@"5"};
-    [self apiGetMethod:@"v1/topic" parameter:parameter addTokenHeader:@"1" completion:^(id response) {
+    [self apiGetMethod:@"v1/Review" parameter:parameter addTokenHeader:@"1" completion:^(id response) {
         
         completion([response objectForKey:@"Data"]);
     } error:^(NSError *error2) {

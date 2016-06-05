@@ -749,7 +749,7 @@
                                                                 <constraint firstItem="5mc-Qo-h0H" firstAttribute="bottom" secondItem="72H-OG-NCI" secondAttribute="bottom" id="utB-7I-KMn"/>
                                                             </constraints>
                                                         </view>
-                                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="iconHeartList" translatesAutoresizingMaskIntoConstraints="NO" id="Tyq-Ta-3fv">
+                                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="iconHeartListLiked" translatesAutoresizingMaskIntoConstraints="NO" id="Tyq-Ta-3fv">
                                                             <rect key="frame" x="188" y="55" width="14" height="14"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="height" constant="14" id="MCr-ji-7CS"/>
@@ -937,7 +937,16 @@
                                                     </constraints>
                                                 </tableViewCellContentView>
                                                 <connections>
+                                                    <outlet property="Author" destination="oAH-bS-4g3" id="FOR-Z3-eDG"/>
+                                                    <outlet property="AvatarPic" destination="uIH-0L-PQw" id="ORj-cD-shU"/>
+                                                    <outlet property="Content" destination="GJB-8H-YOC" id="4UA-gS-RId"/>
+                                                    <outlet property="CreatedOn" destination="GJX-p0-RCe" id="vj3-Zj-VBi"/>
+                                                    <outlet property="Messages" destination="WVV-MJ-AXL" id="8AB-KS-Yj7"/>
+                                                    <outlet property="Title" destination="V6h-W2-jQu" id="fVc-cF-tll"/>
+                                                    <outlet property="Views" destination="da0-nY-Bxd" id="NfL-Lq-5bq"/>
+                                                    <outlet property="createdOn" destination="GJX-p0-RCe" id="jrN-LB-XY3"/>
                                                     <outlet property="likeBtn" destination="fHG-JM-2bq" id="CFA-IH-k7Q"/>
+                                                    <outlet property="mainPic" destination="OQu-ul-5C4" id="zKX-yK-rzD"/>
                                                     <outlet property="shareBtn" destination="tFz-Jm-JT0" id="UkI-Hs-QgQ"/>
                                                     <outlet property="star1" destination="5mc-Qo-h0H" id="CDg-F1-xpF"/>
                                                     <outlet property="star2" destination="72H-OG-NCI" id="q1F-gD-ZUn"/>
@@ -3404,6 +3413,7 @@
         <image name="iconEyeList" width="12" height="8"/>
         <image name="iconHeartIndexActive" width="20" height="17"/>
         <image name="iconHeartList" width="15" height="12"/>
+        <image name="iconHeartListLiked" width="15" height="12"/>
         <image name="iconIndexMenu" width="20" height="20"/>
         <image name="iconIndexMenuSelected" width="20" height="20"/>
         <image name="iconLikeIndex" width="23" height="20"/>

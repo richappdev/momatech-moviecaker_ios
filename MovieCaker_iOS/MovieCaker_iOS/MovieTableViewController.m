@@ -73,7 +73,7 @@
             UIImageView *view = [cell.imageArray objectAtIndex:i];
             if([[[self.data objectAtIndex:indexPath.row]objectForKey:@"Picture"]count]>i){
                 NSString *url = [NSString stringWithFormat:@"http://www.funmovie.tv/Content/pictures/files/%@?width=88",[[[self.data objectAtIndex:indexPath.row]objectForKey:@"Picture"]objectAtIndex:i]];
-                [view sd_setImageWithURL:url placeholderImage:[UIImage imageNamed:@"img-placeholder.jpg"]];
+                [view sd_setImageWithURL:[NSURL URLWithString:url] placeholderImage:[UIImage imageNamed:@"img-placeholder.jpg"]];
             }else{
                 view.hidden = YES;
             }
@@ -84,7 +84,20 @@
         return cell;
     }else{
             Movie2Cell *cell = [tableView dequeueReusableCellWithIdentifier:@"Movie2Cell" forIndexPath:indexPath];
-            [cell setStars:floor((float)arc4random()/0x100000000*11)];
+        NSDictionary *data =[self.data objectAtIndex:indexPath.row];
+        NSLog(@"%@",data);
+        cell.Title.text = [data objectForKey:@"VideoCNName"];
+        cell.Content.text = [data objectForKey:@"Review"];
+        cell.CreatedOn.text = [[data objectForKey:@"CreateOn"] stringByReplacingOccurrencesOfString:@"-" withString:@"/"];
+        cell.CreatedOn.text = [cell.CreatedOn.text substringWithRange:NSMakeRange(0,[cell.CreatedOn.text rangeOfString:@"T"].location)];
+        cell.Author.text = [data objectForKey:@"UserNickName"];
+        cell.Messages.text = [[data objectForKey:@"MessageNum"]stringValue];
+        cell.Views.text = [[data objectForKey:@"PageViews"]stringValue];
+        NSString *url = [NSString stringWithFormat:@"http://www.funmovie.tv/Content/pictures/files/%@?width=88",[data objectForKey:@"VideoPicture"]];
+        [cell.mainPic sd_setImageWithURL:[NSURL URLWithString:url] placeholderImage:[UIImage imageNamed:@"img-placeholder.jpg"]];
+        
+        [cell.AvatarPic sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@/Uploads/UserAvatar/%@",[[AustinApi sharedInstance] getBaseUrl],[data objectForKey:@"UserAvatar"]]]];
+        [cell setStars:floor([[data objectForKey:@"OwnerLinkVideo_Score"]floatValue])];
             return cell;
     
 
