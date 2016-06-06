@@ -24,6 +24,7 @@
 @property (strong, nonatomic) IBOutlet UILabel *Messages;
 @property (strong, nonatomic) IBOutlet UILabel *Views;
 @property (strong, nonatomic) IBOutlet UILabel *Author;
+@property (strong, nonatomic) IBOutlet UIImageView *Heart;
 @property NSArray *starArray;
 -(void)setStars:(int)rating;
 @end

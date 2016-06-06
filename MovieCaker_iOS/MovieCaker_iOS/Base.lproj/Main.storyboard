@@ -941,6 +941,7 @@
                                                     <outlet property="AvatarPic" destination="uIH-0L-PQw" id="ORj-cD-shU"/>
                                                     <outlet property="Content" destination="GJB-8H-YOC" id="4UA-gS-RId"/>
                                                     <outlet property="CreatedOn" destination="GJX-p0-RCe" id="vj3-Zj-VBi"/>
+                                                    <outlet property="Heart" destination="Tyq-Ta-3fv" id="cvt-XL-LI3"/>
                                                     <outlet property="Messages" destination="WVV-MJ-AXL" id="8AB-KS-Yj7"/>
                                                     <outlet property="Title" destination="V6h-W2-jQu" id="fVc-cF-tll"/>
                                                     <outlet property="Views" destination="da0-nY-Bxd" id="NfL-Lq-5bq"/>
