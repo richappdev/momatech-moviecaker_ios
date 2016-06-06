@@ -121,8 +121,8 @@
             UIImageView *star = [[UIImageView alloc]initWithFrame:CGRectMake(18, 20, 18, 18)];
             star.image = [UIImage imageWithIcon:@"fa-star" backgroundColor:[UIColor clearColor] iconColor:[UIColor whiteColor] andSize:CGSizeMake(18, 18)];
             [ratingBg addSubview:star];
-            UILabel *label = [[UILabel alloc]initWithFrame:CGRectMake(3, 38, 48, 21)];
-            label.text = [NSString stringWithFormat:@"%@", [row objectForKey:@"AverageScore"]];
+            UILabel *label = [[UILabel alloc]initWithFrame:CGRectMake(3, 36, 52, 21)];
+            label.text = [NSString stringWithFormat:@"%0.1f", [[row objectForKey:@"AverageScore"]floatValue]];
             label.textColor = [UIColor whiteColor];
             label.textAlignment = NSTextAlignmentCenter;
             [ratingBg addSubview:label];
