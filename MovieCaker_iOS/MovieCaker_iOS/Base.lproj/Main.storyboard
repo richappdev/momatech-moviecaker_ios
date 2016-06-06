@@ -2004,7 +2004,9 @@
                         <outlet property="ChineseName" destination="81h-qL-LxI" id="xWz-Ks-oiq"/>
                         <outlet property="EnglishName" destination="Sec-ic-6sy" id="Mv5-TL-YvF"/>
                         <outlet property="actorScroll" destination="BpZ-Me-Nt1" id="hTH-NL-uIR"/>
+                        <outlet property="bean" destination="idI-1B-qtg" id="if1-xx-wDG"/>
                         <outlet property="bgImage" destination="ApQ-on-j71" id="Igh-hv-17r"/>
+                        <outlet property="imdb" destination="wBh-oS-rcg" id="Ou4-e4-MZM"/>
                         <outlet property="mainScroll" destination="hpU-nl-EIH" id="8ES-jP-Fo1"/>
                         <outlet property="movieDescription" destination="cIQ-qb-MJd" id="quD-Po-yd5"/>
                         <outlet property="movieDescriptionHeight" destination="UN4-mm-x7j" id="ElS-oO-bNq"/>

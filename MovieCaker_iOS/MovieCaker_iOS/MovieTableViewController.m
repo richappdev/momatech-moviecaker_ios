@@ -99,10 +99,8 @@
         [cell.AvatarPic sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@/Uploads/UserAvatar/%@",[[AustinApi sharedInstance] getBaseUrl],[data objectForKey:@"UserAvatar"]]]];
         [cell setStars:floor([[data objectForKey:@"OwnerLinkVideo_Score"]floatValue])];
         if([[data objectForKey:@"OwnerLinkVideo_IsLiked"]intValue]==0){
-            NSLog(@"here");
             cell.Heart.image = [UIImage imageNamed:@"iconHeartList.png"];
         }else{
-            NSLog(@"there");
             cell.Heart.image = [UIImage imageNamed:@"iconHeartListLiked.png"];
         }
         

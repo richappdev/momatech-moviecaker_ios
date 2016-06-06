@@ -33,6 +33,8 @@
 @property (strong, nonatomic) IBOutlet UIImageView *smallImage;
 @property (strong, nonatomic) IBOutlet NSLayoutConstraint *movieDescriptionHeight;
 @property (strong, nonatomic) IBOutlet UILabel *movieDescription;
+@property (strong, nonatomic) IBOutlet UILabel *imdb;
+@property (strong, nonatomic) IBOutlet UILabel *bean;
 @end
 
 @implementation MovieDetailController
@@ -79,6 +81,8 @@
     self.releaseDate.text = [NSString stringWithFormat:@"%@ 上映",[[self.movieDetailInfo objectForKey:@"ReleaseDate"]stringByReplacingOccurrencesOfString:@"-" withString:@"/"]];
     self.movieDescription.text = [self.movieDetailInfo objectForKey:@"Intro"];
     self.movieDescriptionHeight.constant = [self.movieDescription.text length]/26*30;
+    self.bean.text = [NSString stringWithFormat:@"%.1f",[[self.movieDetailInfo objectForKey:@"Ratings_Douban"]floatValue]];
+    self.imdb.text = [NSString stringWithFormat:@"%.1f",[[self.movieDetailInfo objectForKey:@"Ratings_IMDB"]floatValue]];
     NSLog(@"%@",self.movieDetailInfo);
     
     [[AustinApi sharedInstance] movieDetail:[self.movieDetailInfo objectForKey:@"Id"] function:^(NSMutableDictionary *returnData) {
@@ -109,8 +113,9 @@
     self.actorScroll.contentSize = CGSizeMake(100*[actors count], self.actorScroll.frame.size.height);
     for (NSDictionary *row in actors) {
     
-    UIImageView *view = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"on.png"]];
+    UIImageView *view = [[UIImageView alloc]init];
     view.frame = CGRectMake(margin+width*count, 0, width-margin*2, height);
+    [view sd_setImageWithURL:[NSURL URLWithString:[row objectForKey:@"Avatar"]]  placeholderImage:[UIImage imageNamed:@"img-placeholder.jpg"]];
     UILabel *label  = [[UILabel alloc]initWithFrame:CGRectMake(margin+width*count, height, width-margin*2, 20)];
     label.textAlignment =NSTextAlignmentLeft;
     label.textColor  = [[UIColor alloc]initWithRed:51.0/255.0f green:68.0/255.0f blue:85.0/255.0f alpha:1];

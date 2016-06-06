@@ -8,8 +8,8 @@
 
 #import "AustinApi.h"
 #import "AFNetworking.h"
-#define SERVERAPI @"http://112.124.24.14"
-#define SERVERAPI2 @"http://112.124.24.14:8082"
+#define SERVERAPI @"http://test.moviecaker.com"
+#define SERVERAPI2 @"http://test.moviecaker.com:8082"
 
 
 @implementation AustinApi
