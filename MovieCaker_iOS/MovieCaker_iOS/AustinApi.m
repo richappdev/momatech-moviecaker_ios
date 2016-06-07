@@ -89,7 +89,7 @@
 
     NSURL *baseURL = [NSURL URLWithString:SERVERAPI];
 
-    if([getUrl containsString:@"topic"]||[getUrl containsString:@"Review"]){
+    if([getUrl containsString:@"v1/topic"]||[getUrl containsString:@"Review"]){
         baseURL = [NSURL URLWithString:SERVERAPI2];
     }
     AFHTTPSessionManager *manager = [[AFHTTPSessionManager alloc] initWithBaseURL:baseURL];
@@ -164,5 +164,15 @@
 }
 -(NSString*)getBaseUrl{
     return SERVERAPI;
+}
+-(void)getCircleCompletion:(NSString*)topicId userId:(NSString*)userId function:(void (^)(NSDictionary *returnData))completion error:(void (^)(NSError *error))error{
+    NSDictionary *parameter = @{@"userId": userId};
+    [self apiGetMethod:[NSString stringWithFormat:@"api/topic/PercentComplete/%@",topicId] parameter:parameter addTokenHeader:@"1" completion:^(id response) {
+        
+        completion(response);
+    } error:^(NSError *error2) {
+        error(error2);
+    }];
+    
 }
 @end

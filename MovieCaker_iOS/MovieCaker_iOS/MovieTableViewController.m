@@ -79,13 +79,19 @@
             }
         
         }
-    
-    [cell setCirclePercentage:(float)arc4random()/0x100000000];
+        cell.Circle.hidden = YES;
+        [[AustinApi sharedInstance] getCircleCompletion:[[self.data objectAtIndex:indexPath.row]objectForKey:@"Id"] userId:[[[self.data objectAtIndex:indexPath.row]objectForKey:@"Author"]objectForKey:@"Id"] function:^(NSDictionary *returnData) {
+            cell.Circle.hidden = NO;
+            [cell setCirclePercentage:[[returnData objectForKey:@"PercentComplete"]floatValue]*0.01];
+            [cell.Circle setNeedsDisplay];
+        } error:^(NSError *error) {
+            NSLog(@"%@",error);
+        }];
         return cell;
     }else{
             Movie2Cell *cell = [tableView dequeueReusableCellWithIdentifier:@"Movie2Cell" forIndexPath:indexPath];
         NSDictionary *data =[self.data objectAtIndex:indexPath.row];
-        NSLog(@"%@",data);
+   //     NSLog(@"%@",data);
         cell.Title.text = [data objectForKey:@"VideoCNName"];
         cell.Content.text = [data objectForKey:@"Review"];
         cell.CreatedOn.text = [[data objectForKey:@"CreateOn"] stringByReplacingOccurrencesOfString:@"-" withString:@"/"];

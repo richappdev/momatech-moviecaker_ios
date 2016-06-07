@@ -19,5 +19,6 @@
 -(void)movieDetail:(NSString*)vid function:(void (^)(NSMutableDictionary *returnData))completion error:(void (^)(NSError *error))error;
 -(void)getTopic:(NSString*)type function:(void (^)(NSArray *returnData))completion error:(void (^)(NSError *error))error;
 -(void)getReview:(NSString*)order function:(void (^)(NSArray *returnData))completion error:(void (^)(NSError *error))error;
+-(void)getCircleCompletion:(NSString*)topicId userId:(NSString*)userId function:(void (^)(NSDictionary *returnData))completion error:(void (^)(NSError *error))error;
 -(NSString*)getBaseUrl;
 @end
