@@ -8,7 +8,8 @@
 
 #import "AustinApi.h"
 #import "AFNetworking.h"
-#define SERVERAPI @"http://moviecaker.com"
+#define SERVERAPI @"http://test.moviecaker.com"
+#define SERVERAPI2 @"http://test.moviecaker.com:8082"
 
 
 @implementation AustinApi
@@ -85,8 +86,12 @@
 -(void)apiGetMethod:(NSString *)getUrl parameter:parameters addTokenHeader:(NSString*)addToken completion:(void (^)(id response))completion error:(void (^)(NSError *error))error
 {
     //[[LoadingView sharedView] open];
-    
+
     NSURL *baseURL = [NSURL URLWithString:SERVERAPI];
+
+    if([getUrl containsString:@"v1/topic"]||[getUrl containsString:@"Review"]){
+        baseURL = [NSURL URLWithString:SERVERAPI2];
+    }
     AFHTTPSessionManager *manager = [[AFHTTPSessionManager alloc] initWithBaseURL:baseURL];
     manager.requestSerializer = [AFHTTPRequestSerializer serializer];
     manager.responseSerializer = [AFJSONResponseSerializer serializer];
@@ -110,10 +115,6 @@
 }
 
 -(void)movieList:(void (^)(NSMutableDictionary *returnData))completion error:(void (^)(NSError *error))error{
-    NSDictionary *parameter = @{@"type": @"6",
-                                @"locationid": @"100",
-                                @"m":@"6"
-                                };
     [self apiGetMethod:@"api/video" parameter:nil addTokenHeader:@"1" completion:^(id response) {
        
         completion([response objectForKey:@"Data"]);
@@ -121,6 +122,37 @@
         error(error2);
     }];
 }
+
+-(void)movieDetail:(NSString*)vid function:(void (^)(NSMutableDictionary *returnData))completion error:(void (^)(NSError *error))error{
+    NSDictionary *parameter = @{@"vid":vid};
+    [self apiGetMethod:@"api/video" parameter:parameter addTokenHeader:@"1" completion:^(id response) {
+        
+        completion([[response objectForKey:@"Data"]objectAtIndex:0]);
+    } error:^(NSError *error2) {
+        error(error2);	
+    }];
+}
+-(void)getTopic:(NSString*)type function:(void (^)(NSArray *returnData))completion error:(void (^)(NSError *error))error{
+    NSDictionary *parameter = @{@"type":type};
+    [self apiGetMethod:@"v1/topic" parameter:parameter addTokenHeader:@"1" completion:^(id response) {
+        
+        completion([response objectForKey:@"Data"]);
+    } error:^(NSError *error2) {
+        error(error2);
+    }];
+}
+
+-(void)getReview:(NSString*)order function:(void (^)(NSArray *returnData))completion error:(void (^)(NSError *error))error{
+    NSDictionary *parameter = @{@"order":order,@"limit":@"5"};
+    [self apiGetMethod:@"v1/Review" parameter:parameter addTokenHeader:@"1" completion:^(id response) {
+        
+        completion([response objectForKey:@"Data"]);
+    } error:^(NSError *error2) {
+        error(error2);
+    }];
+}
+
+
 -(void)locationList:(void (^)(NSMutableDictionary *returnData))completion error:(void (^)(NSError *error))error{
     NSDictionary *parameter = @{@"type": @"1"};
     [self apiGetMethod:@"api/location" parameter:parameter addTokenHeader:@"1" completion:^(id response) {
@@ -129,5 +161,18 @@
     } error:^(NSError *error2) {
         error(error2);
     }];
+}
+-(NSString*)getBaseUrl{
+    return SERVERAPI;
+}
+-(void)getCircleCompletion:(NSString*)topicId userId:(NSString*)userId function:(void (^)(NSDictionary *returnData))completion error:(void (^)(NSError *error))error{
+    NSDictionary *parameter = @{@"userId": userId};
+    [self apiGetMethod:[NSString stringWithFormat:@"api/topic/PercentComplete/%@",topicId] parameter:parameter addTokenHeader:@"1" completion:^(id response) {
+        
+        completion(response);
+    } error:^(NSError *error2) {
+        error(error2);
+    }];
+    
 }
 @end

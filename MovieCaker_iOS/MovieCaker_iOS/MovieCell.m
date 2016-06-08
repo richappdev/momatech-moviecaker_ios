@@ -14,6 +14,7 @@
     [super awakeFromNib];
     [self addIndexGesture:self.likeBtn];
     [self addIndexGesture:self.shareBtn];
+    self.imageArray = [[NSArray alloc] initWithObjects:self.one,self.two,self.three,self.four,self.five, nil];
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {

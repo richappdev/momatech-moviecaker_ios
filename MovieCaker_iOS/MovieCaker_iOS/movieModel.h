@@ -11,7 +11,7 @@
 
 @interface movieModel : NSObject
 @property NSString *title;
-@property int rating;
+@property NSString* rating;
 @property UIImage *movieImage;
 @property UIImageView *movieImageView;
 @end

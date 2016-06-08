@@ -9,6 +9,8 @@
 #import "MovieTableViewController.h"
 #import "MovieCell.h"
 #import "Movie2Cell.h"
+#import "AustinApi.h"
+#import "SDWebImage/UIImageView+WebCache.h"
 
 @interface MovieTableViewController ()
 @property int cellHeight;
@@ -51,22 +53,63 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
 #warning Incomplete implementation, return the number of rows
-    return 5;
+    return [self.data count];
 }
 
 -(int)returnTotalHeight{
-    return 5*_cellHeight;
+    return [self.data count]*_cellHeight;
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     if(self.type==0){
     MovieCell *cell = [tableView dequeueReusableCellWithIdentifier:@"MovieCell" forIndexPath:indexPath];
-    cell.title.text = @"amillionwordsamillionwordsamillionwordsamillionwordsamillionwordsamillionwordsamillionwordsamillionwordsamillionwordsamillionwordsamillionwordsamillionwordsamillionwordsamillionwordsamillionwordsamillionwordsamillionwordsamillionwordsamillionwords";
-    
-    [cell setCirclePercentage:(float)arc4random()/0x100000000];
+        cell.title.text = [[self.data objectAtIndex:indexPath.row]objectForKey:@"Title"];
+        cell.Author.text =  [[[self.data objectAtIndex:indexPath.row]objectForKey:@"Author"]objectForKey:@"NickName"];
+        cell.Content.text =  [[self.data objectAtIndex:indexPath.row]objectForKey:@"Content"];
+        cell.Date.text = [[[self.data objectAtIndex:indexPath.row]objectForKey:@"ModifiedOn"]stringByReplacingOccurrencesOfString:@"-" withString:@"/"];
+        [cell.AvatarPic sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@/Uploads/UserAvatar/%@",[[AustinApi sharedInstance] getBaseUrl],[[[self.data objectAtIndex:indexPath.row]objectForKey:@"Author"] objectForKey:@"Avatar"]]] placeholderImage:[UIImage imageNamed:@"img-placeholder.jpg"]];
+        cell.viewCount.text = [[[self.data objectAtIndex:indexPath.row]objectForKey:@"ViewNum"]stringValue];
+        NSLog(@"%lu",[[[self.data objectAtIndex:indexPath.row]objectForKey:@"Picture"]count]);
+        for(int i =0;i<5;i++){
+            UIImageView *view = [cell.imageArray objectAtIndex:i];
+            if([[[self.data objectAtIndex:indexPath.row]objectForKey:@"Picture"]count]>i){
+                NSString *url = [NSString stringWithFormat:@"http://www.funmovie.tv/Content/pictures/files/%@?width=88",[[[self.data objectAtIndex:indexPath.row]objectForKey:@"Picture"]objectAtIndex:i]];
+                [view sd_setImageWithURL:[NSURL URLWithString:url] placeholderImage:[UIImage imageNamed:@"img-placeholder.jpg"]];
+            }else{
+                view.hidden = YES;
+            }
+        
+        }
+        cell.Circle.hidden = YES;
+        [[AustinApi sharedInstance] getCircleCompletion:[[self.data objectAtIndex:indexPath.row]objectForKey:@"Id"] userId:[[[self.data objectAtIndex:indexPath.row]objectForKey:@"Author"]objectForKey:@"Id"] function:^(NSDictionary *returnData) {
+            cell.Circle.hidden = NO;
+            [cell setCirclePercentage:[[returnData objectForKey:@"PercentComplete"]floatValue]*0.01];
+            [cell.Circle setNeedsDisplay];
+        } error:^(NSError *error) {
+            NSLog(@"%@",error);
+        }];
         return cell;
     }else{
             Movie2Cell *cell = [tableView dequeueReusableCellWithIdentifier:@"Movie2Cell" forIndexPath:indexPath];
-            [cell setStars:floor((float)arc4random()/0x100000000*11)];
+        NSDictionary *data =[self.data objectAtIndex:indexPath.row];
+   //     NSLog(@"%@",data);
+        cell.Title.text = [data objectForKey:@"VideoCNName"];
+        cell.Content.text = [data objectForKey:@"Review"];
+        cell.CreatedOn.text = [[data objectForKey:@"CreateOn"] stringByReplacingOccurrencesOfString:@"-" withString:@"/"];
+        cell.CreatedOn.text = [cell.CreatedOn.text substringWithRange:NSMakeRange(0,[cell.CreatedOn.text rangeOfString:@"T"].location)];
+        cell.Author.text = [data objectForKey:@"UserNickName"];
+        cell.Messages.text = [[data objectForKey:@"MessageNum"]stringValue];
+        cell.Views.text = [[data objectForKey:@"PageViews"]stringValue];
+        NSString *url = [NSString stringWithFormat:@"http://www.funmovie.tv/Content/pictures/files/%@?width=88",[data objectForKey:@"VideoPicture"]];
+        [cell.mainPic sd_setImageWithURL:[NSURL URLWithString:url] placeholderImage:[UIImage imageNamed:@"img-placeholder.jpg"]];
+        
+        [cell.AvatarPic sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@/Uploads/UserAvatar/%@",[[AustinApi sharedInstance] getBaseUrl],[data objectForKey:@"UserAvatar"]]]];
+        [cell setStars:floor([[data objectForKey:@"OwnerLinkVideo_Score"]floatValue])];
+        if([[data objectForKey:@"OwnerLinkVideo_IsLiked"]intValue]==0){
+            cell.Heart.image = [UIImage imageNamed:@"iconHeartList.png"];
+        }else{
+            cell.Heart.image = [UIImage imageNamed:@"iconHeartListLiked.png"];
+        }
+        
             return cell;
     
 

@@ -8,6 +8,8 @@
 
 #import "MovieDetailController.h"
 #import "MovieTableViewController.h"
+#import "SDWebImage/UIImageView+WebCache.h"
+#import "AustinApi.h"
 
 @interface MovieDetailController ()
 @property (strong, nonatomic) IBOutlet UIImageView *bgImage;
@@ -19,6 +21,20 @@
 @property (strong, nonatomic) IBOutlet NSLayoutConstraint *reviewTableHeight;
 @property MovieTableViewController *movieTableController;
 @property MovieTableViewController *movieTable2Controller;
+@property NSArray *starArray;
+@property (strong, nonatomic) IBOutlet UIImageView *starOne;
+@property (strong, nonatomic) IBOutlet UIImageView *starTwo;
+@property (strong, nonatomic) IBOutlet UIImageView *starThree;
+@property (strong, nonatomic) IBOutlet UIImageView *starFour;
+@property (strong, nonatomic) IBOutlet UIImageView *starFive;
+@property (strong, nonatomic) IBOutlet UILabel *ChineseName;
+@property (strong, nonatomic) IBOutlet UILabel *EnglishName;
+@property (strong, nonatomic) IBOutlet UILabel *releaseDate;
+@property (strong, nonatomic) IBOutlet UIImageView *smallImage;
+@property (strong, nonatomic) IBOutlet NSLayoutConstraint *movieDescriptionHeight;
+@property (strong, nonatomic) IBOutlet UILabel *movieDescription;
+@property (strong, nonatomic) IBOutlet UILabel *imdb;
+@property (strong, nonatomic) IBOutlet UILabel *bean;
 @end
 
 @implementation MovieDetailController
@@ -42,7 +58,6 @@
     gradientLayer.startPoint = CGPointMake(1.0f, 0.7f);
     gradientLayer.endPoint = CGPointMake(1.0f, 1.0f);
     self.bgImage.layer.mask = gradientLayer;
-    [self createActorSlider];
     
     self.movieTableController = [[MovieTableViewController alloc] init:0];
     self.topicTable.delegate = self.movieTableController;
@@ -55,22 +70,56 @@
     self.reviewTable.dataSource = self.movieTable2Controller;
     self.movieTable2Controller.tableHeight = self.reviewTableHeight;
     self.movieTable2Controller.tableView = self.reviewTable;
+    
+    self.starArray = [[NSArray alloc]initWithObjects:self.starOne,self.starTwo,self.starThree,self.starFour,self.starFive, nil];
+    [self setStars:[[self.movieDetailInfo objectForKey:@"AverageScore"]intValue]];
+    self.ChineseName.text = [self.movieDetailInfo objectForKey:@"CNName"];
+    self.EnglishName.text = [self.movieDetailInfo objectForKey:@"ENName"];
+    [self.smallImage sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://www.funmovie.tv/Content/pictures/files/%@?width=90",[self.movieDetailInfo objectForKey:@"Picture"]]] placeholderImage:[UIImage imageNamed:@"img-placeholder.jpg"]];
+    
+    [self.bgImage sd_setImageWithURL:[NSURL URLWithString:[self.movieDetailInfo objectForKey:@"PosterPath"]] placeholderImage:[UIImage imageNamed:@"img-placeholder.jpg"]];
+    self.releaseDate.text = [NSString stringWithFormat:@"%@ 上映",[[self.movieDetailInfo objectForKey:@"ReleaseDate"]stringByReplacingOccurrencesOfString:@"-" withString:@"/"]];
+    self.movieDescription.text = [self.movieDetailInfo objectForKey:@"Intro"];
+    self.movieDescriptionHeight.constant = [self.movieDescription.text length]/26*30;
+    self.bean.text = [NSString stringWithFormat:@"%.1f",[[self.movieDetailInfo objectForKey:@"Ratings_Douban"]floatValue]];
+    self.imdb.text = [NSString stringWithFormat:@"%.1f",[[self.movieDetailInfo objectForKey:@"Ratings_IMDB"]floatValue]];
+    NSLog(@"%@",self.movieDetailInfo);
+    
+    [[AustinApi sharedInstance] movieDetail:[self.movieDetailInfo objectForKey:@"Id"] function:^(NSMutableDictionary *returnData) {
+       // NSLog(@"%@",[returnData objectForKey:@"Actor"]);
+        int count = 0;
+        NSMutableArray *array = [[NSMutableArray alloc]initWithArray:[returnData objectForKey:@"Actor"]];
+        for (NSDictionary *row in array) {
+            if([[row objectForKey:@"RoleType"]isEqualToString:@"Director"]){
+                id obj = array[count];
+                [array removeObjectAtIndex:count];
+                [array insertObject:obj atIndex:0];
+                break;
+            }
+            count++;
+        }
+        [self createActorSlider:array];
+        
+    } error:^(NSError *error) {
+        NSLog(@"%@",error);
+    }];
 }
 
--(void)createActorSlider{
+-(void)createActorSlider:(NSArray*)actors{
     int width = 100;
     int margin =10;
     int height = 150;
     int count = 0;
+    self.actorScroll.contentSize = CGSizeMake(100*[actors count], self.actorScroll.frame.size.height);
+    for (NSDictionary *row in actors) {
     
-    for (int i=0; i<11; i++) {
-    
-    UIImageView *view = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"on.png"]];
+    UIImageView *view = [[UIImageView alloc]init];
     view.frame = CGRectMake(margin+width*count, 0, width-margin*2, height);
+    [view sd_setImageWithURL:[NSURL URLWithString:[row objectForKey:@"Avatar"]]  placeholderImage:[UIImage imageNamed:@"img-placeholder.jpg"]];
     UILabel *label  = [[UILabel alloc]initWithFrame:CGRectMake(margin+width*count, height, width-margin*2, 20)];
     label.textAlignment =NSTextAlignmentLeft;
     label.textColor  = [[UIColor alloc]initWithRed:51.0/255.0f green:68.0/255.0f blue:85.0/255.0f alpha:1];
-    label.text = @"actor";
+    label.text = [row objectForKey:@"CNName"];
     label.font =  [UIFont fontWithName:@"Heiti SC" size:14.0f];
         
     [self.actorScroll addSubview:label];
@@ -79,10 +128,24 @@
     }
 
 }
-
+-(void)setStars:(int)rating{
+    int main =floor(rating/2);
+    int remain = rating%2;
+    int count = 1;
+    for (UIImageView *row in self.starArray) {
+        if(main>=count){
+            row.image = [UIImage imageNamed:@"iconStarSitetotal.png"];
+        }else if (remain==1&&count==(main+1)){
+            row.image = [UIImage imageNamed:@"iconStarHalfSitetotal.png"];
+        }else{
+            row.image = [UIImage imageNamed:@"iconStarOSitetotal.png"];
+        }
+        
+        count++;
+    }
+    
+}
 -(void)viewDidLayoutSubviews{
-
-    self.actorScroll.contentSize = CGSizeMake(100*11, self.actorScroll.frame.size.height);
     self.mainScroll.contentSize  = CGSizeMake(self.view.frame.size.width,3400);
 }
 -(void)goBack{

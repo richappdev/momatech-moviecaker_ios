@@ -13,4 +13,5 @@
 - (id)init:(int)type;
 -(int)returnTotalHeight;
 @property int type;
+@property NSArray *data;
 @end
