@@ -10,4 +10,5 @@
 
 @interface MovieTwoTableViewController : UITableViewController
 @property int type;
+@property NSArray *data;
 @end

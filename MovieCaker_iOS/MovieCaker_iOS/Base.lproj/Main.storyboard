@@ -2099,9 +2099,6 @@
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tlp-Az-qU5">
                                                     <rect key="frame" x="203" y="38" width="52" height="14"/>
                                                     <subviews>
-                                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="lableImdb" translatesAutoresizingMaskIntoConstraints="NO" id="jmc-f4-N4b">
-                                                            <rect key="frame" x="0.0" y="0.0" width="52" height="14"/>
-                                                        </imageView>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="10.0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="h7T-Me-CHu">
                                                             <rect key="frame" x="30" y="-4" width="22" height="21"/>
                                                             <constraints>
@@ -2111,6 +2108,9 @@
                                                             <color key="textColor" red="0.094117647058823528" green="0.10588235294117647" blue="0.12549019607843137" alpha="1" colorSpace="calibratedRGB"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
+                                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="lableImdb" translatesAutoresizingMaskIntoConstraints="NO" id="jmc-f4-N4b">
+                                                            <rect key="frame" x="0.0" y="0.0" width="52" height="14"/>
+                                                        </imageView>
                                                     </subviews>
                                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                     <constraints>
@@ -2373,8 +2373,17 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
+                                            <outlet property="date" destination="i19-0d-Qtv" id="0ac-lW-SDP"/>
+                                            <outlet property="dou" destination="km1-Yg-AqR" id="0uu-a4-rdI"/>
+                                            <outlet property="favored" destination="F2L-JW-mXN" id="hDy-ur-mf0"/>
+                                            <outlet property="image" destination="rPg-PU-v1W" id="cII-t1-lsp"/>
+                                            <outlet property="imdb" destination="h7T-Me-CHu" id="SqL-TD-BBh"/>
+                                            <outlet property="liked" destination="gTZ-nf-5RR" id="P9I-p5-Oca"/>
                                             <outlet property="ratingBg" destination="DE7-CL-xk6" id="NYk-aP-cqp"/>
                                             <outlet property="ratingLabel" destination="Gxy-ub-7kl" id="Jp6-aU-Wjn"/>
+                                            <outlet property="reviewed" destination="aMk-PB-f8X" id="LNt-Xz-HTQ"/>
+                                            <outlet property="title" destination="RAk-cn-C7D" id="HSN-kn-Do7"/>
+                                            <outlet property="viewed" destination="KX6-eT-3gT" id="MlD-pb-b7a"/>
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="MovieTableTwo" rowHeight="165" id="h0X-0U-lCN" customClass="MovieTabCell">

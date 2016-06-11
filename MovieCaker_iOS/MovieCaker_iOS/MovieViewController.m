@@ -161,6 +161,7 @@
         for (NSDictionary *row in returnData) {
             if(count==0){
                 self.locationLabel.text = [row objectForKey:@"Name"];
+                [self getMovieList:@"2" location:[row objectForKey:@"Id"]];
             }
             UIView *view;
             if(self.view.frame.size.width>=375){
@@ -197,6 +198,22 @@
     }];
 
 
+}
+
+-(void)getMovieList:(NSString*)type location:(NSString*)locationId {
+    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+    [formatter setDateFormat:@"yyyy"];
+    NSString *yearString = [formatter stringFromDate:[NSDate date]];
+    [formatter setDateFormat:@"MM"];
+    NSString *monthString = [formatter stringFromDate:[NSDate date]];
+    
+    [[AustinApi sharedInstance] movieListCustom:type location:locationId year:yearString month:monthString function:^(NSArray *returnData) {
+        NSLog(@"%@",returnData);
+        self.movieTableController.data = returnData;
+        [self.movieTable reloadData];
+    } error:^(NSError *error) {
+        NSLog(@"%@",error);
+    }];
 }
 -(void)setLocationBtnColor:(int)index{
     NSDictionary *temp = [self.locationArray objectAtIndex:self.locationIndex];

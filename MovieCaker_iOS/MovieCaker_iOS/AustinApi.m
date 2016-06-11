@@ -123,6 +123,23 @@
     }];
 }
 
+-(void)movieListCustom:(NSString*)type location:(NSString*)locationId year:(NSString*)year month:(NSString*)month function:(void (^)(NSArray*returnData))completion error:(void (^)(NSError *error))error{
+    NSMutableDictionary *parameter =[[NSMutableDictionary alloc]initWithDictionary:@{@"type":type,@"locationId":locationId}];
+    if(year!=nil){
+        [parameter setValue:year forKey:@"y"];
+    }
+    if(month!=nil){
+        [parameter setValue:month forKey:@"m"];
+    }
+    NSLog(@"%@",parameter);
+    [self apiGetMethod:@"api/video" parameter:parameter addTokenHeader:@"1" completion:^(id response) {
+        
+        completion([response objectForKey:@"Data"]);
+    } error:^(NSError *error2) {
+        error(error2);
+    }];
+}
+
 -(void)movieDetail:(NSString*)vid function:(void (^)(NSMutableDictionary *returnData))completion error:(void (^)(NSError *error))error{
     NSDictionary *parameter = @{@"vid":vid};
     [self apiGetMethod:@"api/video" parameter:parameter addTokenHeader:@"1" completion:^(id response) {
