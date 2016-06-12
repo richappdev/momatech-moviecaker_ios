@@ -42,6 +42,11 @@
 @property (strong, nonatomic) IBOutlet UILabel *threeTwoL;
 @property (strong, nonatomic) IBOutlet UILabel *threeThreeL;
 
+@property NSArray *tabOneData;
+@property NSArray *tabTwoData;
+@property NSArray *tabThreeData;
+@property NSArray *tabFourData;
+
 @property UILabel* fOneIndex;
 @property UILabel* fTwoIndex;
 @property UILabel* fFourIndex;
@@ -208,7 +213,7 @@
     NSString *monthString = [formatter stringFromDate:[NSDate date]];
     
     [[AustinApi sharedInstance] movieListCustom:type location:locationId year:yearString month:monthString function:^(NSArray *returnData) {
-        NSLog(@"%@",returnData);
+        self.tabOneData = returnData;
         self.movieTableController.data = returnData;
         [self.movieTable reloadData];
     } error:^(NSError *error) {
@@ -294,28 +299,45 @@
         self.currentFilter.alpha = 0;
         self.topMargin.constant = 0;
         BOOL change = false;
+        
+        self.movieTableController.type = self.filterIndex;
         if(self.filterIndex ==0){
+            if(self.tabOneData!=nil){
+                self.movieTableController.data = self.tabOneData;
+                [self.movieTableController.tableView reloadData];
+            }
             self.currentFilter = self.firstFilter;
             change = true;
         }
         if(self.filterIndex==1){
+            [self.movieTableController.tableView reloadData];
             self.currentFilter = self.secondFilter;
             change = true;
         }
         if(self.filterIndex==2){
+            [self.movieTableController.tableView reloadData];
             self.topMargin.constant = -36;
         }
         if(self.filterIndex==3){
             self.currentFilter = self.thirdFilter;
             change = true;
+            if(self.tabFourData!=nil){
+                self.movieTableController.data =self.tabFourData;
+                [self.movieTableController.tableView reloadData];
+            }else{
+            [[AustinApi sharedInstance]getReview:@"2" function:^(NSArray *returnData) {
+                self.tabFourData =returnData;
+                self.movieTableController.data = returnData;
+                [self.movieTableController.tableView reloadData];
+            } error:^(NSError *error) {
+                NSLog(@"%@",error);
+            }];}	
         }
         if(change){
             self.currentFilter.alpha = 1;}
         [UIView commitAnimations];
         
-        self.movieTableController.type = self.filterIndex;
-        [self.movieTableController.tableView reloadData];
-    }
+        }
 }
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

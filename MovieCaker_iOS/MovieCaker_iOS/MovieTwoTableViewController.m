@@ -8,6 +8,8 @@
 
 #import "MovieTwoTableViewController.h"
 #import "MovieTabCell.h"
+#import "Movie2Cell.h"
+#import "AustinApi.h"
 #import "SDWebImage/UIImageView+WebCache.h"
 
 @interface MovieTwoTableViewController ()
@@ -68,7 +70,27 @@
     cell.ratingLabel.text = [NSString stringWithFormat:@"%ld",(long)indexPath.row+1];
         return cell;
     }else if (self.type ==3){
-    cell = [tableView dequeueReusableCellWithIdentifier:@"MovieTableThree" forIndexPath:indexPath];
+    Movie2Cell *cell = [tableView dequeueReusableCellWithIdentifier:@"MovieTableThree" forIndexPath:indexPath];
+        NSDictionary *data =[self.data objectAtIndex:indexPath.row];
+        //     NSLog(@"%@",data);
+        cell.Title.text = [data objectForKey:@"VideoCNName"];
+        cell.Content.text = [data objectForKey:@"Review"];
+        cell.CreatedOn.text = [[data objectForKey:@"CreateOn"] stringByReplacingOccurrencesOfString:@"-" withString:@"/"];
+        cell.CreatedOn.text = [cell.CreatedOn.text substringWithRange:NSMakeRange(0,[cell.CreatedOn.text rangeOfString:@"T"].location)];
+        cell.Author.text = [data objectForKey:@"UserNickName"];
+        cell.Messages.text = [[data objectForKey:@"MessageNum"]stringValue];
+        cell.Views.text = [[data objectForKey:@"PageViews"]stringValue];
+        NSString *url = [NSString stringWithFormat:@"http://www.funmovie.tv/Content/pictures/files/%@?width=88",[data objectForKey:@"VideoPicture"]];
+        [cell.mainPic sd_setImageWithURL:[NSURL URLWithString:url] placeholderImage:[UIImage imageNamed:@"img-placeholder.jpg"]];
+        
+        [cell.AvatarPic sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@/Uploads/UserAvatar/%@",[[AustinApi sharedInstance] getBaseUrl],[data objectForKey:@"UserAvatar"]]]];
+        [cell setStars:floor([[data objectForKey:@"OwnerLinkVideo_Score"]floatValue])];
+        if([[data objectForKey:@"OwnerLinkVideo_IsLiked"]intValue]==0){
+            cell.Heart.image = [UIImage imageNamed:@"iconHeartList.png"];
+        }else{
+            cell.Heart.image = [UIImage imageNamed:@"iconHeartListLiked.png"];
+        }
+        return cell;
     }
     return cell;
 }
