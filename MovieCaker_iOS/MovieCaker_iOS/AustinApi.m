@@ -124,7 +124,10 @@
 }
 
 -(void)movieListCustom:(NSString*)type location:(NSString*)locationId year:(NSString*)year month:(NSString*)month function:(void (^)(NSArray*returnData))completion error:(void (^)(NSError *error))error{
-    NSMutableDictionary *parameter =[[NSMutableDictionary alloc]initWithDictionary:@{@"type":type,@"locationId":locationId}];
+    NSMutableDictionary *parameter =[[NSMutableDictionary alloc]initWithDictionary:@{@"type":type}];
+    if(locationId!=nil){
+        [parameter setObject:locationId forKey:@"locationId"];
+    }
     if(year!=nil){
         [parameter setValue:year forKey:@"y"];
     }

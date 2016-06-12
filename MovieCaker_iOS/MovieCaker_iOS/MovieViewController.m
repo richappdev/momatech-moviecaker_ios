@@ -141,7 +141,15 @@
     UILabel *current = (UILabel*)gesture.view;
     if(self.currentFilter.tag==0){
         previous = self.fOneIndex;
-        self.fOneIndex = current;
+        if(previous!=current){
+            if(current.tag==0){
+            [self getMovieList:@"2" location:[[self.locationArray objectAtIndex:self.locationIndex]objectForKey:@"Id"] type:0];
+            }else if (current.tag==1){
+              [self getMovieList:@"2" location:[[self.locationArray objectAtIndex:self.locationIndex]objectForKey:@"Id"] type:1];
+            }
+
+            self.fOneIndex = current;
+        }
     }
     if (self.currentFilter.tag==1){
         previous = self.fTwoIndex;
@@ -166,7 +174,7 @@
         for (NSDictionary *row in returnData) {
             if(count==0){
                 self.locationLabel.text = [row objectForKey:@"Name"];
-                [self getMovieList:@"2" location:[row objectForKey:@"Id"]];
+                [self getMovieList:@"2" location:[row objectForKey:@"Id"] type:0];
             }
             UIView *view;
             if(self.view.frame.size.width>=375){
@@ -205,13 +213,19 @@
 
 }
 
--(void)getMovieList:(NSString*)type location:(NSString*)locationId {
+-(void)getMovieList:(NSString*)type location:(NSString*)locationId type:(int)callType {
     NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
     [formatter setDateFormat:@"yyyy"];
     NSString *yearString = [formatter stringFromDate:[NSDate date]];
     [formatter setDateFormat:@"MM"];
     NSString *monthString = [formatter stringFromDate:[NSDate date]];
-    
+    if(callType==1){
+        int temp =[monthString intValue]+1;
+        if(temp>12){
+            temp=1;
+        }
+        monthString = [NSString stringWithFormat:@"%d",temp];
+    }
     [[AustinApi sharedInstance] movieListCustom:type location:locationId year:yearString month:monthString function:^(NSArray *returnData) {
         self.tabOneData = returnData;
         self.movieTableController.data = returnData;
@@ -310,11 +324,22 @@
             change = true;
         }
         if(self.filterIndex==1){
-            [self.movieTableController.tableView reloadData];
             self.currentFilter = self.secondFilter;
             change = true;
+            if(self.tabTwoData!=nil){
+                self.movieTableController.data= self.tabTwoData;
+                [self.movieTable reloadData];
+            }else{
+            [[AustinApi sharedInstance] movieListCustom:@"6" location:nil year:nil month:nil function:^(NSArray *returnData) {
+                self.tabTwoData = returnData;
+                self.movieTableController.data = returnData;
+                [self.movieTable reloadData];
+            } error:^(NSError *error) {
+                NSLog(@"%@",error);
+            }];}
         }
         if(self.filterIndex==2){
+            self.movieTableController.data =[[NSArray alloc]init];
             [self.movieTableController.tableView reloadData];
             self.topMargin.constant = -36;
         }
