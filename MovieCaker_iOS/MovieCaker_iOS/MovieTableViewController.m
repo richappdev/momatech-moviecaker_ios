@@ -34,7 +34,7 @@
 }
 -(void)viewWillLayoutSubviews{
     self.tableView.scrollEnabled = false;
-    self.tableHeight.constant = self.cellHeight*5;
+    self.tableHeight.constant = self.cellHeight*[self.data count];
     self.tableView.allowsSelection = NO;
     [self.tableView setSeparatorColor:[UIColor clearColor]];
 }

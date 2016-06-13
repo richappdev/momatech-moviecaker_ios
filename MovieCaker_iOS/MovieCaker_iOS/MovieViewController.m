@@ -158,13 +158,58 @@
     
     if (self.currentFilter.tag==2){
         previous = self.fFourIndex;
+        if(previous!=current){
+            if(current.tag==0){
+                self.movieTableController.data = self.tabFourData;
+            }else{
+                NSMutableArray *data = [[NSMutableArray alloc]init];
+                for (NSDictionary *row in self.tabFourData) {
+                
+            NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+            [dateFormatter setDateFormat:@"yyyy/MM/dd'T'HH:mm:ss"];
+            NSString *test= [[row objectForKey:@"CreateOn"] substringWithRange:NSMakeRange(0,19)];
+            NSDate *dateFromString = [dateFormatter dateFromString:test];
+                    if([self within7Days:dateFromString]&&current.tag==2)
+            {
+                [data addObject:row];
+            }
+                    if(current.tag==1){
+            NSDateComponents *components = [[NSCalendar currentCalendar] components:NSCalendarUnitDay | NSCalendarUnitMonth | NSCalendarUnitYear fromDate:dateFromString];
+            NSInteger month = [components month];
+            components = [[NSCalendar currentCalendar] components:NSCalendarUnitDay | NSCalendarUnitMonth | NSCalendarUnitYear fromDate:[[NSDate alloc]init]];
+            
+            if(month==[components month]){
+                [data addObject:row];
+            }}
+                    
+            }
+                self.movieTableController.data =data;
+
+
+        }
+            [self.movieTableController.tableView reloadData];
+        }
         self.fFourIndex = current;
     }
     
     previous.textColor = [UIColor blackColor];
     current.textColor = [UIColor colorWithRed:(244.0f/255.0f) green:(154.0f/255.0f) blue:(68.0/255.0f) alpha:1];
 }
+-(BOOL)within7Days:(NSDate*)someDate{
 
+    NSDate *currentDate = [NSDate date];
+    NSDate *dateSevenDaysPrior = [currentDate dateByAddingTimeInterval:-(7 * 24 * 60 * 60)];
+
+    if (([dateSevenDaysPrior compare:someDate] != NSOrderedDescending) &&
+        ([someDate compare:currentDate] != NSOrderedDescending))
+    {
+        return YES;
+    }
+    else
+    {
+        return NO;
+    }
+}
 -(void)createLocationIcons{
     
     

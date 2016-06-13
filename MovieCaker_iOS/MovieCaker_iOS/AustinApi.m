@@ -163,7 +163,7 @@
 }
 
 -(void)getReview:(NSString*)order function:(void (^)(NSArray *returnData))completion error:(void (^)(NSError *error))error{
-    NSDictionary *parameter = @{@"order":order,@"limit":@"5"};
+    NSDictionary *parameter = @{@"order":order,@"limit":@"10"};
     [self apiGetMethod:@"v1/Review" parameter:parameter addTokenHeader:@"1" completion:^(id response) {
         
         completion([response objectForKey:@"Data"]);
