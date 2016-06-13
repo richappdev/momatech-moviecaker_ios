@@ -145,7 +145,7 @@
         NSLog(@"%@",error);
     }];
 
-    [[AustinApi sharedInstance]getTopic:@"6" function:^(NSArray *returnData) {
+    [[AustinApi sharedInstance]getTopic:@"6" vid:nil function:^(NSArray *returnData) {
    //     NSLog(@"bbb%@",returnData);
         self.movieTableController = [[MovieTableViewController alloc] init:0];
         self.movieTableController.data =returnData;

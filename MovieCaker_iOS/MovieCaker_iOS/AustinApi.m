@@ -152,9 +152,13 @@
         error(error2);	
     }];
 }
--(void)getTopic:(NSString*)type function:(void (^)(NSArray *returnData))completion error:(void (^)(NSError *error))error{
-    NSDictionary *parameter = @{@"type":type};
-    [self apiGetMethod:@"v1/topic" parameter:parameter addTokenHeader:@"1" completion:^(id response) {
+-(void)getTopic:(NSString*)type vid:(NSString *)vid function:(void (^)(NSArray *returnData))completion error:(void (^)(NSError *error))error{
+    NSMutableDictionary *parameter =[[NSMutableDictionary alloc]initWithDictionary: @{@"type":type}];
+    if(vid!=nil){
+        [parameter setObject:vid forKey:@"vid"];
+    }
+    NSLog(@"%@",parameter);
+    [self apiGetMethod:@"api/topic" parameter:parameter addTokenHeader:@"1" completion:^(id response) {
         
         completion([response objectForKey:@"Data"]);
     } error:^(NSError *error2) {

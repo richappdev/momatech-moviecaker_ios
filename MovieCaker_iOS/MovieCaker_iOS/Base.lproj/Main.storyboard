@@ -1561,9 +1561,18 @@
                                                     </constraints>
                                                 </tableViewCellContentView>
                                                 <connections>
+                                                    <outlet property="Author" destination="bBN-gl-Fil" id="BGW-Ic-Mj2"/>
+                                                    <outlet property="AvatarPic" destination="IEc-bK-aqT" id="tu6-h7-5t9"/>
+                                                    <outlet property="Content" destination="FGU-3R-jfn" id="ITS-PO-QPj"/>
+                                                    <outlet property="Date" destination="IaM-ql-MbL" id="cy4-zz-Yzf"/>
+                                                    <outlet property="five" destination="SKh-Z1-AUu" id="gUF-cj-SU6"/>
+                                                    <outlet property="four" destination="1bb-Gy-SrJ" id="c2w-8f-ZFc"/>
                                                     <outlet property="likeBtn" destination="0Sb-iY-lzp" id="U07-Sx-681"/>
+                                                    <outlet property="one" destination="3R3-5c-6YN" id="A95-r8-gDD"/>
                                                     <outlet property="shareBtn" destination="aQX-wF-iIw" id="cyK-ga-F31"/>
+                                                    <outlet property="three" destination="yiH-zW-aBy" id="Kg5-of-ahT"/>
                                                     <outlet property="title" destination="sKJ-Zd-Heu" id="Sf0-vq-Udt"/>
+                                                    <outlet property="two" destination="Bci-Ac-qZZ" id="IrM-xp-z5z"/>
                                                 </connections>
                                             </tableViewCell>
                                         </prototypes>
@@ -2003,6 +2012,7 @@
                     <connections>
                         <outlet property="ChineseName" destination="81h-qL-LxI" id="xWz-Ks-oiq"/>
                         <outlet property="EnglishName" destination="Sec-ic-6sy" id="Mv5-TL-YvF"/>
+                        <outlet property="TopicTop" destination="C63-aB-cIx" id="OmF-8S-Edx"/>
                         <outlet property="actorScroll" destination="BpZ-Me-Nt1" id="hTH-NL-uIR"/>
                         <outlet property="bean" destination="idI-1B-qtg" id="if1-xx-wDG"/>
                         <outlet property="bgImage" destination="ApQ-on-j71" id="Igh-hv-17r"/>
@@ -2019,6 +2029,7 @@
                         <outlet property="starOne" destination="IIV-GJ-g5i" id="U5U-0n-gSG"/>
                         <outlet property="starThree" destination="h47-DF-EUP" id="YJ8-wq-tbv"/>
                         <outlet property="starTwo" destination="wKX-Du-oLC" id="iCH-lG-mTH"/>
+                        <outlet property="topicGrey" destination="PDU-Mz-8qO" id="cl0-ls-vDB"/>
                         <outlet property="topicTable" destination="Oc3-18-2yn" id="Chd-cl-b18"/>
                         <outlet property="topicTableHeight" destination="z7a-Jh-loc" id="rgx-ax-gkv"/>
                     </connections>
