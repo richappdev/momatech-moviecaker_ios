@@ -3049,7 +3049,7 @@
                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="熱門" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Xbg-DK-F1t">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="熱映" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Xbg-DK-F1t">
                                         <rect key="frame" x="70" y="11" width="32" height="19"/>
                                         <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="16"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -3065,7 +3065,7 @@
                                         <rect key="frame" x="69" y="42" width="32" height="4"/>
                                         <color key="backgroundColor" red="0.23529411764705882" green="0.5607843137254902" blue="0.52941176470588236" alpha="1" colorSpace="calibratedRGB"/>
                                     </view>
-                                    <label opaque="NO" userInteractionEnabled="NO" tag="1" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="熱映" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Mwd-56-u4T">
+                                    <label opaque="NO" userInteractionEnabled="NO" tag="1" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="熱門" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Mwd-56-u4T">
                                         <rect key="frame" x="118" y="11" width="32" height="19"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="32" id="247-GA-0W8"/>

@@ -173,7 +173,7 @@
 }
 
 
--(void)locationList:(void (^)(NSMutableDictionary *returnData))completion error:(void (^)(NSError *error))error{
+-(void)locationList:(void (^)(NSArray *returnData))completion error:(void (^)(NSError *error))error{
     NSDictionary *parameter = @{@"type": @"1"};
     [self apiGetMethod:@"api/location" parameter:parameter addTokenHeader:@"1" completion:^(id response) {
         

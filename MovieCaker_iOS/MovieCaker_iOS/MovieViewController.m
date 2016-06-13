@@ -26,6 +26,7 @@
 @property int filterIndex;
 @property NSArray *labelArray;
 @property NSArray *locationArray;
+@property NSArray *locationBackend;
 @property int locationIndex;
 @property int index;
 @property (strong, nonatomic) IBOutlet UILabel *locationLabel;
@@ -143,9 +144,11 @@
         previous = self.fOneIndex;
         if(previous!=current){
             if(current.tag==0){
-            [self getMovieList:@"2" location:[[self.locationArray objectAtIndex:self.locationIndex]objectForKey:@"Id"] type:0];
+            [self getMovieList:@"6" location:[[self.locationBackend objectAtIndex:self.locationIndex]objectForKey:@"Id"] type:0];
             }else if (current.tag==1){
-              [self getMovieList:@"2" location:[[self.locationArray objectAtIndex:self.locationIndex]objectForKey:@"Id"] type:1];
+              [self getMovieList:@"6" location:[[self.locationBackend objectAtIndex:self.locationIndex]objectForKey:@"Id"] type:1];
+            }else if (current.tag==2){
+                [self getMovieList:@"6" location:nil type:2];
             }
 
             self.fOneIndex = current;
@@ -213,13 +216,14 @@
 -(void)createLocationIcons{
     
     
-    [[AustinApi sharedInstance] locationList:^(NSMutableDictionary *returnData) {
+    [[AustinApi sharedInstance] locationList:^(NSArray *returnData) {
+        self.locationBackend = returnData;
         NSMutableArray *tempArray = [[NSMutableArray alloc]init];
         int count = 0;
         for (NSDictionary *row in returnData) {
             if(count==0){
                 self.locationLabel.text = [row objectForKey:@"Name"];
-                [self getMovieList:@"2" location:[row objectForKey:@"Id"] type:0];
+                [self getMovieList:@"6" location:[row objectForKey:@"Id"] type:0];
             }
             UIView *view;
             if(self.view.frame.size.width>=375){
@@ -271,6 +275,11 @@
         }
         monthString = [NSString stringWithFormat:@"%d",temp];
     }
+    if(callType==2){
+        monthString =nil;
+        yearString = nil;
+    }
+
     [[AustinApi sharedInstance] movieListCustom:type location:locationId year:yearString month:monthString function:^(NSArray *returnData) {
         self.tabOneData = returnData;
         self.movieTableController.data = returnData;
@@ -292,6 +301,11 @@
     view.backgroundColor =[UIColor colorWithRed:(244.0f/255.0f) green:(154.0f/255.0f) blue:(68.0f/255.0f) alpha:1];
     label.textColor = [UIColor whiteColor];
     self.locationIndex = index;
+    if(self.fOneIndex.tag!=2){
+        [self getMovieList:@"6" location:[[self.locationBackend objectAtIndex:index] objectForKey:@"Id"] type:(int)self.fOneIndex.tag];}
+    else{
+        [self getMovieList:@"6" location:nil type:2];
+    }
 }
 -(void)locationBtnClick:(UITapGestureRecognizer*)gestureRecongnizer{
     [self setLocationBtnColor:(int)gestureRecongnizer.view.tag];
@@ -375,7 +389,7 @@
                 self.movieTableController.data= self.tabTwoData;
                 [self.movieTable reloadData];
             }else{
-            [[AustinApi sharedInstance] movieListCustom:@"6" location:nil year:nil month:nil function:^(NSArray *returnData) {
+            [[AustinApi sharedInstance] movieListCustom:@"2" location:nil year:nil month:nil function:^(NSArray *returnData) {
                 self.tabTwoData = returnData;
                 self.movieTableController.data = returnData;
                 [self.movieTable reloadData];
