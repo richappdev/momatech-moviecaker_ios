@@ -156,6 +156,15 @@
     }
     if (self.currentFilter.tag==1){
         previous = self.fTwoIndex;
+        if(previous!=current){
+            if(current.tag==0){
+                [self getMovieList:@"month" location:nil type:3];
+            }else if (current.tag==1){
+                [self getMovieList:@"week" location:nil type:3];
+            }else if (current.tag==2){
+                [self getMovieList:@"year" location:nil type:3];
+            }
+        }
         self.fTwoIndex = current;
     }
     
@@ -275,13 +284,18 @@
         }
         monthString = [NSString stringWithFormat:@"%d",temp];
     }
-    if(callType==2){
+    if(callType==2||callType==3){
         monthString =nil;
         yearString = nil;
     }
 
     [[AustinApi sharedInstance] movieListCustom:type location:locationId year:yearString month:monthString function:^(NSArray *returnData) {
+        if(callType==3){
+        self.tabTwoData = returnData;
+        }
+        else{
         self.tabOneData = returnData;
+        }
         self.movieTableController.data = returnData;
         [self.movieTable reloadData];
     } error:^(NSError *error) {
@@ -301,14 +315,14 @@
     view.backgroundColor =[UIColor colorWithRed:(244.0f/255.0f) green:(154.0f/255.0f) blue:(68.0f/255.0f) alpha:1];
     label.textColor = [UIColor whiteColor];
     self.locationIndex = index;
-    if(self.fOneIndex.tag!=2){
-        [self getMovieList:@"6" location:[[self.locationBackend objectAtIndex:index] objectForKey:@"Id"] type:(int)self.fOneIndex.tag];}
-    else{
-        [self getMovieList:@"6" location:nil type:2];
-    }
 }
 -(void)locationBtnClick:(UITapGestureRecognizer*)gestureRecongnizer{
     [self setLocationBtnColor:(int)gestureRecongnizer.view.tag];
+    if(self.fOneIndex.tag!=2){
+        [self getMovieList:@"6" location:[[self.locationBackend objectAtIndex:(int)gestureRecongnizer.view.tag] objectForKey:@"Id"] type:(int)self.fOneIndex.tag];}
+    else{
+        [self getMovieList:@"6" location:nil type:2];
+    }
     [self confirmLocation:gestureRecongnizer];
 }
 -(void)confirmLocation:(UITapGestureRecognizer*)gestureRecongnizer{
@@ -389,13 +403,7 @@
                 self.movieTableController.data= self.tabTwoData;
                 [self.movieTable reloadData];
             }else{
-            [[AustinApi sharedInstance] movieListCustom:@"2" location:nil year:nil month:nil function:^(NSArray *returnData) {
-                self.tabTwoData = returnData;
-                self.movieTableController.data = returnData;
-                [self.movieTable reloadData];
-            } error:^(NSError *error) {
-                NSLog(@"%@",error);
-            }];}
+                [self getMovieList:@"month" location:nil type:3];}
         }
         if(self.filterIndex==2){
             self.movieTableController.data =[[NSArray alloc]init];
