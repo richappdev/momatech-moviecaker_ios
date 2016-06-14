@@ -62,7 +62,7 @@
     self.bgImage.layer.mask = gradientLayer;
     
     [[AustinApi sharedInstance]getTopic:@"7" vid:[self.movieDetailInfo objectForKey:@"Id"] function:^(NSArray *returnData) {
-        NSLog(@"%lu",(unsigned long)[returnData count]);
+        NSLog(@"a%lu",(unsigned long)[returnData count]);
         self.movieTableController = [[MovieTableViewController alloc] init:0];
         self.topicTable.delegate = self.movieTableController;
         self.topicTable.dataSource = self.movieTableController;
@@ -81,11 +81,19 @@
         NSLog(@"%@",error);
     }];
     
-    self.movieTable2Controller = [[MovieTableViewController alloc] init:1];
-    self.reviewTable.delegate = self.movieTable2Controller;
-    self.reviewTable.dataSource = self.movieTable2Controller;
-    self.movieTable2Controller.tableHeight = self.reviewTableHeight;
-    self.movieTable2Controller.tableView = self.reviewTable;
+    [[AustinApi sharedInstance] getReviewByVid:[self.movieDetailInfo objectForKey:@"Id"] function:^(NSArray *returnData) {
+        NSLog(@"b%lu",(unsigned long)[returnData count]);
+        self.movieTable2Controller = [[MovieTableViewController alloc] init:1];
+        self.reviewTable.delegate = self.movieTable2Controller;
+        self.reviewTable.dataSource = self.movieTable2Controller;
+        self.movieTable2Controller.tableHeight = self.reviewTableHeight;
+        self.movieTable2Controller.tableView = self.reviewTable;
+        self.movieTable2Controller.data = returnData;
+        [self.movieTable2Controller.tableView reloadData];
+        [self scrollSize];
+    } error:^(NSError *error) {
+        NSLog(@"%@",error);
+    }];
     
     self.starArray = [[NSArray alloc]initWithObjects:self.starOne,self.starTwo,self.starThree,self.starFour,self.starFive, nil];
     [self setStars:[[self.movieDetailInfo objectForKey:@"AverageScore"]intValue]];

@@ -408,6 +408,14 @@
         if(self.filterIndex==2){
             self.movieTableController.data =[[NSArray alloc]init];
             [self.movieTableController.tableView reloadData];
+
+          /*  [[AustinApi sharedInstance]movieListCustom:@"1" location:nil year:nil month:nil function:^(NSArray *returnData) {
+                self.tabFourData =returnData;
+                self.movieTableController.data = returnData;
+                [self.movieTableController.tableView reloadData];
+            } error:^(NSError *error) {
+                NSLog(@"%@",error);
+            }];*/
             self.topMargin.constant = -36;
         }
         if(self.filterIndex==3){

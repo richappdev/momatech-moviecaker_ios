@@ -89,9 +89,6 @@
 
     NSURL *baseURL = [NSURL URLWithString:SERVERAPI];
 
-    if([getUrl containsString:@"v1/topic"]||[getUrl containsString:@"Review"]){
-        baseURL = [NSURL URLWithString:SERVERAPI2];
-    }
     AFHTTPSessionManager *manager = [[AFHTTPSessionManager alloc] initWithBaseURL:baseURL];
     manager.requestSerializer = [AFHTTPRequestSerializer serializer];
     manager.responseSerializer = [AFJSONResponseSerializer serializer];
@@ -136,7 +133,9 @@
     }
     NSLog(@"%@",parameter);
     [self apiGetMethod:@"api/video" parameter:parameter addTokenHeader:@"1" completion:^(id response) {
-        
+        if([type isEqualToString:@"1"]){
+            NSLog(@"%@",response);
+        }
         completion([response objectForKey:@"Data"]);
     } error:^(NSError *error2) {
         error(error2);
@@ -168,7 +167,7 @@
 
 -(void)getReview:(NSString*)order function:(void (^)(NSArray *returnData))completion error:(void (^)(NSError *error))error{
     NSDictionary *parameter = @{@"order":order,@"limit":@"10"};
-    [self apiGetMethod:@"v1/Review" parameter:parameter addTokenHeader:@"1" completion:^(id response) {
+    [self apiGetMethod:@"api/Review" parameter:parameter addTokenHeader:@"1" completion:^(id response) {
         
         completion([response objectForKey:@"Data"]);
     } error:^(NSError *error2) {
@@ -176,7 +175,15 @@
     }];
 }
 
-
+-(void)getReviewByVid:(NSString *)vid function:(void (^)(NSArray *))completion error:(void (^)(NSError *))error{
+    NSDictionary *parameter = @{@"vid":vid,@"limit":@"10"};
+    [self apiGetMethod:@"api/Review" parameter:parameter addTokenHeader:@"1" completion:^(id response) {
+        
+        completion([response objectForKey:@"Data"]);
+    } error:^(NSError *error2) {
+        error(error2);
+    }];
+}
 -(void)locationList:(void (^)(NSArray *returnData))completion error:(void (^)(NSError *error))error{
     NSDictionary *parameter = @{@"type": @"1"};
     [self apiGetMethod:@"api/location" parameter:parameter addTokenHeader:@"1" completion:^(id response) {

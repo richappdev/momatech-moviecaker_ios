@@ -50,6 +50,12 @@
     if([[NSUserDefaults standardUserDefaults] objectForKey:USERKEY]!=nil){
         [[NSUserDefaults standardUserDefaults] removeObjectForKey:USERKEY];
         [self.Button setTitle:@"Wechat Login" forState:UIControlStateNormal];
+        NSArray *cookies = [[NSHTTPCookieStorage sharedHTTPCookieStorage] cookies];
+        for (NSHTTPCookie *cookie in cookies) {
+            // Here I see the correct rails session cookie
+            NSLog(@"%@",cookie);
+            [[NSHTTPCookieStorage sharedHTTPCookieStorage] deleteCookie:cookie];
+        }
     }
     else{
     
