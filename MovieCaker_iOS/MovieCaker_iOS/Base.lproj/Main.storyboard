@@ -1895,7 +1895,16 @@
                                                     </constraints>
                                                 </tableViewCellContentView>
                                                 <connections>
+                                                    <outlet property="Author" destination="daC-9q-Qun" id="Zzd-Me-f4C"/>
+                                                    <outlet property="AvatarPic" destination="dQF-va-uWM" id="Pni-vA-RD8"/>
+                                                    <outlet property="Content" destination="53J-fh-0dO" id="yPi-N3-cpX"/>
+                                                    <outlet property="CreatedOn" destination="nbR-Pd-vcL" id="oDL-vg-C6n"/>
+                                                    <outlet property="Heart" destination="iR6-CQ-J9f" id="JdJ-v4-jBI"/>
+                                                    <outlet property="Messages" destination="mHv-Ej-INT" id="5Ei-YQ-1iT"/>
+                                                    <outlet property="Title" destination="tjQ-kC-bXn" id="mTJ-ep-ylP"/>
+                                                    <outlet property="Views" destination="cdK-5h-pay" id="pEl-IT-rD6"/>
                                                     <outlet property="likeBtn" destination="fMH-gc-wtT" id="8cB-m3-hTQ"/>
+                                                    <outlet property="mainPic" destination="AfI-zK-Wut" id="4fV-Gn-Caa"/>
                                                     <outlet property="shareBtn" destination="CKu-Bd-Q2j" id="KT8-Tl-MjV"/>
                                                     <outlet property="star1" destination="RDC-OH-8xP" id="ZZD-gT-zdi"/>
                                                     <outlet property="star2" destination="OYh-8d-37D" id="2bc-Hz-6g0"/>
@@ -2021,8 +2030,10 @@
                         <outlet property="movieDescription" destination="cIQ-qb-MJd" id="quD-Po-yd5"/>
                         <outlet property="movieDescriptionHeight" destination="UN4-mm-x7j" id="ElS-oO-bNq"/>
                         <outlet property="releaseDate" destination="HLU-pF-Gbg" id="Y9J-ae-B0P"/>
+                        <outlet property="reviewGrey" destination="1Tf-5l-sDo" id="wei-WA-vMY"/>
                         <outlet property="reviewTable" destination="Efy-2A-qWQ" id="73i-Pj-poS"/>
                         <outlet property="reviewTableHeight" destination="zrd-E3-V2H" id="plm-db-WDt"/>
+                        <outlet property="reviewTop" destination="Ipr-8R-cBn" id="FIu-Cb-OE3"/>
                         <outlet property="smallImage" destination="YgX-On-ze2" id="Tw0-Jw-xUR"/>
                         <outlet property="starFive" destination="PyK-6c-une" id="I0A-or-BSs"/>
                         <outlet property="starFour" destination="0QI-1f-cdM" id="RhD-Vu-FXl"/>

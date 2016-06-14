@@ -19,6 +19,8 @@
 @property (strong, nonatomic) IBOutlet UITableView *topicTable;
 @property (strong, nonatomic) IBOutlet NSLayoutConstraint *topicTableHeight;
 @property (strong, nonatomic) IBOutlet UIScrollView *mainScroll;
+@property (strong, nonatomic) IBOutlet UIView *reviewGrey;
+@property (strong, nonatomic) IBOutlet UIView *reviewTop;
 @property (strong, nonatomic) IBOutlet UITableView *reviewTable;
 @property (strong, nonatomic) IBOutlet NSLayoutConstraint *reviewTableHeight;
 @property MovieTableViewController *movieTableController;
@@ -80,16 +82,23 @@
     } error:^(NSError *error) {
         NSLog(@"%@",error);
     }];
-    
+    self.movieTable2Controller = [[MovieTableViewController alloc] init:1];
+    self.reviewTable.delegate = self.movieTable2Controller;
+    self.reviewTable.dataSource = self.movieTable2Controller;
+    self.movieTable2Controller.tableHeight = self.reviewTableHeight;
+    self.movieTable2Controller.tableView = self.reviewTable;
+    self.movieTable2Controller.data =[[NSArray alloc]init];
     [[AustinApi sharedInstance] getReviewByVid:[self.movieDetailInfo objectForKey:@"Id"] function:^(NSArray *returnData) {
         NSLog(@"b%lu",(unsigned long)[returnData count]);
-        self.movieTable2Controller = [[MovieTableViewController alloc] init:1];
-        self.reviewTable.delegate = self.movieTable2Controller;
-        self.reviewTable.dataSource = self.movieTable2Controller;
-        self.movieTable2Controller.tableHeight = self.reviewTableHeight;
-        self.movieTable2Controller.tableView = self.reviewTable;
-        self.movieTable2Controller.data = returnData;
-        [self.movieTable2Controller.tableView reloadData];
+
+        if([returnData count]==0){
+            self.reviewTop.hidden=YES;
+            self.reviewGrey.hidden=YES;
+            self.reviewTable.hidden=YES;
+        }else{
+            self.movieTable2Controller.data = returnData;
+            [self.movieTable2Controller.tableView reloadData];
+        }
         [self scrollSize];
     } error:^(NSError *error) {
         NSLog(@"%@",error);
