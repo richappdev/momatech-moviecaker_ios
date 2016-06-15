@@ -46,6 +46,11 @@
 */
 
 - (IBAction)Login:(id)sender {
+/*[[AustinApi sharedInstance]loginWithAccount:@"space15spider@hotmail.com" withPassword:@"" withRemember:YES function:^(NSDictionary *returnData) {
+    NSLog(@"%@",returnData);
+} error:^(NSError *error) {
+    NSLog(@"%@",error);
+}];*/
 
     if([[NSUserDefaults standardUserDefaults] objectForKey:USERKEY]!=nil){
         [[NSUserDefaults standardUserDefaults] removeObjectForKey:USERKEY];

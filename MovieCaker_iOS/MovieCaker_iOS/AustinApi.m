@@ -206,4 +206,24 @@
     }];
     
 }
+- (void)loginWithAccount:(NSString *)account
+            withPassword:(NSString *)password
+            withRemember:(BOOL)remember
+                 function:(void (^)(NSDictionary *returnData))completion error:(void (^)(NSError *error))error {
+    
+    NSDictionary *param=nil;
+    param=@{@"Email":account,@"Password":password,@"RememberMe":@"true"};
+    //NSLog(@"%@",param);
+    [self apiPostMethod:@"account/ajaxlogin" parameter:param addTokenHeader:@"1" completion:^(id response) {
+        NSArray *cookies = [[NSHTTPCookieStorage sharedHTTPCookieStorage] cookies];
+        for (NSHTTPCookie *cookie in cookies) {
+            // Here I see the correct rails session cookie
+            NSLog(@"logincookie: %@", cookie);
+        }
+        completion(response);
+    } error:^(NSError *error2) {
+        error(error2);
+    }];
+    
+}
 @end

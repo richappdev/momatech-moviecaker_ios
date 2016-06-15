@@ -46,8 +46,16 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     UITableViewCell *cell;
-    if(self.type == 0||self.type == 1){
-    MovieTabCell *cell = [tableView dequeueReusableCellWithIdentifier:@"movieTableOne" forIndexPath:indexPath];
+    if(self.type == 0||self.type == 1||self.type==2){
+        MovieTabCell *cell;
+        if(self.type==2){
+            cell = [tableView dequeueReusableCellWithIdentifier:@"MovieTableTwo" forIndexPath:indexPath];
+            
+            cell.ratingLabel.text = [NSString stringWithFormat:@"%ld",(long)indexPath.row+1];
+        }else{
+            cell = [tableView dequeueReusableCellWithIdentifier:@"movieTableOne" forIndexPath:indexPath];
+    }
+    
     NSDictionary *data = [self.data objectAtIndex:indexPath.row];
     cell.title.text = [data objectForKey:@"CNName"];
     NSString *url = [NSString stringWithFormat:@"http://www.funmovie.tv/Content/pictures/files/%@?width=88",[data objectForKey:@"Picture"]];
@@ -60,8 +68,7 @@
     cell.liked.text = [[data objectForKey:@"LikeNum"]stringValue];
     cell.favored.text = [[data objectForKey:@"WantViewNum"]stringValue];
     cell.reviewed.text = [[data objectForKey:@"ReviewNum"]stringValue];
-    cell.viewed.text = [[data objectForKey:@"ViewNum"]stringValue]
-        ;
+    cell.viewed.text = [[data objectForKey:@"ViewNum"]stringValue];
         
     return cell;
     }else if (self.type == 2){

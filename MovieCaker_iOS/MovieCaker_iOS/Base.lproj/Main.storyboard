@@ -2636,14 +2636,14 @@
                                                     <color key="textColor" red="0.20000000000000001" green="0.2666666667" blue="0.33333333329999998" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="rabbit-512" translatesAutoresizingMaskIntoConstraints="NO" id="wKs-lW-LQN">
+                                                <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="rabbit-512" translatesAutoresizingMaskIntoConstraints="NO" id="wKs-lW-LQN">
                                                     <rect key="frame" x="112" y="58" width="20" height="20"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="20" id="VpC-8Y-lRR"/>
                                                         <constraint firstAttribute="width" constant="20" id="cMU-zq-CAn"/>
                                                     </constraints>
                                                 </imageView>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Ilandy" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8DG-AL-dPU">
+                                                <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Ilandy" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8DG-AL-dPU">
                                                     <rect key="frame" x="140" y="57" width="62" height="21"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="62" id="kze-x0-xp0"/>
@@ -2652,14 +2652,14 @@
                                                     <color key="textColor" red="0.20000000000000001" green="0.26666666666666666" blue="0.33333333333333331" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="iconHeartIndexActive" translatesAutoresizingMaskIntoConstraints="NO" id="Q28-eg-mKW">
+                                                <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="iconHeartIndexActive" translatesAutoresizingMaskIntoConstraints="NO" id="Q28-eg-mKW">
                                                     <rect key="frame" x="188" y="62" width="14" height="12"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="14" id="m1d-4Q-lcM"/>
                                                         <constraint firstAttribute="height" constant="12" id="qJq-dK-g5s"/>
                                                     </constraints>
                                                 </imageView>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="iconEyeIndexActive" translatesAutoresizingMaskIntoConstraints="NO" id="YfC-mG-PZ4">
+                                                <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="iconEyeIndexActive" translatesAutoresizingMaskIntoConstraints="NO" id="YfC-mG-PZ4">
                                                     <rect key="frame" x="210" y="63" width="16" height="11"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="16" id="g5Y-S2-wov"/>
@@ -2739,8 +2739,17 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
+                                            <outlet property="date" destination="ydt-yd-kED" id="aX8-qW-njm"/>
+                                            <outlet property="dou" destination="7k5-d2-oix" id="zhH-mT-Czd"/>
+                                            <outlet property="favored" destination="3cY-ZM-LvC" id="7F0-X9-JNx"/>
+                                            <outlet property="image" destination="swA-Fv-KC0" id="uv8-F9-hoG"/>
+                                            <outlet property="imdb" destination="N57-3P-0ER" id="UL3-zZ-dgz"/>
+                                            <outlet property="liked" destination="x7Y-cG-rfR" id="uBr-jl-KZb"/>
                                             <outlet property="ratingBg" destination="mi3-Fc-lDZ" id="I0v-tN-Jfa"/>
                                             <outlet property="ratingLabel" destination="jeV-rs-M6f" id="1qE-WP-mCM"/>
+                                            <outlet property="reviewed" destination="Z0v-8D-03L" id="eVA-pw-mZj"/>
+                                            <outlet property="title" destination="ZPu-A9-XGo" id="JhC-g2-e8L"/>
+                                            <outlet property="viewed" destination="yOC-Nd-er2" id="aJC-ep-Q8n"/>
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="MovieTableThree" rowHeight="190" id="ebR-0I-yHX" customClass="Movie2Cell">
