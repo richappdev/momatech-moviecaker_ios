@@ -216,7 +216,7 @@
                                                     <constraint firstItem="O5F-Ob-gyP" firstAttribute="top" secondItem="zdg-7V-qlb" secondAttribute="top" constant="15" id="hmf-Z9-ae4"/>
                                                 </constraints>
                                             </view>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="最新祕刷專題" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZfG-Zn-2lW">
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="最新必刷專題" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZfG-Zn-2lW">
                                                 <rect key="frame" x="8" y="13" width="96" height="19"/>
                                                 <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="16"/>
                                                 <color key="textColor" red="0.30196078430000001" green="0.71372549019999998" blue="0.67450980390000004" alpha="1" colorSpace="calibratedRGB"/>
@@ -1202,7 +1202,7 @@
                                             <constraint firstAttribute="height" constant="21" id="b1k-Na-X85"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="9"/>
-                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gua-Us-aTq">
@@ -1561,9 +1561,18 @@
                                                     </constraints>
                                                 </tableViewCellContentView>
                                                 <connections>
+                                                    <outlet property="Author" destination="bBN-gl-Fil" id="BGW-Ic-Mj2"/>
+                                                    <outlet property="AvatarPic" destination="IEc-bK-aqT" id="tu6-h7-5t9"/>
+                                                    <outlet property="Content" destination="FGU-3R-jfn" id="ITS-PO-QPj"/>
+                                                    <outlet property="Date" destination="IaM-ql-MbL" id="cy4-zz-Yzf"/>
+                                                    <outlet property="five" destination="SKh-Z1-AUu" id="gUF-cj-SU6"/>
+                                                    <outlet property="four" destination="1bb-Gy-SrJ" id="c2w-8f-ZFc"/>
                                                     <outlet property="likeBtn" destination="0Sb-iY-lzp" id="U07-Sx-681"/>
+                                                    <outlet property="one" destination="3R3-5c-6YN" id="A95-r8-gDD"/>
                                                     <outlet property="shareBtn" destination="aQX-wF-iIw" id="cyK-ga-F31"/>
+                                                    <outlet property="three" destination="yiH-zW-aBy" id="Kg5-of-ahT"/>
                                                     <outlet property="title" destination="sKJ-Zd-Heu" id="Sf0-vq-Udt"/>
+                                                    <outlet property="two" destination="Bci-Ac-qZZ" id="IrM-xp-z5z"/>
                                                 </connections>
                                             </tableViewCell>
                                         </prototypes>
@@ -1886,7 +1895,16 @@
                                                     </constraints>
                                                 </tableViewCellContentView>
                                                 <connections>
+                                                    <outlet property="Author" destination="daC-9q-Qun" id="Zzd-Me-f4C"/>
+                                                    <outlet property="AvatarPic" destination="dQF-va-uWM" id="Pni-vA-RD8"/>
+                                                    <outlet property="Content" destination="53J-fh-0dO" id="yPi-N3-cpX"/>
+                                                    <outlet property="CreatedOn" destination="nbR-Pd-vcL" id="oDL-vg-C6n"/>
+                                                    <outlet property="Heart" destination="iR6-CQ-J9f" id="JdJ-v4-jBI"/>
+                                                    <outlet property="Messages" destination="mHv-Ej-INT" id="5Ei-YQ-1iT"/>
+                                                    <outlet property="Title" destination="tjQ-kC-bXn" id="mTJ-ep-ylP"/>
+                                                    <outlet property="Views" destination="cdK-5h-pay" id="pEl-IT-rD6"/>
                                                     <outlet property="likeBtn" destination="fMH-gc-wtT" id="8cB-m3-hTQ"/>
+                                                    <outlet property="mainPic" destination="AfI-zK-Wut" id="4fV-Gn-Caa"/>
                                                     <outlet property="shareBtn" destination="CKu-Bd-Q2j" id="KT8-Tl-MjV"/>
                                                     <outlet property="star1" destination="RDC-OH-8xP" id="ZZD-gT-zdi"/>
                                                     <outlet property="star2" destination="OYh-8d-37D" id="2bc-Hz-6g0"/>
@@ -2003,6 +2021,7 @@
                     <connections>
                         <outlet property="ChineseName" destination="81h-qL-LxI" id="xWz-Ks-oiq"/>
                         <outlet property="EnglishName" destination="Sec-ic-6sy" id="Mv5-TL-YvF"/>
+                        <outlet property="TopicTop" destination="C63-aB-cIx" id="OmF-8S-Edx"/>
                         <outlet property="actorScroll" destination="BpZ-Me-Nt1" id="hTH-NL-uIR"/>
                         <outlet property="bean" destination="idI-1B-qtg" id="if1-xx-wDG"/>
                         <outlet property="bgImage" destination="ApQ-on-j71" id="Igh-hv-17r"/>
@@ -2011,14 +2030,17 @@
                         <outlet property="movieDescription" destination="cIQ-qb-MJd" id="quD-Po-yd5"/>
                         <outlet property="movieDescriptionHeight" destination="UN4-mm-x7j" id="ElS-oO-bNq"/>
                         <outlet property="releaseDate" destination="HLU-pF-Gbg" id="Y9J-ae-B0P"/>
+                        <outlet property="reviewGrey" destination="1Tf-5l-sDo" id="wei-WA-vMY"/>
                         <outlet property="reviewTable" destination="Efy-2A-qWQ" id="73i-Pj-poS"/>
                         <outlet property="reviewTableHeight" destination="zrd-E3-V2H" id="plm-db-WDt"/>
+                        <outlet property="reviewTop" destination="Ipr-8R-cBn" id="FIu-Cb-OE3"/>
                         <outlet property="smallImage" destination="YgX-On-ze2" id="Tw0-Jw-xUR"/>
                         <outlet property="starFive" destination="PyK-6c-une" id="I0A-or-BSs"/>
                         <outlet property="starFour" destination="0QI-1f-cdM" id="RhD-Vu-FXl"/>
                         <outlet property="starOne" destination="IIV-GJ-g5i" id="U5U-0n-gSG"/>
                         <outlet property="starThree" destination="h47-DF-EUP" id="YJ8-wq-tbv"/>
                         <outlet property="starTwo" destination="wKX-Du-oLC" id="iCH-lG-mTH"/>
+                        <outlet property="topicGrey" destination="PDU-Mz-8qO" id="cl0-ls-vDB"/>
                         <outlet property="topicTable" destination="Oc3-18-2yn" id="Chd-cl-b18"/>
                         <outlet property="topicTableHeight" destination="z7a-Jh-loc" id="rgx-ax-gkv"/>
                     </connections>
@@ -2093,15 +2115,12 @@
                                                         <constraint firstAttribute="width" constant="98" id="yew-xp-O8t"/>
                                                     </constraints>
                                                     <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="12"/>
-                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tlp-Az-qU5">
                                                     <rect key="frame" x="203" y="38" width="52" height="14"/>
                                                     <subviews>
-                                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="lableImdb" translatesAutoresizingMaskIntoConstraints="NO" id="jmc-f4-N4b">
-                                                            <rect key="frame" x="0.0" y="0.0" width="52" height="14"/>
-                                                        </imageView>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="10.0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="h7T-Me-CHu">
                                                             <rect key="frame" x="30" y="-4" width="22" height="21"/>
                                                             <constraints>
@@ -2111,6 +2130,9 @@
                                                             <color key="textColor" red="0.094117647058823528" green="0.10588235294117647" blue="0.12549019607843137" alpha="1" colorSpace="calibratedRGB"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
+                                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="lableImdb" translatesAutoresizingMaskIntoConstraints="NO" id="jmc-f4-N4b">
+                                                            <rect key="frame" x="0.0" y="0.0" width="52" height="14"/>
+                                                        </imageView>
                                                     </subviews>
                                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                     <constraints>
@@ -2373,8 +2395,17 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
+                                            <outlet property="date" destination="i19-0d-Qtv" id="0ac-lW-SDP"/>
+                                            <outlet property="dou" destination="km1-Yg-AqR" id="0uu-a4-rdI"/>
+                                            <outlet property="favored" destination="F2L-JW-mXN" id="hDy-ur-mf0"/>
+                                            <outlet property="image" destination="rPg-PU-v1W" id="cII-t1-lsp"/>
+                                            <outlet property="imdb" destination="h7T-Me-CHu" id="SqL-TD-BBh"/>
+                                            <outlet property="liked" destination="gTZ-nf-5RR" id="P9I-p5-Oca"/>
                                             <outlet property="ratingBg" destination="DE7-CL-xk6" id="NYk-aP-cqp"/>
                                             <outlet property="ratingLabel" destination="Gxy-ub-7kl" id="Jp6-aU-Wjn"/>
+                                            <outlet property="reviewed" destination="aMk-PB-f8X" id="LNt-Xz-HTQ"/>
+                                            <outlet property="title" destination="RAk-cn-C7D" id="HSN-kn-Do7"/>
+                                            <outlet property="viewed" destination="KX6-eT-3gT" id="MlD-pb-b7a"/>
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="MovieTableTwo" rowHeight="165" id="h0X-0U-lCN" customClass="MovieTabCell">
@@ -2427,7 +2458,7 @@
                                                         <constraint firstAttribute="height" constant="21" id="y5F-mA-iU1"/>
                                                     </constraints>
                                                     <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="12"/>
-                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="IL5-By-ntd">
@@ -2985,7 +3016,15 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
+                                            <outlet property="Author" destination="JjM-ci-hM2" id="nem-8i-a5K"/>
+                                            <outlet property="Content" destination="cD1-YI-jDq" id="Jfg-eo-dgN"/>
+                                            <outlet property="CreatedOn" destination="bCV-gI-eW0" id="Fhx-Qz-8Nj"/>
+                                            <outlet property="Heart" destination="WA5-d0-X4g" id="vRd-tc-baA"/>
+                                            <outlet property="Messages" destination="baK-Ew-HFf" id="dr4-Xe-aNL"/>
+                                            <outlet property="Title" destination="hjm-ux-Gld" id="9vA-2D-I5E"/>
+                                            <outlet property="Views" destination="L7r-LM-cDv" id="GU7-ai-REE"/>
                                             <outlet property="likeBtn" destination="t92-4V-PJe" id="Ret-81-Ulr"/>
+                                            <outlet property="mainPic" destination="BhJ-i8-fKG" id="FnU-VW-qxD"/>
                                             <outlet property="shareBtn" destination="QY0-IX-Hvd" id="IAe-O3-oMt"/>
                                             <outlet property="star1" destination="JAK-nq-suA" id="OPy-mO-sPj"/>
                                             <outlet property="star2" destination="Vmy-be-XMF" id="DIF-6S-ACQ"/>
@@ -3032,7 +3071,7 @@
                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="熱門" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Xbg-DK-F1t">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="熱映" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Xbg-DK-F1t">
                                         <rect key="frame" x="70" y="11" width="32" height="19"/>
                                         <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="16"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -3048,7 +3087,7 @@
                                         <rect key="frame" x="69" y="42" width="32" height="4"/>
                                         <color key="backgroundColor" red="0.23529411764705882" green="0.5607843137254902" blue="0.52941176470588236" alpha="1" colorSpace="calibratedRGB"/>
                                     </view>
-                                    <label opaque="NO" userInteractionEnabled="NO" tag="1" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="熱映" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Mwd-56-u4T">
+                                    <label opaque="NO" userInteractionEnabled="NO" tag="1" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="熱門" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Mwd-56-u4T">
                                         <rect key="frame" x="118" y="11" width="32" height="19"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="32" id="247-GA-0W8"/>
@@ -3093,7 +3132,7 @@
                                             <constraint firstAttribute="width" constant="42" id="KJ7-Wo-4bF"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="16"/>
-                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" tag="2" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="票周房" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BpG-Sf-ggT">
@@ -3102,7 +3141,7 @@
                                             <constraint firstAttribute="width" constant="54" id="NSy-GX-dpy"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="16"/>
-                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="GoJ-ZI-8sW">
@@ -3142,22 +3181,22 @@
                             <view alpha="0.0" tag="1" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="uSG-Y5-6NJ">
                                 <rect key="frame" x="-4" y="66" width="328" height="36"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="一週熱門" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gPI-b2-dQq">
-                                        <rect key="frame" x="109" y="0.0" width="110" height="36"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" tag="1" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="年度熱門" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="64I-Qn-Bpk">
-                                        <rect key="frame" x="219" y="0.0" width="109" height="36"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" tag="2" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="一月熱門" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Js7-KD-7wL">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="一月熱門" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Js7-KD-7wL">
                                         <rect key="frame" x="0.0" y="0.0" width="109" height="36"/>
                                         <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="16"/>
                                         <color key="textColor" red="0.95686274510000002" green="0.60392156860000001" blue="0.2666666667" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" tag="1" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="一週熱門" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gPI-b2-dQq">
+                                        <rect key="frame" x="109" y="0.0" width="110" height="36"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" tag="2" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="年度熱門" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="64I-Qn-Bpk">
+                                        <rect key="frame" x="219" y="0.0" width="109" height="36"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                 </subviews>
@@ -3181,22 +3220,22 @@
                             <view alpha="0.0" tag="2" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qwn-e3-Wrp">
                                 <rect key="frame" x="-4" y="66" width="328" height="36"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="本月影評" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MQo-OX-XvO">
-                                        <rect key="frame" x="109" y="0.0" width="110" height="36"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" tag="1" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="本週影評" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6cF-9p-ASW">
-                                        <rect key="frame" x="219" y="0.0" width="109" height="36"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" tag="2" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="最新影評" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qFq-Pu-9zb">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="最新影評" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qFq-Pu-9zb">
                                         <rect key="frame" x="0.0" y="0.0" width="109" height="36"/>
                                         <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="16"/>
                                         <color key="textColor" red="0.95686274510000002" green="0.60392156860000001" blue="0.2666666667" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" tag="1" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="本月影評" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MQo-OX-XvO">
+                                        <rect key="frame" x="109" y="0.0" width="110" height="36"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" tag="2" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="本週影評" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6cF-9p-ASW">
+                                        <rect key="frame" x="219" y="0.0" width="109" height="36"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                 </subviews>

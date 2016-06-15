@@ -8,6 +8,10 @@
 
 #import "MovieTwoTableViewController.h"
 #import "MovieTabCell.h"
+#import "Movie2Cell.h"
+#import "AustinApi.h"
+#import "SDWebImage/UIImageView+WebCache.h"
+
 @interface MovieTwoTableViewController ()
 
 @end
@@ -36,7 +40,7 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return 3;
+    return [self.data count];
 }
 
 
@@ -44,8 +48,21 @@
     UITableViewCell *cell;
     if(self.type == 0||self.type == 1){
     MovieTabCell *cell = [tableView dequeueReusableCellWithIdentifier:@"movieTableOne" forIndexPath:indexPath];
-    
+    NSDictionary *data = [self.data objectAtIndex:indexPath.row];
+    cell.title.text = [data objectForKey:@"CNName"];
+    NSString *url = [NSString stringWithFormat:@"http://www.funmovie.tv/Content/pictures/files/%@?width=88",[data objectForKey:@"Picture"]];
+    [cell.image sd_setImageWithURL:[NSURL URLWithString:url] placeholderImage:[UIImage imageNamed:@"img-placeholder.jpg"]];
+    cell.imdb.text = [self testNil:[data objectForKey:@"Ratings_IMDB"]];
+    cell.dou.text = [self testNil:[data objectForKey:@"Ratings_Douban"]];
+    cell.date.text = [NSString stringWithFormat:@"%@ 上映",[data objectForKey:@"ReleaseDate"]];
     cell.ratingLabel.text = [NSString stringWithFormat:@"%ld",(long)indexPath.row+1];
+    
+    cell.liked.text = [[data objectForKey:@"LikeNum"]stringValue];
+    cell.favored.text = [[data objectForKey:@"WantViewNum"]stringValue];
+    cell.reviewed.text = [[data objectForKey:@"ReviewNum"]stringValue];
+    cell.viewed.text = [[data objectForKey:@"ViewNum"]stringValue]
+        ;
+        
     return cell;
     }else if (self.type == 2){
     MovieTabCell *cell = [tableView dequeueReusableCellWithIdentifier:@"MovieTableTwo" forIndexPath:indexPath];
@@ -53,11 +70,36 @@
     cell.ratingLabel.text = [NSString stringWithFormat:@"%ld",(long)indexPath.row+1];
         return cell;
     }else if (self.type ==3){
-    cell = [tableView dequeueReusableCellWithIdentifier:@"MovieTableThree" forIndexPath:indexPath];
+    Movie2Cell *cell = [tableView dequeueReusableCellWithIdentifier:@"MovieTableThree" forIndexPath:indexPath];
+        NSDictionary *data =[self.data objectAtIndex:indexPath.row];
+        //     NSLog(@"%@",data);
+        cell.Title.text = [data objectForKey:@"VideoCNName"];
+        cell.Content.text = [data objectForKey:@"Review"];
+        cell.CreatedOn.text = [[data objectForKey:@"CreateOn"] stringByReplacingOccurrencesOfString:@"-" withString:@"/"];
+        cell.CreatedOn.text = [cell.CreatedOn.text substringWithRange:NSMakeRange(0,[cell.CreatedOn.text rangeOfString:@"T"].location)];
+        cell.Author.text = [data objectForKey:@"UserNickName"];
+        cell.Messages.text = [[data objectForKey:@"MessageNum"]stringValue];
+        cell.Views.text = [[data objectForKey:@"PageViews"]stringValue];
+        NSString *url = [NSString stringWithFormat:@"http://www.funmovie.tv/Content/pictures/files/%@?width=88",[data objectForKey:@"VideoPicture"]];
+        [cell.mainPic sd_setImageWithURL:[NSURL URLWithString:url] placeholderImage:[UIImage imageNamed:@"img-placeholder.jpg"]];
+        
+        [cell.AvatarPic sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@/Uploads/UserAvatar/%@",[[AustinApi sharedInstance] getBaseUrl],[data objectForKey:@"UserAvatar"]]]];
+        [cell setStars:floor([[data objectForKey:@"OwnerLinkVideo_Score"]floatValue])];
+        if([[data objectForKey:@"OwnerLinkVideo_IsLiked"]intValue]==0){
+            cell.Heart.image = [UIImage imageNamed:@"iconHeartList.png"];
+        }else{
+            cell.Heart.image = [UIImage imageNamed:@"iconHeartListLiked.png"];
+        }
+        return cell;
     }
     return cell;
 }
-
+-(NSString*)testNil:(id)test{
+    if(![test isKindOfClass:[NSNull class]]){
+        return [test stringValue];
+    }
+    return @"";
+}
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if(self.type ==3){

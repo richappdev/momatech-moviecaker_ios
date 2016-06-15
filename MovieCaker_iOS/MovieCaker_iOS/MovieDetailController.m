@@ -14,9 +14,13 @@
 @interface MovieDetailController ()
 @property (strong, nonatomic) IBOutlet UIImageView *bgImage;
 @property (strong, nonatomic) IBOutlet UIScrollView *actorScroll;
+@property (strong, nonatomic) IBOutlet UIView *TopicTop;
+@property (strong, nonatomic) IBOutlet UIView *topicGrey;
 @property (strong, nonatomic) IBOutlet UITableView *topicTable;
 @property (strong, nonatomic) IBOutlet NSLayoutConstraint *topicTableHeight;
 @property (strong, nonatomic) IBOutlet UIScrollView *mainScroll;
+@property (strong, nonatomic) IBOutlet UIView *reviewGrey;
+@property (strong, nonatomic) IBOutlet UIView *reviewTop;
 @property (strong, nonatomic) IBOutlet UITableView *reviewTable;
 @property (strong, nonatomic) IBOutlet NSLayoutConstraint *reviewTableHeight;
 @property MovieTableViewController *movieTableController;
@@ -59,17 +63,46 @@
     gradientLayer.endPoint = CGPointMake(1.0f, 1.0f);
     self.bgImage.layer.mask = gradientLayer;
     
-    self.movieTableController = [[MovieTableViewController alloc] init:0];
-    self.topicTable.delegate = self.movieTableController;
-    self.topicTable.dataSource = self.movieTableController;
-    self.movieTableController.tableHeight = self.topicTableHeight;
-    self.movieTableController.tableView = self.topicTable;
-    
+    [[AustinApi sharedInstance]getTopic:@"7" vid:[self.movieDetailInfo objectForKey:@"Id"] function:^(NSArray *returnData) {
+        NSLog(@"a%lu",(unsigned long)[returnData count]);
+        self.movieTableController = [[MovieTableViewController alloc] init:0];
+        self.topicTable.delegate = self.movieTableController;
+        self.topicTable.dataSource = self.movieTableController;
+        self.movieTableController.tableHeight = self.topicTableHeight;
+        self.movieTableController.tableView = self.topicTable;
+        if([returnData count]==0){
+            self.topicGrey.hidden = YES;
+            self.TopicTop.hidden = YES;
+            self.topicTable.hidden = YES;
+            self.topicTableHeight.constant = 0;
+        }else{
+        self.movieTableController.data = returnData;
+            [self.movieTableController.tableView reloadData];}
+        [self scrollSize];
+    } error:^(NSError *error) {
+        NSLog(@"%@",error);
+    }];
     self.movieTable2Controller = [[MovieTableViewController alloc] init:1];
     self.reviewTable.delegate = self.movieTable2Controller;
     self.reviewTable.dataSource = self.movieTable2Controller;
     self.movieTable2Controller.tableHeight = self.reviewTableHeight;
     self.movieTable2Controller.tableView = self.reviewTable;
+    self.movieTable2Controller.data =[[NSArray alloc]init];
+    [[AustinApi sharedInstance] getReviewByVid:[self.movieDetailInfo objectForKey:@"Id"] function:^(NSArray *returnData) {
+        NSLog(@"b%lu",(unsigned long)[returnData count]);
+
+        if([returnData count]==0){
+            self.reviewTop.hidden=YES;
+            self.reviewGrey.hidden=YES;
+            self.reviewTable.hidden=YES;
+        }else{
+            self.movieTable2Controller.data = returnData;
+            [self.movieTable2Controller.tableView reloadData];
+        }
+        [self scrollSize];
+    } error:^(NSError *error) {
+        NSLog(@"%@",error);
+    }];
     
     self.starArray = [[NSArray alloc]initWithObjects:self.starOne,self.starTwo,self.starThree,self.starFour,self.starFive, nil];
     [self setStars:[[self.movieDetailInfo objectForKey:@"AverageScore"]intValue]];
@@ -83,7 +116,7 @@
     self.movieDescriptionHeight.constant = [self.movieDescription.text length]/26*30;
     self.bean.text = [NSString stringWithFormat:@"%.1f",[[self.movieDetailInfo objectForKey:@"Ratings_Douban"]floatValue]];
     self.imdb.text = [NSString stringWithFormat:@"%.1f",[[self.movieDetailInfo objectForKey:@"Ratings_IMDB"]floatValue]];
-    NSLog(@"%@",self.movieDetailInfo);
+    //NSLog(@"%@",self.movieDetailInfo);
     
     [[AustinApi sharedInstance] movieDetail:[self.movieDetailInfo objectForKey:@"Id"] function:^(NSMutableDictionary *returnData) {
        // NSLog(@"%@",[returnData objectForKey:@"Actor"]);
@@ -145,8 +178,11 @@
     }
     
 }
--(void)viewDidLayoutSubviews{
-    self.mainScroll.contentSize  = CGSizeMake(self.view.frame.size.width,3400);
+
+-(void)scrollSize{
+    int height;
+    height = [self.movieTableController returnTotalHeight]+[self.movieTable2Controller returnTotalHeight]+700+self.movieDescriptionHeight.constant;
+    self.mainScroll.contentSize = CGSizeMake(self.view.bounds.size.width, height);
 }
 -(void)goBack{
     [self.navigationController popViewControllerAnimated:YES];

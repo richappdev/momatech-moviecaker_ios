@@ -11,5 +11,14 @@
 @interface MovieTabCell : UITableViewCell
 @property (strong, nonatomic) IBOutlet UILabel *ratingLabel;
 @property (strong, nonatomic) IBOutlet UIView *ratingBg;
+@property (strong, nonatomic) IBOutlet UIImageView *image;
+@property (strong, nonatomic) IBOutlet UILabel *date;
+@property (strong, nonatomic) IBOutlet UILabel *title;
+@property (strong, nonatomic) IBOutlet UILabel *imdb;
+@property (strong, nonatomic) IBOutlet UILabel *dou;
+@property (strong, nonatomic) IBOutlet UILabel *viewed;
+@property (strong, nonatomic) IBOutlet UILabel *liked;
+@property (strong, nonatomic) IBOutlet UILabel *reviewed;
+@property (strong, nonatomic) IBOutlet UILabel *favored;
 
 @end

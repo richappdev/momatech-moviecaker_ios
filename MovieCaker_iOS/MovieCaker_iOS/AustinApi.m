@@ -89,9 +89,6 @@
 
     NSURL *baseURL = [NSURL URLWithString:SERVERAPI];
 
-    if([getUrl containsString:@"v1/topic"]||[getUrl containsString:@"Review"]){
-        baseURL = [NSURL URLWithString:SERVERAPI2];
-    }
     AFHTTPSessionManager *manager = [[AFHTTPSessionManager alloc] initWithBaseURL:baseURL];
     manager.requestSerializer = [AFHTTPRequestSerializer serializer];
     manager.responseSerializer = [AFJSONResponseSerializer serializer];
@@ -123,6 +120,28 @@
     }];
 }
 
+-(void)movieListCustom:(NSString*)type location:(NSString*)locationId year:(NSString*)year month:(NSString*)month function:(void (^)(NSArray*returnData))completion error:(void (^)(NSError *error))error{
+    NSMutableDictionary *parameter =[[NSMutableDictionary alloc]initWithDictionary:@{@"type":type}];
+    if(locationId!=nil){
+        [parameter setObject:locationId forKey:@"locationId"];
+    }
+    if(year!=nil){
+        [parameter setValue:year forKey:@"y"];
+    }
+    if(month!=nil){
+        [parameter setValue:month forKey:@"m"];
+    }
+    NSLog(@"%@",parameter);
+    [self apiGetMethod:@"api/video" parameter:parameter addTokenHeader:@"1" completion:^(id response) {
+        if([type isEqualToString:@"1"]){
+            NSLog(@"%@",response);
+        }
+        completion([response objectForKey:@"Data"]);
+    } error:^(NSError *error2) {
+        error(error2);
+    }];
+}
+
 -(void)movieDetail:(NSString*)vid function:(void (^)(NSMutableDictionary *returnData))completion error:(void (^)(NSError *error))error{
     NSDictionary *parameter = @{@"vid":vid};
     [self apiGetMethod:@"api/video" parameter:parameter addTokenHeader:@"1" completion:^(id response) {
@@ -132,9 +151,13 @@
         error(error2);	
     }];
 }
--(void)getTopic:(NSString*)type function:(void (^)(NSArray *returnData))completion error:(void (^)(NSError *error))error{
-    NSDictionary *parameter = @{@"type":type};
-    [self apiGetMethod:@"v1/topic" parameter:parameter addTokenHeader:@"1" completion:^(id response) {
+-(void)getTopic:(NSString*)type vid:(NSString *)vid function:(void (^)(NSArray *returnData))completion error:(void (^)(NSError *error))error{
+    NSMutableDictionary *parameter =[[NSMutableDictionary alloc]initWithDictionary: @{@"type":type}];
+    if(vid!=nil){
+        [parameter setObject:vid forKey:@"vid"];
+    }
+    NSLog(@"%@",parameter);
+    [self apiGetMethod:@"api/topic" parameter:parameter addTokenHeader:@"1" completion:^(id response) {
         
         completion([response objectForKey:@"Data"]);
     } error:^(NSError *error2) {
@@ -143,8 +166,8 @@
 }
 
 -(void)getReview:(NSString*)order function:(void (^)(NSArray *returnData))completion error:(void (^)(NSError *error))error{
-    NSDictionary *parameter = @{@"order":order,@"limit":@"5"};
-    [self apiGetMethod:@"v1/Review" parameter:parameter addTokenHeader:@"1" completion:^(id response) {
+    NSDictionary *parameter = @{@"order":order,@"limit":@"10"};
+    [self apiGetMethod:@"api/Review" parameter:parameter addTokenHeader:@"1" completion:^(id response) {
         
         completion([response objectForKey:@"Data"]);
     } error:^(NSError *error2) {
@@ -152,8 +175,16 @@
     }];
 }
 
-
--(void)locationList:(void (^)(NSMutableDictionary *returnData))completion error:(void (^)(NSError *error))error{
+-(void)getReviewByVid:(NSString *)vid function:(void (^)(NSArray *))completion error:(void (^)(NSError *))error{
+    NSDictionary *parameter = @{@"vid":vid,@"limit":@"10"};
+    [self apiGetMethod:@"api/Review" parameter:parameter addTokenHeader:@"1" completion:^(id response) {
+        
+        completion([response objectForKey:@"Data"]);
+    } error:^(NSError *error2) {
+        error(error2);
+    }];
+}
+-(void)locationList:(void (^)(NSArray *returnData))completion error:(void (^)(NSError *error))error{
     NSDictionary *parameter = @{@"type": @"1"};
     [self apiGetMethod:@"api/location" parameter:parameter addTokenHeader:@"1" completion:^(id response) {
         
