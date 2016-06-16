@@ -1024,11 +1024,14 @@
                         <outlet property="SecondChevron" destination="tHh-d6-OhI" id="c2u-vb-FRK"/>
                         <outlet property="blurredBg" destination="7P2-G7-1Iu" id="JrI-Pd-wqJ"/>
                         <outlet property="iconEyeBtn" destination="cRw-Pc-ak4" id="Fb1-y4-xvY"/>
+                        <outlet property="iconEyeIndex" destination="ygr-Kv-Lco" id="7Tf-mY-N7W"/>
                         <outlet property="iconLikeBtn" destination="spG-M1-ALL" id="ZSq-it-kSp"/>
+                        <outlet property="iconLikeIndex" destination="iEa-J8-JuS" id="9M8-6J-4Bm"/>
                         <outlet property="iconMovieHot" destination="wK5-ak-frA" id="Zrl-Ht-FIB"/>
                         <outlet property="iconMovieNew" destination="P7v-mo-2zQ" id="K2C-lc-WNt"/>
                         <outlet property="iconPenBtn" destination="8P2-9m-PSO" id="Xe7-ZD-tNB"/>
                         <outlet property="iconPocketBtn" destination="PNF-Zp-Ffx" id="5a5-R9-5Ac"/>
+                        <outlet property="iconPoketIndex" destination="HTh-sz-S0d" id="M4H-1P-sYa"/>
                         <outlet property="iconTopicIndex" destination="EZI-O8-KnB" id="ewe-Z8-Hkh"/>
                         <outlet property="imageScroll" destination="VeJ-MH-lHy" id="PLH-PW-mea"/>
                         <outlet property="moreBtn" destination="zdg-7V-qlb" id="aew-VL-i3s"/>

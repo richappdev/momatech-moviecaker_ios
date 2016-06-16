@@ -53,7 +53,7 @@
     //test- manager.requestSerializer = [AFJSONRequestSerializer serializer];
     manager.requestSerializer = [AFHTTPRequestSerializer serializer]; //test+
     
-    manager.responseSerializer = [AFJSONResponseSerializer serializer];
+    manager.responseSerializer = [AFHTTPResponseSerializer serializer];
     
     manager.responseSerializer.acceptableContentTypes = [manager.responseSerializer.acceptableContentTypes setByAddingObject:@"text/html"];
     manager.responseSerializer.acceptableContentTypes = [manager.responseSerializer.acceptableContentTypes setByAddingObject:@"application/json"];
@@ -227,9 +227,9 @@
     
 }
 -(void)socialAction:(NSString*)Id act:(NSString*)act obj:(NSString*)obj function:(void (^)(NSString *returnData))completion error:(void (^)(NSError *error))error{
-    NSDictionary *param =@{@"act":act,@"obj":obj,@"id":Id};
-    [self apiPostMethod:@"api/Social" parameter:param addTokenHeader:@"1" completion:^(id response) {
-        completion(response);
+    [self apiPostMethod:[NSString stringWithFormat:@"api/Social?id=%@&act=%@&obj=%@",Id,act,obj] parameter:nil addTokenHeader:@"1" completion:^(id response) {
+        NSString *string = [[NSString alloc] initWithData:response encoding:NSUTF8StringEncoding];
+        completion(string);
     } error:^(NSError *error2) {
         error(error2);
     }];

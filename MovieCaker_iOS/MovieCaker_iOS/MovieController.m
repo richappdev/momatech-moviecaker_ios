@@ -43,6 +43,9 @@
 @property BOOL notSelected;
 @property NSArray *returnData;
 @property (strong, nonatomic) IBOutlet NSLayoutConstraint *movieTableTopspace;
+@property (strong, nonatomic) IBOutlet UIImageView *iconEyeIndex;
+@property (strong, nonatomic) IBOutlet UIImageView *iconLikeIndex;
+@property (strong, nonatomic) IBOutlet UIImageView *iconPoketIndex;
 @end
 
 @implementation MovieController
@@ -102,6 +105,10 @@
         movieModel *temp = [movieModel alloc];
         temp.title = [row objectForKey:@"CNName"];
         temp.rating = [NSString stringWithFormat:@"%@", [row objectForKey:@"AverageScore"]];
+        temp.IsViewed = [[row objectForKey:@"IsViewed"]boolValue];
+        temp.IsLiked = [[row objectForKey:@"IsLiked"]boolValue];
+        temp.IsWantView = [[row objectForKey:@"IsWantView"]boolValue];
+            
         UIImage *placeholder = [UIImage imageNamed:@"img-placeholder.jpg"];
         UIImageView *image = [[UIImageView alloc] initWithImage:temp.movieImage];
        
@@ -131,7 +138,7 @@
             
         if(count==0){
             [image sd_setImageWithURL:[NSURL URLWithString:url] placeholderImage:placeholder completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
-                [self setMovieDetails:[self.movieArray objectAtIndex:0]];
+                [self setMovieDetails:[self.movieArray objectAtIndex:0] blur:YES];
             }];
         }
         else{
@@ -214,14 +221,31 @@
 - (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView{
     int indexOfPage = scrollView.contentOffset.x / scrollView.frame.size.width;
     if(self.lastIndex!=indexOfPage){
-    [self setMovieDetails:[self.movieArray objectAtIndex:indexOfPage]];
+        [self setMovieDetails:[self.movieArray objectAtIndex:indexOfPage] blur:YES];
         self.lastIndex = indexOfPage;
     }
 
 }
--(void)setMovieDetails:(movieModel*)model{
+-(void)setMovieDetails:(movieModel*)model blur:(BOOL)blur{
     self.uititle.text = model.title;
-    self.blurredBg.image =[self blurImage:model.movieImageView.image  withBottomInset:0 blurRadius:43];
+    if(blur){
+        self.blurredBg.image =[self blurImage:model.movieImageView.image  withBottomInset:0 blurRadius:43];}
+    
+    if(model.IsViewed){
+        self.iconEyeIndex.image = [UIImage imageNamed:@"iconEyeIndexActive.png"];
+    }else{
+        self.iconEyeIndex.image = [UIImage imageNamed:@"iconEyeIndex.png"];
+    }
+    if(model.IsLiked){
+        self.iconLikeIndex.image = [UIImage imageNamed:@"iconHeartIndexActive.png"];
+    }else{
+        self.iconLikeIndex.image = [UIImage imageNamed:@"iconLikeIndex.png"];
+    }
+    if(model.IsWantView){
+        self.iconPoketIndex.image = [UIImage imageNamed:@"iconPocketIndexActive.png"];
+    }else{
+        self.iconPoketIndex.image = [UIImage imageNamed:@"iconPoketIndex.png"];
+    }
 }
 
 -(void)curvedMask:(UIView*)view{
@@ -287,7 +311,18 @@
             int indexOfPage = self.imageScroll.contentOffset.x / self.imageScroll.frame.size.width;
             NSLog(@"%@",[[self.returnData objectAtIndex:indexOfPage]objectForKey:@"Id"]);
             [[AustinApi sharedInstance]socialAction:[[self.returnData objectAtIndex:indexOfPage]objectForKey:@"Id"] act:[NSString stringWithFormat:@"%ld",sender.view.tag] obj:@"1" function:^(NSString *returnData) {
-                NSLog(@"%@",returnData);
+
+                movieModel *model = [self.movieArray objectAtIndex:indexOfPage];
+                if(sender.view.tag==0){
+                    model.IsViewed =!model.IsViewed;
+                }
+                if(sender.view.tag==1){
+                    model.IsLiked =!model.IsLiked;
+                }
+                if(sender.view.tag==2){
+                    model.IsWantView = !model.IsWantView;
+                }
+                [self setMovieDetails:[self.movieArray objectAtIndex:indexOfPage] blur:NO];
             } error:^(NSError *error) {
                 NSLog(@"%@",error);
             }];
