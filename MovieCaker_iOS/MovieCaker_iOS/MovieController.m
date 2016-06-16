@@ -282,6 +282,21 @@
 }
 -(void)indexClick:(UITapGestureRecognizer *)sender{
     NSLog(@"asd%ld",sender.view.tag);
+    if(sender.view.tag<3){
+        if([[NSUserDefaults standardUserDefaults] objectForKey:@"userkey"]!=nil){
+            int indexOfPage = self.imageScroll.contentOffset.x / self.imageScroll.frame.size.width;
+            NSLog(@"%@",[[self.returnData objectAtIndex:indexOfPage]objectForKey:@"Id"]);
+            [[AustinApi sharedInstance]socialAction:[[self.returnData objectAtIndex:indexOfPage]objectForKey:@"Id"] act:[NSString stringWithFormat:@"%ld",sender.view.tag] obj:@"1" function:^(NSString *returnData) {
+                NSLog(@"%@",returnData);
+            } error:^(NSError *error) {
+                NSLog(@"%@",error);
+            }];
+        }else{
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"注意" message:@"请登入" delegate:self cancelButtonTitle:@"关闭" otherButtonTitles:nil,nil];
+            [alert show];
+        }
+    }
+    
     if(sender.view.tag==7){
         self.tabBarController.selectedIndex = 1;
     }

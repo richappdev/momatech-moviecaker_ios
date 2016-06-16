@@ -226,4 +226,12 @@
     }];
     
 }
+-(void)socialAction:(NSString*)Id act:(NSString*)act obj:(NSString*)obj function:(void (^)(NSString *returnData))completion error:(void (^)(NSError *error))error{
+    NSDictionary *param =@{@"act":act,@"obj":obj,@"id":Id};
+    [self apiPostMethod:@"api/Social" parameter:param addTokenHeader:@"1" completion:^(id response) {
+        completion(response);
+    } error:^(NSError *error2) {
+        error(error2);
+    }];
+}
 @end

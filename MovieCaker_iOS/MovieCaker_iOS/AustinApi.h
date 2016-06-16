@@ -27,4 +27,5 @@
             withPassword:(NSString *)password
             withRemember:(BOOL)remember
                 function:(void (^)(NSDictionary *returnData))completion error:(void (^)(NSError *error))error;
+-(void)socialAction:(NSString*)Id act:(NSString*)act obj:(NSString*)obj function:(void (^)(NSString *returnData))completion error:(void (^)(NSError *error))error;
 @end
