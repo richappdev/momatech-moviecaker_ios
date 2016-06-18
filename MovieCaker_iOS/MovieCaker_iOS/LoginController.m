@@ -12,6 +12,7 @@
 #import "AFNetworking.h"
 #import "WechatAccess.h"
 #import "AustinApi.h"
+#import "MovieController.h"
 #define USERKEY @"userkey"
 @interface LoginController ()
 @property (strong, nonatomic) IBOutlet UIButton *Button;
@@ -46,12 +47,9 @@
 */
 
 - (IBAction)Login:(id)sender {
-/*[[AustinApi sharedInstance]loginWithAccount:@"space15spider@hotmail.com" withPassword:@"" withRemember:YES function:^(NSDictionary *returnData) {
-    NSLog(@"%@",returnData);
-} error:^(NSError *error) {
-    NSLog(@"%@",error);
-}];*/
-
+    UINavigationController *nav = [self.tabBarController.viewControllers objectAtIndex:0];
+    MovieController *movie = [[nav viewControllers]objectAtIndex:0];
+    movie.refresh = YES;
     if([[NSUserDefaults standardUserDefaults] objectForKey:USERKEY]!=nil){
         [[NSUserDefaults standardUserDefaults] removeObjectForKey:USERKEY];
         [self.Button setTitle:@"Wechat Login" forState:UIControlStateNormal];
@@ -62,6 +60,16 @@
             [[NSHTTPCookieStorage sharedHTTPCookieStorage] deleteCookie:cookie];
         }
     }
+   /* else{
+        [[AustinApi sharedInstance]loginWithAccount:@"space15spider@hotmail.com" withPassword:@"" withRemember:YES function:^(NSDictionary *returnData) {
+            [[NSUserDefaults standardUserDefaults] setObject:[NSKeyedArchiver archivedDataWithRootObject:returnData] forKey:USERKEY];
+            NSLog(@"%@",returnData);
+        } error:^(NSError *error) {
+            NSLog(@"%@",error);
+        }];
+
+    }
+    */
     else{
     
     

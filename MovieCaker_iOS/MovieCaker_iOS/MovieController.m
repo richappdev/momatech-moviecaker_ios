@@ -52,6 +52,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.refresh = NO;
     self.notSelected = YES;
     self.scrollView.scrollView = self.imageScroll;
     self.imageScroll.delegate = self;
@@ -90,68 +91,8 @@
 
  //   CGPoint position = CGPointMake(0,0);
   //  [self.MainScroll setContentOffset:position];
-    [[AustinApi sharedInstance] movieList:^(NSMutableDictionary *returnData) {
-        //NSLog(@"%@",returnData);
-        self.returnData = returnData;
-        self.movieArray = [[NSMutableArray alloc]init];
-        
-        int margin = 15;
-        int width = 255;
-        int height = 341;
-        int count = 0;
-        self.imageScroll.contentSize = CGSizeMake(width* [returnData count], self.imageScroll.frame.size.height);
-        for(NSDictionary *row in returnData){
-            
-        movieModel *temp = [movieModel alloc];
-        temp.title = [row objectForKey:@"CNName"];
-        temp.rating = [NSString stringWithFormat:@"%@", [row objectForKey:@"AverageScore"]];
-        temp.IsViewed = [[row objectForKey:@"IsViewed"]boolValue];
-        temp.IsLiked = [[row objectForKey:@"IsLiked"]boolValue];
-        temp.IsWantView = [[row objectForKey:@"IsWantView"]boolValue];
-            
-        UIImage *placeholder = [UIImage imageNamed:@"img-placeholder.jpg"];
-        UIImageView *image = [[UIImageView alloc] initWithImage:temp.movieImage];
-       
-        NSString *url = [NSString stringWithFormat:@"http://www.funmovie.tv/Content/pictures/files/%@?width=235",[row objectForKey:@"Picture"]];
-            
-        image.userInteractionEnabled = YES;
-            
-        image.frame = CGRectMake(margin+width*count, 0, width-margin*2, height);
-        [self.imageScroll addSubview:image];
-        
-        temp.movieImageView = image;
-            
-            UIView *ratingBg = [[UIView alloc]initWithFrame:CGRectMake(margin+width*count, 275, 66, 66)];
-            ratingBg.backgroundColor = [UIColor colorWithRed:(77.0f/255.0f) green:(182.0f/255.0f) blue:(172.0f/255.0f) alpha:0.6];
-            [self curvedMask:ratingBg];
-            [self.imageScroll addSubview:ratingBg];
-            UIImageView *star = [[UIImageView alloc]initWithFrame:CGRectMake(18, 20, 18, 18)];
-            star.image = [UIImage imageWithIcon:@"fa-star" backgroundColor:[UIColor clearColor] iconColor:[UIColor whiteColor] andSize:CGSizeMake(18, 18)];
-            [ratingBg addSubview:star];
-            UILabel *label = [[UILabel alloc]initWithFrame:CGRectMake(3, 36, 52, 21)];
-            label.text = [NSString stringWithFormat:@"%0.1f", [[row objectForKey:@"AverageScore"]floatValue]];
-            label.textColor = [UIColor whiteColor];
-            label.textAlignment = NSTextAlignmentCenter;
-            [ratingBg addSubview:label];
-        
-        [self.movieArray addObject:temp];
-            
-        if(count==0){
-            [image sd_setImageWithURL:[NSURL URLWithString:url] placeholderImage:placeholder completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
-                [self setMovieDetails:[self.movieArray objectAtIndex:0] blur:YES];
-            }];
-        }
-        else{
-            [image sd_setImageWithURL:[NSURL URLWithString:url] placeholderImage:placeholder];
-        }
-            count++;
-        
-    }
-        
-    } error:^(NSError *error) {
-        NSLog(@"%@",error);
-    }];
 
+    [self imageScrollCall];
     [[AustinApi sharedInstance]getTopic:@"6" vid:nil function:^(NSArray *returnData) {
    //     NSLog(@"bbb%@",returnData);
         self.movieTableController = [[MovieTableViewController alloc] init:0];
@@ -186,6 +127,69 @@
         NSLog(@"%@",error);
     }];
 }
+-(void)imageScrollCall{
+    [[AustinApi sharedInstance] movieList:^(NSMutableDictionary *returnData) {
+        //NSLog(@"%@",returnData);
+        self.returnData = returnData;
+        self.movieArray = [[NSMutableArray alloc]init];
+        
+        int margin = 15;
+        int width = 255;
+        int height = 341;
+        int count = 0;
+        self.imageScroll.contentSize = CGSizeMake(width* [returnData count], 341);
+        for(NSDictionary *row in returnData){
+            
+            movieModel *temp = [movieModel alloc];
+            temp.title = [row objectForKey:@"CNName"];
+            temp.rating = [NSString stringWithFormat:@"%@", [row objectForKey:@"AverageScore"]];
+            temp.IsViewed = [[row objectForKey:@"IsViewed"]boolValue];
+            temp.IsLiked = [[row objectForKey:@"IsLiked"]boolValue];
+            temp.IsWantView = [[row objectForKey:@"IsWantView"]boolValue];
+            
+            UIImage *placeholder = [UIImage imageNamed:@"img-placeholder.jpg"];
+            UIImageView *image = [[UIImageView alloc] initWithImage:temp.movieImage];
+            
+            NSString *url = [NSString stringWithFormat:@"http://www.funmovie.tv/Content/pictures/files/%@?width=235",[row objectForKey:@"Picture"]];
+            
+            image.userInteractionEnabled = YES;
+            
+            image.frame = CGRectMake(margin+width*count, 0, width-margin*2, height);
+            [self.imageScroll addSubview:image];
+            
+            temp.movieImageView = image;
+            
+            UIView *ratingBg = [[UIView alloc]initWithFrame:CGRectMake(margin+width*count, 275, 66, 66)];
+            ratingBg.backgroundColor = [UIColor colorWithRed:(77.0f/255.0f) green:(182.0f/255.0f) blue:(172.0f/255.0f) alpha:0.6];
+            [self curvedMask:ratingBg];
+            [self.imageScroll addSubview:ratingBg];
+            UIImageView *star = [[UIImageView alloc]initWithFrame:CGRectMake(18, 20, 18, 18)];
+            star.image = [UIImage imageWithIcon:@"fa-star" backgroundColor:[UIColor clearColor] iconColor:[UIColor whiteColor] andSize:CGSizeMake(18, 18)];
+            [ratingBg addSubview:star];
+            UILabel *label = [[UILabel alloc]initWithFrame:CGRectMake(3, 36, 52, 21)];
+             label.text = [NSString stringWithFormat:@"%0.1f", [[row objectForKey:@"AverageScore"]floatValue]];
+            label.textColor = [UIColor whiteColor];
+            label.textAlignment = NSTextAlignmentCenter;
+            [ratingBg addSubview:label];
+            
+            [self.movieArray addObject:temp];
+            
+            if(count==0){
+                [image sd_setImageWithURL:[NSURL URLWithString:url] placeholderImage:placeholder completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
+                    [self setMovieDetails:[self.movieArray objectAtIndex:0] blur:YES];
+                }];
+            }
+            else{
+                [image sd_setImageWithURL:[NSURL URLWithString:url] placeholderImage:placeholder];
+            }
+            count++;
+            
+        }
+        
+    } error:^(NSError *error) {
+        NSLog(@"%@",error);
+    }];
+}
 -(void)readjustScrollsize{
     int height;
     height = [self.movieTableController returnTotalHeight]+[self.movieTable2Controller returnTotalHeight]+600;
@@ -197,6 +201,20 @@
 -(void)viewWillAppear:(BOOL)animated{
     self.notSelected = YES;
     self.MainScroll.delegate = self.scrollDelegate;
+    if(self.refresh){
+        [[self.imageScroll subviews] makeObjectsPerformSelector:@selector(removeFromSuperview)];
+        [self.imageScroll setContentOffset:CGPointMake(0, 0) animated:NO];
+        self.uititle.text= @"";
+        self.blurredBg.image =nil;
+        self.movieArray =nil;
+        self.returnData =nil;
+        self.iconEyeIndex.image = [UIImage imageNamed:@"iconEyeIndex.png"];
+        self.iconLikeIndex.image = [UIImage imageNamed:@"iconLikeIndex.png"];
+        self.iconPoketIndex.image = [UIImage imageNamed:@"iconPoketIndex.png"];
+        self.lastIndex =0;
+        self.refresh =NO;
+        [self imageScrollCall];
+    }
 }
 
 -(void)addIndexGesture:(UIView*)view{

@@ -103,7 +103,11 @@
         [cell.mainPic sd_setImageWithURL:[NSURL URLWithString:url] placeholderImage:[UIImage imageNamed:@"img-placeholder.jpg"]];
         
         [cell.AvatarPic sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@/Uploads/UserAvatar/%@",[[AustinApi sharedInstance] getBaseUrl],[data objectForKey:@"UserAvatar"]]]];
+        if(![[data objectForKey:@"OwnerLinkVideo_Score"] isKindOfClass:[NSNull class]]){
         [cell setStars:floor([[data objectForKey:@"OwnerLinkVideo_Score"]floatValue])];
+        }else{
+            [cell setStars:0];
+        }
         if([[data objectForKey:@"OwnerLinkVideo_IsLiked"]intValue]==0){
             cell.Heart.image = [UIImage imageNamed:@"iconHeartList.png"];
         }else{
