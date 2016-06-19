@@ -93,24 +93,11 @@
   //  [self.MainScroll setContentOffset:position];
 
     [self imageScrollCall];
-    [[AustinApi sharedInstance]getTopic:@"6" vid:nil function:^(NSArray *returnData) {
-   //     NSLog(@"bbb%@",returnData);
-        self.movieTableController = [[MovieTableViewController alloc] init:0];
-        self.movieTableController.data =returnData;
-        self.movieTable.delegate = self.movieTableController;
-        self.movieTable.dataSource = self.movieTableController;
-        self.movieTableController.tableHeight = self.movieTableHeight;
-        self.movieTableController.tableView = self.movieTable;
-        [self.movieTableController.tableView reloadData];
-        self.movieTableTopspace.constant = 45+ [self.movieTableController returnTotalHeight];
-        
-        [self readjustScrollsize];
-
-    } error:^(NSError *error) {
-        NSLog(@"%@",error);
-    }];
-
+    [self topicCall];
+    [self reviewCall];
     
+}
+-(void)reviewCall{
     [[AustinApi sharedInstance]getReview:@"2" function:^(NSArray *returnData) {
         //    NSLog(@"bbb%@",returnData);
         self.movieTable2Controller = [[MovieTableViewController alloc] init:1];
@@ -126,6 +113,25 @@
     } error:^(NSError *error) {
         NSLog(@"%@",error);
     }];
+}
+-(void)topicCall{
+    [[AustinApi sharedInstance]getTopic:@"6" vid:nil function:^(NSArray *returnData) {
+        //     NSLog(@"bbb%@",returnData);
+        self.movieTableController = [[MovieTableViewController alloc] init:0];
+        self.movieTableController.data =returnData;
+        self.movieTable.delegate = self.movieTableController;
+        self.movieTable.dataSource = self.movieTableController;
+        self.movieTableController.tableHeight = self.movieTableHeight;
+        self.movieTableController.tableView = self.movieTable;
+        [self.movieTableController.tableView reloadData];
+        self.movieTableTopspace.constant = 45+ [self.movieTableController returnTotalHeight];
+        
+        [self readjustScrollsize];
+        
+    } error:^(NSError *error) {
+        NSLog(@"%@",error);
+    }];
+
 }
 -(void)imageScrollCall{
     [[AustinApi sharedInstance] movieList:^(NSMutableDictionary *returnData) {
@@ -214,6 +220,8 @@
         self.lastIndex =0;
         self.refresh =NO;
         [self imageScrollCall];
+        [self topicCall];
+        [self reviewCall];
     }
 }
 

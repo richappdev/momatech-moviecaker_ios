@@ -227,6 +227,7 @@
     
 }
 -(void)socialAction:(NSString*)Id act:(NSString*)act obj:(NSString*)obj function:(void (^)(NSString *returnData))completion error:(void (^)(NSError *error))error{
+//    NSLog(@"%@",[NSString stringWithFormat:@"api/Social?id=%@&act=%@&obj=%@",Id,act,obj]);
     [self apiPostMethod:[NSString stringWithFormat:@"api/Social?id=%@&act=%@&obj=%@",Id,act,obj] parameter:nil addTokenHeader:@"1" completion:^(id response) {
         NSString *string = [[NSString alloc] initWithData:response encoding:NSUTF8StringEncoding];
         completion(string);

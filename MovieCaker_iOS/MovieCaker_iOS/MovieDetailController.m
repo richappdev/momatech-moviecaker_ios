@@ -66,6 +66,7 @@
     [[AustinApi sharedInstance]getTopic:@"7" vid:[self.movieDetailInfo objectForKey:@"Id"] function:^(NSArray *returnData) {
         NSLog(@"a%lu",(unsigned long)[returnData count]);
         self.movieTableController = [[MovieTableViewController alloc] init:0];
+        self.topicTable.scrollEnabled = false;
         self.topicTable.delegate = self.movieTableController;
         self.topicTable.dataSource = self.movieTableController;
         self.movieTableController.tableHeight = self.topicTableHeight;
@@ -83,6 +84,7 @@
         NSLog(@"%@",error);
     }];
     self.movieTable2Controller = [[MovieTableViewController alloc] init:1];
+    self.reviewTable.scrollEnabled = false;
     self.reviewTable.delegate = self.movieTable2Controller;
     self.reviewTable.dataSource = self.movieTable2Controller;
     self.movieTable2Controller.tableHeight = self.reviewTableHeight;
@@ -195,6 +197,8 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
-
+-(void)viewWillDisappear:(BOOL)animated{
+    [self.navigationController popViewControllerAnimated:NO];
+}
 
 @end

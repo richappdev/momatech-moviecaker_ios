@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 
 @interface Movie2Cell : UITableViewCell
+@property NSString* Id;
 @property (strong, nonatomic) IBOutlet UIView *likeBtn;
 @property (strong, nonatomic) IBOutlet UIView *shareBtn;
 @property (strong, nonatomic) IBOutlet UIImageView *star1;
@@ -27,4 +28,5 @@
 @property (strong, nonatomic) IBOutlet UIImageView *Heart;
 @property NSArray *starArray;
 -(void)setStars:(int)rating;
+-(void)setLikeState:(BOOL)state;
 @end

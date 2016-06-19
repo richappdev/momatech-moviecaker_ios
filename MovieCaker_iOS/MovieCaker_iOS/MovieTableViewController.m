@@ -62,6 +62,7 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     if(self.type==0){
     MovieCell *cell = [tableView dequeueReusableCellWithIdentifier:@"MovieCell" forIndexPath:indexPath];
+        cell.Id = [[self.data objectAtIndex:indexPath.row]objectForKey:@"Id"];
         cell.title.text = [[self.data objectAtIndex:indexPath.row]objectForKey:@"Title"];
         cell.Author.text =  [[[self.data objectAtIndex:indexPath.row]objectForKey:@"Author"]objectForKey:@"NickName"];
         cell.Content.text =  [[self.data objectAtIndex:indexPath.row]objectForKey:@"Content"];
@@ -80,6 +81,7 @@
         
         }
         cell.Circle.hidden = YES;
+        [cell setLikeState:[[[self.data objectAtIndex:indexPath.row] objectForKey:@"IsLiked"] boolValue]];
         [[AustinApi sharedInstance] getCircleCompletion:[[self.data objectAtIndex:indexPath.row]objectForKey:@"Id"] userId:[[[self.data objectAtIndex:indexPath.row]objectForKey:@"Author"]objectForKey:@"Id"] function:^(NSDictionary *returnData) {
             cell.Circle.hidden = NO;
             [cell setCirclePercentage:[[returnData objectForKey:@"PercentComplete"]floatValue]*0.01];
@@ -92,6 +94,7 @@
             Movie2Cell *cell = [tableView dequeueReusableCellWithIdentifier:@"Movie2Cell" forIndexPath:indexPath];
         NSDictionary *data =[self.data objectAtIndex:indexPath.row];
    //     NSLog(@"%@",data);
+        cell.Id = [data objectForKey:@"ReviewId"];
         cell.Title.text = [data objectForKey:@"VideoCNName"];
         cell.Content.text = [data objectForKey:@"Review"];
         cell.CreatedOn.text = [[data objectForKey:@"CreateOn"] stringByReplacingOccurrencesOfString:@"-" withString:@"/"];
@@ -113,6 +116,7 @@
         }else{
             cell.Heart.image = [UIImage imageNamed:@"iconHeartListLiked.png"];
         }
+        [cell setLikeState:[[data objectForKey:@"IsLiked"] boolValue]];
         
             return cell;
     

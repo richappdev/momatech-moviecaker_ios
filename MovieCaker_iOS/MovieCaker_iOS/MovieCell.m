@@ -8,6 +8,7 @@
 
 #import "MovieCell.h"
 #import "buttonHelper.h"
+#import "AustinApi.h"
 @implementation MovieCell
 
 - (void)awakeFromNib {
@@ -47,7 +48,30 @@
 }
 
 -(void)indexClick:(UITapGestureRecognizer *)sender{
-    [buttonHelper likeShareClick:sender.view];
-}
+    if([[NSUserDefaults standardUserDefaults] objectForKey:@"userkey"]==nil){
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"注意" message:@"请登入" delegate:self cancelButtonTitle:@"关闭" otherButtonTitles:nil,nil];
+        [alert show];
+    }else{
+    NSString *act;
+    if(sender.view.tag==0||sender.view.tag==2){
+        act =@"1";
+        [[AustinApi sharedInstance]socialAction:self.Id act:act obj:@"3" function:^(NSString *returnData) {
+            NSLog(@"%@",returnData);
+        } error:^(NSError *error) {
+            NSLog(@"%@",error);
+        }];
+    }else{
+        act =@"3";
+    }
 
+        [buttonHelper likeShareClick:sender.view];}
+}
+-(void)setLikeState:(BOOL)state{
+    if(state){
+        self.likeBtn.tag = 2;
+    }else{
+        self.likeBtn.tag = 0;
+    }
+    [buttonHelper adjustLike:self.likeBtn];
+}
 @end
