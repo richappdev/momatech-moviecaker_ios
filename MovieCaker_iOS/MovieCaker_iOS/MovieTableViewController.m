@@ -57,7 +57,7 @@
 }
 
 -(int)returnTotalHeight{
-    return [self.data count]*_cellHeight;
+    return (int)[self.data count]*_cellHeight;
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     if(self.type==0){

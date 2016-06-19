@@ -2124,6 +2124,9 @@
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tlp-Az-qU5">
                                                     <rect key="frame" x="203" y="38" width="52" height="14"/>
                                                     <subviews>
+                                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="lableImdb" translatesAutoresizingMaskIntoConstraints="NO" id="jmc-f4-N4b">
+                                                            <rect key="frame" x="0.0" y="0.0" width="52" height="14"/>
+                                                        </imageView>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="10.0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="h7T-Me-CHu">
                                                             <rect key="frame" x="30" y="-4" width="22" height="21"/>
                                                             <constraints>
@@ -2133,9 +2136,6 @@
                                                             <color key="textColor" red="0.094117647058823528" green="0.10588235294117647" blue="0.12549019607843137" alpha="1" colorSpace="calibratedRGB"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
-                                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="lableImdb" translatesAutoresizingMaskIntoConstraints="NO" id="jmc-f4-N4b">
-                                                            <rect key="frame" x="0.0" y="0.0" width="52" height="14"/>
-                                                        </imageView>
                                                     </subviews>
                                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                     <constraints>
