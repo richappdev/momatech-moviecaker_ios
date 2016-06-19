@@ -58,6 +58,7 @@
     if(sender.view.tag==0||sender.view.tag==2){
         act =@"1";
     }else{
+        NSLog(@"three");
         WXMediaMessage *message = [WXMediaMessage message];
         message.title = self.title.text;
         

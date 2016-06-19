@@ -44,10 +44,11 @@
 - (BOOL)handleOpenURL:(NSURL *)url{
     return [WXApi handleOpenURL:url delegate:[self defaultAccess]];
 }
-
+-(void)registerApp{
+    [WXApi registerApp:WECHAT_APP_ID];
+}
 - (void)login:(void(^)(BOOL succeeded, id object))result viewController:(UIViewController*)controller{
     _result = result;
-    [WXApi registerApp:WECHAT_APP_ID];
     SendAuthReq *req = [[SendAuthReq alloc] init];
     [req setScope:@"snsapi_userinfo"];
     [WXApi sendAuthReq:req viewController:controller delegate:self];
@@ -109,4 +110,46 @@
 - (BOOL)isWechatAppInstalled{
     return [[UIApplication sharedApplication]canOpenURL:[NSURL URLWithString:[NSString stringWithFormat:@"weixin://%@",WECHAT_APP_ID]]];
 }
+
+-(void)refreshAccessToken:(NSString*)input completion:(void (^)(BOOL finished, NSMutableDictionary *Data))completion error:(void (^)(NSError *error))error
+{
+    NSString *access_token_w = [[NSUserDefaults standardUserDefaults] objectForKey:@"access_token_w"];
+    NSString *refresh_token_w = [[NSUserDefaults standardUserDefaults] objectForKey:@"refresh_token_w"];
+    
+    
+    NSLog(@"access_token_w : %@, refresh_token_w : %@", access_token_w, refresh_token_w);
+    
+    AFHTTPRequestOperationManager *manager = [[AFHTTPRequestOperationManager alloc] init];
+    [manager setResponseSerializer:[AFHTTPResponseSerializer serializer]];
+    
+    [manager GET:@"https://api.weixin.qq.com/sns/oauth2/refresh_token"
+      parameters:@{@"appid" : WECHAT_APP_ID,
+                   @"grant_type" : @"refresh_token",
+                   @"refresh_token" : refresh_token_w}
+         success:^(AFHTTPRequestOperation *operation,id responseObject) {
+             if ([responseObject isKindOfClass:[NSData class]]) {
+                 responseObject = [NSJSONSerialization JSONObjectWithData:responseObject options:kNilOptions error:nil];
+             }
+             //_result(YES, responseObject);
+             if ([responseObject objectForKey:@"access_token"] != nil) {
+                 NSString *access_token_w = [responseObject objectForKey:@"access_token"];
+                 
+                 NSString *refresh_token_w = [responseObject objectForKey:@"refresh_token"];
+                 
+                 [[NSUserDefaults standardUserDefaults] setObject:access_token_w forKey:@"access_token_w"];
+                 [[NSUserDefaults standardUserDefaults] setObject:refresh_token_w forKey:@"refresh_token_w"];
+                 
+                 completion(YES, responseObject);
+                 
+             } else {
+                 
+                 completion(NO, responseObject);
+             }
+             
+             
+         } failure:^(AFHTTPRequestOperation *operation,NSError *err) {
+             error(err);
+         }];
+}
+
 @end
