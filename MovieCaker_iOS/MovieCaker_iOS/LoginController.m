@@ -28,6 +28,7 @@
 }
 -(void)viewWillAppear:(BOOL)animated{
     NSDictionary *returnData = [NSKeyedUnarchiver unarchiveObjectWithData:[[NSUserDefaults standardUserDefaults] objectForKey:USERKEY]];
+    NSLog(@"%@",returnData);
     if(returnData!=nil){
         [self.Button setTitle:[NSString stringWithFormat:@"%@:log out",[[returnData objectForKey:@"Data"] objectForKey:@"NickName"]] forState:UIControlStateNormal];}
 }
@@ -60,26 +61,26 @@
             [[NSHTTPCookieStorage sharedHTTPCookieStorage] deleteCookie:cookie];
         }
     }
-   /* else{
-        [[AustinApi sharedInstance]loginWithAccount:@"space15spider@hotmail.com" withPassword:@"" withRemember:YES function:^(NSDictionary *returnData) {
+    /*else{
+        [[AustinApi sharedInstance]loginWithAccount:@"space15spider@hotmail.com" withPassword:@"superman321" withRemember:YES function:^(NSDictionary *returnData) {
             [[NSUserDefaults standardUserDefaults] setObject:[NSKeyedArchiver archivedDataWithRootObject:returnData] forKey:USERKEY];
             NSLog(@"%@",returnData);
         } error:^(NSError *error) {
             NSLog(@"%@",error);
         }];
 
-    }
-    */
+    }*/
+    
     else{
     
     
     if([[WechatAccess sharedInstance]isWechatAppInstalled]==YES){
     
-    [[[WechatAccess sharedInstance] defaultAccess]login:^(BOOL succeeded, id object) {
+        [[[WechatAccess sharedInstance] defaultAccess]login:^(BOOL succeeded, id object) {NSLog(@"wro");
         if(succeeded){
         //do Login Proccess
         [[AustinApi sharedInstance] apiRegisterPost:[object objectForKey:@"unionid"] completion:^(NSMutableDictionary *returnData) {
-            NSLog(@"%@",returnData);
+            NSLog(@"here%@",returnData);
             [[NSUserDefaults standardUserDefaults] setObject:[NSKeyedArchiver archivedDataWithRootObject:returnData] forKey:USERKEY];
 
             [self.Button setTitle:[NSString stringWithFormat:@"%@:log out",[[returnData objectForKey:@"Data"] objectForKey:@"NickName"]] forState:UIControlStateNormal];
@@ -89,7 +90,7 @@
         }];
             
         }else{
-            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"登入訊息" message:@"登入取消" delegate:self cancelButtonTitle:@"关闭" otherButtonTitles:nil,nil];
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"訊息" message:@"取消" delegate:self cancelButtonTitle:@"关闭" otherButtonTitles:nil,nil];
             [alert show];
         }
     } viewController:self];}

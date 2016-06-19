@@ -80,6 +80,8 @@
     Movie2Cell *cell = [tableView dequeueReusableCellWithIdentifier:@"MovieTableThree" forIndexPath:indexPath];
         NSDictionary *data =[self.data objectAtIndex:indexPath.row];
         //     NSLog(@"%@",data);
+        cell.Id =[data objectForKey:@"ReviewId"];
+        cell.videoId = [data objectForKey:@"VideoId"];
         cell.Title.text = [data objectForKey:@"VideoCNName"];
         cell.Content.text = [data objectForKey:@"Review"];
         cell.CreatedOn.text = [[data objectForKey:@"CreateOn"] stringByReplacingOccurrencesOfString:@"-" withString:@"/"];
@@ -91,12 +93,18 @@
         [cell.mainPic sd_setImageWithURL:[NSURL URLWithString:url] placeholderImage:[UIImage imageNamed:@"img-placeholder.jpg"]];
         
         [cell.AvatarPic sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@/Uploads/UserAvatar/%@",[[AustinApi sharedInstance] getBaseUrl],[data objectForKey:@"UserAvatar"]]]];
-        [cell setStars:floor([[data objectForKey:@"OwnerLinkVideo_Score"]floatValue])];
+         if(![[data objectForKey:@"OwnerLinkVideo_Score"] isKindOfClass:[NSNull class]]){
+             [cell setStars:floor([[data objectForKey:@"OwnerLinkVideo_Score"]floatValue])];}
+         else{
+             [cell setStars:0];
+         }
         if([[data objectForKey:@"OwnerLinkVideo_IsLiked"]intValue]==0){
             cell.Heart.image = [UIImage imageNamed:@"iconHeartList.png"];
         }else{
             cell.Heart.image = [UIImage imageNamed:@"iconHeartListLiked.png"];
         }
+        [cell setLikeState:[[data objectForKey:@"IsLiked"] boolValue]];
+        [cell setShareState:[[data objectForKey:@"IsShared"] boolValue]];
         return cell;
     }
     return cell;

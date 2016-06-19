@@ -10,6 +10,7 @@
 
 @interface Movie2Cell : UITableViewCell
 @property NSString* Id;
+@property NSString* videoId;
 @property (strong, nonatomic) IBOutlet UIView *likeBtn;
 @property (strong, nonatomic) IBOutlet UIView *shareBtn;
 @property (strong, nonatomic) IBOutlet UIImageView *star1;
@@ -29,4 +30,5 @@
 @property NSArray *starArray;
 -(void)setStars:(int)rating;
 -(void)setLikeState:(BOOL)state;
+-(void)setShareState:(BOOL)state;
 @end

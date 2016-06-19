@@ -33,7 +33,7 @@
                                 };
     NSString *postString = [NSString stringWithFormat:@"api/Account/ExternalLogin"];
     
-    [self apiPostMethod:postString parameter:parameter addTokenHeader:nil completion:^(id response) {
+    [self apiPostMethod:postString parameter:parameter addTokenHeader:nil completion:^(id response) { NSLog(@"response%@",response);
         if ([response isKindOfClass:[NSDictionary class]]) {
             completion(response);
         }
@@ -53,7 +53,7 @@
     //test- manager.requestSerializer = [AFJSONRequestSerializer serializer];
     manager.requestSerializer = [AFHTTPRequestSerializer serializer]; //test+
     
-    manager.responseSerializer = [AFHTTPResponseSerializer serializer];
+    manager.responseSerializer = [AFJSONResponseSerializer serializer];
     
     manager.responseSerializer.acceptableContentTypes = [manager.responseSerializer.acceptableContentTypes setByAddingObject:@"text/html"];
     manager.responseSerializer.acceptableContentTypes = [manager.responseSerializer.acceptableContentTypes setByAddingObject:@"application/json"];
@@ -228,11 +228,19 @@
 }
 -(void)socialAction:(NSString*)Id act:(NSString*)act obj:(NSString*)obj function:(void (^)(NSString *returnData))completion error:(void (^)(NSError *error))error{
 //    NSLog(@"%@",[NSString stringWithFormat:@"api/Social?id=%@&act=%@&obj=%@",Id,act,obj]);
-    [self apiPostMethod:[NSString stringWithFormat:@"api/Social?id=%@&act=%@&obj=%@",Id,act,obj] parameter:nil addTokenHeader:@"1" completion:^(id response) {
+
+    NSURL *baseURL = [NSURL URLWithString:SERVERAPI];
+    
+    AFHTTPSessionManager *manager = [[AFHTTPSessionManager alloc] initWithBaseURL:baseURL];
+    manager.responseSerializer = [AFHTTPResponseSerializer serializer];
+    [manager POST:[NSString stringWithFormat:@"api/Social?id=%@&act=%@&obj=%@",Id,act,obj] parameters:nil success:^(NSURLSessionDataTask *task, id response) {
         NSString *string = [[NSString alloc] initWithData:response encoding:NSUTF8StringEncoding];
+        NSLog(@"%@",string);
         completion(string);
-    } error:^(NSError *error2) {
-        error(error2);
+        
+    } failure:^(NSURLSessionDataTask *task, NSError *err) {
+
+        error(err);
     }];
 }
 @end

@@ -99,10 +99,10 @@
                        }
                        _result(YES, responseObject);
                    } failure:^(AFHTTPRequestOperation *operation,NSError *error) {
-                       
+                       NSLog(@"error:%@",error);
                    }];
           } failure:^(AFHTTPRequestOperation *operation,NSError *error) {
-              
+              NSLog(@"%@",error);
           }];
 }
 

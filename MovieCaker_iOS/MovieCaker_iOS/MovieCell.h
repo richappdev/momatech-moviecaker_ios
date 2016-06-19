@@ -30,4 +30,5 @@
 @property NSArray *labelArray;
 -(void)setCirclePercentage:(float) percent;
 -(void)setLikeState:(BOOL)state;
+-(void)setShareState:(BOOL)state;
 @end

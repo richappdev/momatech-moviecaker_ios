@@ -69,7 +69,7 @@
         cell.Date.text = [[[self.data objectAtIndex:indexPath.row]objectForKey:@"ModifiedOn"]stringByReplacingOccurrencesOfString:@"-" withString:@"/"];
         [cell.AvatarPic sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@/Uploads/UserAvatar/%@",[[AustinApi sharedInstance] getBaseUrl],[[[self.data objectAtIndex:indexPath.row]objectForKey:@"Author"] objectForKey:@"Avatar"]]] placeholderImage:[UIImage imageNamed:@"img-placeholder.jpg"]];
         cell.viewCount.text = [[[self.data objectAtIndex:indexPath.row]objectForKey:@"ViewNum"]stringValue];
-        NSLog(@"%lu",[[[self.data objectAtIndex:indexPath.row]objectForKey:@"Picture"]count]);
+
         for(int i =0;i<5;i++){
             UIImageView *view = [cell.imageArray objectAtIndex:i];
             if([[[self.data objectAtIndex:indexPath.row]objectForKey:@"Picture"]count]>i){
@@ -82,6 +82,7 @@
         }
         cell.Circle.hidden = YES;
         [cell setLikeState:[[[self.data objectAtIndex:indexPath.row] objectForKey:@"IsLiked"] boolValue]];
+        [cell setShareState:[[[self.data objectAtIndex:indexPath.row] objectForKey:@"IsShared"] boolValue]];
         [[AustinApi sharedInstance] getCircleCompletion:[[self.data objectAtIndex:indexPath.row]objectForKey:@"Id"] userId:[[[self.data objectAtIndex:indexPath.row]objectForKey:@"Author"]objectForKey:@"Id"] function:^(NSDictionary *returnData) {
             cell.Circle.hidden = NO;
             [cell setCirclePercentage:[[returnData objectForKey:@"PercentComplete"]floatValue]*0.01];
@@ -95,6 +96,7 @@
         NSDictionary *data =[self.data objectAtIndex:indexPath.row];
    //     NSLog(@"%@",data);
         cell.Id = [data objectForKey:@"ReviewId"];
+        cell.videoId = [data objectForKey:@"VideoId"];
         cell.Title.text = [data objectForKey:@"VideoCNName"];
         cell.Content.text = [data objectForKey:@"Review"];
         cell.CreatedOn.text = [[data objectForKey:@"CreateOn"] stringByReplacingOccurrencesOfString:@"-" withString:@"/"];
@@ -117,6 +119,7 @@
             cell.Heart.image = [UIImage imageNamed:@"iconHeartListLiked.png"];
         }
         [cell setLikeState:[[data objectForKey:@"IsLiked"] boolValue]];
+        [cell setShareState:[[data objectForKey:@"IsShared"] boolValue]];
         
             return cell;
     

@@ -11,4 +11,5 @@
 @interface buttonHelper : NSObject
 +(void)likeShareClick:(UIView*)view;
 +(void)adjustLike:(UIView*)view;
++(void)adjustShare:(UIView*)view;
 @end
