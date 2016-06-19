@@ -57,7 +57,7 @@
     self.navigationController.navigationBar.backgroundColor = [UIColor clearColor];
     
     CAGradientLayer *gradientLayer = [CAGradientLayer layer];
-    gradientLayer.frame = self.bgImage.bounds;
+    gradientLayer.frame =CGRectMake(self.bgImage.frame.origin.x, self.bgImage.frame.origin.y, self.view.frame.size.width, self.bgImage.frame.size.height);
     gradientLayer.colors = [NSArray arrayWithObjects:(id)[UIColor whiteColor].CGColor, (id)[UIColor clearColor].CGColor, nil];
     gradientLayer.startPoint = CGPointMake(1.0f, 0.7f);
     gradientLayer.endPoint = CGPointMake(1.0f, 1.0f);

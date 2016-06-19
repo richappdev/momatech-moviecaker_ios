@@ -420,11 +420,13 @@
                                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                             <constraints>
                                                                 <constraint firstItem="6E4-d2-f2L" firstAttribute="centerY" secondItem="AFo-fg-AIx" secondAttribute="centerY" constant="-6.5" id="HGR-O0-lRq"/>
+                                                                <constraint firstAttribute="width" constant="52" id="LJs-Hw-yVK"/>
                                                                 <constraint firstItem="6E4-d2-f2L" firstAttribute="centerX" secondItem="AFo-fg-AIx" secondAttribute="centerX" id="Q39-4p-asH"/>
                                                                 <constraint firstItem="6E4-d2-f2L" firstAttribute="centerX" secondItem="Tbh-Kt-LSR" secondAttribute="centerX" id="RKX-yf-2Gd"/>
                                                                 <constraint firstItem="6E4-d2-f2L" firstAttribute="top" secondItem="AFo-fg-AIx" secondAttribute="top" constant="9" id="S8i-ke-sJW"/>
                                                                 <constraint firstItem="Tbh-Kt-LSR" firstAttribute="bottom" secondItem="AFo-fg-AIx" secondAttribute="bottomMargin" constant="-5" id="jbu-4q-FPQ"/>
                                                                 <constraint firstItem="6E4-d2-f2L" firstAttribute="leading" secondItem="AFo-fg-AIx" secondAttribute="leading" constant="-8" id="l6v-pN-hOe"/>
+                                                                <constraint firstAttribute="height" constant="52" id="suq-yE-9NH"/>
                                                             </constraints>
                                                         </view>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3IZ-C5-k3C">
