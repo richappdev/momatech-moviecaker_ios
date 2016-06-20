@@ -15,6 +15,7 @@
 #import "MovieTableViewController.h"
 #import "AustinApi.h"
 #import "SDWebImage/UIImageView+WebCache.h"
+#import "MovieViewController.h"
 
 @interface MovieController ()
 @property (strong, nonatomic) IBOutlet scrollBoxView *scrollView;
@@ -357,7 +358,21 @@
             [alert show];
         }
     }
-    
+    if(sender.view.tag==4){
+        UINavigationController *nav = [self.tabBarController.viewControllers objectAtIndex:1];
+        MovieViewController *movie = [[nav viewControllers]objectAtIndex:0];
+        movie.jump = 1;
+        self.tabBarController.selectedIndex =1;
+    }
+    if(sender.view.tag==5){
+        UINavigationController *nav = [self.tabBarController.viewControllers objectAtIndex:1];
+        MovieViewController *movie = [[nav viewControllers]objectAtIndex:0];
+        movie.jump = 2;
+        self.tabBarController.selectedIndex = 1;
+    }
+    if(sender.view.tag==6){
+        self.tabBarController.selectedIndex = 3;
+    }
     if(sender.view.tag==7){
         self.tabBarController.selectedIndex = 1;
     }

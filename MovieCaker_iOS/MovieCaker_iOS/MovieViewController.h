@@ -9,7 +9,6 @@
 #import <UIKit/UIKit.h>
 
 @interface MovieViewController : UIViewController
-
-
+@property int jump;
 @end
 
