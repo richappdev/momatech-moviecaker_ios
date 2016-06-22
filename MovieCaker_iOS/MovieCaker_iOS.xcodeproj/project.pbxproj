@@ -57,6 +57,7 @@
 		6CD58C4E1CACBD3F0089DB38 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6CD58C4C1CACBD3F0089DB38 /* Main.storyboard */; };
 		6CD58C501CACBD3F0089DB38 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6CD58C4F1CACBD3F0089DB38 /* Assets.xcassets */; };
 		6CD58C531CACBD3F0089DB38 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6CD58C511CACBD3F0089DB38 /* LaunchScreen.storyboard */; };
+		6CF975611D1B0AB8008BF55A /* reviewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CF975601D1B0AB8008BF55A /* reviewController.m */; };
 		6CFC09841CCBC0B50045C93E /* FAImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CFC09781CCBC0B50045C93E /* FAImageView.m */; };
 		6CFC09851CCBC0B50045C93E /* NSString+FontAwesome.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CFC097A1CCBC0B50045C93E /* NSString+FontAwesome.m */; };
 		6CFC09861CCBC0B50045C93E /* README.md in Sources */ = {isa = PBXBuildFile; fileRef = 6CFC097B1CCBC0B50045C93E /* README.md */; };
@@ -167,6 +168,8 @@
 		6CD58C4F1CACBD3F0089DB38 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		6CD58C521CACBD3F0089DB38 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		6CD58C541CACBD3F0089DB38 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		6CF9755F1D1B0AB8008BF55A /* reviewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = reviewController.h; sourceTree = "<group>"; };
+		6CF975601D1B0AB8008BF55A /* reviewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = reviewController.m; sourceTree = "<group>"; };
 		6CFC09771CCBC0B50045C93E /* FAImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FAImageView.h; sourceTree = "<group>"; };
 		6CFC09781CCBC0B50045C93E /* FAImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FAImageView.m; sourceTree = "<group>"; };
 		6CFC09791CCBC0B50045C93E /* NSString+FontAwesome.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+FontAwesome.h"; sourceTree = "<group>"; };
@@ -321,6 +324,8 @@
 				6CFC09901CD2668E0045C93E /* MovieTableViewController.m */,
 				6C758B8F1CED42EC001E5252 /* MovieTwoTableViewController.h */,
 				6C758B901CED42EC001E5252 /* MovieTwoTableViewController.m */,
+				6CF9755F1D1B0AB8008BF55A /* reviewController.h */,
+				6CF975601D1B0AB8008BF55A /* reviewController.m */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -543,6 +548,7 @@
 				6CFC09841CCBC0B50045C93E /* FAImageView.m in Sources */,
 				6C7F9F5D1CDE9870001BE238 /* NSData+ImageContentType.m in Sources */,
 				6C1250841CC3857B0009549B /* AFURLResponseSerialization.m in Sources */,
+				6CF975611D1B0AB8008BF55A /* reviewController.m in Sources */,
 				6CFC09861CCBC0B50045C93E /* README.md in Sources */,
 				6CA52C871CBEC3A900C5FDC8 /* MovieDetailController.m in Sources */,
 				6C7F9F651CDE9870001BE238 /* UIButton+WebCache.m in Sources */,

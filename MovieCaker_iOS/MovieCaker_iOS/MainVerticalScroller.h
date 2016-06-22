@@ -11,4 +11,9 @@
 #import "MovieController.h"
 @interface MainVerticalScroller : NSObject<UIScrollViewDelegate>
 @property MovieController *movieView;
+@property UINavigationController *nav;
+@property UIView *statusbar;
+@property UIView *movingButtons;
+-(void)setupBackBtn:(UIViewController*)view;
+-(void)setupStatusbar:(UIView*)view;
 @end

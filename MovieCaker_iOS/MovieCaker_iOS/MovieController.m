@@ -79,7 +79,9 @@
     
     self.scrollDelegate = [[MainVerticalScroller alloc] init];
     self.MainScroll.delegate = self.scrollDelegate;
-    self.scrollDelegate.movieView = self;
+    self.scrollDelegate.nav = self.navigationController;
+    self.scrollDelegate.movingButtons = self.movingButtons;
+    [self.scrollDelegate setupStatusbar:self.view];
     
     [self.navigationController.navigationBar setBackgroundImage:[UIImage new]
                                                   forBarMetrics:UIBarMetricsDefault]; //UIImageNamed:@"transparent.png"

@@ -10,6 +10,7 @@
 #import "MovieTableViewController.h"
 #import "SDWebImage/UIImageView+WebCache.h"
 #import "AustinApi.h"
+#import "MainVerticalScroller.h"
 
 @interface MovieDetailController ()
 @property (strong, nonatomic) IBOutlet UIImageView *bgImage;
@@ -39,22 +40,13 @@
 @property (strong, nonatomic) IBOutlet UILabel *movieDescription;
 @property (strong, nonatomic) IBOutlet UILabel *imdb;
 @property (strong, nonatomic) IBOutlet UILabel *bean;
+@property MainVerticalScroller *scrollDelegate;
 @end
 
 @implementation MovieDetailController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    UIBarButtonItem *barButtonItem =[[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"iconPageBackNoheader.png"] style:UIBarButtonItemStylePlain target:self action:@selector(goBack)];
-    barButtonItem.tintColor = [UIColor whiteColor];
-    [self.navigationItem setLeftBarButtonItem:barButtonItem];
-
-    [self.navigationController.navigationBar setBackgroundImage:[UIImage new]
-                                                  forBarMetrics:UIBarMetricsDefault];
-    self.navigationController.navigationBar.shadowImage = [UIImage new];
-    self.navigationController.navigationBar.translucent = YES;
-    self.navigationController.view.backgroundColor = [UIColor clearColor];
-    self.navigationController.navigationBar.backgroundColor = [UIColor clearColor];
     
     CAGradientLayer *gradientLayer = [CAGradientLayer layer];
     gradientLayer.frame =CGRectMake(self.bgImage.frame.origin.x, self.bgImage.frame.origin.y, self.view.frame.size.width, self.bgImage.frame.size.height);
@@ -62,6 +54,12 @@
     gradientLayer.startPoint = CGPointMake(1.0f, 0.7f);
     gradientLayer.endPoint = CGPointMake(1.0f, 1.0f);
     self.bgImage.layer.mask = gradientLayer;
+    
+    self.scrollDelegate = [[MainVerticalScroller alloc] init];
+
+    self.scrollDelegate.nav = self.navigationController;
+    [self.scrollDelegate setupBackBtn:self];
+    [self.scrollDelegate setupStatusbar:self.view];
     
     self.firstTableController = [[MovieTableViewController alloc] init:0];
     self.firstTableController.data = [[NSArray alloc]init];
@@ -110,7 +108,7 @@
     
     self.starArray = [[NSArray alloc]initWithObjects:self.starOne,self.starTwo,self.starThree,self.starFour,self.starFive, nil];
     [self setStars:[[self.movieDetailInfo objectForKey:@"AverageScore"]intValue]];
-    self.ChineseName.text = [self.movieDetailInfo objectForKey:@"CNName"];
+    self.title = self.ChineseName.text = [self.movieDetailInfo objectForKey:@"CNName"];
     self.EnglishName.text = [self.movieDetailInfo objectForKey:@"ENName"];
     [self.smallImage sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://www.funmovie.tv/Content/pictures/files/%@?width=90",[self.movieDetailInfo objectForKey:@"Picture"]]] placeholderImage:[UIImage imageNamed:@"img-placeholder.jpg"]];
     
@@ -189,11 +187,10 @@
  //   NSLog(@"%d",[self.secondTableController returnTotalHeight]);
     self.mainScroll.contentSize = CGSizeMake(self.view.bounds.size.width, height);
 }
--(void)goBack{
-    [self.navigationController popViewControllerAnimated:YES];
-}
+
 -(void)viewWillAppear:(BOOL)animated{
     self.navigationController.navigationBarHidden = NO;
+    self.mainScroll.delegate = self.scrollDelegate;
     
     UINavigationController *nav = [self.tabBarController.viewControllers objectAtIndex:0];
     MovieController *movie = [[nav viewControllers]objectAtIndex:0];
@@ -203,7 +200,9 @@
         [self.navigationController popViewControllerAnimated:NO];
     }
 }
-
+-(void)viewWillDisappear:(BOOL)animated{
+    self.mainScroll.delegate = nil;
+}
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
