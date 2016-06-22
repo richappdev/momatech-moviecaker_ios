@@ -14,4 +14,7 @@
 @property NSString* rating;
 @property UIImage *movieImage;
 @property UIImageView *movieImageView;
+@property BOOL IsLiked;
+@property BOOL IsViewed;
+@property BOOL IsWantView;
 @end

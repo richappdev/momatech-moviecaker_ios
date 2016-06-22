@@ -8,6 +8,9 @@
 
 #import "MovieCell.h"
 #import "buttonHelper.h"
+#import "AustinApi.h"
+#import "WXApi.h"
+#import "WechatAccess.h"
 @implementation MovieCell
 
 - (void)awakeFromNib {
@@ -47,7 +50,63 @@
 }
 
 -(void)indexClick:(UITapGestureRecognizer *)sender{
-    [buttonHelper likeShareClick:sender.view];
-}
+    if([[NSUserDefaults standardUserDefaults] objectForKey:@"userkey"]==nil){
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"注意" message:@"请登入" delegate:self cancelButtonTitle:@"关闭" otherButtonTitles:nil,nil];
+        [alert show];
+    }else{
+    NSString *act;
+    if(sender.view.tag==0||sender.view.tag==2){
+        act =@"1";
+    }else{
+        NSLog(@"three");
+        WXMediaMessage *message = [WXMediaMessage message];
+        message.title = self.title.text;
+        
+        NSString *str;
+        if (self.Content.text.length>140) {
+            str=[self.Content.text substringToIndex:140];
+        }else{
+            str=self.Content.text;;
+        }
+        
+        message.description=str;
+        UIImageView *image = [self.imageArray objectAtIndex:0];
+        [message setThumbImage:image.image];
+        
+        WXWebpageObject *ext = [WXWebpageObject object];
+        ext.webpageUrl =  [NSString stringWithFormat:@"%@/Topic/TopicPage/%@",[[AustinApi sharedInstance] getBaseUrl],self.Id];
+        //NSLog(@"%@",ext.webpageUrl);
+        message.mediaObject = ext;
+        SendMessageToWXReq* req = [[SendMessageToWXReq alloc] init];
+        req.bText = NO;
+        req.message = message;
+        req.scene = WXSceneSession;
+        
+        [WXApi sendReq:req];
 
+        act =@"3";
+    }
+        [[AustinApi sharedInstance]socialAction:self.Id act:act obj:@"3" function:^(NSString *returnData) {
+            NSLog(@"%@",returnData);
+        } error:^(NSError *error) {
+            NSLog(@"%@",error);
+        }];
+        [buttonHelper likeShareClick:sender.view];}
+}
+-(void)setLikeState:(BOOL)state{
+    if(state){
+        self.likeBtn.tag = 2;
+    }else{
+        self.likeBtn.tag = 0;
+    }
+    [buttonHelper adjustLike:self.likeBtn];
+}
+-(void)setShareState:(BOOL)state{
+    if (state) {
+        self.shareBtn.tag=1;
+    }else{
+        self.shareBtn.tag=3;
+    }
+    [buttonHelper adjustShare:self.shareBtn];
+}
 @end

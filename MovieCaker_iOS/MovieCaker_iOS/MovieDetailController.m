@@ -23,8 +23,8 @@
 @property (strong, nonatomic) IBOutlet UIView *reviewTop;
 @property (strong, nonatomic) IBOutlet UITableView *reviewTable;
 @property (strong, nonatomic) IBOutlet NSLayoutConstraint *reviewTableHeight;
-@property MovieTableViewController *movieTableController;
-@property MovieTableViewController *movieTable2Controller;
+@property MovieTableViewController *firstTableController;
+@property MovieTableViewController *secondTableController;
 @property NSArray *starArray;
 @property (strong, nonatomic) IBOutlet UIImageView *starOne;
 @property (strong, nonatomic) IBOutlet UIImageView *starTwo;
@@ -57,37 +57,41 @@
     self.navigationController.navigationBar.backgroundColor = [UIColor clearColor];
     
     CAGradientLayer *gradientLayer = [CAGradientLayer layer];
-    gradientLayer.frame = self.bgImage.bounds;
+    gradientLayer.frame =CGRectMake(self.bgImage.frame.origin.x, self.bgImage.frame.origin.y, self.view.frame.size.width, self.bgImage.frame.size.height);
     gradientLayer.colors = [NSArray arrayWithObjects:(id)[UIColor whiteColor].CGColor, (id)[UIColor clearColor].CGColor, nil];
     gradientLayer.startPoint = CGPointMake(1.0f, 0.7f);
     gradientLayer.endPoint = CGPointMake(1.0f, 1.0f);
     self.bgImage.layer.mask = gradientLayer;
     
+    self.firstTableController = [[MovieTableViewController alloc] init:0];
+    self.firstTableController.data = [[NSArray alloc]init];
+    
     [[AustinApi sharedInstance]getTopic:@"7" vid:[self.movieDetailInfo objectForKey:@"Id"] function:^(NSArray *returnData) {
         NSLog(@"a%lu",(unsigned long)[returnData count]);
-        self.movieTableController = [[MovieTableViewController alloc] init:0];
-        self.topicTable.delegate = self.movieTableController;
-        self.topicTable.dataSource = self.movieTableController;
-        self.movieTableController.tableHeight = self.topicTableHeight;
-        self.movieTableController.tableView = self.topicTable;
+        self.topicTable.scrollEnabled = false;
+        self.topicTable.delegate = self.firstTableController;
+        self.topicTable.dataSource = self.firstTableController;
+        self.firstTableController.tableHeight = self.topicTableHeight;
+        self.firstTableController.tableView = self.topicTable;
         if([returnData count]==0){
             self.topicGrey.hidden = YES;
             self.TopicTop.hidden = YES;
             self.topicTable.hidden = YES;
             self.topicTableHeight.constant = 0;
         }else{
-        self.movieTableController.data = returnData;
-            [self.movieTableController.tableView reloadData];}
+        self.firstTableController.data = returnData;
+            [self.firstTableController.tableView reloadData];}
         [self scrollSize];
     } error:^(NSError *error) {
         NSLog(@"%@",error);
     }];
-    self.movieTable2Controller = [[MovieTableViewController alloc] init:1];
-    self.reviewTable.delegate = self.movieTable2Controller;
-    self.reviewTable.dataSource = self.movieTable2Controller;
-    self.movieTable2Controller.tableHeight = self.reviewTableHeight;
-    self.movieTable2Controller.tableView = self.reviewTable;
-    self.movieTable2Controller.data =[[NSArray alloc]init];
+    self.secondTableController = [[MovieTableViewController alloc] init:1];
+    self.reviewTable.scrollEnabled = false;
+    self.reviewTable.delegate = self.secondTableController;
+    self.reviewTable.dataSource = self.secondTableController;
+    self.secondTableController.tableHeight = self.reviewTableHeight;
+    self.secondTableController.tableView = self.reviewTable;
+    self.secondTableController.data =[[NSArray alloc]init];
     [[AustinApi sharedInstance] getReviewByVid:[self.movieDetailInfo objectForKey:@"Id"] function:^(NSArray *returnData) {
         NSLog(@"b%lu",(unsigned long)[returnData count]);
 
@@ -96,8 +100,8 @@
             self.reviewGrey.hidden=YES;
             self.reviewTable.hidden=YES;
         }else{
-            self.movieTable2Controller.data = returnData;
-            [self.movieTable2Controller.tableView reloadData];
+            self.secondTableController.data = returnData;
+            [self.secondTableController.tableView reloadData];
         }
         [self scrollSize];
     } error:^(NSError *error) {
@@ -181,7 +185,8 @@
 
 -(void)scrollSize{
     int height;
-    height = [self.movieTableController returnTotalHeight]+[self.movieTable2Controller returnTotalHeight]+700+self.movieDescriptionHeight.constant;
+    height = [self.firstTableController returnTotalHeight]+[self.secondTableController returnTotalHeight]+700+self.movieDescriptionHeight.constant;
+ //   NSLog(@"%d",[self.secondTableController returnTotalHeight]);
     self.mainScroll.contentSize = CGSizeMake(self.view.bounds.size.width, height);
 }
 -(void)goBack{
@@ -189,12 +194,19 @@
 }
 -(void)viewWillAppear:(BOOL)animated{
     self.navigationController.navigationBarHidden = NO;
+    
+    UINavigationController *nav = [self.tabBarController.viewControllers objectAtIndex:0];
+    MovieController *movie = [[nav viewControllers]objectAtIndex:0];
+    if(movie.refresh){
+        self.firstTableController = nil;
+        self.secondTableController = nil;
+        [self.navigationController popViewControllerAnimated:NO];
+    }
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
-
 
 @end

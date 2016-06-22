@@ -15,6 +15,7 @@
 #import "MovieTableViewController.h"
 #import "AustinApi.h"
 #import "SDWebImage/UIImageView+WebCache.h"
+#import "MovieViewController.h"
 
 @interface MovieController ()
 @property (strong, nonatomic) IBOutlet scrollBoxView *scrollView;
@@ -43,12 +44,16 @@
 @property BOOL notSelected;
 @property NSArray *returnData;
 @property (strong, nonatomic) IBOutlet NSLayoutConstraint *movieTableTopspace;
+@property (strong, nonatomic) IBOutlet UIImageView *iconEyeIndex;
+@property (strong, nonatomic) IBOutlet UIImageView *iconLikeIndex;
+@property (strong, nonatomic) IBOutlet UIImageView *iconPoketIndex;
 @end
 
 @implementation MovieController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.refresh = NO;
     self.notSelected = YES;
     self.scrollView.scrollView = self.imageScroll;
     self.imageScroll.delegate = self;
@@ -87,82 +92,13 @@
 
  //   CGPoint position = CGPointMake(0,0);
   //  [self.MainScroll setContentOffset:position];
-    [[AustinApi sharedInstance] movieList:^(NSMutableDictionary *returnData) {
-        //NSLog(@"%@",returnData);
-        self.returnData = returnData;
-        self.movieArray = [[NSMutableArray alloc]init];
-        
-        int margin = 15;
-        int width = 255;
-        int height = 341;
-        int count = 0;
-        self.imageScroll.contentSize = CGSizeMake(width* [returnData count], self.imageScroll.frame.size.height);
-        for(NSDictionary *row in returnData){
-            
-        movieModel *temp = [movieModel alloc];
-        temp.title = [row objectForKey:@"CNName"];
-        temp.rating = [NSString stringWithFormat:@"%@", [row objectForKey:@"AverageScore"]];
-        UIImage *placeholder = [UIImage imageNamed:@"img-placeholder.jpg"];
-        UIImageView *image = [[UIImageView alloc] initWithImage:temp.movieImage];
-       
-        NSString *url = [NSString stringWithFormat:@"http://www.funmovie.tv/Content/pictures/files/%@?width=235",[row objectForKey:@"Picture"]];
-            
-        image.userInteractionEnabled = YES;
-            
-        image.frame = CGRectMake(margin+width*count, 0, width-margin*2, height);
-        [self.imageScroll addSubview:image];
-        
-        temp.movieImageView = image;
-            
-            UIView *ratingBg = [[UIView alloc]initWithFrame:CGRectMake(margin+width*count, 275, 66, 66)];
-            ratingBg.backgroundColor = [UIColor colorWithRed:(77.0f/255.0f) green:(182.0f/255.0f) blue:(172.0f/255.0f) alpha:0.6];
-            [self curvedMask:ratingBg];
-            [self.imageScroll addSubview:ratingBg];
-            UIImageView *star = [[UIImageView alloc]initWithFrame:CGRectMake(18, 20, 18, 18)];
-            star.image = [UIImage imageWithIcon:@"fa-star" backgroundColor:[UIColor clearColor] iconColor:[UIColor whiteColor] andSize:CGSizeMake(18, 18)];
-            [ratingBg addSubview:star];
-            UILabel *label = [[UILabel alloc]initWithFrame:CGRectMake(3, 36, 52, 21)];
-            label.text = [NSString stringWithFormat:@"%0.1f", [[row objectForKey:@"AverageScore"]floatValue]];
-            label.textColor = [UIColor whiteColor];
-            label.textAlignment = NSTextAlignmentCenter;
-            [ratingBg addSubview:label];
-        
-        [self.movieArray addObject:temp];
-            
-        if(count==0){
-            [image sd_setImageWithURL:[NSURL URLWithString:url] placeholderImage:placeholder completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
-                [self setMovieDetails:[self.movieArray objectAtIndex:0]];
-            }];
-        }
-        else{
-            [image sd_setImageWithURL:[NSURL URLWithString:url] placeholderImage:placeholder];
-        }
-            count++;
-        
-    }
-        
-    } error:^(NSError *error) {
-        NSLog(@"%@",error);
-    }];
 
-    [[AustinApi sharedInstance]getTopic:@"6" vid:nil function:^(NSArray *returnData) {
-   //     NSLog(@"bbb%@",returnData);
-        self.movieTableController = [[MovieTableViewController alloc] init:0];
-        self.movieTableController.data =returnData;
-        self.movieTable.delegate = self.movieTableController;
-        self.movieTable.dataSource = self.movieTableController;
-        self.movieTableController.tableHeight = self.movieTableHeight;
-        self.movieTableController.tableView = self.movieTable;
-        [self.movieTableController.tableView reloadData];
-        self.movieTableTopspace.constant = 45+ [self.movieTableController returnTotalHeight];
-        
-        [self readjustScrollsize];
-
-    } error:^(NSError *error) {
-        NSLog(@"%@",error);
-    }];
-
+    [self imageScrollCall];
+    [self topicCall];
+    [self reviewCall];
     
+}
+-(void)reviewCall{
     [[AustinApi sharedInstance]getReview:@"2" function:^(NSArray *returnData) {
         //    NSLog(@"bbb%@",returnData);
         self.movieTable2Controller = [[MovieTableViewController alloc] init:1];
@@ -179,6 +115,88 @@
         NSLog(@"%@",error);
     }];
 }
+-(void)topicCall{
+    [[AustinApi sharedInstance]getTopic:@"6" vid:nil function:^(NSArray *returnData) {
+        //     NSLog(@"bbb%@",returnData);
+        self.movieTableController = [[MovieTableViewController alloc] init:0];
+        self.movieTableController.data =returnData;
+        self.movieTable.delegate = self.movieTableController;
+        self.movieTable.dataSource = self.movieTableController;
+        self.movieTableController.tableHeight = self.movieTableHeight;
+        self.movieTableController.tableView = self.movieTable;
+        [self.movieTableController.tableView reloadData];
+        self.movieTableTopspace.constant = 45+ [self.movieTableController returnTotalHeight];
+        
+        [self readjustScrollsize];
+        
+    } error:^(NSError *error) {
+        NSLog(@"%@",error);
+    }];
+
+}
+-(void)imageScrollCall{
+    [[AustinApi sharedInstance] movieList:^(NSMutableDictionary *returnData) {
+        //NSLog(@"%@",returnData);
+        self.returnData = returnData;
+        self.movieArray = [[NSMutableArray alloc]init];
+        
+        int margin = 15;
+        int width = 255;
+        int height = 341;
+        int count = 0;
+        self.imageScroll.contentSize = CGSizeMake(width* [returnData count], 341);
+        for(NSDictionary *row in returnData){
+            
+            movieModel *temp = [movieModel alloc];
+            temp.title = [row objectForKey:@"CNName"];
+            temp.rating = [NSString stringWithFormat:@"%@", [row objectForKey:@"AverageScore"]];
+            temp.IsViewed = [[row objectForKey:@"IsViewed"]boolValue];
+            temp.IsLiked = [[row objectForKey:@"IsLiked"]boolValue];
+            temp.IsWantView = [[row objectForKey:@"IsWantView"]boolValue];
+            
+            UIImage *placeholder = [UIImage imageNamed:@"img-placeholder.jpg"];
+            UIImageView *image = [[UIImageView alloc] initWithImage:temp.movieImage];
+            
+            NSString *url = [NSString stringWithFormat:@"http://www.funmovie.tv/Content/pictures/files/%@?width=235",[row objectForKey:@"Picture"]];
+            
+            image.userInteractionEnabled = YES;
+            
+            image.frame = CGRectMake(margin+width*count, 0, width-margin*2, height);
+            [self.imageScroll addSubview:image];
+            
+            temp.movieImageView = image;
+            
+            UIView *ratingBg = [[UIView alloc]initWithFrame:CGRectMake(margin+width*count, 275, 66, 66)];
+            ratingBg.backgroundColor = [UIColor colorWithRed:(77.0f/255.0f) green:(182.0f/255.0f) blue:(172.0f/255.0f) alpha:0.6];
+            [self curvedMask:ratingBg];
+            [self.imageScroll addSubview:ratingBg];
+            UIImageView *star = [[UIImageView alloc]initWithFrame:CGRectMake(18, 20, 18, 18)];
+            star.image = [UIImage imageWithIcon:@"fa-star" backgroundColor:[UIColor clearColor] iconColor:[UIColor whiteColor] andSize:CGSizeMake(18, 18)];
+            [ratingBg addSubview:star];
+            UILabel *label = [[UILabel alloc]initWithFrame:CGRectMake(3, 36, 52, 21)];
+             label.text = [NSString stringWithFormat:@"%0.1f", [[row objectForKey:@"AverageScore"]floatValue]];
+            label.textColor = [UIColor whiteColor];
+            label.textAlignment = NSTextAlignmentCenter;
+            [ratingBg addSubview:label];
+            
+            [self.movieArray addObject:temp];
+            
+            if(count==0){
+                [image sd_setImageWithURL:[NSURL URLWithString:url] placeholderImage:placeholder completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
+                    [self setMovieDetails:[self.movieArray objectAtIndex:0] blur:YES];
+                }];
+            }
+            else{
+                [image sd_setImageWithURL:[NSURL URLWithString:url] placeholderImage:placeholder];
+            }
+            count++;
+            
+        }
+        
+    } error:^(NSError *error) {
+        NSLog(@"%@",error);
+    }];
+}
 -(void)readjustScrollsize{
     int height;
     height = [self.movieTableController returnTotalHeight]+[self.movieTable2Controller returnTotalHeight]+600;
@@ -190,6 +208,22 @@
 -(void)viewWillAppear:(BOOL)animated{
     self.notSelected = YES;
     self.MainScroll.delegate = self.scrollDelegate;
+    if(self.refresh){
+        [[self.imageScroll subviews] makeObjectsPerformSelector:@selector(removeFromSuperview)];
+        [self.imageScroll setContentOffset:CGPointMake(0, 0) animated:NO];
+        self.uititle.text= @"";
+        self.blurredBg.image =nil;
+        self.movieArray =nil;
+        self.returnData =nil;
+        self.iconEyeIndex.image = [UIImage imageNamed:@"iconEyeIndex.png"];
+        self.iconLikeIndex.image = [UIImage imageNamed:@"iconLikeIndex.png"];
+        self.iconPoketIndex.image = [UIImage imageNamed:@"iconPoketIndex.png"];
+        self.lastIndex =0;
+        self.refresh =NO;
+        [self imageScrollCall];
+        [self topicCall];
+        [self reviewCall];
+    }
 }
 
 -(void)addIndexGesture:(UIView*)view{
@@ -214,14 +248,31 @@
 - (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView{
     int indexOfPage = scrollView.contentOffset.x / scrollView.frame.size.width;
     if(self.lastIndex!=indexOfPage){
-    [self setMovieDetails:[self.movieArray objectAtIndex:indexOfPage]];
+        [self setMovieDetails:[self.movieArray objectAtIndex:indexOfPage] blur:YES];
         self.lastIndex = indexOfPage;
     }
 
 }
--(void)setMovieDetails:(movieModel*)model{
+-(void)setMovieDetails:(movieModel*)model blur:(BOOL)blur{
     self.uititle.text = model.title;
-    self.blurredBg.image =[self blurImage:model.movieImageView.image  withBottomInset:0 blurRadius:43];
+    if(blur){
+        self.blurredBg.image =[self blurImage:model.movieImageView.image  withBottomInset:0 blurRadius:43];}
+    
+    if(model.IsViewed){
+        self.iconEyeIndex.image = [UIImage imageNamed:@"iconEyeIndexActive.png"];
+    }else{
+        self.iconEyeIndex.image = [UIImage imageNamed:@"iconEyeIndex.png"];
+    }
+    if(model.IsLiked){
+        self.iconLikeIndex.image = [UIImage imageNamed:@"iconHeartIndexActive.png"];
+    }else{
+        self.iconLikeIndex.image = [UIImage imageNamed:@"iconLikeIndex.png"];
+    }
+    if(model.IsWantView){
+        self.iconPoketIndex.image = [UIImage imageNamed:@"iconPocketIndexActive.png"];
+    }else{
+        self.iconPoketIndex.image = [UIImage imageNamed:@"iconPoketIndex.png"];
+    }
 }
 
 -(void)curvedMask:(UIView*)view{
@@ -282,6 +333,46 @@
 }
 -(void)indexClick:(UITapGestureRecognizer *)sender{
     NSLog(@"asd%ld",sender.view.tag);
+    if(sender.view.tag<3){
+        if([[NSUserDefaults standardUserDefaults] objectForKey:@"userkey"]!=nil){
+            int indexOfPage = self.imageScroll.contentOffset.x / self.imageScroll.frame.size.width;
+            NSLog(@"%@",[[self.returnData objectAtIndex:indexOfPage]objectForKey:@"Id"]);
+            [[AustinApi sharedInstance]socialAction:[[self.returnData objectAtIndex:indexOfPage]objectForKey:@"Id"] act:[NSString stringWithFormat:@"%ld",sender.view.tag] obj:@"1" function:^(NSString *returnData) {
+
+                movieModel *model = [self.movieArray objectAtIndex:indexOfPage];
+                if(sender.view.tag==0){
+                    model.IsViewed =!model.IsViewed;
+                }
+                if(sender.view.tag==1){
+                    model.IsLiked =!model.IsLiked;
+                }
+                if(sender.view.tag==2){
+                    model.IsWantView = !model.IsWantView;
+                }
+                [self setMovieDetails:[self.movieArray objectAtIndex:indexOfPage] blur:NO];
+            } error:^(NSError *error) {
+                NSLog(@"%@",error);
+            }];
+        }else{
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"注意" message:@"请登入" delegate:self cancelButtonTitle:@"关闭" otherButtonTitles:nil,nil];
+            [alert show];
+        }
+    }
+    if(sender.view.tag==4){
+        UINavigationController *nav = [self.tabBarController.viewControllers objectAtIndex:1];
+        MovieViewController *movie = [[nav viewControllers]objectAtIndex:0];
+        movie.jump = 1;
+        self.tabBarController.selectedIndex =1;
+    }
+    if(sender.view.tag==5){
+        UINavigationController *nav = [self.tabBarController.viewControllers objectAtIndex:1];
+        MovieViewController *movie = [[nav viewControllers]objectAtIndex:0];
+        movie.jump = 2;
+        self.tabBarController.selectedIndex = 1;
+    }
+    if(sender.view.tag==6){
+        self.tabBarController.selectedIndex = 3;
+    }
     if(sender.view.tag==7){
         self.tabBarController.selectedIndex = 1;
     }

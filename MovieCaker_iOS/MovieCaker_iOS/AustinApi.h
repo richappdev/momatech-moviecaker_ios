@@ -23,4 +23,9 @@
 -(NSString*)getBaseUrl;
 -(void)movieListCustom:(NSString*)type location:(NSString*)locationId year:(NSString*)year month:(NSString*)month function:(void (^)(NSArray *returnData))completion error:(void (^)(NSError *error))error;
 -(void)getReviewByVid:(NSString *)vid function:(void (^)(NSArray *))completion error:(void (^)(NSError *))error;
+- (void)loginWithAccount:(NSString *)account
+            withPassword:(NSString *)password
+            withRemember:(BOOL)remember
+                function:(void (^)(NSDictionary *returnData))completion error:(void (^)(NSError *error))error;
+-(void)socialAction:(NSString*)Id act:(NSString*)act obj:(NSString*)obj function:(void (^)(NSString *returnData))completion error:(void (^)(NSError *error))error;
 @end

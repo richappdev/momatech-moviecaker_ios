@@ -14,4 +14,6 @@
 - (BOOL)handleOpenURL:(NSURL *)url;
 - (void)login:(void(^)(BOOL succeeded, id object))result viewController:(UIViewController*)controller;
 - (BOOL)isWechatAppInstalled;
+-(void)refreshAccessToken:(NSString*)input completion:(void (^)(BOOL finished, NSMutableDictionary *Data))completion error:(void (^)(NSError *error))error;
+-(void)registerApp;
 @end

@@ -33,7 +33,7 @@
                                 };
     NSString *postString = [NSString stringWithFormat:@"api/Account/ExternalLogin"];
     
-    [self apiPostMethod:postString parameter:parameter addTokenHeader:nil completion:^(id response) {
+    [self apiPostMethod:postString parameter:parameter addTokenHeader:nil completion:^(id response) { NSLog(@"response%@",response);
         if ([response isKindOfClass:[NSDictionary class]]) {
             completion(response);
         }
@@ -205,5 +205,42 @@
         error(error2);
     }];
     
+}
+- (void)loginWithAccount:(NSString *)account
+            withPassword:(NSString *)password
+            withRemember:(BOOL)remember
+                 function:(void (^)(NSDictionary *returnData))completion error:(void (^)(NSError *error))error {
+    
+    NSDictionary *param=nil;
+    param=@{@"Email":account,@"Password":password,@"RememberMe":@"true"};
+    //NSLog(@"%@",param);
+    [self apiPostMethod:@"account/ajaxlogin" parameter:param addTokenHeader:@"1" completion:^(id response) {
+        NSArray *cookies = [[NSHTTPCookieStorage sharedHTTPCookieStorage] cookies];
+        for (NSHTTPCookie *cookie in cookies) {
+            // Here I see the correct rails session cookie
+            NSLog(@"logincookie: %@", cookie);
+        }
+        completion(response);
+    } error:^(NSError *error2) {
+        error(error2);
+    }];
+    
+}
+-(void)socialAction:(NSString*)Id act:(NSString*)act obj:(NSString*)obj function:(void (^)(NSString *returnData))completion error:(void (^)(NSError *error))error{
+//    NSLog(@"%@",[NSString stringWithFormat:@"api/Social?id=%@&act=%@&obj=%@",Id,act,obj]);
+
+    NSURL *baseURL = [NSURL URLWithString:SERVERAPI];
+    
+    AFHTTPSessionManager *manager = [[AFHTTPSessionManager alloc] initWithBaseURL:baseURL];
+    manager.responseSerializer = [AFHTTPResponseSerializer serializer];
+    [manager POST:[NSString stringWithFormat:@"api/Social?id=%@&act=%@&obj=%@",Id,act,obj] parameters:nil success:^(NSURLSessionDataTask *task, id response) {
+        NSString *string = [[NSString alloc] initWithData:response encoding:NSUTF8StringEncoding];
+        NSLog(@"%@",string);
+        completion(string);
+        
+    } failure:^(NSURLSessionDataTask *task, NSError *err) {
+
+        error(err);
+    }];
 }
 @end

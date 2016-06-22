@@ -17,7 +17,17 @@
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-    // Override point for customization after application launch.
+    [[WechatAccess sharedInstance]registerApp];
+   /* [[WechatAccess sharedInstance] refreshAccessToken:nil completion:^(BOOL finished, NSMutableDictionary *Data) {
+        if(finished){
+            NSLog(@"yes");
+        }else{
+            NSLog(@"no");
+        }
+            NSLog(@"%@",Data);
+    } error:^(NSError *error) {
+        NSLog(@"%@",error);
+    }];*/
     return YES;
 }
 

@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "CircleView.h"
 @interface MovieCell : UITableViewCell
+@property NSString *Id;
 @property (strong, nonatomic) IBOutlet UILabel *title;
 @property (strong, nonatomic) IBOutlet UILabel *Author;
 @property (strong, nonatomic) IBOutlet CircleView *Circle;
@@ -28,4 +29,6 @@
 @property NSArray *imageArray;
 @property NSArray *labelArray;
 -(void)setCirclePercentage:(float) percent;
+-(void)setLikeState:(BOOL)state;
+-(void)setShareState:(BOOL)state;
 @end

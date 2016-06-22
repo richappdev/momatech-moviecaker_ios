@@ -420,11 +420,13 @@
                                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                             <constraints>
                                                                 <constraint firstItem="6E4-d2-f2L" firstAttribute="centerY" secondItem="AFo-fg-AIx" secondAttribute="centerY" constant="-6.5" id="HGR-O0-lRq"/>
+                                                                <constraint firstAttribute="width" constant="52" id="LJs-Hw-yVK"/>
                                                                 <constraint firstItem="6E4-d2-f2L" firstAttribute="centerX" secondItem="AFo-fg-AIx" secondAttribute="centerX" id="Q39-4p-asH"/>
                                                                 <constraint firstItem="6E4-d2-f2L" firstAttribute="centerX" secondItem="Tbh-Kt-LSR" secondAttribute="centerX" id="RKX-yf-2Gd"/>
                                                                 <constraint firstItem="6E4-d2-f2L" firstAttribute="top" secondItem="AFo-fg-AIx" secondAttribute="top" constant="9" id="S8i-ke-sJW"/>
                                                                 <constraint firstItem="Tbh-Kt-LSR" firstAttribute="bottom" secondItem="AFo-fg-AIx" secondAttribute="bottomMargin" constant="-5" id="jbu-4q-FPQ"/>
                                                                 <constraint firstItem="6E4-d2-f2L" firstAttribute="leading" secondItem="AFo-fg-AIx" secondAttribute="leading" constant="-8" id="l6v-pN-hOe"/>
+                                                                <constraint firstAttribute="height" constant="52" id="suq-yE-9NH"/>
                                                             </constraints>
                                                         </view>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3IZ-C5-k3C">
@@ -1024,11 +1026,14 @@
                         <outlet property="SecondChevron" destination="tHh-d6-OhI" id="c2u-vb-FRK"/>
                         <outlet property="blurredBg" destination="7P2-G7-1Iu" id="JrI-Pd-wqJ"/>
                         <outlet property="iconEyeBtn" destination="cRw-Pc-ak4" id="Fb1-y4-xvY"/>
+                        <outlet property="iconEyeIndex" destination="ygr-Kv-Lco" id="7Tf-mY-N7W"/>
                         <outlet property="iconLikeBtn" destination="spG-M1-ALL" id="ZSq-it-kSp"/>
+                        <outlet property="iconLikeIndex" destination="iEa-J8-JuS" id="9M8-6J-4Bm"/>
                         <outlet property="iconMovieHot" destination="wK5-ak-frA" id="Zrl-Ht-FIB"/>
                         <outlet property="iconMovieNew" destination="P7v-mo-2zQ" id="K2C-lc-WNt"/>
                         <outlet property="iconPenBtn" destination="8P2-9m-PSO" id="Xe7-ZD-tNB"/>
                         <outlet property="iconPocketBtn" destination="PNF-Zp-Ffx" id="5a5-R9-5Ac"/>
+                        <outlet property="iconPoketIndex" destination="HTh-sz-S0d" id="M4H-1P-sYa"/>
                         <outlet property="iconTopicIndex" destination="EZI-O8-KnB" id="ewe-Z8-Hkh"/>
                         <outlet property="imageScroll" destination="VeJ-MH-lHy" id="PLH-PW-mea"/>
                         <outlet property="moreBtn" destination="zdg-7V-qlb" id="aew-VL-i3s"/>
@@ -2121,6 +2126,9 @@
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tlp-Az-qU5">
                                                     <rect key="frame" x="203" y="38" width="52" height="14"/>
                                                     <subviews>
+                                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="lableImdb" translatesAutoresizingMaskIntoConstraints="NO" id="jmc-f4-N4b">
+                                                            <rect key="frame" x="0.0" y="0.0" width="52" height="14"/>
+                                                        </imageView>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="10.0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="h7T-Me-CHu">
                                                             <rect key="frame" x="30" y="-4" width="22" height="21"/>
                                                             <constraints>
@@ -2130,9 +2138,6 @@
                                                             <color key="textColor" red="0.094117647058823528" green="0.10588235294117647" blue="0.12549019607843137" alpha="1" colorSpace="calibratedRGB"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
-                                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="lableImdb" translatesAutoresizingMaskIntoConstraints="NO" id="jmc-f4-N4b">
-                                                            <rect key="frame" x="0.0" y="0.0" width="52" height="14"/>
-                                                        </imageView>
                                                     </subviews>
                                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                     <constraints>
@@ -2636,14 +2641,14 @@
                                                     <color key="textColor" red="0.20000000000000001" green="0.2666666667" blue="0.33333333329999998" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="rabbit-512" translatesAutoresizingMaskIntoConstraints="NO" id="wKs-lW-LQN">
+                                                <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="rabbit-512" translatesAutoresizingMaskIntoConstraints="NO" id="wKs-lW-LQN">
                                                     <rect key="frame" x="112" y="58" width="20" height="20"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="20" id="VpC-8Y-lRR"/>
                                                         <constraint firstAttribute="width" constant="20" id="cMU-zq-CAn"/>
                                                     </constraints>
                                                 </imageView>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Ilandy" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8DG-AL-dPU">
+                                                <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Ilandy" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8DG-AL-dPU">
                                                     <rect key="frame" x="140" y="57" width="62" height="21"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="62" id="kze-x0-xp0"/>
@@ -2652,14 +2657,14 @@
                                                     <color key="textColor" red="0.20000000000000001" green="0.26666666666666666" blue="0.33333333333333331" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="iconHeartIndexActive" translatesAutoresizingMaskIntoConstraints="NO" id="Q28-eg-mKW">
+                                                <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="iconHeartIndexActive" translatesAutoresizingMaskIntoConstraints="NO" id="Q28-eg-mKW">
                                                     <rect key="frame" x="188" y="62" width="14" height="12"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="14" id="m1d-4Q-lcM"/>
                                                         <constraint firstAttribute="height" constant="12" id="qJq-dK-g5s"/>
                                                     </constraints>
                                                 </imageView>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="iconEyeIndexActive" translatesAutoresizingMaskIntoConstraints="NO" id="YfC-mG-PZ4">
+                                                <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="iconEyeIndexActive" translatesAutoresizingMaskIntoConstraints="NO" id="YfC-mG-PZ4">
                                                     <rect key="frame" x="210" y="63" width="16" height="11"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="16" id="g5Y-S2-wov"/>
@@ -2739,8 +2744,17 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
+                                            <outlet property="date" destination="ydt-yd-kED" id="aX8-qW-njm"/>
+                                            <outlet property="dou" destination="7k5-d2-oix" id="zhH-mT-Czd"/>
+                                            <outlet property="favored" destination="3cY-ZM-LvC" id="7F0-X9-JNx"/>
+                                            <outlet property="image" destination="swA-Fv-KC0" id="uv8-F9-hoG"/>
+                                            <outlet property="imdb" destination="N57-3P-0ER" id="UL3-zZ-dgz"/>
+                                            <outlet property="liked" destination="x7Y-cG-rfR" id="uBr-jl-KZb"/>
                                             <outlet property="ratingBg" destination="mi3-Fc-lDZ" id="I0v-tN-Jfa"/>
                                             <outlet property="ratingLabel" destination="jeV-rs-M6f" id="1qE-WP-mCM"/>
+                                            <outlet property="reviewed" destination="Z0v-8D-03L" id="eVA-pw-mZj"/>
+                                            <outlet property="title" destination="ZPu-A9-XGo" id="JhC-g2-e8L"/>
+                                            <outlet property="viewed" destination="yOC-Nd-er2" id="aJC-ep-Q8n"/>
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="MovieTableThree" rowHeight="190" id="ebR-0I-yHX" customClass="Movie2Cell">

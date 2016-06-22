@@ -12,6 +12,7 @@
 #import "AFNetworking.h"
 #import "WechatAccess.h"
 #import "AustinApi.h"
+#import "MovieController.h"
 #define USERKEY @"userkey"
 @interface LoginController ()
 @property (strong, nonatomic) IBOutlet UIButton *Button;
@@ -27,6 +28,7 @@
 }
 -(void)viewWillAppear:(BOOL)animated{
     NSDictionary *returnData = [NSKeyedUnarchiver unarchiveObjectWithData:[[NSUserDefaults standardUserDefaults] objectForKey:USERKEY]];
+    NSLog(@"%@",returnData);
     if(returnData!=nil){
         [self.Button setTitle:[NSString stringWithFormat:@"%@:log out",[[returnData objectForKey:@"Data"] objectForKey:@"NickName"]] forState:UIControlStateNormal];}
 }
@@ -46,7 +48,9 @@
 */
 
 - (IBAction)Login:(id)sender {
-
+    UINavigationController *nav = [self.tabBarController.viewControllers objectAtIndex:0];
+    MovieController *movie = [[nav viewControllers]objectAtIndex:0];
+    movie.refresh = YES;
     if([[NSUserDefaults standardUserDefaults] objectForKey:USERKEY]!=nil){
         [[NSUserDefaults standardUserDefaults] removeObjectForKey:USERKEY];
         [self.Button setTitle:@"Wechat Login" forState:UIControlStateNormal];
@@ -57,16 +61,26 @@
             [[NSHTTPCookieStorage sharedHTTPCookieStorage] deleteCookie:cookie];
         }
     }
+    /*else{
+        [[AustinApi sharedInstance]loginWithAccount:@"space15spider@hotmail.com" withPassword:@"superman321" withRemember:YES function:^(NSDictionary *returnData) {
+            [[NSUserDefaults standardUserDefaults] setObject:[NSKeyedArchiver archivedDataWithRootObject:returnData] forKey:USERKEY];
+            NSLog(@"%@",returnData);
+        } error:^(NSError *error) {
+            NSLog(@"%@",error);
+        }];
+
+    }*/
+    
     else{
     
     
     if([[WechatAccess sharedInstance]isWechatAppInstalled]==YES){
     
-    [[[WechatAccess sharedInstance] defaultAccess]login:^(BOOL succeeded, id object) {
+        [[[WechatAccess sharedInstance] defaultAccess]login:^(BOOL succeeded, id object) {NSLog(@"wro");
         if(succeeded){
         //do Login Proccess
         [[AustinApi sharedInstance] apiRegisterPost:[object objectForKey:@"unionid"] completion:^(NSMutableDictionary *returnData) {
-            NSLog(@"%@",returnData);
+            NSLog(@"here%@",returnData);
             [[NSUserDefaults standardUserDefaults] setObject:[NSKeyedArchiver archivedDataWithRootObject:returnData] forKey:USERKEY];
 
             [self.Button setTitle:[NSString stringWithFormat:@"%@:log out",[[returnData objectForKey:@"Data"] objectForKey:@"NickName"]] forState:UIControlStateNormal];
@@ -76,7 +90,7 @@
         }];
             
         }else{
-            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"登入訊息" message:@"登入取消" delegate:self cancelButtonTitle:@"关闭" otherButtonTitles:nil,nil];
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"訊息" message:@"取消" delegate:self cancelButtonTitle:@"关闭" otherButtonTitles:nil,nil];
             [alert show];
         }
     } viewController:self];}

@@ -52,6 +52,7 @@
 @property UILabel* fTwoIndex;
 @property UILabel* fFourIndex;
 
+@property BOOL loaded;
 @end
 
 @implementation MovieViewController
@@ -110,7 +111,6 @@
     [self.movieTable addGestureRecognizer:cancel];
     
     [self setupFilterBtns];
-    
 }
 -(void)addLabelTap:(UILabel*)label{
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(filterClick:)];
@@ -137,20 +137,37 @@
     [self addLabelTap:self.threeThreeL];
 
 }
--(void)filterClick:(UITapGestureRecognizer*)gesture{
+-(void)viewWillAppear:(BOOL)animated{
+    if(self.loaded) {
+        [self doJump];}
+}
+-(void)doJump{
+    if(self.jump==1){
+        self.index =0;
+        [self moveBar:self.firstLabel];
+        [self setFilter];
+    }
+    if(self.jump==2){
+        self.index =1;
+        [self moveBar:self.secondLabel];
+        [self setFilter];
+    }
+    self.jump =0;
+}
+-(void)filterClick:(UIGestureRecognizer*)gesture{
     UILabel *previous;
     UILabel *current = (UILabel*)gesture.view;
     if(self.currentFilter.tag==0){
         previous = self.fOneIndex;
         if(previous!=current){
             if(current.tag==0){
-            [self getMovieList:@"6" location:[[self.locationBackend objectAtIndex:self.locationIndex]objectForKey:@"Id"] type:0];
+                [self getMovieList:@"6" location:[[self.locationBackend objectAtIndex:self.locationIndex]objectForKey:@"Id"] type:0];
             }else if (current.tag==1){
-              [self getMovieList:@"6" location:[[self.locationBackend objectAtIndex:self.locationIndex]objectForKey:@"Id"] type:1];
+                [self getMovieList:@"6" location:[[self.locationBackend objectAtIndex:self.locationIndex]objectForKey:@"Id"] type:1];
             }else if (current.tag==2){
                 [self getMovieList:@"6" location:nil type:2];
             }
-
+            
             self.fOneIndex = current;
         }
     }
@@ -176,29 +193,29 @@
             }else{
                 NSMutableArray *data = [[NSMutableArray alloc]init];
                 for (NSDictionary *row in self.tabFourData) {
-                
-            NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-            [dateFormatter setDateFormat:@"yyyy/MM/dd'T'HH:mm:ss"];
-            NSString *test= [[row objectForKey:@"CreateOn"] substringWithRange:NSMakeRange(0,19)];
-            NSDate *dateFromString = [dateFormatter dateFromString:test];
-                    if([self within7Days:dateFromString]&&current.tag==2)
-            {
-                [data addObject:row];
-            }
-                    if(current.tag==1){
-            NSDateComponents *components = [[NSCalendar currentCalendar] components:NSCalendarUnitDay | NSCalendarUnitMonth | NSCalendarUnitYear fromDate:dateFromString];
-            NSInteger month = [components month];
-            components = [[NSCalendar currentCalendar] components:NSCalendarUnitDay | NSCalendarUnitMonth | NSCalendarUnitYear fromDate:[[NSDate alloc]init]];
-            
-            if(month==[components month]){
-                [data addObject:row];
-            }}
                     
-            }
+                    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+                    [dateFormatter setDateFormat:@"yyyy/MM/dd'T'HH:mm:ss"];
+                    NSString *test= [[row objectForKey:@"CreateOn"] substringWithRange:NSMakeRange(0,19)];
+                    NSDate *dateFromString = [dateFormatter dateFromString:test];
+                    if([self within7Days:dateFromString]&&current.tag==2)
+                    {
+                        [data addObject:row];
+                    }
+                    if(current.tag==1){
+                        NSDateComponents *components = [[NSCalendar currentCalendar] components:NSCalendarUnitDay | NSCalendarUnitMonth | NSCalendarUnitYear fromDate:dateFromString];
+                        NSInteger month = [components month];
+                        components = [[NSCalendar currentCalendar] components:NSCalendarUnitDay | NSCalendarUnitMonth | NSCalendarUnitYear fromDate:[[NSDate alloc]init]];
+                        
+                        if(month==[components month]){
+                            [data addObject:row];
+                        }}
+                    
+                }
                 self.movieTableController.data =data;
-
-
-        }
+                
+                
+            }
             [self.movieTableController.tableView reloadData];
         }
         self.fFourIndex = current;
@@ -206,6 +223,7 @@
     
     previous.textColor = [UIColor blackColor];
     current.textColor = [UIColor colorWithRed:(244.0f/255.0f) green:(154.0f/255.0f) blue:(68.0/255.0f) alpha:1];
+
 }
 -(BOOL)within7Days:(NSDate*)someDate{
 
@@ -264,6 +282,8 @@
         }
         self.locationArray = tempArray;
         [self setLocationBtnColor:0];
+        [self doJump];
+        self.loaded=YES;
     } error:^(NSError *error) {
         NSLog(@"%@",error);
     }];
@@ -406,16 +426,17 @@
                 [self getMovieList:@"month" location:nil type:3];}
         }
         if(self.filterIndex==2){
-            self.movieTableController.data =[[NSArray alloc]init];
+            if(self.tabThreeData!=nil){
+           self.movieTableController.data =self.tabThreeData;
             [self.movieTableController.tableView reloadData];
-
-          /*  [[AustinApi sharedInstance]movieListCustom:@"1" location:nil year:nil month:nil function:^(NSArray *returnData) {
-                self.tabFourData =returnData;
+            }else{
+            [[AustinApi sharedInstance]movieListCustom:@"1" location:nil year:nil month:nil function:^(NSArray *returnData) {
+                self.tabThreeData =returnData;
                 self.movieTableController.data = returnData;
                 [self.movieTableController.tableView reloadData];
             } error:^(NSError *error) {
                 NSLog(@"%@",error);
-            }];*/
+            }];}
             self.topMargin.constant = -36;
         }
         if(self.filterIndex==3){
