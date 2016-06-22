@@ -2203,7 +2203,7 @@
                                                         <constraint firstAttribute="trailing" secondItem="km1-Yg-AqR" secondAttribute="trailing" id="raR-w4-PHn"/>
                                                     </constraints>
                                                 </view>
-                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kb1-x3-fKa">
+                                                <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kb1-x3-fKa">
                                                     <rect key="frame" x="112" y="88" width="47" height="14"/>
                                                     <subviews>
                                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="labelShopOnline" translatesAutoresizingMaskIntoConstraints="NO" id="PJ4-3q-8kG">
@@ -2230,7 +2230,7 @@
                                                         <constraint firstAttribute="bottom" secondItem="PJ4-3q-8kG" secondAttribute="bottom" id="vaS-3o-TY2"/>
                                                     </constraints>
                                                 </view>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="group8" translatesAutoresizingMaskIntoConstraints="NO" id="5oh-Yq-8MR">
+                                                <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="group8" translatesAutoresizingMaskIntoConstraints="NO" id="5oh-Yq-8MR">
                                                     <rect key="frame" x="167" y="88" width="52" height="14"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="52" id="WQr-tE-cTy"/>
