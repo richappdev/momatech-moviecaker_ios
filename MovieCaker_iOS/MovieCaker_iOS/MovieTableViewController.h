@@ -7,11 +7,13 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "MovieController.h"
 
 @interface MovieTableViewController : UITableViewController
 @property NSLayoutConstraint *tableHeight;
 - (id)init:(int)type;
 -(int)returnTotalHeight;
+-(void)ParentController:(MovieController *)movie;
 @property int type;
 @property NSArray *data;
 @end

@@ -108,7 +108,7 @@
         self.movieTable2Controller.tableHeight = self.movieTable2Height;
         self.movieTable2Controller.tableView = self.movieTable2;
         [self.movieTable2Controller.tableView reloadData];
-        
+        [self.movieTable2Controller ParentController:self];
         [self readjustScrollsize];
         
     } error:^(NSError *error) {
@@ -239,10 +239,11 @@
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
+    if([[segue identifier] isEqualToString:@"movieDetail"]){
     int indexOfPage = self.imageScroll.contentOffset.x / self.imageScroll.frame.size.width;
     NSLog(@"%d",indexOfPage);
     MovieDetailController *detailVc = segue.destinationViewController;
-    detailVc.movieDetailInfo = [self.returnData objectAtIndex:indexOfPage];
+        detailVc.movieDetailInfo = [self.returnData objectAtIndex:indexOfPage];}
 }
 
 - (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView{

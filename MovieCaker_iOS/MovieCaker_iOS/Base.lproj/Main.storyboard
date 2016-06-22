@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10116" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="49e-Tb-3d3">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="49e-Tb-3d3">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
@@ -7,6 +7,25 @@
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
+        <!--View Controller-->
+        <scene sceneID="TvR-gc-7yf">
+            <objects>
+                <viewController id="gTw-d3-Ers" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="BHP-9J-RNP"/>
+                        <viewControllerLayoutGuide type="bottom" id="6qy-bo-Wbp"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="Hir-mm-6uK">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="xX4-kb-epS"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ld6-Q0-N0A" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2076" y="-209"/>
+        </scene>
         <!--Movie Controller-->
         <scene sceneID="hNz-n2-bh7">
             <objects>
@@ -1048,11 +1067,12 @@
                         <outlet property="statubarBg" destination="zgD-q5-fFZ" id="PEd-Er-MT6"/>
                         <outlet property="uititle" destination="Vh4-1C-ejS" id="kYy-fA-8mN"/>
                         <segue destination="KeK-L1-IfS" kind="push" identifier="movieDetail" id="efM-b9-q38"/>
+                        <segue destination="gTw-d3-Ers" kind="push" identifier="reviewSegue" id="faQ-HW-B4Q"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="W5J-7L-Pyd" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1885" y="-276"/>
+            <point key="canvasLocation" x="1637" y="-636"/>
         </scene>
         <!--我的-->
         <scene sceneID="Yw6-q6-vxF">
@@ -2052,7 +2072,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8zu-1g-zUn" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2442" y="-239"/>
+            <point key="canvasLocation" x="2526" y="-767"/>
         </scene>
         <!--Movie View Controller-->
         <scene sceneID="wg7-f3-ORb">
