@@ -9,10 +9,14 @@
 #import "reviewController.h"
 #import "MainVerticalScroller.h"
 #import "buttonHelper.h"
+#import "UIImage+FontAwesome.h"
 
 @interface reviewController ()
 @property (strong, nonatomic) IBOutlet UIImageView *bgImage;
+@property (strong, nonatomic) IBOutlet UIView *editBtn;
 @property MainVerticalScroller *scrollHelp;
+@property (strong, nonatomic) IBOutlet UIImageView *editPen;
+@property (strong, nonatomic) IBOutlet UIImageView *penPic;
 @end
 
 @implementation reviewController
@@ -30,6 +34,12 @@
     self.mainScroll.delegate = self.scrollHelp;
     
     [buttonHelper gradientBg:self.bgImage width:self.view.frame.size.width];
+    
+    self.editBtn.layer.borderWidth=1;
+    self.editBtn.layer.cornerRadius =3;
+    self.editBtn.layer.borderColor = [UIColor colorWithRed:(128/255.0f) green:(203/255.0f) blue:(196/255.0f) alpha:1].CGColor;
+    self.editPen.image = [UIImage imageWithIcon:@"fa-pencil" backgroundColor:[UIColor clearColor] iconColor:[UIColor colorWithRed:(77/255.0f) green:(182/255.0f) blue:(172/255.0f) alpha:1.0] andSize:CGSizeMake(10, 10)];
+    self.penPic.image = [UIImage imageWithIcon:@"fa-pencil" backgroundColor:[UIColor clearColor] iconColor:[UIColor colorWithRed:(121/255.0f) green:(124/255.0f) blue:(131/255.0f) alpha:1.0] andSize:CGSizeMake(12, 14)];
 }
 
 - (void)didReceiveMemoryWarning {
