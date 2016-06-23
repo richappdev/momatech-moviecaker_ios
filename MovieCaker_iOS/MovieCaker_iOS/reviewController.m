@@ -8,8 +8,10 @@
 
 #import "reviewController.h"
 #import "MainVerticalScroller.h"
+#import "buttonHelper.h"
 
 @interface reviewController ()
+@property (strong, nonatomic) IBOutlet UIImageView *bgImage;
 @property MainVerticalScroller *scrollHelp;
 @end
 
@@ -27,6 +29,7 @@
     self.mainScroll.contentSize = CGSizeMake(self.view.frame.size.width,2000);
     self.mainScroll.delegate = self.scrollHelp;
     
+    [buttonHelper gradientBg:self.bgImage width:self.view.frame.size.width];
 }
 
 - (void)didReceiveMemoryWarning {

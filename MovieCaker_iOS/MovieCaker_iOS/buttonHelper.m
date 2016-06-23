@@ -58,4 +58,14 @@
         label.textColor = [UIColor colorWithRed:0.47 green:0.49 blue:0.51 alpha:1.0];
     }
 }
+
++(void)gradientBg:(UIImageView*)imageView width:(int)width{
+    CAGradientLayer *gradientLayer = [CAGradientLayer layer];
+    gradientLayer.frame =CGRectMake(imageView.frame.origin.x, imageView.frame.origin.y, width, imageView.frame.size.height);
+    gradientLayer.colors = [NSArray arrayWithObjects:(id)[UIColor whiteColor].CGColor, (id)[UIColor clearColor].CGColor, nil];
+    gradientLayer.startPoint = CGPointMake(1.0f, 0.7f);
+    gradientLayer.endPoint = CGPointMake(1.0f, 1.0f);
+    imageView.layer.mask = gradientLayer;
+
+}
 @end

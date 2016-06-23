@@ -11,6 +11,7 @@
 #import "SDWebImage/UIImageView+WebCache.h"
 #import "AustinApi.h"
 #import "MainVerticalScroller.h"
+#import "buttonHelper.h"
 
 @interface MovieDetailController ()
 @property (strong, nonatomic) IBOutlet UIImageView *bgImage;
@@ -48,15 +49,9 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    CAGradientLayer *gradientLayer = [CAGradientLayer layer];
-    gradientLayer.frame =CGRectMake(self.bgImage.frame.origin.x, self.bgImage.frame.origin.y, self.view.frame.size.width, self.bgImage.frame.size.height);
-    gradientLayer.colors = [NSArray arrayWithObjects:(id)[UIColor whiteColor].CGColor, (id)[UIColor clearColor].CGColor, nil];
-    gradientLayer.startPoint = CGPointMake(1.0f, 0.7f);
-    gradientLayer.endPoint = CGPointMake(1.0f, 1.0f);
-    self.bgImage.layer.mask = gradientLayer;
+    [buttonHelper gradientBg:self.bgImage width:self.view.frame.size.width];
     
     self.scrollDelegate = [[MainVerticalScroller alloc] init];
-
     self.scrollDelegate.nav = self.navigationController;
     [self.scrollDelegate setupBackBtn:self];
     [self.scrollDelegate setupStatusbar:self.view];

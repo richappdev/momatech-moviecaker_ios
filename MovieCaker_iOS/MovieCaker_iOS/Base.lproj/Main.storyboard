@@ -19,26 +19,42 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="f4g-qb-LNl">
-                                <rect key="frame" x="0.0" y="0.0" width="414" height="687"/>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="f4g-qb-LNl">
+                                <rect key="frame" x="0.0" y="-64" width="414" height="687"/>
+                                <subviews>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="on" translatesAutoresizingMaskIntoConstraints="NO" id="loY-Dg-I61">
+                                        <rect key="frame" x="0.0" y="0.0" width="415" height="200"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="200" id="lZt-FN-Vpf"/>
+                                        </constraints>
+                                    </imageView>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstItem="loY-Dg-I61" firstAttribute="centerX" secondItem="f4g-qb-LNl" secondAttribute="centerX" id="7ZX-rM-2lq"/>
+                                    <constraint firstAttribute="trailing" secondItem="loY-Dg-I61" secondAttribute="trailing" id="KuB-Wb-n84"/>
+                                    <constraint firstItem="loY-Dg-I61" firstAttribute="leading" secondItem="f4g-qb-LNl" secondAttribute="leading" id="TAY-Zp-Pyc"/>
+                                    <constraint firstItem="loY-Dg-I61" firstAttribute="top" secondItem="f4g-qb-LNl" secondAttribute="top" id="qYN-1E-8eV"/>
+                                    <constraint firstAttribute="bottom" secondItem="loY-Dg-I61" secondAttribute="bottom" constant="487" id="yUr-PE-U0b"/>
+                                </constraints>
                             </scrollView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="f4g-qb-LNl" firstAttribute="top" secondItem="BHP-9J-RNP" secondAttribute="bottom" constant="-64" id="5tQ-0M-4qs"/>
-                            <constraint firstItem="6qy-bo-Wbp" firstAttribute="top" secondItem="f4g-qb-LNl" secondAttribute="bottom" id="7cI-xV-HWs"/>
+                            <constraint firstItem="f4g-qb-LNl" firstAttribute="top" secondItem="BHP-9J-RNP" secondAttribute="bottom" constant="-128" id="5tQ-0M-4qs"/>
+                            <constraint firstItem="6qy-bo-Wbp" firstAttribute="top" secondItem="f4g-qb-LNl" secondAttribute="bottom" constant="64" id="7cI-xV-HWs"/>
                             <constraint firstAttribute="trailingMargin" secondItem="f4g-qb-LNl" secondAttribute="trailing" constant="-20" id="Abd-cO-sCx"/>
                             <constraint firstItem="f4g-qb-LNl" firstAttribute="leading" secondItem="Hir-mm-6uK" secondAttribute="leadingMargin" constant="-20" id="Wim-tY-Koe"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="xX4-kb-epS"/>
                     <connections>
+                        <outlet property="bgImage" destination="loY-Dg-I61" id="iP0-np-PH1"/>
                         <outlet property="mainScroll" destination="f4g-qb-LNl" id="YoV-A1-hJW"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ld6-Q0-N0A" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2104" y="-430"/>
+            <point key="canvasLocation" x="1994" y="-562"/>
         </scene>
         <!--Movie Controller-->
         <scene sceneID="hNz-n2-bh7">
@@ -2076,7 +2092,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8zu-1g-zUn" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2526" y="-767"/>
+            <point key="canvasLocation" x="2526" y="-771"/>
         </scene>
         <!--Movie View Controller-->
         <scene sceneID="wg7-f3-ORb">
