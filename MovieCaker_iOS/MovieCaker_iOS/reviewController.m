@@ -17,6 +17,9 @@
 @property MainVerticalScroller *scrollHelp;
 @property (strong, nonatomic) IBOutlet UIImageView *editPen;
 @property (strong, nonatomic) IBOutlet UIImageView *penPic;
+@property (strong, nonatomic) IBOutlet UITextView *content;
+@property (strong, nonatomic) IBOutlet UIImageView *movieNavIcon;
+@property (strong, nonatomic) IBOutlet UIView *movieNavBg;
 @end
 
 @implementation reviewController
@@ -40,6 +43,11 @@
     self.editBtn.layer.borderColor = [UIColor colorWithRed:(128/255.0f) green:(203/255.0f) blue:(196/255.0f) alpha:1].CGColor;
     self.editPen.image = [UIImage imageWithIcon:@"fa-pencil" backgroundColor:[UIColor clearColor] iconColor:[UIColor colorWithRed:(77/255.0f) green:(182/255.0f) blue:(172/255.0f) alpha:1.0] andSize:CGSizeMake(10, 10)];
     self.penPic.image = [UIImage imageWithIcon:@"fa-pencil" backgroundColor:[UIColor clearColor] iconColor:[UIColor colorWithRed:(121/255.0f) green:(124/255.0f) blue:(131/255.0f) alpha:1.0] andSize:CGSizeMake(12, 14)];
+    
+    self.movieNavIcon.image = [UIImage imageWithIcon:@"fa-chevron-left" backgroundColor:[UIColor clearColor] iconColor:[UIColor whiteColor] andSize:CGSizeMake(16, 16)];
+    self.movieNavBg.layer.cornerRadius =8;
+    self.movieNavBg.backgroundColor = [UIColor colorWithRed:(68/255.0f) green:(85/255.0f) blue:(102/255.0f) alpha:1.0];
+    [self.content setEditable:NO];
 }
 
 - (void)didReceiveMemoryWarning {
