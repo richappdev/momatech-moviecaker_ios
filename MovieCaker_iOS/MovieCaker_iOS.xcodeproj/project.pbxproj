@@ -20,6 +20,7 @@
 		6C1250831CC3857B0009549B /* AFURLRequestSerialization.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C1250781CC3857B0009549B /* AFURLRequestSerialization.m */; };
 		6C1250841CC3857B0009549B /* AFURLResponseSerialization.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C12507A1CC3857B0009549B /* AFURLResponseSerialization.m */; };
 		6C1250851CC3857B0009549B /* AFURLSessionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C12507C1CC3857B0009549B /* AFURLSessionManager.m */; };
+		6C58780D1D2072B50051A4C4 /* ReviewTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C58780C1D2072B50051A4C4 /* ReviewTableViewController.m */; };
 		6C61EAEE1CD68E1B0026CCCC /* CircleView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C61EAED1CD68E1B0026CCCC /* CircleView.m */; };
 		6C61EAF11CD6D7E90026CCCC /* buttonHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C61EAF01CD6D7E90026CCCC /* buttonHelper.m */; };
 		6C61EAF41CD7772F0026CCCC /* Movie2Cell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C61EAF31CD7772F0026CCCC /* Movie2Cell.m */; };
@@ -99,6 +100,8 @@
 		6C12507A1CC3857B0009549B /* AFURLResponseSerialization.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFURLResponseSerialization.m; sourceTree = "<group>"; };
 		6C12507B1CC3857B0009549B /* AFURLSessionManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFURLSessionManager.h; sourceTree = "<group>"; };
 		6C12507C1CC3857B0009549B /* AFURLSessionManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFURLSessionManager.m; sourceTree = "<group>"; };
+		6C58780B1D2072B50051A4C4 /* ReviewTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReviewTableViewController.h; sourceTree = "<group>"; };
+		6C58780C1D2072B50051A4C4 /* ReviewTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReviewTableViewController.m; sourceTree = "<group>"; };
 		6C61EAEC1CD68E1B0026CCCC /* CircleView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CircleView.h; sourceTree = "<group>"; };
 		6C61EAED1CD68E1B0026CCCC /* CircleView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CircleView.m; sourceTree = "<group>"; };
 		6C61EAEF1CD6D7E90026CCCC /* buttonHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = buttonHelper.h; sourceTree = "<group>"; };
@@ -326,6 +329,8 @@
 				6C758B901CED42EC001E5252 /* MovieTwoTableViewController.m */,
 				6CF9755F1D1B0AB8008BF55A /* reviewController.h */,
 				6CF975601D1B0AB8008BF55A /* reviewController.m */,
+				6C58780B1D2072B50051A4C4 /* ReviewTableViewController.h */,
+				6C58780C1D2072B50051A4C4 /* ReviewTableViewController.m */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -543,6 +548,7 @@
 				6C7F9F6A1CDE9870001BE238 /* UIImageView+WebCache.m in Sources */,
 				6CA52C5B1CB9587400C5FDC8 /* scrollBoxView.m in Sources */,
 				6C1250831CC3857B0009549B /* AFURLRequestSerialization.m in Sources */,
+				6C58780D1D2072B50051A4C4 /* ReviewTableViewController.m in Sources */,
 				6C1250801CC3857B0009549B /* AFNetworkReachabilityManager.m in Sources */,
 				6C7F9F611CDE9870001BE238 /* SDWebImageDownloader.m in Sources */,
 				6CFC09841CCBC0B50045C93E /* FAImageView.m in Sources */,
