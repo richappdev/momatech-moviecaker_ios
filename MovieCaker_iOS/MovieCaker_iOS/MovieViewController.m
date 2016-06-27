@@ -152,6 +152,10 @@
         [self moveBar:self.secondLabel];
         [self setFilter];
     }
+    if(self.jump==3){
+        [self moveBar:self.fourthLabel];
+        [self setFilter];
+    }
     self.jump =0;
 }
 -(void)filterClick:(UIGestureRecognizer*)gesture{

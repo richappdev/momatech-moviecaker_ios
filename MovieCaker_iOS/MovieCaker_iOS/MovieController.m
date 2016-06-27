@@ -377,6 +377,9 @@
         self.tabBarController.selectedIndex = 3;
     }
     if(sender.view.tag==7){
+        UINavigationController *nav = [self.tabBarController.viewControllers objectAtIndex:1];
+        MovieViewController *movie = [[nav viewControllers]objectAtIndex:0];
+        movie.jump = 3;
         self.tabBarController.selectedIndex = 1;
     }
 }
