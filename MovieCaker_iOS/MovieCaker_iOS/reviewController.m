@@ -25,8 +25,12 @@
 @property (strong, nonatomic) IBOutlet UIView *likeBtn;
 @property (strong, nonatomic) IBOutlet UIView *shareBtn;
 @property (strong, nonatomic) IBOutlet UITableView *reviewTable;
+@property (strong, nonatomic) IBOutlet UITextView *respondText;
 @property ReviewTableViewController *tableController;
+@property (strong, nonatomic) IBOutlet NSLayoutConstraint *respondHeight;
+@property (strong, nonatomic) IBOutlet NSLayoutConstraint *respondTextMargin;
 @end
+
 
 @implementation reviewController
 
@@ -63,6 +67,39 @@
     self.reviewTable.dataSource = self.tableController;
     self.tableController.tableView = self.reviewTable;
     self.reviewTable.scrollEnabled = NO;
+    
+    [self.respondText.layer setBorderColor:[[[UIColor grayColor] colorWithAlphaComponent:0.5] CGColor]];
+    [self.respondText.layer setBorderWidth:2.0];
+    
+    //The rounded corner part, where you specify your view's corner radius:
+    self.respondText.layer.cornerRadius = 1;
+    self.respondText.clipsToBounds = YES;
+    self.respondText.delegate = self;
+    
+    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tap:)];
+    [self.view addGestureRecognizer:tap];
+}
+
+-(void)tap:(UITapGestureRecognizer*)gesture{
+
+    [self.respondText resignFirstResponder];
+}
+- (void)textViewDidChange:(UITextView *)textView
+{
+    float rows = (textView.contentSize.height - textView.textContainerInset.top - textView.textContainerInset.bottom) / textView.font.lineHeight;
+    if(rows>=2){
+        self.respondHeight.constant = 70;
+    }else{
+        self.respondHeight.constant = 40;
+    }
+
+}
+- (void)textViewDidBeginEditing:(UITextView *)textView {
+    self.respondTextMargin.constant = 250;
+}
+
+- (void)textViewDidEndEditing:(UITextView *)textView {
+    self.respondTextMargin.constant = 50;
 }
 
 - (void)didReceiveMemoryWarning {
