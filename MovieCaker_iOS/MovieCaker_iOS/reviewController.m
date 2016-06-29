@@ -12,6 +12,7 @@
 #import "UIImage+FontAwesome.h"
 #import "buttonHelper.h"
 #import "ReviewTableViewController.h"
+#import "starView.h"
 
 @interface reviewController ()
 @property (strong, nonatomic) IBOutlet UIImageView *bgImage;
@@ -28,7 +29,9 @@
 @property (strong, nonatomic) IBOutlet UITextView *respondText;
 @property ReviewTableViewController *tableController;
 @property (strong, nonatomic) IBOutlet NSLayoutConstraint *respondHeight;
+@property (strong, nonatomic) IBOutlet starView *starView;
 @property (strong, nonatomic) IBOutlet NSLayoutConstraint *respondTextMargin;
+@property (strong, nonatomic) IBOutlet UILabel *editBtnTxt;
 @end
 
 
@@ -78,8 +81,22 @@
     
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tap:)];
     [self.view addGestureRecognizer:tap];
+    
+    UITapGestureRecognizer *tap2 = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(edit:)];
+    [self.editBtn addGestureRecognizer:tap2];
 }
 
+-(void)edit:(UITapGestureRecognizer*)gesture{
+    if(self.starView.edit!=YES){
+        self.editBtnTxt.text = @"確認";
+        self.starView.edit = YES;
+        [self.content setEditable:YES];
+    }else{
+        self.editBtnTxt.text = @"編輯";
+        self.starView.edit = NO;
+        [self.content setEditable:NO];
+    }
+}
 -(void)tap:(UITapGestureRecognizer*)gesture{
 
     [self.respondText resignFirstResponder];
