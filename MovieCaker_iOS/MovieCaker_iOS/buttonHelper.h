@@ -12,4 +12,5 @@
 +(void)likeShareClick:(UIView*)view;
 +(void)adjustLike:(UIView*)view;
 +(void)adjustShare:(UIView*)view;
++(void)gradientBg:(UIImageView*)imageView width:(int)width;
 @end

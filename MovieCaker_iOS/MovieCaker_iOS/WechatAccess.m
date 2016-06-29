@@ -9,10 +9,10 @@
 #import "WechatAccess.h"
 #import "AFNetworking.h"
 
-#define WECHAT_APP_ID         @"wxd0d7b13dff0c2d5e" //WXD0D7B13DFF0C2D5E
+#define WECHAT_APP_ID         @"wx67639291e86b2f9a" //WXD0D7B13DFF0C2D5E
 #define WECHAT_MCH_ID         @"1272035301"
 #define WECHAT_KEY            @"AOGAKNHPNOJSZRA10KQDEJY5OGAYQYC5" //@"aogaknhpnojszra10kqdejy5ogayqyc5" //AOGAKNHPNOJSZRA10KQDEJY5OGAYQYC5
-#define WECHAT_APP_SECRET     @"b509f23d24440efe31fff96c476d4761" //@"b509f23d24440efe31fff96c476d4761"B509F23D24440EFE31FFF96C476D4761
+#define WECHAT_APP_SECRET     @"50a4cac86ee66cbea6799d8296eb20b9" //@"b509f23d24440efe31fff96c476d4761"B509F23D24440EFE31FFF96C476D4761
 
 @interface WechatAccess ()<WXApiDelegate>{
     void(^_result)(BOOL,id);

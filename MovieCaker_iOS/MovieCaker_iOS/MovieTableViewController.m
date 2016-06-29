@@ -14,6 +14,7 @@
 
 @interface MovieTableViewController ()
 @property int cellHeight;
+@property (nonatomic) MovieController *parentController;
 @end
 
 @implementation MovieTableViewController
@@ -35,7 +36,7 @@
 -(void)viewWillLayoutSubviews{
     self.tableView.scrollEnabled = false;
     self.tableHeight.constant = self.cellHeight*[self.data count];
-    self.tableView.allowsSelection = NO;
+//    self.tableView.allowsSelection = NO;
     [self.tableView setSeparatorColor:[UIColor clearColor]];
 }
 
@@ -43,7 +44,10 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
-
+-(void)ParentController:(MovieController *)movie{
+    self.parentController = movie;
+    self.tableView.allowsSelection = YES;
+}
 #pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
@@ -62,6 +66,7 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     if(self.type==0){
     MovieCell *cell = [tableView dequeueReusableCellWithIdentifier:@"MovieCell" forIndexPath:indexPath];
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
         cell.Id = [[self.data objectAtIndex:indexPath.row]objectForKey:@"Id"];
         cell.title.text = [[self.data objectAtIndex:indexPath.row]objectForKey:@"Title"];
         cell.Author.text =  [[[self.data objectAtIndex:indexPath.row]objectForKey:@"Author"]objectForKey:@"NickName"];
@@ -92,7 +97,8 @@
         }];
         return cell;
     }else{
-            Movie2Cell *cell = [tableView dequeueReusableCellWithIdentifier:@"Movie2Cell" forIndexPath:indexPath];
+        Movie2Cell *cell = [tableView dequeueReusableCellWithIdentifier:@"Movie2Cell" forIndexPath:indexPath];
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
         NSDictionary *data =[self.data objectAtIndex:indexPath.row];
    //     NSLog(@"%@",data);
         cell.Id = [data objectForKey:@"ReviewId"];
@@ -130,6 +136,11 @@
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     return self.cellHeight;
+}
+
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    [self.parentController performSegueWithIdentifier:@"reviewSegue" sender:self];
 }
 
 /*
