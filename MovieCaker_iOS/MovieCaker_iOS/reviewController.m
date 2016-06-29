@@ -32,6 +32,7 @@
 @property (strong, nonatomic) IBOutlet starView *starView;
 @property (strong, nonatomic) IBOutlet NSLayoutConstraint *respondTextMargin;
 @property (strong, nonatomic) IBOutlet UILabel *editBtnTxt;
+@property int keyboardHeight;
 @end
 
 
@@ -84,8 +85,17 @@
     
     UITapGestureRecognizer *tap2 = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(edit:)];
     [self.editBtn addGestureRecognizer:tap2];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(keyboardWasShown:)
+                                                 name:UIKeyboardWillShowNotification
+                                               object:nil];
 }
-
+- (void)keyboardWasShown:(NSNotification *)notification
+{
+    CGSize keyboardSize = [[[notification userInfo] objectForKey:UIKeyboardFrameBeginUserInfoKey] CGRectValue].size;
+    self.keyboardHeight = MIN(keyboardSize.height,keyboardSize.width);
+}
 -(void)edit:(UITapGestureRecognizer*)gesture{
     if(self.starView.edit!=YES){
         self.editBtnTxt.text = @"確認";
@@ -98,7 +108,7 @@
     }
 }
 -(void)tap:(UITapGestureRecognizer*)gesture{
-
+    [self.content resignFirstResponder];
     [self.respondText resignFirstResponder];
 }
 - (void)textViewDidChange:(UITextView *)textView
@@ -112,7 +122,7 @@
 
 }
 - (void)textViewDidBeginEditing:(UITextView *)textView {
-    self.respondTextMargin.constant = 250;
+    self.respondTextMargin.constant = self.keyboardHeight;
 }
 
 - (void)textViewDidEndEditing:(UITextView *)textView {
