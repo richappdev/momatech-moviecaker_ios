@@ -10,5 +10,5 @@
 
 @interface reviewController : UIViewController<UITextViewDelegate>
 @property (strong, nonatomic) IBOutlet UIScrollView *mainScroll;
-
+-(IBAction)readMore:(id)sender;
 @end

@@ -112,7 +112,7 @@
     self.releaseDate.text = [NSString stringWithFormat:@"%@ 上映",[[self.movieDetailInfo objectForKey:@"ReleaseDate"]stringByReplacingOccurrencesOfString:@"-" withString:@"/"]];
     self.movieDescription.text = [self.movieDetailInfo objectForKey:@"Intro"];
 
-    if(![buttonHelper isLabelTruncated:self.movieDescription]==NO){
+    if([buttonHelper isLabelTruncated:self.movieDescription]==NO){
         self.readMoreBtn.hidden = YES;
     }
     

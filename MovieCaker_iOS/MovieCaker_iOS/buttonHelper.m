@@ -71,12 +71,12 @@
 
 + (BOOL)isLabelTruncated:(UILabel *)label
 {
-    BOOL isTruncated = YES;
+    BOOL isTruncated = NO;
     
     CGSize size = [label.text boundingRectWithSize:CGSizeMake(label.bounds.size.width, NSIntegerMax) options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName : label.font} context:nil].size;
-    
+  //  NSLog(@"%f,%f",size.height,label.frame.size.height);
     if (size.height > label.frame.size.height) {
-        isTruncated = NO;
+        isTruncated = YES;
     }
     
     return isTruncated;

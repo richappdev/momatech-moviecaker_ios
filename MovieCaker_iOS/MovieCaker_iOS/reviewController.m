@@ -33,6 +33,7 @@
 @property (strong, nonatomic) IBOutlet NSLayoutConstraint *respondTextMargin;
 @property (strong, nonatomic) IBOutlet UILabel *editBtnTxt;
 @property (strong, nonatomic) IBOutlet NSLayoutConstraint *contentHeight;
+@property (strong, nonatomic) IBOutlet UIButton *moreBtn;
 @property int keyboardHeight;
 @end
 
@@ -92,6 +93,14 @@
                                                  name:UIKeyboardWillShowNotification
                                                object:nil];
     
+    self.content.textContainer.lineBreakMode = NSLineBreakByTruncatingTail;
+    if([buttonHelper isLabelTruncated:(UILabel*)self.content]==NO){
+        self.moreBtn.hidden = YES;
+    }
+}
+
+-(IBAction)readMore:(id)sender{
+    [self more];
 }
 - (void)keyboardWasShown:(NSNotification *)notification
 {
@@ -103,17 +112,24 @@
         self.editBtnTxt.text = @"確認";
         self.starView.edit = YES;
         [self.content setEditable:YES];
+        [self.content setScrollEnabled:YES];
     }else{
         self.editBtnTxt.text = @"編輯";
         self.starView.edit = NO;
         [self.content setEditable:NO];
+        [self.content setScrollEnabled:NO];
     }
     [self more];
 }
 
 -(void)more{
+    self.moreBtn.hidden = YES;
     [self.content sizeToFit];
-    self.contentHeight.constant = self.content.frame.size.height;
+    if(self.content.frame.size.height<90){
+        self.contentHeight.constant = 90;
+    }else{
+        self.contentHeight.constant = self.content.frame.size.height;
+    }
 }
 -(void)tap:(UITapGestureRecognizer*)gesture{
     [self.content resignFirstResponder];
