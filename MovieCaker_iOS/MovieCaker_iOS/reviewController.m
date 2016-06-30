@@ -34,6 +34,7 @@
 @property (strong, nonatomic) IBOutlet UILabel *editBtnTxt;
 @property (strong, nonatomic) IBOutlet NSLayoutConstraint *contentHeight;
 @property (strong, nonatomic) IBOutlet UIButton *moreBtn;
+@property (strong, nonatomic) IBOutlet NSLayoutConstraint *tableviewHeight;
 @property int keyboardHeight;
 @end
 
@@ -49,7 +50,6 @@
     [self.scrollHelp setupBackBtn:self];
     [self.scrollHelp setupStatusbar:self.view];
     
-    self.mainScroll.contentSize = CGSizeMake(self.view.frame.size.width,2000);
     self.mainScroll.delegate = self.scrollHelp;
     
     [buttonHelper gradientBg:self.bgImage width:self.view.frame.size.width];
@@ -69,6 +69,8 @@
     [self addIndexGesture:self.shareBtn];
     
     self.tableController = [[ReviewTableViewController alloc] init];
+    self.tableviewHeight.constant = 5;
+    self.tableController.tableViewHeight = self.tableviewHeight;
     self.reviewTable.delegate = self.tableController;
     self.reviewTable.dataSource = self.tableController;
     self.tableController.tableView = self.reviewTable;
@@ -130,6 +132,8 @@
     }else{
         self.contentHeight.constant = self.content.frame.size.height;
     }
+    
+    [self performSelector:@selector(resizeScroll) withObject:self afterDelay:0.5];
 }
 -(void)tap:(UITapGestureRecognizer*)gesture{
     [self.content resignFirstResponder];
@@ -144,6 +148,12 @@
         self.respondHeight.constant = 40;
     }
 
+}
+-(void)resizeScroll{
+    self.mainScroll.contentSize = CGSizeMake(self.view.frame.size.width,430+self.contentHeight.constant+self.tableviewHeight.constant);
+}
+-(void)viewWillLayoutSubviews{
+    [self resizeScroll];
 }
 - (void)textViewDidBeginEditing:(UITextView *)textView {
     self.respondTextMargin.constant = self.keyboardHeight;

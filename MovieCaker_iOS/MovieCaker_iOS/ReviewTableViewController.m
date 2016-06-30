@@ -7,21 +7,22 @@
 //
 
 #import "ReviewTableViewController.h"
-
+#import "reviewCell.h"
 @interface ReviewTableViewController ()
-
+@property NSMutableArray *array;
 @end
 
 @implementation ReviewTableViewController
 
+- (id)init{
+    if (self = [super init]) {
+        self.array = [[NSMutableArray alloc]init];
+    }
+    return self;
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
-    // Uncomment the following line to preserve selection between presentations.
-    // self.clearsSelectionOnViewWillAppear = NO;
-    
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
 }
 
 - (void)didReceiveMemoryWarning {
@@ -38,19 +39,39 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
 #warning Incomplete implementation, return the number of rows
-    return 1;
+    return 3;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return 130;
+    float size = 130;
+    if([self.array count]>indexPath.row){
+  //  NSLog(@"%f",[[self.array objectAtIndex:indexPath.row]floatValue]);'
+    float test =[[self.array objectAtIndex:indexPath.row]floatValue];
+    if(test>60){
+     //   NSLog(@"aa%f",self.tableViewHeight.constant);
+        size = 70+test;
+    }
+    self.tableViewHeight.constant = self.tableViewHeight.constant + size+5;
+     //   NSLog(@"asd%f",self.tableViewHeight.constant);
+    }
+    return size;
 }
 
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"reviewCell" forIndexPath:indexPath];
+
+    reviewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"reviewCell" forIndexPath:indexPath];
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
+    [cell.content sizeToFit];
+    if(cell.content.frame.size.height>60){
+        cell.contentHeight.constant = cell.content.frame.size.height;
+    }
     
+
+    [self.array insertObject:[[NSNumber alloc] initWithFloat:cell.contentHeight.constant] atIndex:indexPath.row];
+    
+    //NSLog(@"ffs%f",[[self.array objectAtIndex:indexPath.row]floatValue]);
     return cell;
 }
 
