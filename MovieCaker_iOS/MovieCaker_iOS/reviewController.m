@@ -32,6 +32,7 @@
 @property (strong, nonatomic) IBOutlet starView *starView;
 @property (strong, nonatomic) IBOutlet NSLayoutConstraint *respondTextMargin;
 @property (strong, nonatomic) IBOutlet UILabel *editBtnTxt;
+@property (strong, nonatomic) IBOutlet NSLayoutConstraint *contentHeight;
 @property int keyboardHeight;
 @end
 
@@ -90,6 +91,7 @@
                                              selector:@selector(keyboardWasShown:)
                                                  name:UIKeyboardWillShowNotification
                                                object:nil];
+    
 }
 - (void)keyboardWasShown:(NSNotification *)notification
 {
@@ -106,6 +108,12 @@
         self.starView.edit = NO;
         [self.content setEditable:NO];
     }
+    [self more];
+}
+
+-(void)more{
+    [self.content sizeToFit];
+    self.contentHeight.constant = self.content.frame.size.height;
 }
 -(void)tap:(UITapGestureRecognizer*)gesture{
     [self.content resignFirstResponder];

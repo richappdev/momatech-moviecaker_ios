@@ -10,4 +10,5 @@
 
 @interface MovieDetailController : MovieController
 @property NSDictionary *movieDetailInfo;
+-(IBAction)readMore:(id)sender;
 @end

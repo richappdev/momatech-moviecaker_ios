@@ -41,6 +41,7 @@
 @property (strong, nonatomic) IBOutlet UILabel *movieDescription;
 @property (strong, nonatomic) IBOutlet UILabel *imdb;
 @property (strong, nonatomic) IBOutlet UILabel *bean;
+@property (strong, nonatomic) IBOutlet UIButton *readMoreBtn;
 @property MainVerticalScroller *scrollDelegate;
 @end
 
@@ -110,7 +111,11 @@
     [self.bgImage sd_setImageWithURL:[NSURL URLWithString:[self.movieDetailInfo objectForKey:@"BannerUrl"]] placeholderImage:[UIImage imageNamed:@"img-placeholder.jpg"]];
     self.releaseDate.text = [NSString stringWithFormat:@"%@ 上映",[[self.movieDetailInfo objectForKey:@"ReleaseDate"]stringByReplacingOccurrencesOfString:@"-" withString:@"/"]];
     self.movieDescription.text = [self.movieDetailInfo objectForKey:@"Intro"];
-    self.movieDescriptionHeight.constant = [self.movieDescription.text length]/26*30;
+
+    if(![buttonHelper isLabelTruncated:self.movieDescription]==NO){
+        self.readMoreBtn.hidden = YES;
+    }
+    
     self.bean.text = [NSString stringWithFormat:@"%.1f",[[self.movieDetailInfo objectForKey:@"Ratings_Douban"]floatValue]];
     self.imdb.text = [NSString stringWithFormat:@"%.1f",[[self.movieDetailInfo objectForKey:@"Ratings_IMDB"]floatValue]];
     //NSLog(@"%@",self.movieDetailInfo);
@@ -135,6 +140,13 @@
     }];
 }
 
+-(IBAction)readMore:(id)sender{
+    UIButton *btn = sender;
+    btn.hidden = YES;
+    [self.movieDescription sizeToFit];
+    self.movieDescriptionHeight.constant = self.movieDescription.frame.size.height;
+    [self scrollSize];
+}
 -(void)createActorSlider:(NSArray*)actors{
     int width = 100;
     int margin =10;

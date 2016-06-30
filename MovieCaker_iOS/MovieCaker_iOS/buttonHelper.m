@@ -68,4 +68,18 @@
     imageView.layer.mask = gradientLayer;
 
 }
+
++ (BOOL)isLabelTruncated:(UILabel *)label
+{
+    BOOL isTruncated = YES;
+    
+    CGSize size = [label.text boundingRectWithSize:CGSizeMake(label.bounds.size.width, NSIntegerMax) options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName : label.font} context:nil].size;
+    
+    if (size.height > label.frame.size.height) {
+        isTruncated = NO;
+    }
+    
+    return isTruncated;
+}
+
 @end
