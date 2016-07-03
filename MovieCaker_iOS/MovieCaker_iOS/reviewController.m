@@ -16,6 +16,8 @@
 #import "AustinApi.h"
 #import "UIImageView+WebCache.h"
 #import "MovieDetailController.h"
+#import "WXAPi.h"
+#import "WechatAccess.h"
 
 @interface reviewController ()
 @property (strong, nonatomic) IBOutlet UIImageView *bgImage;
@@ -118,6 +120,7 @@
 }
 
 -(void)changeReal{
+    [self.bgImage sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@",[self.data objectForKey:@"VideoPosterUrl"]]] placeholderImage:[UIImage imageNamed:@"img-placeholder.jpg"]];
     [self.userAvatar sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@/Uploads/UserAvatar/%@",[[AustinApi sharedInstance] getBaseUrl],[self.data objectForKey:@"UserAvatar"]]]];
     self.title = self.UserNickName.text = [self.data objectForKey:@"UserNickName"];
     self.reviewTitle.text = [NSString stringWithFormat:@"%@ 的影評", [self.data objectForKey:@"VideoName"]];
@@ -132,7 +135,7 @@
     self.modifiedDate.text = [[self.data objectForKey:@"ModifiedOn"] stringByReplacingOccurrencesOfString:@"-" withString:@"/"];
     self.modifiedDate.text = [self.modifiedDate.text substringWithRange:NSMakeRange(0,[self.modifiedDate.text rangeOfString:@"T"].location)];
     self.PageViews.text = [[self.data objectForKey:@"PageViews"]stringValue];
-    self.content.text = [self.data objectForKey:@"VideoStory"];
+    self.content.text = [self.data objectForKey:@"Review"];
     self.like.text = [NSString stringWithFormat:@"喜歡   %@",[[self.data objectForKey:@"LikedNum"]stringValue]];
     self.share.text = [NSString stringWithFormat:@"分享   %@",[[self.data objectForKey:@"SharedNum"]stringValue]];
     
@@ -144,6 +147,19 @@
     }
     
     self.movieJumpLabel.text = [NSString stringWithFormat:@"電影 - %@",[self.data objectForKey:@"VideoName"]];
+    if([[self.data objectForKey:@"IsLiked"]boolValue]){
+        self.likeBtn.tag = 2;
+    }else{
+        self.likeBtn.tag = 0;
+    }
+    [buttonHelper adjustLike:self.likeBtn];
+    
+    if([[self.data objectForKey:@"IsShared"]boolValue]){
+        self.shareBtn.tag = 1;
+    }else{
+        self.shareBtn.tag = 3;
+    }
+    [buttonHelper adjustShare:self.shareBtn];
 }
 -(void)jumpToMovieDetail{
     [self performSegueWithIdentifier:@"movieDetail" sender:self];
@@ -225,7 +241,51 @@
 }
 
 -(void)indexClick:(UITapGestureRecognizer *)sender{
+    if([[NSUserDefaults standardUserDefaults] objectForKey:@"userkey"]==nil){
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"注意" message:@"请登入" delegate:self cancelButtonTitle:@"关闭" otherButtonTitles:nil,nil];
+        [alert show];
+    }else{
+        UINavigationController *nav = [self.tabBarController.viewControllers objectAtIndex:0];
+        MovieController *movie = [[nav viewControllers]objectAtIndex:0];
+        movie.refresh = YES;
+        NSString *act;
+        if(sender.view.tag==0||sender.view.tag==2){
+            act =@"1";
+        }else{
+            WXMediaMessage *message = [WXMediaMessage message];
+            message.title = [self.data objectForKey:@"VideoName"];
+            
+            NSString *str;
+            if (self.content.text.length>140) {
+                str=[self.content.text substringToIndex:140];
+            }else{
+                str=self.content.text;
+            }
+            
+            message.description=str;
+            
+            [message setThumbImage:[UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://www.funmovie.tv/Content/pictures/files/%@?width=88",[self.data objectForKey:@"VideoPicture"]]]]]];
+            
+            WXWebpageObject *ext = [WXWebpageObject object];
+            ext.webpageUrl =  [NSString stringWithFormat:@"%@/video/%@",[[AustinApi sharedInstance] getBaseUrl],[self.data objectForKey:@"VideoId"]];
+            NSLog(@"%@",ext.webpageUrl);
+            message.mediaObject = ext;
+            SendMessageToWXReq* req = [[SendMessageToWXReq alloc] init];
+            req.bText = NO;
+            req.message = message;
+            req.scene = WXSceneSession;
+            
+            [WXApi sendReq:req];
+            NSLog(@"%@",message.title);
+            act =@"3";
+        }
+        [[AustinApi sharedInstance]socialAction:[self.data objectForKey:@"ReviewId"] act:act obj:@"2" function:^(NSString *returnData) {
+            NSLog(@"%@",returnData);
+        } error:^(NSError *error) {
+            NSLog(@"%@",error);
+        }];
     [buttonHelper likeShareClick:sender.view];
+    }
 }
 /*
 #pragma mark - Navigation

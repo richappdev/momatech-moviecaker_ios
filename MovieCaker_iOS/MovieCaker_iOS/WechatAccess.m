@@ -64,7 +64,9 @@
         } else if (-4 == [resp errCode]) {
             desc = @"ERR_AUTH_DENIED";
         }
+        if(_result!=nil){
         _result(NO, [NSError errorWithDomain:@"kWechatOAuthErrorDomain" code:resp.errCode userInfo:@{NSLocalizedDescriptionKey:desc}]);
+        }
     }
 }
 
