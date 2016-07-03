@@ -17,4 +17,5 @@
 @property IBOutlet UIImageView *star5;
 @property int rating;
 @property BOOL edit;
+-(void)setStars:(int)rating;
 @end

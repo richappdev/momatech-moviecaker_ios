@@ -16,6 +16,7 @@
 #import "AustinApi.h"
 #import "SDWebImage/UIImageView+WebCache.h"
 #import "MovieViewController.h"
+#import "reviewController.h"
 
 @interface MovieController ()
 @property (strong, nonatomic) IBOutlet scrollBoxView *scrollView;
@@ -246,6 +247,11 @@
     NSLog(@"%d",indexOfPage);
     MovieDetailController *detailVc = segue.destinationViewController;
         detailVc.movieDetailInfo = [self.returnData objectAtIndex:indexOfPage];}
+    
+    if([[segue identifier] isEqualToString:@"reviewSegue"]){
+        reviewController *vc = segue.destinationViewController;
+        vc.data = [self.movieTable2Controller.data objectAtIndex:self.movieTable2Controller.selectIndex];
+    }
 }
 
 - (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView{

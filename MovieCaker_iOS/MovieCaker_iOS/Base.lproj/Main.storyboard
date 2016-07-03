@@ -47,9 +47,9 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="動物方程式  的影評" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UK1-yT-HBE">
-                                        <rect key="frame" x="13" y="237" width="213" height="21"/>
+                                        <rect key="frame" x="13" y="237" width="330" height="21"/>
                                         <constraints>
-                                            <constraint firstAttribute="width" constant="213" id="i6l-4q-JwH"/>
+                                            <constraint firstAttribute="width" constant="330" id="i6l-4q-JwH"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="18"/>
                                         <nil key="highlightedColor"/>
@@ -579,14 +579,19 @@
                     </view>
                     <navigationItem key="navigationItem" id="xX4-kb-epS"/>
                     <connections>
+                        <outlet property="PageViews" destination="efK-sJ-TW1" id="9WH-zf-Kz0"/>
+                        <outlet property="UserNickName" destination="fp3-Vd-VlC" id="Tg7-DB-nY1"/>
                         <outlet property="bgImage" destination="loY-Dg-I61" id="iP0-np-PH1"/>
                         <outlet property="content" destination="1sd-SU-ewR" id="tt0-C2-bnL"/>
                         <outlet property="contentHeight" destination="WTn-vw-4f8" id="xHL-i0-2mx"/>
                         <outlet property="editBtn" destination="TNZ-PR-ks9" id="hZh-8P-D8g"/>
                         <outlet property="editBtnTxt" destination="Ak9-1k-cEn" id="Yov-dF-sCB"/>
                         <outlet property="editPen" destination="Yv2-iY-AyJ" id="YZo-8H-aRl"/>
+                        <outlet property="heart" destination="7g4-LD-m9e" id="DVO-MN-Dw0"/>
+                        <outlet property="like" destination="rbW-ZM-Fa7" id="AmX-C5-2vM"/>
                         <outlet property="likeBtn" destination="v0C-QM-mIM" id="4Fc-MB-Wjf"/>
                         <outlet property="mainScroll" destination="f4g-qb-LNl" id="YoV-A1-hJW"/>
+                        <outlet property="modifiedDate" destination="oZ2-uF-AfE" id="qxJ-vh-Agd"/>
                         <outlet property="moreBtn" destination="DZH-if-xnS" id="r6X-gY-KuK"/>
                         <outlet property="movieNavBg" destination="nl4-YY-HK6" id="ZDc-Io-ItM"/>
                         <outlet property="movieNavIcon" destination="bcO-AT-1Vf" id="0rR-LB-qGO"/>
@@ -595,9 +600,12 @@
                         <outlet property="respondText" destination="S5Z-Qd-37I" id="w77-d0-Cnt"/>
                         <outlet property="respondTextMargin" destination="LuV-V3-pSC" id="CP5-ig-Co1"/>
                         <outlet property="reviewTable" destination="yEQ-iV-6r1" id="rhF-hy-VI8"/>
+                        <outlet property="reviewTitle" destination="UK1-yT-HBE" id="EmP-ox-cNj"/>
+                        <outlet property="share" destination="y0T-PV-yXO" id="ew0-WZ-9ee"/>
                         <outlet property="shareBtn" destination="ww2-0D-U3z" id="Nfb-Xh-nhv"/>
                         <outlet property="starView" destination="Ef6-Ce-EjV" id="WT9-JV-vHf"/>
                         <outlet property="tableviewHeight" destination="x3i-A0-Eu2" id="fKu-Fe-cvp"/>
+                        <outlet property="userAvatar" destination="kUF-92-hxA" id="CO4-gu-bNU"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ld6-Q0-N0A" userLabel="First Responder" sceneMemberID="firstResponder"/>

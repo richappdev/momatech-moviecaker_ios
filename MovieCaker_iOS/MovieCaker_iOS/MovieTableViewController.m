@@ -140,6 +140,7 @@
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    self.selectIndex = indexPath.row;
     [self.parentController performSegueWithIdentifier:@"reviewSegue" sender:self];
 }
 

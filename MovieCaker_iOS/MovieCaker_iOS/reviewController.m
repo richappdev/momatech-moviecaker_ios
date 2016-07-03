@@ -13,6 +13,8 @@
 #import "buttonHelper.h"
 #import "ReviewTableViewController.h"
 #import "starView.h"
+#import "AustinApi.h"
+#import "UIImageView+WebCache.h"
 
 @interface reviewController ()
 @property (strong, nonatomic) IBOutlet UIImageView *bgImage;
@@ -36,6 +38,14 @@
 @property (strong, nonatomic) IBOutlet UIButton *moreBtn;
 @property (strong, nonatomic) IBOutlet NSLayoutConstraint *tableviewHeight;
 @property int keyboardHeight;
+@property (strong, nonatomic) IBOutlet UILabel *UserNickName;
+@property (strong, nonatomic) IBOutlet UILabel *reviewTitle;
+@property (strong, nonatomic) IBOutlet UIImageView *userAvatar;
+@property (strong, nonatomic) IBOutlet UIImageView *heart;
+@property (strong, nonatomic) IBOutlet UILabel *modifiedDate;
+@property (strong, nonatomic) IBOutlet UILabel *PageViews;
+@property (strong, nonatomic) IBOutlet UILabel *like;
+@property (strong, nonatomic) IBOutlet UILabel *share;
 @end
 
 
@@ -43,7 +53,6 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.title = @"test";
     
     self.scrollHelp = [[MainVerticalScroller alloc]init];
     self.scrollHelp.nav = self.navigationController;
@@ -99,8 +108,35 @@
     if([buttonHelper isLabelTruncated:(UILabel*)self.content]==NO){
         self.moreBtn.hidden = YES;
     }
+    [self changeReal];
 }
 
+-(void)changeReal{
+    [self.userAvatar sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@/Uploads/UserAvatar/%@",[[AustinApi sharedInstance] getBaseUrl],[self.data objectForKey:@"UserAvatar"]]]];
+    self.title = self.UserNickName.text = [self.data objectForKey:@"UserNickName"];
+    self.reviewTitle.text = [NSString stringWithFormat:@"%@ 的影評", [self.data objectForKey:@"VideoName"]];
+    [self.starView setStars:(int)[self.data objectForKey:@"OwnerLinkVideo_Score"]];
+    
+    if([[self.data objectForKey:@"OwnerLinkVideo_IsLiked"]intValue]==0){
+        self.heart.image = [UIImage imageNamed:@"iconHeartList.png"];
+    }else{
+        self.heart.image = [UIImage imageNamed:@"iconHeartListLiked.png"];
+    }
+    
+    self.modifiedDate.text = [[self.data objectForKey:@"ModifiedOn"] stringByReplacingOccurrencesOfString:@"-" withString:@"/"];
+    self.modifiedDate.text = [self.modifiedDate.text substringWithRange:NSMakeRange(0,[self.modifiedDate.text rangeOfString:@"T"].location)];
+    self.PageViews.text = [[self.data objectForKey:@"PageViews"]stringValue];
+    self.content.text = [self.data objectForKey:@"VideoStory"];
+    self.like.text = [NSString stringWithFormat:@"喜歡   %@",[[self.data objectForKey:@"LikedNum"]stringValue]];
+    self.share.text = [NSString stringWithFormat:@"分享   %@",[[self.data objectForKey:@"SharedNum"]stringValue]];
+    
+    NSDictionary *returnData = [NSKeyedUnarchiver unarchiveObjectWithData:[[NSUserDefaults standardUserDefaults] objectForKey:@"userkey"]];
+    if(returnData == nil){
+        self.editBtn.hidden = YES;
+    }else if (![[[returnData objectForKey:@"UserId"]stringValue]isEqualToString:[[self.data objectForKey:@"UserId"] stringValue]]){
+        self.editBtn.hidden = YES;
+    }
+}
 -(IBAction)readMore:(id)sender{
     [self more];
 }
