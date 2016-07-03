@@ -11,4 +11,5 @@
 @interface MovieDetailController : MovieController
 @property NSDictionary *movieDetailInfo;
 -(IBAction)readMore:(id)sender;
+@property BOOL loadLater;
 @end

@@ -593,6 +593,8 @@
                         <outlet property="mainScroll" destination="f4g-qb-LNl" id="YoV-A1-hJW"/>
                         <outlet property="modifiedDate" destination="oZ2-uF-AfE" id="qxJ-vh-Agd"/>
                         <outlet property="moreBtn" destination="DZH-if-xnS" id="r6X-gY-KuK"/>
+                        <outlet property="movieJump" destination="cGf-Zy-hPT" id="asZ-RW-HSM"/>
+                        <outlet property="movieJumpLabel" destination="QV1-pQ-Noj" id="FWu-mK-PD3"/>
                         <outlet property="movieNavBg" destination="nl4-YY-HK6" id="ZDc-Io-ItM"/>
                         <outlet property="movieNavIcon" destination="bcO-AT-1Vf" id="0rR-LB-qGO"/>
                         <outlet property="penPic" destination="Lw2-KB-PIM" id="YsF-7Y-M55"/>
@@ -606,11 +608,12 @@
                         <outlet property="starView" destination="Ef6-Ce-EjV" id="WT9-JV-vHf"/>
                         <outlet property="tableviewHeight" destination="x3i-A0-Eu2" id="fKu-Fe-cvp"/>
                         <outlet property="userAvatar" destination="kUF-92-hxA" id="CO4-gu-bNU"/>
+                        <segue destination="KeK-L1-IfS" kind="push" identifier="movieDetail" id="joH-vB-8to"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ld6-Q0-N0A" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2086" y="-601"/>
+            <point key="canvasLocation" x="2144" y="93"/>
         </scene>
         <!--Movie Controller-->
         <scene sceneID="hNz-n2-bh7">
@@ -1723,9 +1726,9 @@
                                         </constraints>
                                     </imageView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="81h-qL-LxI">
-                                        <rect key="frame" x="8" y="208" width="136" height="21"/>
+                                        <rect key="frame" x="8" y="208" width="269" height="21"/>
                                         <constraints>
-                                            <constraint firstAttribute="width" constant="136" id="23k-2u-Nnm"/>
+                                            <constraint firstAttribute="width" constant="269" id="23k-2u-Nnm"/>
                                             <constraint firstAttribute="height" constant="21" id="Pcx-Vu-b8F"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="18"/>
@@ -1733,10 +1736,10 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Sec-ic-6sy">
-                                        <rect key="frame" x="8" y="227" width="136" height="15"/>
+                                        <rect key="frame" x="8" y="227" width="269" height="15"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="15" id="LTR-gI-l11"/>
-                                            <constraint firstAttribute="width" constant="136" id="UBQ-bS-Oha"/>
+                                            <constraint firstAttribute="width" constant="269" id="UBQ-bS-Oha"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="12"/>
                                         <color key="textColor" red="0.26666666666666666" green="0.33333333333333331" blue="0.40000000000000002" alpha="1" colorSpace="calibratedRGB"/>
@@ -2666,7 +2669,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8zu-1g-zUn" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2526" y="-771"/>
+            <point key="canvasLocation" x="2604" y="-561"/>
         </scene>
         <!--Movie View Controller-->
         <scene sceneID="wg7-f3-ORb">
@@ -4114,4 +4117,7 @@
         <image name="rabbit-512" width="512" height="512"/>
         <image name="tabbarBg" width="80" height="49"/>
     </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="joH-vB-8to"/>
+    </inferredMetricsTieBreakers>
 </document>

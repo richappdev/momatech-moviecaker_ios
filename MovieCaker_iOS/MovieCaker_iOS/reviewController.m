@@ -15,6 +15,7 @@
 #import "starView.h"
 #import "AustinApi.h"
 #import "UIImageView+WebCache.h"
+#import "MovieDetailController.h"
 
 @interface reviewController ()
 @property (strong, nonatomic) IBOutlet UIImageView *bgImage;
@@ -46,6 +47,8 @@
 @property (strong, nonatomic) IBOutlet UILabel *PageViews;
 @property (strong, nonatomic) IBOutlet UILabel *like;
 @property (strong, nonatomic) IBOutlet UILabel *share;
+@property (strong, nonatomic) IBOutlet UIView *movieJump;
+@property (strong, nonatomic) IBOutlet UILabel *movieJumpLabel;
 @end
 
 
@@ -109,6 +112,9 @@
         self.moreBtn.hidden = YES;
     }
     [self changeReal];
+    
+    UITapGestureRecognizer *movieTap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(jumpToMovieDetail)];
+    [self.movieJump addGestureRecognizer:movieTap];
 }
 
 -(void)changeReal{
@@ -136,6 +142,16 @@
     }else if (![[[returnData objectForKey:@"UserId"]stringValue]isEqualToString:[[self.data objectForKey:@"UserId"] stringValue]]){
         self.editBtn.hidden = YES;
     }
+    
+    self.movieJumpLabel.text = [NSString stringWithFormat:@"電影 - %@",[self.data objectForKey:@"VideoName"]];
+}
+-(void)jumpToMovieDetail{
+    [self performSegueWithIdentifier:@"movieDetail" sender:self];
+}
+-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
+    MovieDetailController *vc = segue.destinationViewController;
+    vc.movieDetailInfo = [[NSDictionary alloc] initWithObjectsAndKeys:[self.data objectForKey:@"VideoId"],@"Id", nil];
+    vc.loadLater = YES;
 }
 -(IBAction)readMore:(id)sender{
     [self more];
