@@ -165,9 +165,9 @@
     [buttonHelper adjustLike:self.likeBtn];
     
     if([[self.data objectForKey:@"IsShared"]boolValue]){
-        self.shareBtn.tag = 1;
-    }else{
         self.shareBtn.tag = 3;
+    }else{
+        self.shareBtn.tag = 1;
     }
     [buttonHelper adjustShare:self.shareBtn];
 }
