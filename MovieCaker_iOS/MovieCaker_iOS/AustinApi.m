@@ -253,4 +253,12 @@
         error(err);
     }];
 }
+-(void)reviewChange:(NSString*)Id videoId:(NSString *)videoId score:(NSString*)score review:(NSString*)review function:(void (^)(NSString *returnData))completion error:(void (^)(NSError *error))error{
+    NSDictionary *param =@{@"Score":score,@"ReviewId":Id,@"VideoId":videoId,@"Review":review};
+    [self apiPostMethod:@"api/Review" parameter:param addTokenHeader:@"1" completion:^(id response) {
+        completion(response);
+    } error:^(NSError *error2) {
+        error(error2);
+    }];
+}
 @end

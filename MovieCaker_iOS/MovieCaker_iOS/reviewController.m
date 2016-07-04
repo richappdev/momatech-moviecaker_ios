@@ -51,6 +51,7 @@
 @property (strong, nonatomic) IBOutlet UILabel *share;
 @property (strong, nonatomic) IBOutlet UIView *movieJump;
 @property (strong, nonatomic) IBOutlet UILabel *movieJumpLabel;
+@property (strong, nonatomic) IBOutlet UILabel *replyTop;
 @end
 
 
@@ -109,14 +110,10 @@
                                                object:nil];
     
     self.content.textContainer.lineBreakMode = NSLineBreakByTruncatingTail;
-    if([buttonHelper isLabelTruncated:(UILabel*)self.content]==NO){
-        self.moreBtn.hidden = YES;
-    }
+
     [self changeReal];
     if(self.sync){
-        UINavigationController *nav = [self.tabBarController.viewControllers objectAtIndex:0];
-        MovieController *movie = [[nav viewControllers]objectAtIndex:0];
-        movie.refresh = YES;
+        [self refreshMain];
         [[AustinApi sharedInstance]getReviewByrid:[self.data objectForKey:@"ReviewId"] function:^(NSDictionary *returndata) {
             self.data = [[NSMutableDictionary alloc]initWithDictionary:returndata];
             [self changeReal];
@@ -127,6 +124,9 @@
     
     UITapGestureRecognizer *movieTap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(jumpToMovieDetail)];
     [self.movieJump addGestureRecognizer:movieTap];
+    
+    self.replyTop.hidden = YES;
+    self.reviewTable.hidden = YES;
 }
 
 -(void)changeReal{
@@ -134,7 +134,7 @@
     [self.userAvatar sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@/Uploads/UserAvatar/%@",[[AustinApi sharedInstance] getBaseUrl],[self.data objectForKey:@"UserAvatar"]]]];
     self.title = self.UserNickName.text = [self.data objectForKey:@"UserNickName"];
     self.reviewTitle.text = [NSString stringWithFormat:@"%@ 的影評", [self.data objectForKey:@"VideoName"]];
-    [self.starView setStars:(int)[self.data objectForKey:@"OwnerLinkVideo_Score"]];
+    [self.starView setStars:[[self.data objectForKey:@"OwnerLinkVideo_Score"] integerValue]];
     
     if([[self.data objectForKey:@"OwnerLinkVideo_IsLiked"]intValue]==0){
         self.heart.image = [UIImage imageNamed:@"iconHeartList.png"];
@@ -150,12 +150,14 @@
     self.share.text = [NSString stringWithFormat:@"分享   %@",[[self.data objectForKey:@"SharedNum"]stringValue]];
     
     NSDictionary *returnData = [NSKeyedUnarchiver unarchiveObjectWithData:[[NSUserDefaults standardUserDefaults] objectForKey:@"userkey"]];
+    if(!self.newReview){
     if(returnData == nil){
         self.editBtn.hidden = YES;
-    }else if (![[[returnData objectForKey:@"UserId"]stringValue]isEqualToString:[[self.data objectForKey:@"UserId"] stringValue]]){
+    }else if (![[[[returnData objectForKey:@"Data"] objectForKey:@"UserId"]stringValue]isEqualToString:[[self.data objectForKey:@"UserId"] stringValue]]){
         self.editBtn.hidden = YES;
     }
-    
+        
+    }
     self.movieJumpLabel.text = [NSString stringWithFormat:@"電影 - %@",[self.data objectForKey:@"VideoName"]];
     if([[self.data objectForKey:@"IsLiked"]boolValue]){
         self.likeBtn.tag = 2;
@@ -170,6 +172,10 @@
         self.shareBtn.tag = 1;
     }
     [buttonHelper adjustShare:self.shareBtn];
+    if([buttonHelper isLabelTruncated:(UILabel*)self.content]==NO){
+        self.moreBtn.hidden = YES;
+    }
+    
 }
 -(void)jumpToMovieDetail{
     [self performSegueWithIdentifier:@"movieDetail" sender:self];
@@ -198,7 +204,14 @@
         self.starView.edit = NO;
         [self.content setEditable:NO];
         [self.content setScrollEnabled:NO];
+        [[AustinApi sharedInstance]reviewChange:[self.data objectForKey:@"ReviewId"] videoId:[self.data objectForKey:@"VideoId"]  score:[NSString stringWithFormat:@"%d",self.starView.rating] review:self.content.text function:^(NSString *returnData) {
+            NSLog(@"%@",returnData);
+        } error:^(NSError *error) {
+            NSLog(@"%@",error);
+        }];
+        [self refreshMain];
     }
+
     [self more];
 }
 
@@ -255,9 +268,7 @@
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"注意" message:@"请登入" delegate:self cancelButtonTitle:@"关闭" otherButtonTitles:nil,nil];
         [alert show];
     }else{
-        UINavigationController *nav = [self.tabBarController.viewControllers objectAtIndex:0];
-        MovieController *movie = [[nav viewControllers]objectAtIndex:0];
-        movie.refresh = YES;
+        [self refreshMain];
         NSString *act;
         if(sender.view.tag==0||sender.view.tag==2){
             act =@"1";
@@ -320,14 +331,9 @@
     [buttonHelper likeShareClick:sender.view];
     }
 }
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+-(void)refreshMain{
+    UINavigationController *nav = [self.tabBarController.viewControllers objectAtIndex:0];
+    MovieController *movie = [[nav viewControllers]objectAtIndex:0];
+    movie.refresh = YES;
 }
-*/
-
 @end

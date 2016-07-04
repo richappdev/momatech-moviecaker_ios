@@ -97,6 +97,9 @@
  //   CGPoint position = CGPointMake(0,0);
   //  [self.MainScroll setContentOffset:position];
 
+    self.movieTable2Controller = [[MovieTableViewController alloc] init:1];
+    self.movieTableController = [[MovieTableViewController alloc] init:0];
+    
     [self imageScrollCall];
     [self topicCall];
     [self reviewCall];
@@ -105,13 +108,12 @@
 -(void)reviewCall{
     [[AustinApi sharedInstance]getReview:@"2" function:^(NSArray *returnData) {
         //    NSLog(@"bbb%@",returnData);
-        self.movieTable2Controller = [[MovieTableViewController alloc] init:1];
+
         self.movieTable2Controller.data = returnData;
         self.movieTable2.delegate = self.movieTable2Controller;
         self.movieTable2.dataSource = self.movieTable2Controller;
         self.movieTable2Controller.tableHeight = self.movieTable2Height;
-        if(self.movieTable2Controller.tableView!=self.movieTable2){
-            self.movieTable2Controller.tableView = self.movieTable2;}
+        self.movieTable2Controller.tableView = self.movieTable2;
         [self.movieTable2Controller.tableView reloadData];
         [self.movieTable2Controller ParentController:self];
         [self readjustScrollsize];
@@ -123,13 +125,11 @@
 -(void)topicCall{
     [[AustinApi sharedInstance]getTopic:@"6" vid:nil function:^(NSArray *returnData) {
         //     NSLog(@"bbb%@",returnData);
-        self.movieTableController = [[MovieTableViewController alloc] init:0];
         self.movieTableController.data =returnData;
         self.movieTable.delegate = self.movieTableController;
         self.movieTable.dataSource = self.movieTableController;
         self.movieTableController.tableHeight = self.movieTableHeight;
-        if(self.movieTableController.tableView!=self.movieTable){
-            self.movieTableController.tableView = self.movieTable;}
+        self.movieTableController.tableView = self.movieTable;
         [self.movieTableController.tableView reloadData];
         self.movieTableTopspace.constant = 45+ [self.movieTableController returnTotalHeight];
         

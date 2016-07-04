@@ -13,4 +13,5 @@
 -(IBAction)readMore:(id)sender;
 @property NSMutableDictionary *data;
 @property BOOL sync;
+@property BOOL newReview;
 @end

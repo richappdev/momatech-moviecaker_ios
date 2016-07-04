@@ -598,6 +598,7 @@
                         <outlet property="movieNavBg" destination="nl4-YY-HK6" id="ZDc-Io-ItM"/>
                         <outlet property="movieNavIcon" destination="bcO-AT-1Vf" id="0rR-LB-qGO"/>
                         <outlet property="penPic" destination="Lw2-KB-PIM" id="YsF-7Y-M55"/>
+                        <outlet property="replyTop" destination="npR-US-aFo" id="wxg-AG-GD0"/>
                         <outlet property="respondHeight" destination="IMd-9K-Q8w" id="loz-oN-JgZ"/>
                         <outlet property="respondText" destination="S5Z-Qd-37I" id="w77-d0-Cnt"/>
                         <outlet property="respondTextMargin" destination="LuV-V3-pSC" id="CP5-ig-Co1"/>
