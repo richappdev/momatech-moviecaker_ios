@@ -184,6 +184,16 @@
         error(error2);
     }];
 }
+
+-(void)getReviewByrid:(NSString *)rid function:(void (^)(NSDictionary *))completion error:(void (^)(NSError *))error{
+    NSDictionary *parameter = @{@"rid":rid,@"limit":@"10"};
+    [self apiGetMethod:@"api/Review" parameter:parameter addTokenHeader:@"1" completion:^(id response) {
+        
+        completion([[response objectForKey:@"Data"]objectAtIndex:0]);
+    } error:^(NSError *error2) {
+        error(error2);
+    }];
+}
 -(void)locationList:(void (^)(NSArray *returnData))completion error:(void (^)(NSError *error))error{
     NSDictionary *parameter = @{@"type": @"1"};
     [self apiGetMethod:@"api/location" parameter:parameter addTokenHeader:@"1" completion:^(id response) {

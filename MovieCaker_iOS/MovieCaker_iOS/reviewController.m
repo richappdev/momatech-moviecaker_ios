@@ -58,7 +58,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
+    self.sync = YES;
     self.scrollHelp = [[MainVerticalScroller alloc]init];
     self.scrollHelp.nav = self.navigationController;
     [self.scrollHelp setupBackBtn:self];
@@ -114,6 +114,14 @@
         self.moreBtn.hidden = YES;
     }
     [self changeReal];
+    if(self.sync){
+        [[AustinApi sharedInstance]getReviewByrid:[self.data objectForKey:@"ReviewId"] function:^(NSDictionary *returndata) {
+            self.data = [[NSMutableDictionary alloc]initWithDictionary:returndata];
+            [self changeReal];
+        } error:^(NSError *error2) {
+            NSLog(@"%@",error2);
+        }];
+    }
     
     UITapGestureRecognizer *movieTap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(jumpToMovieDetail)];
     [self.movieJump addGestureRecognizer:movieTap];
@@ -280,6 +288,29 @@
             act =@"3";
         }
         [[AustinApi sharedInstance]socialAction:[self.data objectForKey:@"ReviewId"] act:act obj:@"2" function:^(NSString *returnData) {
+            if([act isEqualToString:@"1"]){
+                int temp = [[self.data objectForKey:@"LikedNum"]integerValue];
+                if([returnData isEqualToString:@"1"]){
+                    temp++;
+                }else{
+                    temp--;
+                }
+                [self.data setValue:[NSString stringWithFormat:@"%d",temp] forKey:@"LikedNum"];
+            self.like.text = [NSString stringWithFormat:@"喜歡   %d",temp];
+
+            }
+            
+            if([act isEqualToString:@"3"]){
+                if([returnData isEqualToString:@"1"]){
+                    int temp = [[self.data objectForKey:@"LikedNum"]integerValue];
+                    temp++;
+                    self.share.text = [NSString stringWithFormat:@"分享   %d",temp];
+                }
+                
+                
+            }
+            
+            
             NSLog(@"%@",returnData);
         } error:^(NSError *error) {
             NSLog(@"%@",error);

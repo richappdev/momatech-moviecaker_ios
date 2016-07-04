@@ -48,6 +48,7 @@
 @property (strong, nonatomic) IBOutlet UIImageView *iconEyeIndex;
 @property (strong, nonatomic) IBOutlet UIImageView *iconLikeIndex;
 @property (strong, nonatomic) IBOutlet UIImageView *iconPoketIndex;
+@property BOOL sync;
 @end
 
 @implementation MovieController
@@ -250,7 +251,7 @@
     
     if([[segue identifier] isEqualToString:@"reviewSegue"]){
         reviewController *vc = segue.destinationViewController;
-        vc.data = [self.movieTable2Controller.data objectAtIndex:self.movieTable2Controller.selectIndex];
+        vc.data = [[NSMutableDictionary alloc]initWithDictionary:[self.movieTable2Controller.data objectAtIndex:self.movieTable2Controller.selectIndex]];
     }
 }
 
