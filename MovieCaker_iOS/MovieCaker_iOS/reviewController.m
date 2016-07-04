@@ -127,6 +127,9 @@
     
     self.replyTop.hidden = YES;
     self.reviewTable.hidden = YES;
+    if(self.newReview){
+        [self editMode];
+    }
 }
 
 -(void)changeReal{
@@ -193,18 +196,25 @@
     CGSize keyboardSize = [[[notification userInfo] objectForKey:UIKeyboardFrameBeginUserInfoKey] CGRectValue].size;
     self.keyboardHeight = MIN(keyboardSize.height,keyboardSize.width);
 }
+-(void)editMode{
+    self.editBtnTxt.text = @"確認";
+    self.starView.edit = YES;
+    [self.content setEditable:YES];
+    [self.content setScrollEnabled:YES];
+}
 -(void)edit:(UITapGestureRecognizer*)gesture{
     if(self.starView.edit!=YES){
-        self.editBtnTxt.text = @"確認";
-        self.starView.edit = YES;
-        [self.content setEditable:YES];
-        [self.content setScrollEnabled:YES];
+        [self editMode];
     }else{
         self.editBtnTxt.text = @"編輯";
         self.starView.edit = NO;
         [self.content setEditable:NO];
         [self.content setScrollEnabled:NO];
-        [[AustinApi sharedInstance]reviewChange:[self.data objectForKey:@"ReviewId"] videoId:[self.data objectForKey:@"VideoId"]  score:[NSString stringWithFormat:@"%d",self.starView.rating] review:self.content.text function:^(NSString *returnData) {
+        [[AustinApi sharedInstance]reviewChange:[self.data objectForKey:@"ReviewId"] videoId:[self.data objectForKey:@"VideoId"]  score:[NSString stringWithFormat:@"%d",self.starView.rating] review:self.content.text function:^(NSDictionary *returnData) {
+            [self.data setObject:[[returnData objectForKey:@"ReviewId"] stringValue] forKey:@"ReviewId"];
+            NSDateFormatter *formatter = [[NSDateFormatter alloc]init];
+            [formatter setDateFormat:@"yyyy/MM/dd"];
+            self.modifiedDate.text = [formatter stringFromDate:[NSDate date]];
             NSLog(@"%@",returnData);
         } error:^(NSError *error) {
             NSLog(@"%@",error);
@@ -264,6 +274,10 @@
 }
 
 -(void)indexClick:(UITapGestureRecognizer *)sender{
+    if([[self.data objectForKey:@"ReviewId"]isEqualToString:@"0"]){
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"注意" message:@"還未建立影評" delegate:self cancelButtonTitle:@"关闭" otherButtonTitles:nil,nil];
+        [alert show];
+    }else{
     if([[NSUserDefaults standardUserDefaults] objectForKey:@"userkey"]==nil){
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"注意" message:@"请登入" delegate:self cancelButtonTitle:@"关闭" otherButtonTitles:nil,nil];
         [alert show];
@@ -328,7 +342,7 @@
         } error:^(NSError *error) {
             NSLog(@"%@",error);
         }];
-    [buttonHelper likeShareClick:sender.view];
+        [buttonHelper likeShareClick:sender.view];}
     }
 }
 -(void)refreshMain{

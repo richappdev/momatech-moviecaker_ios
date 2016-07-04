@@ -128,8 +128,6 @@
         [cell setShareState:[[data objectForKey:@"IsShared"] boolValue]];
         cell.parent =self;
             return cell;
-    
-
     }
 }
 -(void)sync{

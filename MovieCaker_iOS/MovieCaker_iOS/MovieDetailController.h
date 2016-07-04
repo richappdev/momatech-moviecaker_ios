@@ -12,4 +12,5 @@
 @property NSDictionary *movieDetailInfo;
 -(IBAction)readMore:(id)sender;
 @property BOOL loadLater;
+@property BOOL syncReview;
 @end
