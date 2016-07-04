@@ -36,6 +36,7 @@
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"注意" message:@"请登入" delegate:self cancelButtonTitle:@"关闭" otherButtonTitles:nil,nil];
         [alert show];
     }else{
+        [self.parent sync];
         NSString *act;
         if(sender.view.tag==0||sender.view.tag==2){
             act =@"1";

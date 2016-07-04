@@ -126,13 +126,15 @@
         }
         [cell setLikeState:[[data objectForKey:@"IsLiked"] boolValue]];
         [cell setShareState:[[data objectForKey:@"IsShared"] boolValue]];
-        
+        cell.parent =self;
             return cell;
     
 
     }
 }
-
+-(void)sync{
+    self.parentController.syncReview = YES;
+}
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     return self.cellHeight;

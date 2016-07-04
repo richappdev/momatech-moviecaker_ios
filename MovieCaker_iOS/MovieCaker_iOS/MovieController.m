@@ -110,7 +110,8 @@
         self.movieTable2.delegate = self.movieTable2Controller;
         self.movieTable2.dataSource = self.movieTable2Controller;
         self.movieTable2Controller.tableHeight = self.movieTable2Height;
-        self.movieTable2Controller.tableView = self.movieTable2;
+        if(self.movieTable2Controller.tableView!=self.movieTable2){
+            self.movieTable2Controller.tableView = self.movieTable2;}
         [self.movieTable2Controller.tableView reloadData];
         [self.movieTable2Controller ParentController:self];
         [self readjustScrollsize];
@@ -127,7 +128,8 @@
         self.movieTable.delegate = self.movieTableController;
         self.movieTable.dataSource = self.movieTableController;
         self.movieTableController.tableHeight = self.movieTableHeight;
-        self.movieTableController.tableView = self.movieTable;
+        if(self.movieTableController.tableView!=self.movieTable){
+            self.movieTableController.tableView = self.movieTable;}
         [self.movieTableController.tableView reloadData];
         self.movieTableTopspace.constant = 45+ [self.movieTableController returnTotalHeight];
         
@@ -252,6 +254,10 @@
     if([[segue identifier] isEqualToString:@"reviewSegue"]){
         reviewController *vc = segue.destinationViewController;
         vc.data = [[NSMutableDictionary alloc]initWithDictionary:[self.movieTable2Controller.data objectAtIndex:self.movieTable2Controller.selectIndex]];
+        if(self.syncReview ==YES){
+            vc.sync = YES;
+            self.syncReview = NO;
+        }
     }
 }
 

@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "MovieTableViewController.h"
 
 @interface Movie2Cell : UITableViewCell
 @property NSString* Id;
@@ -31,4 +32,5 @@
 -(void)setStars:(int)rating;
 -(void)setLikeState:(BOOL)state;
 -(void)setShareState:(BOOL)state;
+@property (weak)MovieTableViewController *parent;
 @end

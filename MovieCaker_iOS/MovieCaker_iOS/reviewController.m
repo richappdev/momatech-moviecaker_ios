@@ -58,7 +58,6 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.sync = YES;
     self.scrollHelp = [[MainVerticalScroller alloc]init];
     self.scrollHelp.nav = self.navigationController;
     [self.scrollHelp setupBackBtn:self];
@@ -115,6 +114,9 @@
     }
     [self changeReal];
     if(self.sync){
+        UINavigationController *nav = [self.tabBarController.viewControllers objectAtIndex:0];
+        MovieController *movie = [[nav viewControllers]objectAtIndex:0];
+        movie.refresh = YES;
         [[AustinApi sharedInstance]getReviewByrid:[self.data objectForKey:@"ReviewId"] function:^(NSDictionary *returndata) {
             self.data = [[NSMutableDictionary alloc]initWithDictionary:returndata];
             [self changeReal];
