@@ -61,25 +61,8 @@
     self.firstTableController = [[MovieTableViewController alloc] init:0];
     self.firstTableController.data = [[NSArray alloc]init];
     
-    [[AustinApi sharedInstance]getTopic:@"7" vid:[self.movieDetailInfo objectForKey:@"Id"] function:^(NSArray *returnData) {
-        NSLog(@"a%lu",(unsigned long)[returnData count]);
-        self.topicTable.scrollEnabled = false;
-        self.topicTable.delegate = self.firstTableController;
-        self.topicTable.dataSource = self.firstTableController;
-        self.firstTableController.tableHeight = self.topicTableHeight;
-        self.firstTableController.tableView = self.topicTable;
-        if([returnData count]==0){
-            self.topicGrey.hidden = YES;
-            self.TopicTop.hidden = YES;
-            self.topicTable.hidden = YES;
-            self.topicTableHeight.constant = 0;
-        }else{
-        self.firstTableController.data = returnData;
-            [self.firstTableController.tableView reloadData];}
-        [self scrollSize];
-    } error:^(NSError *error) {
-        NSLog(@"%@",error);
-    }];
+    [self topicCall];
+    
     self.secondTableController = [[MovieTableViewController alloc] init:1];
     self.reviewTable.scrollEnabled = false;
     self.reviewTable.delegate = self.secondTableController;
@@ -88,21 +71,8 @@
     self.secondTableController.tableView = self.reviewTable;
     self.secondTableController.data =[[NSArray alloc]init];
     [self.secondTableController ParentController:self];
-    [[AustinApi sharedInstance] getReviewByVid:[self.movieDetailInfo objectForKey:@"Id"] function:^(NSArray *returnData) {
-        NSLog(@"b%lu",(unsigned long)[returnData count]);
 
-        if([returnData count]==0){
-            self.reviewTop.hidden=YES;
-            self.reviewGrey.hidden=YES;
-            self.reviewTable.hidden=YES;
-        }else{
-            self.secondTableController.data = returnData;
-            [self.secondTableController.tableView reloadData];
-        }
-        [self scrollSize];
-    } error:^(NSError *error) {
-        NSLog(@"%@",error);
-    }];
+    [self reviewCall];
     
     self.starArray = [[NSArray alloc]initWithObjects:self.starOne,self.starTwo,self.starThree,self.starFour,self.starFive, nil];
     if(self.loadLater!=YES){
@@ -130,6 +100,44 @@
         }
         [self createActorSlider:array];
         
+    } error:^(NSError *error) {
+        NSLog(@"%@",error);
+    }];
+}
+-(void)topicCall{
+    [[AustinApi sharedInstance]getTopic:@"7" vid:[self.movieDetailInfo objectForKey:@"Id"] function:^(NSArray *returnData) {
+        NSLog(@"a%lu",(unsigned long)[returnData count]);
+        self.topicTable.scrollEnabled = false;
+        self.topicTable.delegate = self.firstTableController;
+        self.topicTable.dataSource = self.firstTableController;
+        self.firstTableController.tableHeight = self.topicTableHeight;
+        self.firstTableController.tableView = self.topicTable;
+        if([returnData count]==0){
+            self.topicGrey.hidden = YES;
+            self.TopicTop.hidden = YES;
+            self.topicTable.hidden = YES;
+            self.topicTableHeight.constant = 0;
+        }else{
+            self.firstTableController.data = returnData;
+            [self.firstTableController.tableView reloadData];}
+        [self scrollSize];
+    } error:^(NSError *error) {
+        NSLog(@"%@",error);
+    }];
+}
+-(void)reviewCall{
+    [[AustinApi sharedInstance] getReviewByVid:[self.movieDetailInfo objectForKey:@"Id"] function:^(NSArray *returnData) {
+        NSLog(@"b%lu",(unsigned long)[returnData count]);
+        
+        if([returnData count]==0){
+            self.reviewTop.hidden=YES;
+            self.reviewGrey.hidden=YES;
+            self.reviewTable.hidden=YES;
+        }else{
+            self.secondTableController.data = returnData;
+            [self.secondTableController.tableView reloadData];
+        }
+        [self scrollSize];
     } error:^(NSError *error) {
         NSLog(@"%@",error);
     }];
@@ -209,14 +217,16 @@
 -(void)viewWillAppear:(BOOL)animated{
     self.navigationController.navigationBarHidden = NO;
     self.mainScroll.delegate = self.scrollDelegate;
-    /*
+    
     UINavigationController *nav = [self.tabBarController.viewControllers objectAtIndex:0];
     MovieController *movie = [[nav viewControllers]objectAtIndex:0];
     if(movie.refresh){
-        self.firstTableController = nil;
-        self.secondTableController = nil;
-        [self.navigationController popViewControllerAnimated:NO];
-    }*/
+     //   self.firstTableController = nil;
+       // self.secondTableController = nil;
+        //[self.navigationController popViewControllerAnimated:NO];
+        [self reviewCall];
+        [self topicCall];
+    }
 }
 -(void)viewWillDisappear:(BOOL)animated{
     self.mainScroll.delegate = nil;
