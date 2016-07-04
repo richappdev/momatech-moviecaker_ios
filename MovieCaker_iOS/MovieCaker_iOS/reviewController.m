@@ -274,7 +274,7 @@
 }
 
 -(void)indexClick:(UITapGestureRecognizer *)sender{
-    if([[self.data objectForKey:@"ReviewId"]isEqualToString:@"0"]){
+    if([[[self.data objectForKey:@"ReviewId"]stringValue]isEqualToString:@"0"]){
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"注意" message:@"還未建立影評" delegate:self cancelButtonTitle:@"关闭" otherButtonTitles:nil,nil];
         [alert show];
     }else{

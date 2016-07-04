@@ -12,6 +12,7 @@
 #import "AustinApi.h"
 #import "MainVerticalScroller.h"
 #import "buttonHelper.h"
+#import "reviewController.h"
 
 @interface MovieDetailController ()
 @property (strong, nonatomic) IBOutlet UIImageView *bgImage;
@@ -86,6 +87,7 @@
     self.secondTableController.tableHeight = self.reviewTableHeight;
     self.secondTableController.tableView = self.reviewTable;
     self.secondTableController.data =[[NSArray alloc]init];
+    [self.secondTableController ParentController:self];
     [[AustinApi sharedInstance] getReviewByVid:[self.movieDetailInfo objectForKey:@"Id"] function:^(NSArray *returnData) {
         NSLog(@"b%lu",(unsigned long)[returnData count]);
 
@@ -207,21 +209,34 @@
 -(void)viewWillAppear:(BOOL)animated{
     self.navigationController.navigationBarHidden = NO;
     self.mainScroll.delegate = self.scrollDelegate;
-    
+    /*
     UINavigationController *nav = [self.tabBarController.viewControllers objectAtIndex:0];
     MovieController *movie = [[nav viewControllers]objectAtIndex:0];
     if(movie.refresh){
         self.firstTableController = nil;
         self.secondTableController = nil;
         [self.navigationController popViewControllerAnimated:NO];
-    }
+    }*/
 }
 -(void)viewWillDisappear:(BOOL)animated{
     self.mainScroll.delegate = nil;
+    if(self.syncReview){
+        UINavigationController *nav = [self.tabBarController.viewControllers objectAtIndex:0];
+        MovieController *movie = [[nav viewControllers]objectAtIndex:0];
+        movie.refresh = YES;
+    }
 }
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
-
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    reviewController *vc = segue.destinationViewController;
+    vc.data = [[NSMutableDictionary alloc]initWithDictionary:[self.secondTableController.data objectAtIndex:self.secondTableController.selectIndex]];
+        if(self.syncReview ==YES){
+            vc.sync = YES;
+            self.syncReview = NO;
+        }
+}
 @end
