@@ -11,4 +11,9 @@
 @interface reviewCell : UITableViewCell
 @property (strong, nonatomic) IBOutlet UITextView *content;
 @property (strong, nonatomic) IBOutlet NSLayoutConstraint *contentHeight;
+@property (strong, nonatomic) IBOutlet UIImageView *avatar;
+@property (strong, nonatomic) IBOutlet UILabel *author;
+@property (strong, nonatomic) IBOutlet UILabel *date;
+@property (strong, nonatomic) IBOutlet UIImageView *heart;
+@property (strong, nonatomic) IBOutlet UILabel *heartNum;
 @end

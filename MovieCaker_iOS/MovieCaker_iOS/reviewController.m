@@ -52,6 +52,7 @@
 @property (strong, nonatomic) IBOutlet UIView *movieJump;
 @property (strong, nonatomic) IBOutlet UILabel *movieJumpLabel;
 @property (strong, nonatomic) IBOutlet UILabel *replyTop;
+@property (strong, nonatomic) IBOutlet UIView *replyView;
 @end
 
 
@@ -129,6 +130,22 @@
     self.reviewTable.hidden = YES;
     if(self.newReview){
         [self editMode];
+        self.replyView.hidden = YES;
+    }else{
+        
+    [[AustinApi sharedInstance]reviewReply:[self.data objectForKey:@"ReviewId"] function:^(NSArray *returnData) {
+        if([returnData count]>0){
+            self.tableController.data =returnData;
+            self.replyTop.hidden = NO;
+            self.reviewTable.hidden = NO;
+            self.tableviewHeight.constant = 5;
+            [self.reviewTable reloadData];
+            self.replyTop.text = [NSString stringWithFormat:@"共%d則回應",[returnData count]];
+        }
+    } error:^(NSError *error) {
+        NSLog(@"%@",error);
+    }];
+    
     }
 }
 
@@ -206,6 +223,7 @@
     if(self.starView.edit!=YES){
         [self editMode];
     }else{
+        self.replyView.hidden = NO;
         self.editBtnTxt.text = @"編輯";
         self.starView.edit = NO;
         [self.content setEditable:NO];

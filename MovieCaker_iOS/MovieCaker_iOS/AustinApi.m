@@ -261,4 +261,11 @@
         error(error2);
     }];
 }
+-(void)reviewReply:(NSString*)Id function:(void (^)(NSArray *returnData))completion error:(void (^)(NSError *error))error{
+    [self apiGetMethod:[NSString stringWithFormat:@"api/review/message/%@",Id] parameter:nil addTokenHeader:@"1" completion:^(id response) {
+        completion(response);
+    } error:^(NSError *error2) {
+        error(error2);
+    }];
+}
 @end

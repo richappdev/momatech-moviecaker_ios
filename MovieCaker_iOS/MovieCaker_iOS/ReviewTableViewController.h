@@ -10,5 +10,5 @@
 
 @interface ReviewTableViewController : UITableViewController
 @property NSLayoutConstraint *tableViewHeight;
-@property NSDictionary *data;
+@property NSArray *data;
 @end

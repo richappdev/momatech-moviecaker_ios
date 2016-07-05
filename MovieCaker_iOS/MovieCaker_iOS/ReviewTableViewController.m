@@ -8,6 +8,8 @@
 
 #import "ReviewTableViewController.h"
 #import "reviewCell.h"
+#import "AustinApi.h"
+#import "SDWebImage/UIImageView+WebCache.h"
 @interface ReviewTableViewController ()
 @property NSMutableArray *array;
 @end
@@ -39,8 +41,7 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
 #warning Incomplete implementation, return the number of rows
-    return 0
-    ;
+    return [self.data count];
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -64,6 +65,20 @@
 
     reviewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"reviewCell" forIndexPath:indexPath];
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
+    NSDictionary *data = [self.data objectAtIndex:indexPath.row];
+    cell.content.text = [data objectForKey:@"Message"];
+    [cell.avatar sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@/Uploads/UserAvatar/%@",[[AustinApi sharedInstance] getBaseUrl],[data objectForKey:@"UserAvatar"]]]];
+    cell.author.text = [data objectForKey:@"NickName"];
+    cell.heartNum.text = [[data objectForKey:@"LikedAmount"]stringValue];
+    if([[data objectForKey:@"IsLiked"]boolValue]){
+        cell.heart.image = [UIImage imageNamed:@"iconHeartListLiked.png"];
+    }else{
+        cell.heartNum.textColor = [UIColor colorWithRed:(159/255.0f) green:(172/255.0f) blue:(181/255.0f) alpha:1];
+        cell.heart.image = [UIImage imageNamed:@"iconHeartList.png"];
+    }
+    cell.date.text = [[data objectForKey:@"ModifyOn"] stringByReplacingOccurrencesOfString:@"-" withString:@"/"];
+    cell.date.text = [cell.date.text substringWithRange:NSMakeRange(0,[cell.date.text rangeOfString:@"T"].location)];
+    
     [cell.content sizeToFit];
     if(cell.content.frame.size.height>60){
         cell.contentHeight.constant = cell.content.frame.size.height;

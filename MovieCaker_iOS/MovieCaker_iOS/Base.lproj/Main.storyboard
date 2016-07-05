@@ -19,7 +19,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="f4g-qb-LNl">
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="f4g-qb-LNl">
                                 <rect key="frame" x="0.0" y="-108" width="414" height="780"/>
                                 <subviews>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="on" translatesAutoresizingMaskIntoConstraints="NO" id="loY-Dg-I61">
@@ -226,8 +226,8 @@
                                                     <constraint firstAttribute="width" constant="16" id="cdG-gU-HVI"/>
                                                 </constraints>
                                             </view>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="電影 - 動物方程式" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QV1-pQ-Noj">
-                                                <rect key="frame" x="-12" y="-269" width="112" height="17"/>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="電影 - 動物方程式" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QV1-pQ-Noj">
+                                                <rect key="frame" x="30" y="3" width="112" height="17"/>
                                                 <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="14"/>
                                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                 <nil key="highlightedColor"/>
@@ -236,8 +236,10 @@
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <constraints>
                                             <constraint firstItem="nl4-YY-HK6" firstAttribute="leading" secondItem="cGf-Zy-hPT" secondAttribute="leading" constant="6" id="2ez-xC-Lt2"/>
+                                            <constraint firstItem="QV1-pQ-Noj" firstAttribute="top" secondItem="nl4-YY-HK6" secondAttribute="top" id="f8a-39-as7"/>
                                             <constraint firstItem="nl4-YY-HK6" firstAttribute="top" secondItem="cGf-Zy-hPT" secondAttribute="top" constant="3" id="g1v-SQ-0Xx"/>
                                             <constraint firstAttribute="bottom" secondItem="nl4-YY-HK6" secondAttribute="bottom" constant="1" id="uaq-YO-BG1"/>
+                                            <constraint firstItem="QV1-pQ-Noj" firstAttribute="leading" secondItem="nl4-YY-HK6" secondAttribute="trailing" constant="8" symbolic="YES" id="vBI-41-hhW"/>
                                         </constraints>
                                     </view>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DZH-if-xnS">
@@ -449,8 +451,13 @@
                                                     </constraints>
                                                 </tableViewCellContentView>
                                                 <connections>
+                                                    <outlet property="author" destination="bEH-SY-I8I" id="zvp-nk-Igl"/>
+                                                    <outlet property="avatar" destination="pzV-3j-d1U" id="WI7-Xe-eH0"/>
                                                     <outlet property="content" destination="GDn-cC-csE" id="ZIM-ZQ-feH"/>
                                                     <outlet property="contentHeight" destination="IMw-7M-Q6C" id="KuV-YX-3v6"/>
+                                                    <outlet property="date" destination="1ss-Io-JlM" id="1uB-1y-HcO"/>
+                                                    <outlet property="heart" destination="hzm-Ee-7cB" id="wvs-NU-Vzb"/>
+                                                    <outlet property="heartNum" destination="a5j-FC-yd3" id="YyR-sV-B14"/>
                                                 </connections>
                                             </tableViewCell>
                                         </prototypes>
@@ -599,6 +606,7 @@
                         <outlet property="movieNavIcon" destination="bcO-AT-1Vf" id="0rR-LB-qGO"/>
                         <outlet property="penPic" destination="Lw2-KB-PIM" id="YsF-7Y-M55"/>
                         <outlet property="replyTop" destination="npR-US-aFo" id="wxg-AG-GD0"/>
+                        <outlet property="replyView" destination="MOm-eH-Aiw" id="39Z-hV-Nmb"/>
                         <outlet property="respondHeight" destination="IMd-9K-Q8w" id="loz-oN-JgZ"/>
                         <outlet property="respondText" destination="S5Z-Qd-37I" id="w77-d0-Cnt"/>
                         <outlet property="respondTextMargin" destination="LuV-V3-pSC" id="CP5-ig-Co1"/>
@@ -614,7 +622,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ld6-Q0-N0A" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2144" y="93"/>
+            <point key="canvasLocation" x="2130" y="79"/>
         </scene>
         <!--Movie Controller-->
         <scene sceneID="hNz-n2-bh7">
@@ -1703,7 +1711,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hpU-nl-EIH">
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="hpU-nl-EIH">
                                 <rect key="frame" x="0.0" y="-108" width="414" height="844"/>
                                 <subviews>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="img-placeholder" translatesAutoresizingMaskIntoConstraints="NO" id="ApQ-on-j71">
@@ -4123,7 +4131,7 @@
         <image name="tabbarBg" width="80" height="49"/>
     </resources>
     <inferredMetricsTieBreakers>
+        <segue reference="faQ-HW-B4Q"/>
         <segue reference="joH-vB-8to"/>
-        <segue reference="qtw-ST-1hK"/>
     </inferredMetricsTieBreakers>
 </document>
