@@ -111,6 +111,7 @@
     
     self.view.backgroundColor = [UIColor blackColor];
     UITapGestureRecognizer *cancel = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(cancelLocation)];
+    [cancel setCancelsTouchesInView:NO];
     [self.movieTable addGestureRecognizer:cancel];
     
     [self setupFilterBtns];
@@ -370,9 +371,15 @@
 -(void)cancelLocation{
     [self setLocationBtnColor:(int)self.locationLabel.tag];
     [self confirmLocation:nil];
+    double delayInSeconds = 0.5;
+    dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, delayInSeconds * NSEC_PER_SEC);
+    dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
+        self.movieTable.delegate =self.movieTableController;
+    });
 }
 
 -(void)showLocation:(UISwipeGestureRecognizer*)gestureRecongnizer{
+    self.movieTable.delegate =nil;
     self.movieTable.alpha = 0.5;
     [self.view layoutIfNeeded];
     
