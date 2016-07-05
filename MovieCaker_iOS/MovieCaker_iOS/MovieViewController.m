@@ -9,6 +9,8 @@
 #import "MovieViewController.h"
 #import "AustinApi.h"
 #import "MovieTwoTableViewController.h"
+#import "MovieDetailController.h"
+#import "reviewController.h"
 
 @interface MovieViewController ()
 @property (strong, nonatomic) IBOutlet UILabel *firstLabel;
@@ -103,8 +105,9 @@
     [self createLocationIcons];
     
     self.movieTableController = [[MovieTwoTableViewController alloc] init];
-    self.movieTable.allowsSelection = NO;
     self.movieTableController.tableView = self.movieTable;
+    self.movieTable.delegate =self.movieTableController;
+    [self.movieTableController ParentController:self];
     
     self.view.backgroundColor = [UIColor blackColor];
     UITapGestureRecognizer *cancel = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(cancelLocation)];
@@ -138,6 +141,7 @@
 
 }
 -(void)viewWillAppear:(BOOL)animated{
+    self.navigationController.navigationBarHidden = YES;
     if(self.loaded) {
         [self doJump];}
 }
@@ -477,5 +481,17 @@
     [UIView commitAnimations];
 
 }
+-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
+    NSLog(@"a");
+    if([[segue identifier] isEqualToString:@"movieDetail"]){
+    MovieDetailController *vc = segue.destinationViewController;
+    vc.movieDetailInfo = [[NSDictionary alloc] initWithObjectsAndKeys:[[self.movieTableController.data objectAtIndex:self.movieTableController.selectIndex] objectForKey:@"Id"],@"Id", nil];
+        vc.loadLater = YES;}
+    else if([[segue identifier] isEqualToString:@"reviewSegue"]){
+        reviewController *vc = segue.destinationViewController;
+         vc.data = [[NSMutableDictionary alloc]initWithDictionary:[self.movieTableController.data objectAtIndex:self.movieTableController.selectIndex]];
+    }
+}
+
 
 @end

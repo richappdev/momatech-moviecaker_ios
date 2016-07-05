@@ -143,7 +143,11 @@
     }];
 }
 -(void)changeReal{
-    [self setStars:[[self.movieDetailInfo objectForKey:@"AverageScore"]intValue]];
+    if(![[self.movieDetailInfo objectForKey:@"AverageScore"] isKindOfClass:[NSNull class]]){
+        [self setStars:floor([[self.movieDetailInfo objectForKey:@"AverageScore"]floatValue])];
+    }else{
+        [self setStars:10];
+    }
     self.title = self.ChineseName.text = [self.movieDetailInfo objectForKey:@"CNName"];
     self.EnglishName.text = [self.movieDetailInfo objectForKey:@"ENName"];
     [self.smallImage sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@?width=90",[self.movieDetailInfo objectForKey:@"PosterUrl"]]] placeholderImage:[UIImage imageNamed:@"img-placeholder.jpg"]];
@@ -155,10 +159,12 @@
     if([buttonHelper isLabelTruncated:self.movieDescription]==NO){
         self.readMoreBtn.hidden = YES;
     }
-    
-    self.bean.text = [NSString stringWithFormat:@"%.1f",[[self.movieDetailInfo objectForKey:@"Ratings_Douban"]floatValue]];
+    if(![[self.movieDetailInfo objectForKey:@"Ratings_Douban"] isKindOfClass:[NSNull class]]){
+    self.bean.text = [NSString stringWithFormat:@"%.1f",[[self.movieDetailInfo objectForKey:@"Ratings_Douban"]floatValue]];}
+    if(![[self.movieDetailInfo objectForKey:@"Ratings_IMDB"] isKindOfClass:[NSNull class]]){
     self.imdb.text = [NSString stringWithFormat:@"%.1f",[[self.movieDetailInfo objectForKey:@"Ratings_IMDB"]floatValue]];
-}
+    }
+    }
 -(IBAction)readMore:(id)sender{
     UIButton *btn = sender;
     btn.hidden = YES;

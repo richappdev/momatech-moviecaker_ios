@@ -13,7 +13,7 @@
 #import "SDWebImage/UIImageView+WebCache.h"
 
 @interface MovieTwoTableViewController ()
-
+@property MovieViewController *parentController;
 @end
 
 @implementation MovieTwoTableViewController
@@ -32,7 +32,11 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
-
+-(void)ParentController:(MovieViewController *)movie{
+    self.parentController = movie;
+    self.tableView.allowsSelection = YES;
+    NSLog(@"bbb");
+}
 #pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
@@ -69,7 +73,8 @@
     cell.favored.text = [[data objectForKey:@"WantViewNum"]stringValue];
     cell.reviewed.text = [[data objectForKey:@"ReviewNum"]stringValue];
     cell.viewed.text = [[data objectForKey:@"ViewNum"]stringValue];
-        
+    
+    cell.selectionStyle = UITableViewCellSelectionStyleNone;
     return cell;
     }else if (self.type == 2){
     MovieTabCell *cell = [tableView dequeueReusableCellWithIdentifier:@"MovieTableTwo" forIndexPath:indexPath];
@@ -105,8 +110,10 @@
         }
         [cell setLikeState:[[data objectForKey:@"IsLiked"] boolValue]];
         [cell setShareState:[[data objectForKey:@"IsShared"] boolValue]];
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
         return cell;
     }
+    cell.selectionStyle = UITableViewCellSelectionStyleNone;
     return cell;
 }
 -(NSString*)testNil:(id)test{
@@ -122,5 +129,13 @@
     }else{
         return 165;}
 }
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
 
+    self.selectIndex = indexPath.row;
+    if(self.type!=3){
+        [self.parentController performSegueWithIdentifier:@"movieDetail" sender:self];
+    }else{
+        [self.parentController performSegueWithIdentifier:@"reviewSegue" sender:self];
+    }
+}
 @end

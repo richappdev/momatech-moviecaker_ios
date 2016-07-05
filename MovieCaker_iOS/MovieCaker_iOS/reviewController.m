@@ -350,4 +350,7 @@
     MovieController *movie = [[nav viewControllers]objectAtIndex:0];
     movie.refresh = YES;
 }
+-(void)viewWillAppear:(BOOL)animated{
+self.navigationController.navigationBarHidden = NO;
+}
 @end

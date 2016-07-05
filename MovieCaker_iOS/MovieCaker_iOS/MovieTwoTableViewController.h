@@ -7,8 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "MovieViewController.h"
 
 @interface MovieTwoTableViewController : UITableViewController
 @property int type;
 @property NSArray *data;
+-(void)ParentController:(MovieViewController *)movie;
+@property int selectIndex;
 @end
