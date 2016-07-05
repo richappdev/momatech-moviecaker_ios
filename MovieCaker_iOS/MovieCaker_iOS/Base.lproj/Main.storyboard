@@ -607,6 +607,7 @@
                         <outlet property="penPic" destination="Lw2-KB-PIM" id="YsF-7Y-M55"/>
                         <outlet property="replyTop" destination="npR-US-aFo" id="wxg-AG-GD0"/>
                         <outlet property="replyView" destination="MOm-eH-Aiw" id="39Z-hV-Nmb"/>
+                        <outlet property="respondBtn" destination="EM0-KI-8sb" id="dm7-4D-0bL"/>
                         <outlet property="respondHeight" destination="IMd-9K-Q8w" id="loz-oN-JgZ"/>
                         <outlet property="respondText" destination="S5Z-Qd-37I" id="w77-d0-Cnt"/>
                         <outlet property="respondTextMargin" destination="LuV-V3-pSC" id="CP5-ig-Co1"/>

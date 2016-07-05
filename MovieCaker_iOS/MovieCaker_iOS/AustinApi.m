@@ -261,8 +261,16 @@
         error(error2);
     }];
 }
--(void)reviewReply:(NSString*)Id function:(void (^)(NSArray *returnData))completion error:(void (^)(NSError *error))error{
+-(void)reviewReplyTable:(NSString*)Id function:(void (^)(NSArray *returnData))completion error:(void (^)(NSError *error))error{
     [self apiGetMethod:[NSString stringWithFormat:@"api/review/message/%@",Id] parameter:nil addTokenHeader:@"1" completion:^(id response) {
+        completion(response);
+    } error:^(NSError *error2) {
+        error(error2);
+    }];
+}
+-(void)reviewReply:(NSString*)ReviewId message:(NSString *)message function:(void (^)(NSString *returnData))completion error:(void (^)(NSError *error))error{
+    NSDictionary *param = @{@"ReviewId":ReviewId,@"Message":message};
+    [self apiPostMethod:@"api/review/message" parameter:param addTokenHeader:@"1" completion:^(id response) {
         completion(response);
     } error:^(NSError *error2) {
         error(error2);

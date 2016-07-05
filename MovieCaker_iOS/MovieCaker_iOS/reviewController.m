@@ -53,6 +53,7 @@
 @property (strong, nonatomic) IBOutlet UILabel *movieJumpLabel;
 @property (strong, nonatomic) IBOutlet UILabel *replyTop;
 @property (strong, nonatomic) IBOutlet UIView *replyView;
+@property (strong, nonatomic) IBOutlet UIView *respondBtn;
 @end
 
 
@@ -133,22 +134,41 @@
         self.replyView.hidden = YES;
     }else{
         
-    [[AustinApi sharedInstance]reviewReply:[self.data objectForKey:@"ReviewId"] function:^(NSArray *returnData) {
+        [self loadReplies];
+    
+    }
+    UITapGestureRecognizer *respond = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(respond)];
+    [self.respondBtn addGestureRecognizer:respond];
+}
+-(void)loadReplies{
+    [[AustinApi sharedInstance]reviewReplyTable:[self.data objectForKey:@"ReviewId"] function:^(NSArray *returnData) {
         if([returnData count]>0){
             self.tableController.data =returnData;
             self.replyTop.hidden = NO;
             self.reviewTable.hidden = NO;
             self.tableviewHeight.constant = 5;
+            self.tableController.array = [[NSMutableArray alloc]init];
             [self.reviewTable reloadData];
             self.replyTop.text = [NSString stringWithFormat:@"共%d則回應",[returnData count]];
         }
     } error:^(NSError *error) {
         NSLog(@"%@",error);
     }];
-    
-    }
 }
-
+-(void)respond{
+    if([[NSUserDefaults standardUserDefaults] objectForKey:@"userkey"]==nil){
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"注意" message:@"请登入" delegate:self cancelButtonTitle:@"关闭" otherButtonTitles:nil,nil];
+        [alert show];
+    }else{
+    [[AustinApi sharedInstance]reviewReply:[self.data objectForKey:@"ReviewId"] message:self.respondText.text function:^(NSString *returnData) {
+        NSLog(@"%@",returnData);
+        [self loadReplies];
+    } error:^(NSError *error) {
+        NSLog(@"%@",error);
+    }];
+    [self.respondText resignFirstResponder];
+        self.respondText.text =@"";}
+}
 -(void)changeReal{
     [self.bgImage sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@",[self.data objectForKey:@"VideoPosterUrl"]]] placeholderImage:[UIImage imageNamed:@"img-placeholder.jpg"]];
     [self.userAvatar sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@/Uploads/UserAvatar/%@",[[AustinApi sharedInstance] getBaseUrl],[self.data objectForKey:@"UserAvatar"]]]];

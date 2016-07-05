@@ -11,7 +11,6 @@
 #import "AustinApi.h"
 #import "SDWebImage/UIImageView+WebCache.h"
 @interface ReviewTableViewController ()
-@property NSMutableArray *array;
 @end
 
 @implementation ReviewTableViewController
@@ -59,7 +58,6 @@
     }
     return size;
 }
-
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
 
