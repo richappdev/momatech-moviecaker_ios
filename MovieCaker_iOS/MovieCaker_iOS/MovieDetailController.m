@@ -12,6 +12,7 @@
 #import "AustinApi.h"
 #import "MainVerticalScroller.h"
 #import "buttonHelper.h"
+#import "reviewController.h"
 
 @interface MovieDetailController ()
 @property (strong, nonatomic) IBOutlet UIImageView *bgImage;
@@ -41,6 +42,7 @@
 @property (strong, nonatomic) IBOutlet UILabel *movieDescription;
 @property (strong, nonatomic) IBOutlet UILabel *imdb;
 @property (strong, nonatomic) IBOutlet UILabel *bean;
+@property (strong, nonatomic) IBOutlet UIButton *readMoreBtn;
 @property MainVerticalScroller *scrollDelegate;
 @end
 
@@ -59,25 +61,8 @@
     self.firstTableController = [[MovieTableViewController alloc] init:0];
     self.firstTableController.data = [[NSArray alloc]init];
     
-    [[AustinApi sharedInstance]getTopic:@"7" vid:[self.movieDetailInfo objectForKey:@"Id"] function:^(NSArray *returnData) {
-        NSLog(@"a%lu",(unsigned long)[returnData count]);
-        self.topicTable.scrollEnabled = false;
-        self.topicTable.delegate = self.firstTableController;
-        self.topicTable.dataSource = self.firstTableController;
-        self.firstTableController.tableHeight = self.topicTableHeight;
-        self.firstTableController.tableView = self.topicTable;
-        if([returnData count]==0){
-            self.topicGrey.hidden = YES;
-            self.TopicTop.hidden = YES;
-            self.topicTable.hidden = YES;
-            self.topicTableHeight.constant = 0;
-        }else{
-        self.firstTableController.data = returnData;
-            [self.firstTableController.tableView reloadData];}
-        [self scrollSize];
-    } error:^(NSError *error) {
-        NSLog(@"%@",error);
-    }];
+    [self topicCall];
+    
     self.secondTableController = [[MovieTableViewController alloc] init:1];
     self.reviewTable.scrollEnabled = false;
     self.reviewTable.delegate = self.secondTableController;
@@ -85,38 +70,23 @@
     self.secondTableController.tableHeight = self.reviewTableHeight;
     self.secondTableController.tableView = self.reviewTable;
     self.secondTableController.data =[[NSArray alloc]init];
-    [[AustinApi sharedInstance] getReviewByVid:[self.movieDetailInfo objectForKey:@"Id"] function:^(NSArray *returnData) {
-        NSLog(@"b%lu",(unsigned long)[returnData count]);
+    [self.secondTableController ParentController:self];
 
-        if([returnData count]==0){
-            self.reviewTop.hidden=YES;
-            self.reviewGrey.hidden=YES;
-            self.reviewTable.hidden=YES;
-        }else{
-            self.secondTableController.data = returnData;
-            [self.secondTableController.tableView reloadData];
-        }
-        [self scrollSize];
-    } error:^(NSError *error) {
-        NSLog(@"%@",error);
-    }];
+    [self reviewCall];
     
     self.starArray = [[NSArray alloc]initWithObjects:self.starOne,self.starTwo,self.starThree,self.starFour,self.starFive, nil];
-    [self setStars:[[self.movieDetailInfo objectForKey:@"AverageScore"]intValue]];
-    self.title = self.ChineseName.text = [self.movieDetailInfo objectForKey:@"CNName"];
-    self.EnglishName.text = [self.movieDetailInfo objectForKey:@"ENName"];
-    [self.smallImage sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@?width=90",[self.movieDetailInfo objectForKey:@"PosterUrl"]]] placeholderImage:[UIImage imageNamed:@"img-placeholder.jpg"]];
-    
-    [self.bgImage sd_setImageWithURL:[NSURL URLWithString:[self.movieDetailInfo objectForKey:@"BannerUrl"]] placeholderImage:[UIImage imageNamed:@"img-placeholder.jpg"]];
-    self.releaseDate.text = [NSString stringWithFormat:@"%@ 上映",[[self.movieDetailInfo objectForKey:@"ReleaseDate"]stringByReplacingOccurrencesOfString:@"-" withString:@"/"]];
-    self.movieDescription.text = [self.movieDetailInfo objectForKey:@"Intro"];
-    self.movieDescriptionHeight.constant = [self.movieDescription.text length]/26*30;
-    self.bean.text = [NSString stringWithFormat:@"%.1f",[[self.movieDetailInfo objectForKey:@"Ratings_Douban"]floatValue]];
-    self.imdb.text = [NSString stringWithFormat:@"%.1f",[[self.movieDetailInfo objectForKey:@"Ratings_IMDB"]floatValue]];
+    if(self.loadLater!=YES){
+        [self changeReal];
+    }
     //NSLog(@"%@",self.movieDetailInfo);
     
     [[AustinApi sharedInstance] movieDetail:[self.movieDetailInfo objectForKey:@"Id"] function:^(NSMutableDictionary *returnData) {
        // NSLog(@"%@",[returnData objectForKey:@"Actor"]);
+        if(self.loadLater==YES){
+            self.movieDetailInfo = returnData;
+            [self changeReal];
+        }
+        
         int count = 0;
         NSMutableArray *array = [[NSMutableArray alloc]initWithArray:[returnData objectForKey:@"Actor"]];
         for (NSDictionary *row in array) {
@@ -134,7 +104,74 @@
         NSLog(@"%@",error);
     }];
 }
-
+-(void)topicCall{
+    [[AustinApi sharedInstance]getTopic:@"7" vid:[self.movieDetailInfo objectForKey:@"Id"] function:^(NSArray *returnData) {
+        NSLog(@"a%lu",(unsigned long)[returnData count]);
+        self.topicTable.scrollEnabled = false;
+        self.topicTable.delegate = self.firstTableController;
+        self.topicTable.dataSource = self.firstTableController;
+        self.firstTableController.tableHeight = self.topicTableHeight;
+        self.firstTableController.tableView = self.topicTable;
+        if([returnData count]==0){
+            self.topicGrey.hidden = YES;
+            self.TopicTop.hidden = YES;
+            self.topicTable.hidden = YES;
+            self.topicTableHeight.constant = 0;
+        }else{
+            self.firstTableController.data = returnData;
+            [self.firstTableController.tableView reloadData];}
+        [self scrollSize];
+    } error:^(NSError *error) {
+        NSLog(@"%@",error);
+    }];
+}
+-(void)reviewCall{
+    [[AustinApi sharedInstance] getReviewByVid:[self.movieDetailInfo objectForKey:@"Id"] function:^(NSArray *returnData) {
+        NSLog(@"b%lu",(unsigned long)[returnData count]);
+        
+        if([returnData count]==0){
+            self.reviewTop.hidden=YES;
+            self.reviewGrey.hidden=YES;
+            self.reviewTable.hidden=YES;
+        }else{
+            self.secondTableController.data = returnData;
+            [self.secondTableController.tableView reloadData];
+        }
+        [self scrollSize];
+    } error:^(NSError *error) {
+        NSLog(@"%@",error);
+    }];
+}
+-(void)changeReal{
+    if(![[self.movieDetailInfo objectForKey:@"AverageScore"] isKindOfClass:[NSNull class]]){
+        [self setStars:floor([[self.movieDetailInfo objectForKey:@"AverageScore"]floatValue])];
+    }else{
+        [self setStars:10];
+    }
+    self.title = self.ChineseName.text = [self.movieDetailInfo objectForKey:@"CNName"];
+    self.EnglishName.text = [self.movieDetailInfo objectForKey:@"ENName"];
+    [self.smallImage sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@?width=90",[self.movieDetailInfo objectForKey:@"PosterUrl"]]] placeholderImage:[UIImage imageNamed:@"img-placeholder.jpg"]];
+    
+    [self.bgImage sd_setImageWithURL:[NSURL URLWithString:[self.movieDetailInfo objectForKey:@"BannerUrl"]] placeholderImage:[UIImage imageNamed:@"img-placeholder.jpg"]];
+    self.releaseDate.text = [NSString stringWithFormat:@"%@ 上映",[[self.movieDetailInfo objectForKey:@"ReleaseDate"]stringByReplacingOccurrencesOfString:@"-" withString:@"/"]];
+    self.movieDescription.text = [self.movieDetailInfo objectForKey:@"Intro"];
+    
+    if([buttonHelper isLabelTruncated:self.movieDescription]==NO){
+        self.readMoreBtn.hidden = YES;
+    }
+    if(![[self.movieDetailInfo objectForKey:@"Ratings_Douban"] isKindOfClass:[NSNull class]]){
+    self.bean.text = [NSString stringWithFormat:@"%.1f",[[self.movieDetailInfo objectForKey:@"Ratings_Douban"]floatValue]];}
+    if(![[self.movieDetailInfo objectForKey:@"Ratings_IMDB"] isKindOfClass:[NSNull class]]){
+    self.imdb.text = [NSString stringWithFormat:@"%.1f",[[self.movieDetailInfo objectForKey:@"Ratings_IMDB"]floatValue]];
+    }
+    }
+-(IBAction)readMore:(id)sender{
+    UIButton *btn = sender;
+    btn.hidden = YES;
+    [self.movieDescription sizeToFit];
+    self.movieDescriptionHeight.constant = self.movieDescription.frame.size.height;
+    [self scrollSize];
+}
 -(void)createActorSlider:(NSArray*)actors{
     int width = 100;
     int margin =10;
@@ -190,17 +227,32 @@
     UINavigationController *nav = [self.tabBarController.viewControllers objectAtIndex:0];
     MovieController *movie = [[nav viewControllers]objectAtIndex:0];
     if(movie.refresh){
-        self.firstTableController = nil;
-        self.secondTableController = nil;
-        [self.navigationController popViewControllerAnimated:NO];
+     //   self.firstTableController = nil;
+       // self.secondTableController = nil;
+        //[self.navigationController popViewControllerAnimated:NO];
+        [self reviewCall];
+        [self topicCall];
     }
 }
 -(void)viewWillDisappear:(BOOL)animated{
     self.mainScroll.delegate = nil;
+    if(self.syncReview){
+        UINavigationController *nav = [self.tabBarController.viewControllers objectAtIndex:0];
+        MovieController *movie = [[nav viewControllers]objectAtIndex:0];
+        movie.refresh = YES;
+    }
 }
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
-
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    reviewController *vc = segue.destinationViewController;
+    vc.data = [[NSMutableDictionary alloc]initWithDictionary:[self.secondTableController.data objectAtIndex:self.secondTableController.selectIndex]];
+        if(self.syncReview ==YES){
+            vc.sync = YES;
+            self.syncReview = NO;
+        }
+}
 @end

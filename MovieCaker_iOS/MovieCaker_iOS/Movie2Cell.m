@@ -36,6 +36,7 @@
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"注意" message:@"请登入" delegate:self cancelButtonTitle:@"关闭" otherButtonTitles:nil,nil];
         [alert show];
     }else{
+        [self.parent sync];
         NSString *act;
         if(sender.view.tag==0||sender.view.tag==2){
             act =@"1";
@@ -101,9 +102,9 @@
 }
 -(void)setShareState:(BOOL)state{
     if (state) {
-        self.shareBtn.tag=1;
-         }else{
         self.shareBtn.tag=3;
+         }else{
+        self.shareBtn.tag=1;
     }
     [buttonHelper adjustShare:self.shareBtn];
 }

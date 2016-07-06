@@ -9,6 +9,8 @@
 #import "MovieViewController.h"
 #import "AustinApi.h"
 #import "MovieTwoTableViewController.h"
+#import "MovieDetailController.h"
+#import "reviewController.h"
 
 @interface MovieViewController ()
 @property (strong, nonatomic) IBOutlet UILabel *firstLabel;
@@ -103,11 +105,13 @@
     [self createLocationIcons];
     
     self.movieTableController = [[MovieTwoTableViewController alloc] init];
-    self.movieTable.allowsSelection = NO;
     self.movieTableController.tableView = self.movieTable;
+    self.movieTable.delegate =self.movieTableController;
+    [self.movieTableController ParentController:self];
     
     self.view.backgroundColor = [UIColor blackColor];
     UITapGestureRecognizer *cancel = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(cancelLocation)];
+    [cancel setCancelsTouchesInView:NO];
     [self.movieTable addGestureRecognizer:cancel];
     
     [self setupFilterBtns];
@@ -138,6 +142,7 @@
 
 }
 -(void)viewWillAppear:(BOOL)animated{
+    self.navigationController.navigationBarHidden = YES;
     if(self.loaded) {
         [self doJump];}
 }
@@ -150,6 +155,10 @@
     if(self.jump==2){
         self.index =1;
         [self moveBar:self.secondLabel];
+        [self setFilter];
+    }
+    if(self.jump==3){
+        [self moveBar:self.fourthLabel];
         [self setFilter];
     }
     self.jump =0;
@@ -362,9 +371,15 @@
 -(void)cancelLocation{
     [self setLocationBtnColor:(int)self.locationLabel.tag];
     [self confirmLocation:nil];
+    double delayInSeconds = 0.5;
+    dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, delayInSeconds * NSEC_PER_SEC);
+    dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
+        self.movieTable.delegate =self.movieTableController;
+    });
 }
 
 -(void)showLocation:(UISwipeGestureRecognizer*)gestureRecongnizer{
+    self.movieTable.delegate =nil;
     self.movieTable.alpha = 0.5;
     [self.view layoutIfNeeded];
     
@@ -473,5 +488,17 @@
     [UIView commitAnimations];
 
 }
+-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
+    NSLog(@"a");
+    if([[segue identifier] isEqualToString:@"movieDetail"]){
+    MovieDetailController *vc = segue.destinationViewController;
+    vc.movieDetailInfo = [[NSDictionary alloc] initWithObjectsAndKeys:[[self.movieTableController.data objectAtIndex:self.movieTableController.selectIndex] objectForKey:@"Id"],@"Id", nil];
+        vc.loadLater = YES;}
+    else if([[segue identifier] isEqualToString:@"reviewSegue"]){
+        reviewController *vc = segue.destinationViewController;
+         vc.data = [[NSMutableDictionary alloc]initWithDictionary:[self.movieTableController.data objectAtIndex:self.movieTableController.selectIndex]];
+    }
+}
+
 
 @end

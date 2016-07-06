@@ -16,6 +16,7 @@
 #import "AustinApi.h"
 #import "SDWebImage/UIImageView+WebCache.h"
 #import "MovieViewController.h"
+#import "reviewController.h"
 
 @interface MovieController ()
 @property (strong, nonatomic) IBOutlet scrollBoxView *scrollView;
@@ -47,6 +48,7 @@
 @property (strong, nonatomic) IBOutlet UIImageView *iconEyeIndex;
 @property (strong, nonatomic) IBOutlet UIImageView *iconLikeIndex;
 @property (strong, nonatomic) IBOutlet UIImageView *iconPoketIndex;
+@property BOOL sync;
 @end
 
 @implementation MovieController
@@ -95,6 +97,9 @@
  //   CGPoint position = CGPointMake(0,0);
   //  [self.MainScroll setContentOffset:position];
 
+    self.movieTable2Controller = [[MovieTableViewController alloc] init:1];
+    self.movieTableController = [[MovieTableViewController alloc] init:0];
+    
     [self imageScrollCall];
     [self topicCall];
     [self reviewCall];
@@ -103,7 +108,7 @@
 -(void)reviewCall{
     [[AustinApi sharedInstance]getReview:@"2" function:^(NSArray *returnData) {
         //    NSLog(@"bbb%@",returnData);
-        self.movieTable2Controller = [[MovieTableViewController alloc] init:1];
+
         self.movieTable2Controller.data = returnData;
         self.movieTable2.delegate = self.movieTable2Controller;
         self.movieTable2.dataSource = self.movieTable2Controller;
@@ -120,7 +125,6 @@
 -(void)topicCall{
     [[AustinApi sharedInstance]getTopic:@"6" vid:nil function:^(NSArray *returnData) {
         //     NSLog(@"bbb%@",returnData);
-        self.movieTableController = [[MovieTableViewController alloc] init:0];
         self.movieTableController.data =returnData;
         self.movieTable.delegate = self.movieTableController;
         self.movieTable.dataSource = self.movieTableController;
@@ -246,6 +250,24 @@
     NSLog(@"%d",indexOfPage);
     MovieDetailController *detailVc = segue.destinationViewController;
         detailVc.movieDetailInfo = [self.returnData objectAtIndex:indexOfPage];}
+    
+    if([[segue identifier] isEqualToString:@"reviewSegue"]){
+        reviewController *vc = segue.destinationViewController;
+        if(self.movieTable2Controller.selectIndex==-1){
+            vc.newReview = YES;
+            int indexOfPage = self.imageScroll.contentOffset.x / self.imageScroll.frame.size.width;
+            NSDictionary *vData = [self.returnData objectAtIndex:indexOfPage];
+            movieModel *movie = [self.movieArray objectAtIndex:indexOfPage];
+            NSDictionary *User = [[NSKeyedUnarchiver unarchiveObjectWithData:[[NSUserDefaults standardUserDefaults] objectForKey:@"userkey"]]objectForKey:@"Data"];
+            NSDictionary *param = @{@"VideoPosterUrl":[vData objectForKey:@"PosterUrl"],@"UserAvatar":[User objectForKey:@"Avatar"],@"UserNickName":[User objectForKey:@"NickName"],@"VideoName":[vData objectForKey:@"CNName"],@"OwnerLinkVideo_Score":@10,@"OwnerLinkVideo_IsLiked":[NSNumber numberWithBool:movie.IsLiked], @"PageViews":@0,@"LikedNum":@0,@"SharedNum":@0,@"UserId":[User objectForKey:@"UserId"],@"IsLiked":@false,@"IsShared":@false,@"ReviewId":@0,@"VideoId":[vData objectForKey:@"Id"]};
+            vc.data = [[NSMutableDictionary alloc]initWithDictionary:param];
+        }else{
+            vc.data = [[NSMutableDictionary alloc]initWithDictionary:[self.movieTable2Controller.data objectAtIndex:self.movieTable2Controller.selectIndex]];}
+        if(self.syncReview ==YES){
+            vc.sync = YES;
+            self.syncReview = NO;
+        }
+    }
 }
 
 - (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView{
@@ -336,8 +358,15 @@
 }
 -(void)indexClick:(UITapGestureRecognizer *)sender{
     NSLog(@"asd%ld",sender.view.tag);
-    if(sender.view.tag<3){
+    
+    if(sender.view.tag<4){
         if([[NSUserDefaults standardUserDefaults] objectForKey:@"userkey"]!=nil){
+            
+            if(sender.view.tag==3){
+                self.movieTable2Controller.selectIndex = -1;
+                [self performSegueWithIdentifier:@"reviewSegue" sender:self];
+            }else{
+            
             int indexOfPage = self.imageScroll.contentOffset.x / self.imageScroll.frame.size.width;
             NSLog(@"%@",[[self.returnData objectAtIndex:indexOfPage]objectForKey:@"Id"]);
             [[AustinApi sharedInstance]socialAction:[[self.returnData objectAtIndex:indexOfPage]objectForKey:@"Id"] act:[NSString stringWithFormat:@"%ld",sender.view.tag] obj:@"1" function:^(NSString *returnData) {
@@ -355,7 +384,7 @@
                 [self setMovieDetails:[self.movieArray objectAtIndex:indexOfPage] blur:NO];
             } error:^(NSError *error) {
                 NSLog(@"%@",error);
-            }];
+            }];}
         }else{
             UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"注意" message:@"请登入" delegate:self cancelButtonTitle:@"关闭" otherButtonTitles:nil,nil];
             [alert show];
@@ -377,6 +406,9 @@
         self.tabBarController.selectedIndex = 3;
     }
     if(sender.view.tag==7){
+        UINavigationController *nav = [self.tabBarController.viewControllers objectAtIndex:1];
+        MovieViewController *movie = [[nav viewControllers]objectAtIndex:0];
+        movie.jump = 3;
         self.tabBarController.selectedIndex = 1;
     }
 }

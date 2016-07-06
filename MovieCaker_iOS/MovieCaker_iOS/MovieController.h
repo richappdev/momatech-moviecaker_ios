@@ -13,5 +13,6 @@
 @property (strong, nonatomic) IBOutlet UITableView *movieTable;
 @property (strong, nonatomic) IBOutlet UITableView *movieTable2;
 @property BOOL refresh;
+@property BOOL syncReview;
 @end
 

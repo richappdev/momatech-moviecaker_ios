@@ -126,13 +126,13 @@
         }
         [cell setLikeState:[[data objectForKey:@"IsLiked"] boolValue]];
         [cell setShareState:[[data objectForKey:@"IsShared"] boolValue]];
-        
+        cell.parent =self;
             return cell;
-    
-
     }
 }
-
+-(void)sync{
+    self.parentController.syncReview = YES;
+}
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     return self.cellHeight;
@@ -140,6 +140,7 @@
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    self.selectIndex = indexPath.row;
     [self.parentController performSegueWithIdentifier:@"reviewSegue" sender:self];
 }
 

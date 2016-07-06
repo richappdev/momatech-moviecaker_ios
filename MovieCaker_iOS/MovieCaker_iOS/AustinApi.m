@@ -184,6 +184,16 @@
         error(error2);
     }];
 }
+
+-(void)getReviewByrid:(NSString *)rid function:(void (^)(NSDictionary *))completion error:(void (^)(NSError *))error{
+    NSDictionary *parameter = @{@"rid":rid,@"limit":@"10"};
+    [self apiGetMethod:@"api/Review" parameter:parameter addTokenHeader:@"1" completion:^(id response) {
+        
+        completion([[response objectForKey:@"Data"]objectAtIndex:0]);
+    } error:^(NSError *error2) {
+        error(error2);
+    }];
+}
 -(void)locationList:(void (^)(NSArray *returnData))completion error:(void (^)(NSError *error))error{
     NSDictionary *parameter = @{@"type": @"1"};
     [self apiGetMethod:@"api/location" parameter:parameter addTokenHeader:@"1" completion:^(id response) {
@@ -241,6 +251,29 @@
     } failure:^(NSURLSessionDataTask *task, NSError *err) {
 
         error(err);
+    }];
+}
+-(void)reviewChange:(NSString*)Id videoId:(NSString *)videoId score:(NSString*)score review:(NSString*)review function:(void (^)(NSDictionary *returnData))completion error:(void (^)(NSError *error))error{
+    NSDictionary *param =@{@"Score":score,@"ReviewId":Id,@"VideoId":videoId,@"Review":review};
+    [self apiPostMethod:@"api/Review" parameter:param addTokenHeader:@"1" completion:^(id response) {
+        completion(response);
+    } error:^(NSError *error2) {
+        error(error2);
+    }];
+}
+-(void)reviewReplyTable:(NSString*)Id function:(void (^)(NSArray *returnData))completion error:(void (^)(NSError *error))error{
+    [self apiGetMethod:[NSString stringWithFormat:@"api/review/message/%@",Id] parameter:nil addTokenHeader:@"1" completion:^(id response) {
+        completion(response);
+    } error:^(NSError *error2) {
+        error(error2);
+    }];
+}
+-(void)reviewReply:(NSString*)ReviewId message:(NSString *)message function:(void (^)(NSString *returnData))completion error:(void (^)(NSError *error))error{
+    NSDictionary *param = @{@"ReviewId":ReviewId,@"Message":message};
+    [self apiPostMethod:@"api/review/message" parameter:param addTokenHeader:@"1" completion:^(id response) {
+        completion(response);
+    } error:^(NSError *error2) {
+        error(error2);
     }];
 }
 @end

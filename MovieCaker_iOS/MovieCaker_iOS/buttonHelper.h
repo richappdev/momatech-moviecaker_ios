@@ -13,4 +13,5 @@
 +(void)adjustLike:(UIView*)view;
 +(void)adjustShare:(UIView*)view;
 +(void)gradientBg:(UIImageView*)imageView width:(int)width;
++ (BOOL)isLabelTruncated:(UILabel *)label;
 @end

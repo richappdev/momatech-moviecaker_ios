@@ -8,7 +8,10 @@
 
 #import <UIKit/UIKit.h>
 
-@interface reviewController : UIViewController
+@interface reviewController : UIViewController<UITextViewDelegate>
 @property (strong, nonatomic) IBOutlet UIScrollView *mainScroll;
-
+-(IBAction)readMore:(id)sender;
+@property NSMutableDictionary *data;
+@property BOOL sync;
+@property BOOL newReview;
 @end

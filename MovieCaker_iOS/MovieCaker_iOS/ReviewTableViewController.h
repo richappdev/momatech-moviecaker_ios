@@ -9,5 +9,7 @@
 #import <UIKit/UIKit.h>
 
 @interface ReviewTableViewController : UITableViewController
-
+@property NSLayoutConstraint *tableViewHeight;
+@property NSArray *data;
+@property NSMutableArray *array;
 @end
