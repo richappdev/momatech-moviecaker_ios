@@ -43,6 +43,11 @@
 @property (strong, nonatomic) IBOutlet UILabel *imdb;
 @property (strong, nonatomic) IBOutlet UILabel *bean;
 @property (strong, nonatomic) IBOutlet UIButton *readMoreBtn;
+@property (strong, nonatomic) IBOutlet UILabel *ViewNum;
+@property (strong, nonatomic) IBOutlet UILabel *LikeNum;
+@property (strong, nonatomic) IBOutlet UILabel *WantViewNum;
+@property (strong, nonatomic) IBOutlet UILabel *ReviewNum;
+@property (strong, nonatomic) IBOutlet UILabel *ShareNum;
 @property MainVerticalScroller *scrollDelegate;
 @end
 
@@ -164,7 +169,12 @@
     if(![[self.movieDetailInfo objectForKey:@"Ratings_IMDB"] isKindOfClass:[NSNull class]]){
     self.imdb.text = [NSString stringWithFormat:@"%.1f",[[self.movieDetailInfo objectForKey:@"Ratings_IMDB"]floatValue]];
     }
-    }
+    self.ViewNum.text =[[self.movieDetailInfo objectForKey:@"ViewNum"]stringValue];
+    self.LikeNum.text =[[self.movieDetailInfo objectForKey:@"LikeNum"]stringValue];
+    self.WantViewNum.text =[[self.movieDetailInfo objectForKey:@"WantViewNum"]stringValue];
+    self.ReviewNum.text =[[self.movieDetailInfo objectForKey:@"ReviewNum"]stringValue];
+    self.ShareNum.text =[[self.movieDetailInfo objectForKey:@"ShareNum"]stringValue];
+}
 -(IBAction)readMore:(id)sender{
     UIButton *btn = sender;
     btn.hidden = YES;
