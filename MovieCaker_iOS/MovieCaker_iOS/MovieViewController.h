@@ -10,5 +10,6 @@
 
 @interface MovieViewController : UIViewController
 @property int jump;
+-(void)loadMore:(int)page;
 @end
 
