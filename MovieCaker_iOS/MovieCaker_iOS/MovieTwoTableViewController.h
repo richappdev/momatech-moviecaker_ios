@@ -14,4 +14,5 @@
 @property NSArray *data;
 -(void)ParentController:(MovieViewController *)movie;
 @property int selectIndex;
+@property int page;
 @end

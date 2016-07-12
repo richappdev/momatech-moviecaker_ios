@@ -50,6 +50,11 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     UITableViewCell *cell;
+    if(indexPath.row>=self.page*10-1){
+        self.page =self.page+1;
+        [self.parentController loadMore:self.page];
+        //loadmore
+    }
     if(self.type == 0||self.type == 1||self.type==2){
         MovieTabCell *cell;
         if(self.type==2){
@@ -75,6 +80,7 @@
     cell.viewed.text = [[data objectForKey:@"ViewNum"]stringValue];
     
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
+
     return cell;
     }else if (self.type == 2){
     MovieTabCell *cell = [tableView dequeueReusableCellWithIdentifier:@"MovieTableTwo" forIndexPath:indexPath];

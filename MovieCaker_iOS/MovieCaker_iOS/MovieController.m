@@ -106,7 +106,7 @@
     
 }
 -(void)reviewCall{
-    [[AustinApi sharedInstance]getReview:@"2" function:^(NSArray *returnData) {
+    [[AustinApi sharedInstance]getReview:@"2" page:nil function:^(NSArray *returnData) {
         //    NSLog(@"bbb%@",returnData);
 
         self.movieTable2Controller.data = returnData;

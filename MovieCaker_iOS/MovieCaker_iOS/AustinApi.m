@@ -120,7 +120,7 @@
     }];
 }
 
--(void)movieListCustom:(NSString*)type location:(NSString*)locationId year:(NSString*)year month:(NSString*)month function:(void (^)(NSArray*returnData))completion error:(void (^)(NSError *error))error{
+-(void)movieListCustom:(NSString*)type location:(NSString*)locationId year:(NSString*)year month:(NSString*)month page:(NSString*)page function:(void (^)(NSArray*returnData))completion error:(void (^)(NSError *error))error{
     NSMutableDictionary *parameter =[[NSMutableDictionary alloc]initWithDictionary:@{@"type":type}];
     if(locationId!=nil){
         [parameter setObject:locationId forKey:@"locationId"];
@@ -130,6 +130,9 @@
     }
     if(month!=nil){
         [parameter setValue:month forKey:@"m"];
+    }
+    if(page!=nil){
+        [parameter setValue:page forKey:@"page"];
     }
     NSLog(@"%@",parameter);
     [self apiGetMethod:@"api/video" parameter:parameter addTokenHeader:@"1" completion:^(id response) {
@@ -165,8 +168,13 @@
     }];
 }
 
--(void)getReview:(NSString*)order function:(void (^)(NSArray *returnData))completion error:(void (^)(NSError *error))error{
-    NSDictionary *parameter = @{@"order":order,@"limit":@"10"};
+-(void)getReview:(NSString*)order page:(NSString*)page function:(void (^)(NSArray *returnData))completion error:(void (^)(NSError *error))error{
+    NSString *pageNo = @"1";
+    if(page!=nil){
+        pageNo = page;
+    }
+    NSDictionary *parameter = @{@"order":order,@"limit":@"10",@"page":pageNo};
+    NSLog(@"%@",parameter);
     [self apiGetMethod:@"api/Review" parameter:parameter addTokenHeader:@"1" completion:^(id response) {
         
         completion([response objectForKey:@"Data"]);

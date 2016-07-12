@@ -170,11 +170,11 @@
         previous = self.fOneIndex;
         if(previous!=current){
             if(current.tag==0){
-                [self getMovieList:@"6" location:[[self.locationBackend objectAtIndex:self.locationIndex]objectForKey:@"Id"] type:0];
+                [self getMovieList:@"6" location:[[self.locationBackend objectAtIndex:self.locationIndex]objectForKey:@"Id"] type:0 page:nil];
             }else if (current.tag==1){
-                [self getMovieList:@"6" location:[[self.locationBackend objectAtIndex:self.locationIndex]objectForKey:@"Id"] type:1];
+                [self getMovieList:@"6" location:[[self.locationBackend objectAtIndex:self.locationIndex]objectForKey:@"Id"] type:1 page:nil];
             }else if (current.tag==2){
-                [self getMovieList:@"6" location:nil type:2];
+                [self getMovieList:@"6" location:nil type:2 page:nil];
             }
             
             self.fOneIndex = current;
@@ -184,11 +184,11 @@
         previous = self.fTwoIndex;
         if(previous!=current){
             if(current.tag==0){
-                [self getMovieList:@"month" location:nil type:3];
+                [self getMovieList:@"month" location:nil type:3 page:nil];
             }else if (current.tag==1){
-                [self getMovieList:@"week" location:nil type:3];
+                [self getMovieList:@"week" location:nil type:3 page:nil];
             }else if (current.tag==2){
-                [self getMovieList:@"year" location:nil type:3];
+                [self getMovieList:@"year" location:nil type:3 page:nil];
             }
         }
         self.fTwoIndex = current;
@@ -225,6 +225,8 @@
                 
                 
             }
+            self.movieTableController.page = (int)([self.movieTableController.data count]-1)/10+1;
+                            NSLog(@"ppp:%d",self.movieTableController.page);
             [self.movieTableController.tableView reloadData];
         }
         self.fFourIndex = current;
@@ -259,7 +261,7 @@
         for (NSDictionary *row in returnData) {
             if(count==0){
                 self.locationLabel.text = [row objectForKey:@"Name"];
-                [self getMovieList:@"6" location:[row objectForKey:@"Id"] type:0];
+                [self getMovieList:@"6" location:[row objectForKey:@"Id"] type:0 page:nil];
             }
             UIView *view;
             if(self.view.frame.size.width>=375){
@@ -300,7 +302,7 @@
 
 }
 
--(void)getMovieList:(NSString*)type location:(NSString*)locationId type:(int)callType {
+-(void)getMovieList:(NSString*)type location:(NSString*)locationId type:(int)callType page:(NSString*)page {
     NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
     [formatter setDateFormat:@"yyyy"];
     NSString *yearString = [formatter stringFromDate:[NSDate date]];
@@ -317,19 +319,49 @@
         monthString =nil;
         yearString = nil;
     }
-
-    [[AustinApi sharedInstance] movieListCustom:type location:locationId year:yearString month:monthString function:^(NSArray *returnData) {
+    
+    [[AustinApi sharedInstance] movieListCustom:type location:locationId year:yearString month:monthString page:page function:^(NSArray *returnData) {
+        if(page==nil){
         if(callType==3){
         self.tabTwoData = returnData;
         }
         else{
         self.tabOneData = returnData;
         }
-        self.movieTableController.data = returnData;
+        self.movieTableController.page = 1;
+        
+            self.movieTableController.data = returnData;}
+        else{
+            NSArray *new = [self.movieTableController.data arrayByAddingObjectsFromArray:returnData];
+            self.movieTableController.data = new;
+        }
         [self.movieTable reloadData];
     } error:^(NSError *error) {
         NSLog(@"%@",error);
     }];
+}
+-(void)loadMore:(int)page{
+    NSString *pageString = [NSString stringWithFormat:@"%d",page];
+    NSLog(@"load:%@",pageString);
+    if(self.filterIndex==0){
+        if(self.fOneIndex.tag!=2){
+            [self getMovieList:@"6" location:[[self.locationBackend objectAtIndex:self.locationIndex]objectForKey:@"Id"] type:(int)self.fOneIndex.tag page:pageString];}
+        else{
+            [self getMovieList:@"6" location:nil type:2 page:pageString];
+        }
+    }else if (self.filterIndex==1){
+        if(self.fTwoIndex.tag==0){
+            [self getMovieList:@"month" location:nil type:3 page:pageString];
+        }else if (self.fTwoIndex.tag==1){
+            [self getMovieList:@"week" location:nil type:3 page:pageString];
+        }else if (self.fTwoIndex.tag==2){
+            [self getMovieList:@"year" location:nil type:3 page:pageString];
+        }
+    }else if (self.filterIndex==2){
+        [self loadFriends:pageString];
+    }else if(self.filterIndex==3&&self.fFourIndex.tag==0){
+        [self loadReviews:pageString];
+    }
 }
 -(void)setLocationBtnColor:(int)index{
     NSDictionary *temp = [self.locationArray objectAtIndex:self.locationIndex];
@@ -348,9 +380,9 @@
 -(void)locationBtnClick:(UITapGestureRecognizer*)gestureRecongnizer{
     [self setLocationBtnColor:(int)gestureRecongnizer.view.tag];
     if(self.fOneIndex.tag!=2){
-        [self getMovieList:@"6" location:[[self.locationBackend objectAtIndex:(int)gestureRecongnizer.view.tag] objectForKey:@"Id"] type:(int)self.fOneIndex.tag];}
+        [self getMovieList:@"6" location:[[self.locationBackend objectAtIndex:(int)gestureRecongnizer.view.tag] objectForKey:@"Id"] type:(int)self.fOneIndex.tag page:nil];}
     else{
-        [self getMovieList:@"6" location:nil type:2];
+        [self getMovieList:@"6" location:nil type:2 page:nil];
     }
     [self confirmLocation:gestureRecongnizer];
 }
@@ -411,6 +443,21 @@
     }
     [self setFilter];
 }
+-(void)loadFriends:(NSString*)page{
+    [[AustinApi sharedInstance]movieListCustom:@"1" location:nil year:nil month:nil page:nil function:^(NSArray *returnData) {
+        if(page==nil){
+            self.movieTableController.page = 1;
+            self.tabThreeData =returnData;
+            self.movieTableController.data = returnData;
+        }else{
+            NSArray *new = [self.movieTableController.data arrayByAddingObjectsFromArray:returnData];
+            self.movieTableController.data = new;
+        }
+        [self.movieTableController.tableView reloadData];
+    } error:^(NSError *error) {
+        NSLog(@"%@",error);
+    }];
+}
 -(void)setFilter{
     [self cancelLocation];
     if(self.index!=self.filterIndex){
@@ -426,6 +473,7 @@
         if(self.filterIndex ==0){
             if(self.tabOneData!=nil){
                 self.movieTableController.data = self.tabOneData;
+                self.movieTableController.page = 1;
                 [self.movieTableController.tableView reloadData];
             }
             self.currentFilter = self.firstFilter;
@@ -436,22 +484,19 @@
             change = true;
             if(self.tabTwoData!=nil){
                 self.movieTableController.data= self.tabTwoData;
+                self.movieTableController.page = 1;
                 [self.movieTable reloadData];
             }else{
-                [self getMovieList:@"month" location:nil type:3];}
+                [self getMovieList:@"month" location:nil type:3 page:nil];}
         }
         if(self.filterIndex==2){
             if(self.tabThreeData!=nil){
-           self.movieTableController.data =self.tabThreeData;
-            [self.movieTableController.tableView reloadData];
-            }else{
-            [[AustinApi sharedInstance]movieListCustom:@"1" location:nil year:nil month:nil function:^(NSArray *returnData) {
-                self.tabThreeData =returnData;
-                self.movieTableController.data = returnData;
+                self.movieTableController.data =self.tabThreeData;
+                self.movieTableController.page = 1;
                 [self.movieTableController.tableView reloadData];
-            } error:^(NSError *error) {
-                NSLog(@"%@",error);
-            }];}
+            }else{
+                [self loadFriends:nil];
+            }
             self.topMargin.constant = -36;
         }
         if(self.filterIndex==3){
@@ -459,21 +504,33 @@
             change = true;
             if(self.tabFourData!=nil){
                 self.movieTableController.data =self.tabFourData;
+                self.movieTableController.page = (int)([self.tabFourData count]-1)/10+1;
                 [self.movieTableController.tableView reloadData];
             }else{
-            [[AustinApi sharedInstance]getReview:@"2" function:^(NSArray *returnData) {
-                self.tabFourData =returnData;
-                self.movieTableController.data = returnData;
-                [self.movieTableController.tableView reloadData];
-            } error:^(NSError *error) {
-                NSLog(@"%@",error);
-            }];}	
+                [self loadReviews:nil];
+            }
         }
         if(change){
             self.currentFilter.alpha = 1;}
         [UIView commitAnimations];
         
         }
+}
+-(void)loadReviews:(NSString*)page{
+    [[AustinApi sharedInstance]getReview:@"2" page:page function:^(NSArray *returnData) {
+        if(page==nil){
+            self.movieTableController.page=1;
+            self.tabFourData =returnData;
+            self.movieTableController.data = returnData;
+        }else{
+            NSArray *new = [self.movieTableController.data arrayByAddingObjectsFromArray:returnData];
+            self.movieTableController.data = new;
+            self.tabFourData = new;
+        }
+        [self.movieTableController.tableView reloadData];
+    } error:^(NSError *error) {
+        NSLog(@"%@",error);
+    }];
 }
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
