@@ -225,6 +225,8 @@
                 
                 
             }
+            self.movieTableController.page = (int)([self.movieTableController.data count]-1)/10+1;
+                            NSLog(@"ppp:%d",self.movieTableController.page);
             [self.movieTableController.tableView reloadData];
         }
         self.fFourIndex = current;
@@ -340,13 +342,14 @@
 }
 -(void)loadMore:(int)page{
     NSString *pageString = [NSString stringWithFormat:@"%d",page];
-    if(self.currentFilter.tag==0){
+    NSLog(@"load:%@",pageString);
+    if(self.filterIndex==0){
         if(self.fOneIndex.tag!=2){
             [self getMovieList:@"6" location:[[self.locationBackend objectAtIndex:self.locationIndex]objectForKey:@"Id"] type:(int)self.fOneIndex.tag page:pageString];}
         else{
             [self getMovieList:@"6" location:nil type:2 page:pageString];
         }
-    }else if (self.currentFilter.tag==1){
+    }else if (self.filterIndex==1){
         if(self.fTwoIndex.tag==0){
             [self getMovieList:@"month" location:nil type:3 page:pageString];
         }else if (self.fTwoIndex.tag==1){
@@ -354,8 +357,10 @@
         }else if (self.fTwoIndex.tag==2){
             [self getMovieList:@"year" location:nil type:3 page:pageString];
         }
-    }else if (self.currentFilter.tag==2){
+    }else if (self.filterIndex==2){
         [self loadFriends:pageString];
+    }else if(self.filterIndex==3&&self.fFourIndex.tag==0){
+        [self loadReviews:pageString];
     }
 }
 -(void)setLocationBtnColor:(int)index{
@@ -441,7 +446,8 @@
 -(void)loadFriends:(NSString*)page{
     [[AustinApi sharedInstance]movieListCustom:@"1" location:nil year:nil month:nil page:nil function:^(NSArray *returnData) {
         if(page==nil){
-        self.tabThreeData =returnData;
+            self.movieTableController.page = 1;
+            self.tabThreeData =returnData;
             self.movieTableController.data = returnData;
         }else{
             NSArray *new = [self.movieTableController.data arrayByAddingObjectsFromArray:returnData];
@@ -467,6 +473,7 @@
         if(self.filterIndex ==0){
             if(self.tabOneData!=nil){
                 self.movieTableController.data = self.tabOneData;
+                self.movieTableController.page = 1;
                 [self.movieTableController.tableView reloadData];
             }
             self.currentFilter = self.firstFilter;
@@ -477,14 +484,16 @@
             change = true;
             if(self.tabTwoData!=nil){
                 self.movieTableController.data= self.tabTwoData;
+                self.movieTableController.page = 1;
                 [self.movieTable reloadData];
             }else{
                 [self getMovieList:@"month" location:nil type:3 page:nil];}
         }
         if(self.filterIndex==2){
             if(self.tabThreeData!=nil){
-           self.movieTableController.data =self.tabThreeData;
-            [self.movieTableController.tableView reloadData];
+                self.movieTableController.data =self.tabThreeData;
+                self.movieTableController.page = 1;
+                [self.movieTableController.tableView reloadData];
             }else{
                 [self loadFriends:nil];
             }
@@ -495,21 +504,33 @@
             change = true;
             if(self.tabFourData!=nil){
                 self.movieTableController.data =self.tabFourData;
+                self.movieTableController.page = (int)([self.tabFourData count]-1)/10+1;
                 [self.movieTableController.tableView reloadData];
             }else{
-                [[AustinApi sharedInstance]getReview:@"2" page:nil function:^(NSArray *returnData) {
-                self.tabFourData =returnData;
-                self.movieTableController.data = returnData;
-                [self.movieTableController.tableView reloadData];
-            } error:^(NSError *error) {
-                NSLog(@"%@",error);
-            }];}	
+                [self loadReviews:nil];
+            }
         }
         if(change){
             self.currentFilter.alpha = 1;}
         [UIView commitAnimations];
         
         }
+}
+-(void)loadReviews:(NSString*)page{
+    [[AustinApi sharedInstance]getReview:@"2" page:page function:^(NSArray *returnData) {
+        if(page==nil){
+            self.movieTableController.page=1;
+            self.tabFourData =returnData;
+            self.movieTableController.data = returnData;
+        }else{
+            NSArray *new = [self.movieTableController.data arrayByAddingObjectsFromArray:returnData];
+            self.movieTableController.data = new;
+            self.tabFourData = new;
+        }
+        [self.movieTableController.tableView reloadData];
+    } error:^(NSError *error) {
+        NSLog(@"%@",error);
+    }];
 }
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

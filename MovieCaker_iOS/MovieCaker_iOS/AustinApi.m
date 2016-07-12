@@ -174,6 +174,7 @@
         pageNo = page;
     }
     NSDictionary *parameter = @{@"order":order,@"limit":@"10",@"page":pageNo};
+    NSLog(@"%@",parameter);
     [self apiGetMethod:@"api/Review" parameter:parameter addTokenHeader:@"1" completion:^(id response) {
         
         completion([response objectForKey:@"Data"]);
