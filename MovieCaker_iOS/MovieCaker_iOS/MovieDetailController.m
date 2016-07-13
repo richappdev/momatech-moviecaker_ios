@@ -48,6 +48,8 @@
 @property (strong, nonatomic) IBOutlet UILabel *WantViewNum;
 @property (strong, nonatomic) IBOutlet UILabel *ReviewNum;
 @property (strong, nonatomic) IBOutlet UILabel *ShareNum;
+@property (strong, nonatomic) IBOutlet UIView *reviewBtn;
+@property BOOL newReview;
 @property MainVerticalScroller *scrollDelegate;
 @end
 
@@ -108,6 +110,8 @@
     } error:^(NSError *error) {
         NSLog(@"%@",error);
     }];
+    UITapGestureRecognizer *indexTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(indexClick:)];
+    [self.reviewBtn addGestureRecognizer:indexTap];
 }
 -(void)topicCall{
     [[AustinApi sharedInstance]getTopic:@"7" vid:[self.movieDetailInfo objectForKey:@"Id"] function:^(NSArray *returnData) {
@@ -259,10 +263,24 @@
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
     reviewController *vc = segue.destinationViewController;
+    if(self.newReview){
+        self.newReview = NO;
+        vc.newReview = YES;
+        vc.data = [buttonHelper reviewNewData:self.movieDetailInfo User:[[NSKeyedUnarchiver unarchiveObjectWithData:[[NSUserDefaults standardUserDefaults] objectForKey:@"userkey"]]objectForKey:@"Data"]];
+    }else{
     vc.data = [[NSMutableDictionary alloc]initWithDictionary:[self.secondTableController.data objectAtIndex:self.secondTableController.selectIndex]];
         if(self.syncReview ==YES){
             vc.sync = YES;
             self.syncReview = NO;
-        }
+        }}
+}
+-(void)indexClick:(UITapGestureRecognizer *)sender{
+    if([[NSUserDefaults standardUserDefaults] objectForKey:@"userkey"]==nil){
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"注意" message:@"请登入" delegate:self cancelButtonTitle:@"关闭" otherButtonTitles:nil,nil];
+        [alert show];
+    }else{
+        self.newReview =YES;
+        [self performSegueWithIdentifier:@"reviewSegue" sender:self];
+    }
 }
 @end
