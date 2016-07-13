@@ -47,7 +47,12 @@
     return [self.data count];
 }
 
-
+-(void)gotoEdit:(long)row{
+    self.selectIndex =row;
+    self.parentController.newReview = YES;
+    [self.parentController performSegueWithIdentifier:@"reviewSegue" sender:self];
+    NSLog(@"aa%ld",row);
+}
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     UITableViewCell *cell;
     if(indexPath.row>=self.page*10-1){
@@ -64,7 +69,8 @@
         }else{
             cell = [tableView dequeueReusableCellWithIdentifier:@"movieTableOne" forIndexPath:indexPath];
     }
-    
+    cell.index =indexPath.row;
+    cell.parent= self;
     NSDictionary *data = [self.data objectAtIndex:indexPath.row];
     cell.title.text = [data objectForKey:@"CNName"];
     NSString *url = [NSString stringWithFormat:@"http://www.funmovie.tv/Content/pictures/files/%@?width=88",[data objectForKey:@"Picture"]];

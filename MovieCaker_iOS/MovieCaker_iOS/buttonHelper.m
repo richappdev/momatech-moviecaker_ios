@@ -74,5 +74,8 @@
     
     return isTruncated;
 }
-
++(NSMutableDictionary*)reviewNewData:(NSDictionary*)vData User:(NSDictionary *)User{
+    NSDictionary *param = @{@"VideoPosterUrl":[vData objectForKey:@"PosterUrl"],@"UserAvatar":[User objectForKey:@"Avatar"],@"UserNickName":[User objectForKey:@"NickName"],@"VideoName":[vData objectForKey:@"CNName"],@"OwnerLinkVideo_Score":@10,@"OwnerLinkVideo_IsLiked":[NSNumber numberWithBool:[[vData objectForKey:@"IsLiked"] boolValue]], @"PageViews":@0,@"LikedNum":@0,@"SharedNum":@0,@"UserId":[User objectForKey:@"UserId"],@"IsLiked":@false,@"IsShared":@false,@"ReviewId":@0,@"VideoId":[vData objectForKey:@"Id"]};
+    return [[NSMutableDictionary alloc]initWithDictionary:param];
+}
 @end

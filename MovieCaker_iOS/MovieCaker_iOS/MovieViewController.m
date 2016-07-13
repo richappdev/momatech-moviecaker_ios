@@ -11,6 +11,7 @@
 #import "MovieTwoTableViewController.h"
 #import "MovieDetailController.h"
 #import "reviewController.h"
+#import "buttonHelper.h"
 
 @interface MovieViewController ()
 @property (strong, nonatomic) IBOutlet UILabel *firstLabel;
@@ -546,14 +547,22 @@
 
 }
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
-    NSLog(@"a");
     if([[segue identifier] isEqualToString:@"movieDetail"]){
     MovieDetailController *vc = segue.destinationViewController;
     vc.movieDetailInfo = [[NSDictionary alloc] initWithObjectsAndKeys:[[self.movieTableController.data objectAtIndex:self.movieTableController.selectIndex] objectForKey:@"Id"],@"Id", nil];
         vc.loadLater = YES;}
     else if([[segue identifier] isEqualToString:@"reviewSegue"]){
         reviewController *vc = segue.destinationViewController;
+        if(self.newReview){
+            self.newReview=NO;
+            vc.newReview = YES;
+            NSDictionary *vData = [self.movieTableController.data objectAtIndex:self.movieTableController.selectIndex];
+            NSDictionary *User = [[NSKeyedUnarchiver unarchiveObjectWithData:[[NSUserDefaults standardUserDefaults] objectForKey:@"userkey"]]objectForKey:@"Data"];
+            vc.data = [buttonHelper reviewNewData:vData User:User];
+        }else{
          vc.data = [[NSMutableDictionary alloc]initWithDictionary:[self.movieTableController.data objectAtIndex:self.movieTableController.selectIndex]];
+        }
+        NSLog(@"%@",vc.data);
     }
 }
 

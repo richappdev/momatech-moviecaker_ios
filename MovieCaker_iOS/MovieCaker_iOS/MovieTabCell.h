@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-
+#import "MovieTwoTableViewController.h"
 @interface MovieTabCell : UITableViewCell
 @property (strong, nonatomic) IBOutlet UILabel *ratingLabel;
 @property (strong, nonatomic) IBOutlet UIView *ratingBg;
@@ -20,5 +20,7 @@
 @property (strong, nonatomic) IBOutlet UILabel *liked;
 @property (strong, nonatomic) IBOutlet UILabel *reviewed;
 @property (strong, nonatomic) IBOutlet UILabel *favored;
-
+@property (strong, nonatomic) IBOutlet UIView *reviewBtn;
+@property MovieTwoTableViewController *parent;
+@property long index;
 @end

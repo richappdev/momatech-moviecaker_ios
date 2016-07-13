@@ -1712,7 +1712,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hpU-nl-EIH">
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="hpU-nl-EIH">
                                 <rect key="frame" x="0.0" y="-108" width="414" height="795"/>
                                 <subviews>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="img-placeholder" translatesAutoresizingMaskIntoConstraints="NO" id="ApQ-on-j71">
@@ -3151,7 +3151,7 @@
                                                         <constraint firstItem="gTZ-nf-5RR" firstAttribute="leading" secondItem="ga5-dr-YS7" secondAttribute="leading" constant="16" id="n32-7E-lxM"/>
                                                     </constraints>
                                                 </view>
-                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="LV4-Vm-czv">
+                                                <view tag="3" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="LV4-Vm-czv">
                                                     <rect key="frame" x="272" y="106" width="48" height="50"/>
                                                     <subviews>
                                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="iconPenIndexActive" translatesAutoresizingMaskIntoConstraints="NO" id="2gv-fW-Hph">
@@ -3246,6 +3246,7 @@
                                             <outlet property="liked" destination="gTZ-nf-5RR" id="P9I-p5-Oca"/>
                                             <outlet property="ratingBg" destination="DE7-CL-xk6" id="NYk-aP-cqp"/>
                                             <outlet property="ratingLabel" destination="Gxy-ub-7kl" id="Jp6-aU-Wjn"/>
+                                            <outlet property="reviewBtn" destination="LV4-Vm-czv" id="Yns-p3-baA"/>
                                             <outlet property="reviewed" destination="aMk-PB-f8X" id="LNt-Xz-HTQ"/>
                                             <outlet property="title" destination="RAk-cn-C7D" id="HSN-kn-Do7"/>
                                             <outlet property="viewed" destination="KX6-eT-3gT" id="MlD-pb-b7a"/>
@@ -4343,7 +4344,7 @@
         <image name="tabbarBg" width="80" height="49"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="YKh-Cl-wBT"/>
+        <segue reference="efM-b9-q38"/>
         <segue reference="I4m-Mn-2yn"/>
     </inferredMetricsTieBreakers>
 </document>
