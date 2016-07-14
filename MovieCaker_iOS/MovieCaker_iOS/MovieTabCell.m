@@ -15,6 +15,8 @@
     self.ratingBg.layer.cornerRadius = 11;
     [self addIndexGesture:self.reviewBtn];
     [self addIndexGesture:self.watchBtn];
+    [self addIndexGesture:self.likeBtn];
+    [self addIndexGesture:self.wannaBtn];
 }
 -(void)addIndexGesture:(UIView*)view{
     UITapGestureRecognizer *indexTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(indexClick:)];
@@ -26,28 +28,45 @@
         [alert show];
     }else{
         UIView *view = gesture.view;
-        switch (view.tag) {
-            case 0:{
-                UILabel *label = [view viewWithTag:6];
-                int count = [[self.data objectForKey:@"ViewNum"] integerValue];
-                if(self.watchBool){
+        if(view.tag==0||view.tag==1||view.tag==2){
+    
+            UILabel *label = [view viewWithTag:6];
+            NSNumber *boolValue;
+            int count;
+                if(view.tag==0){
+                    count = [[self.data objectForKey:@"ViewNum"] integerValue];
+                    boolValue = self.watchBool;
+                }else if (view.tag==1){
+                    count = [[self.data objectForKey:@"LikeNum"] integerValue];
+                    boolValue = self.likeBool;
+                }else if (view.tag==2){
+                    count = [[self.data objectForKey:@"WantViewNum"] integerValue];
+                    boolValue = self.wannaBool;
+                }
+                if([boolValue boolValue]){
                     count--;
                 }else{
                     count++;
                 }
-                self.watchBool = !self.watchBool;
-                [self setWatchState:self.watchBool];
-                label.text = [NSString stringWithFormat:@"%d",count];
+            
+            
+            if(view.tag==0){
+                [self setWatchState:![boolValue boolValue]];
                 [self.data setObject:[NSNumber numberWithInt:count] forKey:@"ViewNum"];
-                break;}
-            case 3:
-                [self.parent gotoEdit:self.index];
-                break;
-            default:
-                break;
+            }else if (view.tag==1){
+                [self setLikeState:![boolValue boolValue]];
+                [self.data setObject:[NSNumber numberWithInt:count] forKey:@"LikeNum"];
+            }else if (view.tag==2){
+                [self setWannaState:![boolValue boolValue]];
+                [self.data setObject:[NSNumber numberWithInt:count] forKey:@"WantViewNum"];
+            }
+                label.text = [NSString stringWithFormat:@"%d",count];
+        }else if (view.tag==3){
+            [self.parent gotoEdit:self.index];
         }
     }
 }
+
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
     [super setSelected:selected animated:animated];
 
@@ -55,6 +74,14 @@
 }
 -(void)setWatchState:(BOOL)state{
     [buttonHelper v2AdjustWatch:self.watchBtn state:state];
-    self.watchBool = state;
+    self.watchBool = [[NSNumber alloc] initWithBool:state];
+}
+-(void)setLikeState:(BOOL)state{
+    [buttonHelper v2AdjustLike:self.likeBtn state:state];
+    self.likeBool = [[NSNumber alloc] initWithBool:state];
+}
+-(void)setWannaState:(BOOL)state{
+    [buttonHelper v2AdjustWanna:self.wannaBtn state:state];
+    self.wannaBool = [[NSNumber alloc] initWithBool:state];
 }
 @end

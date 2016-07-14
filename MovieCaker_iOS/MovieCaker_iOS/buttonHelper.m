@@ -89,4 +89,26 @@
         label.textColor = [UIColor colorWithRed:(180/255.0f) green:(196/255.0f) blue:(212/255.0f) alpha:1];
     }
 }
++(void)v2AdjustLike:(UIView*)view state:(BOOL)state{
+    UIImageView *image = [view viewWithTag:5];
+    UILabel *label = [view viewWithTag:6];
+    if(state){
+        image.image = [UIImage imageNamed:@"iconHeartIndexActive"];
+        label.textColor = [UIColor colorWithRed:(255/255.0f) green:(136/255.0f) blue:(153/255.0f) alpha:1];
+    }else{
+        image.image = [UIImage imageNamed:@"iconHeartList"];
+        label.textColor = [UIColor colorWithRed:(180/255.0f) green:(196/255.0f) blue:(212/255.0f) alpha:1];
+    }
+}
++(void)v2AdjustWanna:(UIView*)view state:(BOOL)state{
+    UIImageView *image = [view viewWithTag:5];
+    UILabel *label = [view viewWithTag:6];
+    if(state){
+        image.image = [UIImage imageNamed:@"iconPocketIndexActive"];
+        label.textColor = [UIColor colorWithRed:(244/255.0f) green:(154/255.0f) blue:(68/255.0f) alpha:1];
+    }else{
+        image.image = [UIImage imageNamed:@"iconPoketIndex"];
+        label.textColor = [UIColor colorWithRed:(180/255.0f) green:(196/255.0f) blue:(212/255.0f) alpha:1];
+    }
+}
 @end

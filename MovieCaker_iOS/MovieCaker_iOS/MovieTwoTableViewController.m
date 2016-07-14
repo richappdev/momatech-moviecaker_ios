@@ -89,6 +89,9 @@
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
         
     [cell setWatchState:[[data objectForKey:@"IsViewed"] boolValue]];
+    [cell setLikeState:[[data objectForKey:@"IsLiked"] boolValue]];
+    [cell setWannaState:[[data objectForKey:@"IsWantView"] boolValue]];
+        
     return cell;
     }else if (self.type == 2){
     MovieTabCell *cell = [tableView dequeueReusableCellWithIdentifier:@"MovieTableTwo" forIndexPath:indexPath];

@@ -16,4 +16,7 @@
 + (BOOL)isLabelTruncated:(UILabel *)label;
 +(NSMutableDictionary*)reviewNewData:(NSDictionary*)vData User:(NSDictionary*)User;
 +(void)v2AdjustWatch:(UIView*)view state:(BOOL)state;
++(void)v2AdjustLike:(UIView*)view state:(BOOL)state;
++(void)v2AdjustWanna:(UIView*)view state:(BOOL)state;
+
 @end

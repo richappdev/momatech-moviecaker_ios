@@ -23,9 +23,14 @@
 @property (strong, nonatomic) IBOutlet UIView *reviewBtn;
 @property (strong, nonatomic) IBOutlet UIView *watchBtn;
 @property (strong, nonatomic) IBOutlet UIView *likeBtn;
+@property (strong, nonatomic) IBOutlet UIView *wannaBtn;
 @property NSMutableDictionary *data;
-@property BOOL watchBool;
+@property NSNumber *watchBool;
+@property NSNumber *likeBool;
+@property NSNumber *wannaBool;
 @property MovieTwoTableViewController *parent;
 @property long index;
 -(void)setWatchState:(BOOL)state;
+-(void)setLikeState:(BOOL)state;
+-(void)setWannaState:(BOOL)state;
 @end
