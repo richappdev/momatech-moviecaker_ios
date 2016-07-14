@@ -78,4 +78,15 @@
     NSDictionary *param = @{@"VideoPosterUrl":[vData objectForKey:@"PosterUrl"],@"UserAvatar":[User objectForKey:@"Avatar"],@"UserNickName":[User objectForKey:@"NickName"],@"VideoName":[vData objectForKey:@"CNName"],@"OwnerLinkVideo_Score":@10,@"OwnerLinkVideo_IsLiked":[NSNumber numberWithBool:[[vData objectForKey:@"IsLiked"] boolValue]], @"PageViews":@0,@"LikedNum":@0,@"SharedNum":@0,@"UserId":[User objectForKey:@"UserId"],@"IsLiked":@false,@"IsShared":@false,@"ReviewId":@0,@"VideoId":[vData objectForKey:@"Id"]};
     return [[NSMutableDictionary alloc]initWithDictionary:param];
 }
++(void)v2AdjustWatch:(UIView*)view state:(BOOL)state{
+    UIImageView *image = [view viewWithTag:5];
+    UILabel *label = [view viewWithTag:6];
+    if(state){
+        image.image = [UIImage imageNamed:@"iconEyeIndexActive"];
+        label.textColor = [UIColor colorWithRed:(128/255.0f) green:(203/255.0f) blue:(196/255.0f) alpha:1];
+    }else{
+        image.image = [UIImage imageNamed:@"iconEyeIndex"];        
+        label.textColor = [UIColor colorWithRed:(180/255.0f) green:(196/255.0f) blue:(212/255.0f) alpha:1];
+    }
+}
 @end

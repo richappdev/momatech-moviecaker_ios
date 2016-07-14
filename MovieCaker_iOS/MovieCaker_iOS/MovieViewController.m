@@ -322,18 +322,22 @@
     }
     
     [[AustinApi sharedInstance] movieListCustom:type location:locationId year:yearString month:monthString page:page function:^(NSArray *returnData) {
+        NSMutableArray *array = [[NSMutableArray alloc]init];
+        for (NSDictionary *row in returnData) {
+            [array addObject:[[NSMutableDictionary alloc] initWithDictionary:row]];
+        }
         if(page==nil){
         if(callType==3){
-        self.tabTwoData = returnData;
+        self.tabTwoData = array;
         }
         else{
-        self.tabOneData = returnData;
+        self.tabOneData = array;
         }
         self.movieTableController.page = 1;
         
-            self.movieTableController.data = returnData;}
+            self.movieTableController.data = array;}
         else{
-            NSArray *new = [self.movieTableController.data arrayByAddingObjectsFromArray:returnData];
+            NSArray *new = [self.movieTableController.data arrayByAddingObjectsFromArray:array];
             self.movieTableController.data = new;
         }
         [self.movieTable reloadData];
@@ -549,8 +553,8 @@
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
     if([[segue identifier] isEqualToString:@"movieDetail"]){
     MovieDetailController *vc = segue.destinationViewController;
-    vc.movieDetailInfo = [[NSDictionary alloc] initWithObjectsAndKeys:[[self.movieTableController.data objectAtIndex:self.movieTableController.selectIndex] objectForKey:@"Id"],@"Id", nil];
-        vc.loadLater = YES;}
+        vc.movieDetailInfo = [self.movieTableController.data objectAtIndex:self.movieTableController.selectIndex];
+    }
     else if([[segue identifier] isEqualToString:@"reviewSegue"]){
         reviewController *vc = segue.destinationViewController;
         if(self.newReview){

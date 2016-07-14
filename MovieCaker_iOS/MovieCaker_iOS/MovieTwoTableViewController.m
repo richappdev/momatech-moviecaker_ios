@@ -71,7 +71,8 @@
     }
     cell.index =indexPath.row;
     cell.parent= self;
-    NSDictionary *data = [self.data objectAtIndex:indexPath.row];
+    NSMutableDictionary *data = [self.data objectAtIndex:indexPath.row];
+    cell.data = data;
     cell.title.text = [data objectForKey:@"CNName"];
     NSString *url = [NSString stringWithFormat:@"http://www.funmovie.tv/Content/pictures/files/%@?width=88",[data objectForKey:@"Picture"]];
     [cell.image sd_setImageWithURL:[NSURL URLWithString:url] placeholderImage:[UIImage imageNamed:@"img-placeholder.jpg"]];
@@ -86,7 +87,8 @@
     cell.viewed.text = [[data objectForKey:@"ViewNum"]stringValue];
     
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
-
+        
+    [cell setWatchState:[[data objectForKey:@"IsViewed"] boolValue]];
     return cell;
     }else if (self.type == 2){
     MovieTabCell *cell = [tableView dequeueReusableCellWithIdentifier:@"MovieTableTwo" forIndexPath:indexPath];
