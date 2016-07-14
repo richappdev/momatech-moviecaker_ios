@@ -253,7 +253,6 @@
     manager.responseSerializer = [AFHTTPResponseSerializer serializer];
     [manager POST:[NSString stringWithFormat:@"api/Social?id=%@&act=%@&obj=%@",Id,act,obj] parameters:nil success:^(NSURLSessionDataTask *task, id response) {
         NSString *string = [[NSString alloc] initWithData:response encoding:NSUTF8StringEncoding];
-        NSLog(@"%@",string);
         completion(string);
         
     } failure:^(NSURLSessionDataTask *task, NSError *err) {

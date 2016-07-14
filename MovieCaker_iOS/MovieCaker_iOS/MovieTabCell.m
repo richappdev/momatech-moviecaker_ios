@@ -8,6 +8,7 @@
 
 #import "MovieTabCell.h"
 #import "buttonHelper.h"
+#import "AustinApi.h"
 @implementation MovieTabCell
 
 - (void)awakeFromNib {
@@ -52,15 +53,23 @@
             
             if(view.tag==0){
                 [self setWatchState:![boolValue boolValue]];
+                [self.data setObject:self.watchBool forKey:@"IsViewed"];
                 [self.data setObject:[NSNumber numberWithInt:count] forKey:@"ViewNum"];
             }else if (view.tag==1){
                 [self setLikeState:![boolValue boolValue]];
+                [self.data setObject:self.likeBool forKey:@"IsLiked"];
                 [self.data setObject:[NSNumber numberWithInt:count] forKey:@"LikeNum"];
             }else if (view.tag==2){
                 [self setWannaState:![boolValue boolValue]];
+                [self.data setObject:self.wannaBool forKey:@"IsWantView"];
                 [self.data setObject:[NSNumber numberWithInt:count] forKey:@"WantViewNum"];
             }
                 label.text = [NSString stringWithFormat:@"%d",count];
+            [[AustinApi sharedInstance]socialAction:[self.data objectForKey:@"Id"] act:[NSString stringWithFormat:@"%d",view.tag] obj:@"1" function:^(NSString *returnData) {
+                NSLog(@"%@",returnData);
+            } error:^(NSError *error) {
+                NSLog(@"%@",error);
+            }];
         }else if (view.tag==3){
             [self.parent gotoEdit:self.index];
         }
