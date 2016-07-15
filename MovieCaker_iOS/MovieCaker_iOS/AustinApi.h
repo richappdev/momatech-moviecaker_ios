@@ -14,7 +14,7 @@
 
 -(void)apiRegisterPost:(NSString*)unionId completion:(void (^)(NSMutableDictionary *returnData))completion error:(void (^)(NSError *error))error;
 
--(void)movieList:(void (^)(NSMutableDictionary *returnData))completion error:(void (^)(NSError *error))error;
+-(void)movieList:(void (^)(NSArray *returnData))completion error:(void (^)(NSError *error))error;
 -(void)locationList:(void (^)(NSArray *returnData))completion error:(void (^)(NSError *error))error;
 -(void)movieDetail:(NSString*)vid function:(void (^)(NSMutableDictionary *returnData))completion error:(void (^)(NSError *error))error;
 -(void)getTopic:(NSString*)type vid:(NSString *)vid function:(void (^)(NSArray *returnData))completion error:(void (^)(NSError *error))error;

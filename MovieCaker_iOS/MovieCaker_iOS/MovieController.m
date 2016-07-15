@@ -43,7 +43,7 @@
 @property (strong, nonatomic) IBOutlet NSLayoutConstraint *movieTable2Height;
 @property int lastIndex;
 @property BOOL notSelected;
-@property NSArray *returnData;
+@property NSMutableArray *returnData;
 @property (strong, nonatomic) IBOutlet NSLayoutConstraint *movieTableTopspace;
 @property (strong, nonatomic) IBOutlet UIImageView *iconEyeIndex;
 @property (strong, nonatomic) IBOutlet UIImageView *iconLikeIndex;
@@ -141,9 +141,9 @@
 
 }
 -(void)imageScrollCall{
-    [[AustinApi sharedInstance] movieList:^(NSMutableDictionary *returnData) {
+    [[AustinApi sharedInstance] movieList:^(NSArray *returnData) {
         //NSLog(@"%@",returnData);
-        self.returnData = returnData;
+        self.returnData = [[NSMutableArray alloc]init];
         self.movieArray = [[NSMutableArray alloc]init];
         
         int margin = 15;
@@ -152,7 +152,7 @@
         int count = 0;
         self.imageScroll.contentSize = CGSizeMake(width* [returnData count], 341);
         for(NSDictionary *row in returnData){
-            
+            [self.returnData addObject:[[NSMutableDictionary alloc] initWithDictionary:row]];
             movieModel *temp = [movieModel alloc];
             temp.title = [row objectForKey:@"CNName"];
             temp.rating = [NSString stringWithFormat:@"%@", [row objectForKey:@"AverageScore"]];
@@ -229,6 +229,10 @@
         [self imageScrollCall];
         [self topicCall];
         [self reviewCall];
+    }else{
+        int indexOfPage = self.imageScroll.contentOffset.x / self.imageScroll.frame.size.width;
+        [self setMovieDetails:[self.movieArray objectAtIndex:indexOfPage] blur:YES];
+        self.lastIndex = indexOfPage;
     }
 }
 
@@ -249,7 +253,9 @@
     int indexOfPage = self.imageScroll.contentOffset.x / self.imageScroll.frame.size.width;
     NSLog(@"%d",indexOfPage);
     MovieDetailController *detailVc = segue.destinationViewController;
-        detailVc.movieDetailInfo = [self.returnData objectAtIndex:indexOfPage];}
+        detailVc.movieDetailInfo = [self.returnData objectAtIndex:indexOfPage];
+        detailVc.model = [self.movieArray objectAtIndex:indexOfPage];
+    }
     
     if([[segue identifier] isEqualToString:@"reviewSegue"]){
         reviewController *vc = segue.destinationViewController;
@@ -372,14 +378,18 @@
             [[AustinApi sharedInstance]socialAction:[[self.returnData objectAtIndex:indexOfPage]objectForKey:@"Id"] act:[NSString stringWithFormat:@"%ld",sender.view.tag] obj:@"1" function:^(NSString *returnData) {
 
                 movieModel *model = [self.movieArray objectAtIndex:indexOfPage];
+                NSMutableDictionary *data = [self.returnData objectAtIndex:indexOfPage];
                 if(sender.view.tag==0){
                     model.IsViewed =!model.IsViewed;
+                    [data setObject:[[NSNumber alloc] initWithBool:model.IsViewed] forKey:@"IsViewed"];
                 }
                 if(sender.view.tag==1){
                     model.IsLiked =!model.IsLiked;
+                    [data setObject:[[NSNumber alloc] initWithBool:model.IsLiked] forKey:@"IsLiked"];
                 }
                 if(sender.view.tag==2){
                     model.IsWantView = !model.IsWantView;
+                    [data setObject:[[NSNumber alloc] initWithBool:model.IsWantView] forKey:@"IsWantView"];
                 }
                 [self setMovieDetails:[self.movieArray objectAtIndex:indexOfPage] blur:NO];
             } error:^(NSError *error) {

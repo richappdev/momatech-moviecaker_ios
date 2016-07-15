@@ -146,6 +146,8 @@
     self.navigationController.navigationBarHidden = YES;
     if(self.loaded) {
         [self doJump];}
+    [self.movieTable reloadData];
+
 }
 -(void)doJump{
     if(self.jump==1){

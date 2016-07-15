@@ -7,9 +7,11 @@
 //
 
 #import "MovieController.h"
+#import "movieModel.h"
 
 @interface MovieDetailController : MovieController
-@property NSDictionary *movieDetailInfo;
+@property NSMutableDictionary *movieDetailInfo;
+@property movieModel *model;
 -(IBAction)readMore:(id)sender;
 @property BOOL loadLater;
 @property BOOL syncReview;

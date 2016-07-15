@@ -49,6 +49,9 @@
 @property (strong, nonatomic) IBOutlet UILabel *ReviewNum;
 @property (strong, nonatomic) IBOutlet UILabel *ShareNum;
 @property (strong, nonatomic) IBOutlet UIView *reviewBtn;
+@property (strong, nonatomic) IBOutlet UIView *likeBtn;
+@property (strong, nonatomic) IBOutlet UIView *watchBtn;
+@property (strong, nonatomic) IBOutlet UIView *wannaBtn;
 @property BOOL newReview;
 @property MainVerticalScroller *scrollDelegate;
 @end
@@ -90,7 +93,7 @@
     [[AustinApi sharedInstance] movieDetail:[self.movieDetailInfo objectForKey:@"Id"] function:^(NSMutableDictionary *returnData) {
        // NSLog(@"%@",[returnData objectForKey:@"Actor"]);
         if(self.loadLater==YES){
-            self.movieDetailInfo = returnData;
+            //self.movieDetailInfo = returnData;
             [self changeReal];
         }
         
@@ -110,9 +113,16 @@
     } error:^(NSError *error) {
         NSLog(@"%@",error);
     }];
-    UITapGestureRecognizer *indexTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(indexClick:)];
-    [self.reviewBtn addGestureRecognizer:indexTap];
+    [self addIndexGesture:self.reviewBtn];
+    [self addIndexGesture:self.likeBtn];
+    [self addIndexGesture:self.watchBtn];
+    [self addIndexGesture:self.wannaBtn];
 }
+-(void)addIndexGesture:(UIView*)view{
+    UITapGestureRecognizer *indexTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(indexClick:)];
+    [view addGestureRecognizer:indexTap];
+}
+
 -(void)topicCall{
     [[AustinApi sharedInstance]getTopic:@"7" vid:[self.movieDetailInfo objectForKey:@"Id"] function:^(NSArray *returnData) {
         NSLog(@"a%lu",(unsigned long)[returnData count]);
@@ -178,6 +188,11 @@
     self.WantViewNum.text =[[self.movieDetailInfo objectForKey:@"WantViewNum"]stringValue];
     self.ReviewNum.text =[[self.movieDetailInfo objectForKey:@"ReviewNum"]stringValue];
     self.ShareNum.text =[[self.movieDetailInfo objectForKey:@"ShareNum"]stringValue];
+    
+    [buttonHelper v2AdjustWatch:self.watchBtn state:[[self.movieDetailInfo objectForKey:@"IsViewed"] boolValue]];
+    [buttonHelper v2AdjustLike:self.likeBtn state:[[self.movieDetailInfo objectForKey:@"IsLiked"] boolValue]];
+    [buttonHelper v2AdjustWanna:self.wannaBtn state:[[self.movieDetailInfo objectForKey:@"IsWantView"] boolValue]];
+
 }
 -(IBAction)readMore:(id)sender{
     UIButton *btn = sender;
@@ -274,13 +289,60 @@
             self.syncReview = NO;
         }}
 }
--(void)indexClick:(UITapGestureRecognizer *)sender{
+-(void)indexClick:(UITapGestureRecognizer *)gesture{
     if([[NSUserDefaults standardUserDefaults] objectForKey:@"userkey"]==nil){
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"注意" message:@"请登入" delegate:self cancelButtonTitle:@"关闭" otherButtonTitles:nil,nil];
         [alert show];
     }else{
-        self.newReview =YES;
-        [self performSegueWithIdentifier:@"reviewSegue" sender:self];
+        UIView *view = gesture.view;
+        if(view.tag==0||view.tag==1||view.tag==2){
+            
+            UILabel *label = [view viewWithTag:6];
+            NSNumber *boolValue;
+            int count;
+            if(view.tag==0){
+                count = [[self.movieDetailInfo objectForKey:@"ViewNum"] integerValue];
+                boolValue = [self.movieDetailInfo objectForKey:@"IsViewed"];
+            }else if (view.tag==1){
+                count = [[self.movieDetailInfo objectForKey:@"LikeNum"] integerValue];
+                boolValue = [self.movieDetailInfo objectForKey:@"IsLiked"];
+            }else if (view.tag==2){
+                count = [[self.movieDetailInfo objectForKey:@"WantViewNum"] integerValue];
+                boolValue = [self.movieDetailInfo objectForKey:@"IsWantView"];
+            }
+            if([boolValue boolValue]){
+                count--;
+            }else{
+                count++;
+            }
+            
+            
+            if(view.tag==0){
+                [buttonHelper v2AdjustWatch:self.watchBtn state:![boolValue boolValue]];
+                [self.movieDetailInfo setObject:[[NSNumber alloc] initWithBool:![boolValue boolValue]] forKey:@"IsViewed"];
+                [self.movieDetailInfo setObject:[NSNumber numberWithInt:count] forKey:@"ViewNum"];
+                self.model.IsViewed = ![boolValue boolValue];
+            }else if (view.tag==1){
+                [buttonHelper v2AdjustLike:self.likeBtn state:![boolValue boolValue]];
+                [self.movieDetailInfo setObject:[[NSNumber alloc] initWithBool:![boolValue boolValue]] forKey:@"IsLiked"];
+                [self.movieDetailInfo setObject:[NSNumber numberWithInt:count] forKey:@"LikeNum"];
+                self.model.IsLiked = ![boolValue boolValue];
+            }else if (view.tag==2){
+                [buttonHelper v2AdjustWanna:self.wannaBtn state:![boolValue boolValue]];
+                [self.movieDetailInfo setObject:[[NSNumber alloc] initWithBool:![boolValue boolValue]] forKey:@"IsWantView"];
+                [self.movieDetailInfo setObject:[NSNumber numberWithInt:count] forKey:@"WantViewNum"];
+                self.model.IsWantView = ![boolValue boolValue];
+            }
+            label.text = [NSString stringWithFormat:@"%d",count];
+            [[AustinApi sharedInstance]socialAction:[self.movieDetailInfo objectForKey:@"Id"] act:[NSString stringWithFormat:@"%d",view.tag] obj:@"1" function:^(NSString *returnData) {
+                NSLog(@"%@",returnData);
+            } error:^(NSError *error) {
+                NSLog(@"%@",error);
+            }];
+        }else if(view.tag==3){
+            self.newReview =YES;
+            [self performSegueWithIdentifier:@"reviewSegue" sender:self];
+        }
     }
 }
 @end

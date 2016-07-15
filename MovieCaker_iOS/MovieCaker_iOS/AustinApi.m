@@ -111,7 +111,7 @@
     }];
 }
 
--(void)movieList:(void (^)(NSMutableDictionary *returnData))completion error:(void (^)(NSError *error))error{
+-(void)movieList:(void (^)(NSArray *returnData))completion error:(void (^)(NSError *error))error{
     [self apiGetMethod:@"api/video" parameter:nil addTokenHeader:@"1" completion:^(id response) {
        
         completion([response objectForKey:@"Data"]);
