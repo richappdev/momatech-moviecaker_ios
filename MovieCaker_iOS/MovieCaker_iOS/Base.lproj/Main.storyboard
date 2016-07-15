@@ -2745,7 +2745,7 @@
                                             <constraint firstAttribute="height" constant="50" id="hFk-eV-zf4"/>
                                         </constraints>
                                     </view>
-                                    <view tag="3" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jPn-Jd-i4C">
+                                    <view tag="4" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jPn-Jd-i4C">
                                         <rect key="frame" x="232" y="0.0" width="48" height="50"/>
                                         <subviews>
                                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="iconPenIndexActive" translatesAutoresizingMaskIntoConstraints="NO" id="U6O-1x-ccO">
@@ -2784,7 +2784,7 @@
                                             <constraint firstItem="aZ0-kv-usP" firstAttribute="centerX" secondItem="jPn-Jd-i4C" secondAttribute="centerX" id="mlt-RI-N6b"/>
                                         </constraints>
                                     </view>
-                                    <view tag="4" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5sq-A5-JFt">
+                                    <view tag="3" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5sq-A5-JFt">
                                         <rect key="frame" x="280" y="0.0" width="48" height="50"/>
                                         <subviews>
                                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="iconShareListShared" translatesAutoresizingMaskIntoConstraints="NO" id="7zH-28-VkV">
@@ -2878,6 +2878,7 @@
                         <outlet property="reviewTable" destination="Efy-2A-qWQ" id="73i-Pj-poS"/>
                         <outlet property="reviewTableHeight" destination="zrd-E3-V2H" id="plm-db-WDt"/>
                         <outlet property="reviewTop" destination="Ipr-8R-cBn" id="FIu-Cb-OE3"/>
+                        <outlet property="shareBtn" destination="5sq-A5-JFt" id="Lk7-J2-uu3"/>
                         <outlet property="smallImage" destination="YgX-On-ze2" id="Tw0-Jw-xUR"/>
                         <outlet property="starFive" destination="PyK-6c-une" id="I0A-or-BSs"/>
                         <outlet property="starFour" destination="0QI-1f-cdM" id="RhD-Vu-FXl"/>

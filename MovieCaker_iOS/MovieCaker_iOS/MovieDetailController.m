@@ -13,6 +13,8 @@
 #import "MainVerticalScroller.h"
 #import "buttonHelper.h"
 #import "reviewController.h"
+#import "WXApi.h"
+#import "WechatAccess.h"
 
 @interface MovieDetailController ()
 @property (strong, nonatomic) IBOutlet UIImageView *bgImage;
@@ -52,6 +54,7 @@
 @property (strong, nonatomic) IBOutlet UIView *likeBtn;
 @property (strong, nonatomic) IBOutlet UIView *watchBtn;
 @property (strong, nonatomic) IBOutlet UIView *wannaBtn;
+@property (strong, nonatomic) IBOutlet UIView *shareBtn;
 @property BOOL newReview;
 @property MainVerticalScroller *scrollDelegate;
 @end
@@ -117,6 +120,7 @@
     [self addIndexGesture:self.likeBtn];
     [self addIndexGesture:self.watchBtn];
     [self addIndexGesture:self.wannaBtn];
+    [self addIndexGesture:self.shareBtn];
 }
 -(void)addIndexGesture:(UIView*)view{
     UITapGestureRecognizer *indexTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(indexClick:)];
@@ -295,8 +299,35 @@
         [alert show];
     }else{
         UIView *view = gesture.view;
-        if(view.tag==0||view.tag==1||view.tag==2){
+        if(view.tag==0||view.tag==1||view.tag==2||view.tag==3){
+            if(view.tag==3){
             
+                WXMediaMessage *message = [WXMediaMessage message];
+                message.title = [self.movieDetailInfo objectForKey:@"CNName"];
+                
+                NSString *str;
+                if ([[self.movieDetailInfo objectForKey:@"Intro"] length]>140) {
+                    str=[[self.movieDetailInfo objectForKey:@"Intro"] substringToIndex:140];
+                }else{
+                    str=[self.movieDetailInfo objectForKey:@"Intro"];
+                }
+                
+                message.description=str;
+                
+                [message setThumbImage:self.smallImage.image];
+                
+                WXWebpageObject *ext = [WXWebpageObject object];
+                ext.webpageUrl =  [NSString stringWithFormat:@"%@/video/%@",[[AustinApi sharedInstance] getBaseUrl],[self.movieDetailInfo objectForKey:@"Id"]];
+                NSLog(@"%@",ext.webpageUrl);
+                message.mediaObject = ext;
+                SendMessageToWXReq* req = [[SendMessageToWXReq alloc] init];
+                req.bText = NO;
+                req.message = message;
+                req.scene = WXSceneSession;
+                
+                [WXApi sendReq:req];
+            
+            }else{
             UILabel *label = [view viewWithTag:6];
             NSNumber *boolValue;
             int count;
@@ -333,13 +364,14 @@
                 [self.movieDetailInfo setObject:[NSNumber numberWithInt:count] forKey:@"WantViewNum"];
                 self.model.IsWantView = ![boolValue boolValue];
             }
-            label.text = [NSString stringWithFormat:@"%d",count];
+                label.text = [NSString stringWithFormat:@"%d",count];}
+            
             [[AustinApi sharedInstance]socialAction:[self.movieDetailInfo objectForKey:@"Id"] act:[NSString stringWithFormat:@"%d",view.tag] obj:@"1" function:^(NSString *returnData) {
                 NSLog(@"%@",returnData);
             } error:^(NSError *error) {
                 NSLog(@"%@",error);
             }];
-        }else if(view.tag==3){
+        }else if(view.tag==4){
             self.newReview =YES;
             [self performSegueWithIdentifier:@"reviewSegue" sender:self];
         }
