@@ -1657,11 +1657,61 @@
                         <outlet property="uititle" destination="Vh4-1C-ejS" id="kYy-fA-8mN"/>
                         <segue destination="KeK-L1-IfS" kind="push" identifier="movieDetail" id="efM-b9-q38"/>
                         <segue destination="gTw-d3-Ers" kind="push" identifier="reviewSegue" id="faQ-HW-B4Q"/>
+                        <segue destination="eFs-qN-NDc" kind="push" identifier="topicSegue" id="RsI-kC-Fb5"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="W5J-7L-Pyd" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1637" y="-636"/>
+        </scene>
+        <!--Topic Detail View Controller-->
+        <scene sceneID="bGX-bf-8TE">
+            <objects>
+                <viewController id="eFs-qN-NDc" customClass="TopicDetailViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="B6s-hd-LNf"/>
+                        <viewControllerLayoutGuide type="bottom" id="QZr-ET-XnY"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="v07-wh-Y1P">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dep-Bu-YLG">
+                                <rect key="frame" x="0.0" y="-64" width="414" height="687"/>
+                                <subviews>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="on" translatesAutoresizingMaskIntoConstraints="NO" id="iDB-9S-VRO">
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="200"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="200" id="5N2-PY-KEh"/>
+                                        </constraints>
+                                    </imageView>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="iDB-9S-VRO" secondAttribute="trailing" id="5Ld-DV-Qz2"/>
+                                    <constraint firstItem="iDB-9S-VRO" firstAttribute="top" secondItem="dep-Bu-YLG" secondAttribute="top" id="Aej-Tl-HYp"/>
+                                    <constraint firstAttribute="bottom" secondItem="iDB-9S-VRO" secondAttribute="bottom" constant="487" id="Ksa-o0-ezI"/>
+                                    <constraint firstItem="iDB-9S-VRO" firstAttribute="centerX" secondItem="dep-Bu-YLG" secondAttribute="centerX" id="eUJ-xE-xTB"/>
+                                    <constraint firstItem="iDB-9S-VRO" firstAttribute="leading" secondItem="dep-Bu-YLG" secondAttribute="leading" id="gGV-Nk-sL7"/>
+                                </constraints>
+                            </scrollView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="QZr-ET-XnY" firstAttribute="top" secondItem="dep-Bu-YLG" secondAttribute="bottom" constant="64" id="0k1-yR-16J"/>
+                            <constraint firstItem="dep-Bu-YLG" firstAttribute="leading" secondItem="v07-wh-Y1P" secondAttribute="leadingMargin" constant="-20" id="G5l-Qn-K9N"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="dep-Bu-YLG" secondAttribute="trailing" constant="-20" id="XwJ-rE-Gby"/>
+                            <constraint firstItem="dep-Bu-YLG" firstAttribute="top" secondItem="B6s-hd-LNf" secondAttribute="bottom" constant="-128" id="ntb-vZ-AQ4"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="NpV-u8-gq3"/>
+                    <connections>
+                        <outlet property="mainBg" destination="iDB-9S-VRO" id="zfa-qg-QpJ"/>
+                        <outlet property="mainScroll" destination="dep-Bu-YLG" id="zQH-hL-Nsf"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="HTY-Lb-RjW" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2154" y="-977"/>
         </scene>
         <!--我的-->
         <scene sceneID="Yw6-q6-vxF">
@@ -1712,7 +1762,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hpU-nl-EIH">
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="hpU-nl-EIH">
                                 <rect key="frame" x="0.0" y="-108" width="414" height="795"/>
                                 <subviews>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="img-placeholder" translatesAutoresizingMaskIntoConstraints="NO" id="ApQ-on-j71">
@@ -1948,28 +1998,6 @@
                                             <constraint firstAttribute="trailing" secondItem="XC8-pQ-200" secondAttribute="trailing" id="jFJ-Z7-MxZ"/>
                                         </constraints>
                                     </view>
-                                    <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="BpZ-Me-Nt1">
-                                        <rect key="frame" x="0.0" y="501" width="414" height="200"/>
-                                        <subviews>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="導演" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xfo-wW-egT">
-                                                <rect key="frame" x="8" y="171" width="42" height="21"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="height" constant="21" id="YBd-pO-7dk"/>
-                                                    <constraint firstAttribute="width" constant="42" id="d47-LO-UcC"/>
-                                                </constraints>
-                                                <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="12"/>
-                                                <color key="textColor" red="0.23529411764705882" green="0.5607843137254902" blue="0.52941176470588236" alpha="1" colorSpace="calibratedRGB"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
-                                        </subviews>
-                                        <constraints>
-                                            <constraint firstAttribute="trailing" secondItem="xfo-wW-egT" secondAttribute="trailing" constant="364" id="EIH-Ia-2cL"/>
-                                            <constraint firstItem="xfo-wW-egT" firstAttribute="top" secondItem="BpZ-Me-Nt1" secondAttribute="top" constant="171" id="FzQ-dB-RNY"/>
-                                            <constraint firstAttribute="height" constant="200" id="Vhg-z2-PLa"/>
-                                            <constraint firstItem="xfo-wW-egT" firstAttribute="leading" secondItem="BpZ-Me-Nt1" secondAttribute="leadingMargin" id="cCE-dU-akT"/>
-                                            <constraint firstItem="xfo-wW-egT" firstAttribute="bottom" secondItem="BpZ-Me-Nt1" secondAttribute="bottomMargin" id="wme-gV-Qqo"/>
-                                        </constraints>
-                                    </scrollView>
                                     <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Oc3-18-2yn">
                                         <rect key="frame" x="0.0" y="752" width="414" height="128"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -2571,6 +2599,28 @@
                                             <constraint firstAttribute="trailing" secondItem="9Ys-ZH-WkE" secondAttribute="trailing" id="n2W-I3-2TY"/>
                                         </constraints>
                                     </view>
+                                    <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="BpZ-Me-Nt1">
+                                        <rect key="frame" x="0.0" y="498" width="414" height="200"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="導演" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xfo-wW-egT">
+                                                <rect key="frame" x="8" y="171" width="42" height="21"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="21" id="YBd-pO-7dk"/>
+                                                    <constraint firstAttribute="width" constant="42" id="d47-LO-UcC"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="12"/>
+                                                <color key="textColor" red="0.23529411764705882" green="0.5607843137254902" blue="0.52941176470588236" alpha="1" colorSpace="calibratedRGB"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                        </subviews>
+                                        <constraints>
+                                            <constraint firstAttribute="trailing" secondItem="xfo-wW-egT" secondAttribute="trailing" constant="364" id="EIH-Ia-2cL"/>
+                                            <constraint firstItem="xfo-wW-egT" firstAttribute="top" secondItem="BpZ-Me-Nt1" secondAttribute="top" constant="171" id="FzQ-dB-RNY"/>
+                                            <constraint firstAttribute="height" constant="200" id="Vhg-z2-PLa"/>
+                                            <constraint firstItem="xfo-wW-egT" firstAttribute="leading" secondItem="BpZ-Me-Nt1" secondAttribute="leadingMargin" id="cCE-dU-akT"/>
+                                            <constraint firstItem="xfo-wW-egT" firstAttribute="bottom" secondItem="BpZ-Me-Nt1" secondAttribute="bottomMargin" id="wme-gV-Qqo"/>
+                                        </constraints>
+                                    </scrollView>
                                 </subviews>
                                 <constraints>
                                     <constraint firstItem="gua-Us-aTq" firstAttribute="leading" secondItem="hpU-nl-EIH" secondAttribute="leading" id="2NF-Kc-bgB"/>
@@ -2637,7 +2687,7 @@
                                     <constraint firstAttribute="trailing" secondItem="Oc3-18-2yn" secondAttribute="trailing" id="zJN-jg-Cfj"/>
                                 </constraints>
                             </scrollView>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4uu-hb-gcS">
+                            <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="4uu-hb-gcS">
                                 <rect key="frame" x="0.0" y="637" width="414" height="50"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fzM-zt-spM">
@@ -4356,7 +4406,7 @@
         <image name="tabbarBg" width="80" height="49"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="YKh-Cl-wBT"/>
         <segue reference="qtw-ST-1hK"/>
+        <segue reference="joH-vB-8to"/>
     </inferredMetricsTieBreakers>
 </document>

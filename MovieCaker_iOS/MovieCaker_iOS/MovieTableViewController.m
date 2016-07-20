@@ -139,9 +139,13 @@
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
-{
+{ NSLog(@"a");
     self.selectIndex = indexPath.row;
-    [self.parentController performSegueWithIdentifier:@"reviewSegue" sender:self];
+    if(self.type==0){
+        [self.parentController performSegueWithIdentifier:@"topicSegue" sender:self];
+    }else if(self.type==1){
+        [self.parentController performSegueWithIdentifier:@"reviewSegue" sender:self];
+    }
 }
 
 /*

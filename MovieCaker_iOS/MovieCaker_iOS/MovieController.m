@@ -132,7 +132,7 @@
         self.movieTableController.tableView = self.movieTable;
         [self.movieTableController.tableView reloadData];
         self.movieTableTopspace.constant = 45+ [self.movieTableController returnTotalHeight];
-        
+        [self.movieTableController ParentController:self];
         [self readjustScrollsize];
         
     } error:^(NSError *error) {
