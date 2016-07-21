@@ -11,6 +11,7 @@
 #import "buttonHelper.h"
 #import "UIImageView+WebCache.h"
 #import "UIImage+FontAwesome.h"
+#import "MovieTwoTableViewController.h"
 
 @interface TopicDetailViewController ()
 @property MainVerticalScroller *scrollDelegate;
@@ -18,6 +19,9 @@
 @property (strong, nonatomic) IBOutlet UIImageView *mainBg;
 @property (strong, nonatomic) IBOutlet UIImageView *penIcon;
 @property (strong, nonatomic) IBOutlet UITextView *mainTxt;
+@property (strong, nonatomic) IBOutlet UITableView *tableView;
+@property (strong, nonatomic) IBOutlet NSLayoutConstraint *tableHeight;
+@property MovieTwoTableViewController *movieTableController;
 @end
 
 @implementation TopicDetailViewController
@@ -41,6 +45,13 @@
     [self.scrollDelegate setupStatusbar:self.view];
     self.mainScroll.delegate = self.scrollDelegate;
     self.penIcon.image = [UIImage imageWithIcon:@"fa-pencil" backgroundColor:[UIColor clearColor] iconColor:[UIColor colorWithRed:(121/255.0f) green:(124/255.0f) blue:(131/255.0f) alpha:1.0] andSize:CGSizeMake(10, 10)];
+    
+    self.movieTableController = [[MovieTwoTableViewController alloc] init];
+    self.movieTableController.tableView = self.tableView;
+    self.tableView.delegate =self.movieTableController;
+    self.movieTableController.data = [[NSArray alloc] initWithObjects:[[NSDictionary alloc] init],[[NSDictionary alloc]init], nil];
+    self.tableHeight.constant = 320;
+   // [self.movieTableController ParentController:self];
 }
 
 -(void)viewWillLayoutSubviews{
