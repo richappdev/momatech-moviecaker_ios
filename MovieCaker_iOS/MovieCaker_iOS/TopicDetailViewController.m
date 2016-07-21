@@ -9,11 +9,15 @@
 #import "TopicDetailViewController.h"
 #import "MainVerticalScroller.h"
 #import "buttonHelper.h"
+#import "UIImageView+WebCache.h"
+#import "UIImage+FontAwesome.h"
 
 @interface TopicDetailViewController ()
 @property MainVerticalScroller *scrollDelegate;
 @property (strong, nonatomic) IBOutlet UIScrollView *mainScroll;
 @property (strong, nonatomic) IBOutlet UIImageView *mainBg;
+@property (strong, nonatomic) IBOutlet UIImageView *penIcon;
+@property (strong, nonatomic) IBOutlet UITextView *mainTxt;
 @end
 
 @implementation TopicDetailViewController
@@ -22,11 +26,21 @@
     [super viewDidLoad];
     [buttonHelper gradientBg:self.mainBg width:self.view.frame.size.width];
     
+    CAGradientLayer *maskLayer = [CAGradientLayer layer];
+    maskLayer.colors = @[
+                         (id)[UIColor whiteColor].CGColor,
+                         (id)[UIColor whiteColor].CGColor,
+                         (id)[UIColor clearColor].CGColor];
+    maskLayer.locations = @[ @0.0f, @0.0f, @1.0f ];
+    maskLayer.frame = self.mainTxt.bounds;
+    self.mainTxt.layer.mask = maskLayer;
+    
     self.scrollDelegate = [[MainVerticalScroller alloc] init];
     self.scrollDelegate.nav = self.navigationController;
     [self.scrollDelegate setupBackBtn:self];
     [self.scrollDelegate setupStatusbar:self.view];
     self.mainScroll.delegate = self.scrollDelegate;
+    self.penIcon.image = [UIImage imageWithIcon:@"fa-pencil" backgroundColor:[UIColor clearColor] iconColor:[UIColor colorWithRed:(121/255.0f) green:(124/255.0f) blue:(131/255.0f) alpha:1.0] andSize:CGSizeMake(10, 10)];
 }
 
 -(void)viewWillLayoutSubviews{

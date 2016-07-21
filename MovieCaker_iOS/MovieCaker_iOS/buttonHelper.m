@@ -52,7 +52,7 @@
     }
 }
 
-+(void)gradientBg:(UIImageView*)imageView width:(int)width{
++(void)gradientBg:(UIView*)imageView width:(int)width{
     CAGradientLayer *gradientLayer = [CAGradientLayer layer];
     gradientLayer.frame =CGRectMake(imageView.frame.origin.x, imageView.frame.origin.y, width, imageView.frame.size.height);
     gradientLayer.colors = [NSArray arrayWithObjects:(id)[UIColor whiteColor].CGColor, (id)[UIColor clearColor].CGColor, nil];
