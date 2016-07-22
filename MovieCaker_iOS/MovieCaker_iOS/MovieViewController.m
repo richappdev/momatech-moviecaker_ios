@@ -392,6 +392,11 @@
         [self getMovieList:@"6" location:nil type:2 page:nil];
     }
     [self confirmLocation:gestureRecongnizer];
+    double delayInSeconds = 0.5;
+    dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, delayInSeconds * NSEC_PER_SEC);
+    dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
+        self.movieTable.delegate =self.movieTableController;
+    });
 }
 -(void)confirmLocation:(UITapGestureRecognizer*)gestureRecongnizer{
     [self.view layoutIfNeeded];
