@@ -21,6 +21,8 @@
 @property (strong, nonatomic) IBOutlet UITextView *mainTxt;
 @property (strong, nonatomic) IBOutlet UITableView *tableView;
 @property (strong, nonatomic) IBOutlet NSLayoutConstraint *tableHeight;
+@property (strong, nonatomic) IBOutlet UIImageView *pcircleBtn;
+@property (strong, nonatomic) IBOutlet UIImageView *eyeBtn;
 @property MovieTwoTableViewController *movieTableController;
 @end
 
@@ -45,6 +47,8 @@
     [self.scrollDelegate setupStatusbar:self.view];
     self.mainScroll.delegate = self.scrollDelegate;
     self.penIcon.image = [UIImage imageWithIcon:@"fa-pencil" backgroundColor:[UIColor clearColor] iconColor:[UIColor colorWithRed:(121/255.0f) green:(124/255.0f) blue:(131/255.0f) alpha:1.0] andSize:CGSizeMake(10, 10)];
+    self.eyeBtn.image = [UIImage imageWithIcon:@"fa-eye-slash" backgroundColor:[UIColor clearColor] iconColor:[UIColor colorWithRed:(172/255.0f) green:(189/255.0f) blue:(206/255.0f) alpha:1.0] andSize:CGSizeMake(20, 20)];
+    self.pcircleBtn.image = [UIImage imageWithIcon:@"fa-play-circle" backgroundColor:[UIColor clearColor] iconColor:[UIColor colorWithRed:(172/255.0f) green:(189/255.0f) blue:(206/255.0f) alpha:1.0] andSize:CGSizeMake(18, 20)];
     
     self.movieTableController = [[MovieTwoTableViewController alloc] init];
     self.movieTableController.tableView = self.tableView;
