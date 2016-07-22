@@ -12,6 +12,8 @@
 #import "UIImageView+WebCache.h"
 #import "UIImage+FontAwesome.h"
 #import "MovieTwoTableViewController.h"
+#import "CircleView.h"
+#import "buttonHelper.h"
 
 @interface TopicDetailViewController ()
 @property MainVerticalScroller *scrollDelegate;
@@ -23,6 +25,9 @@
 @property (strong, nonatomic) IBOutlet NSLayoutConstraint *tableHeight;
 @property (strong, nonatomic) IBOutlet UIImageView *pcircleBtn;
 @property (strong, nonatomic) IBOutlet UIImageView *eyeBtn;
+@property (strong, nonatomic) IBOutlet UILabel *finishLabel;
+@property (strong, nonatomic) IBOutlet UILabel *percentLabel;
+@property (strong, nonatomic) IBOutlet CircleView *circleView;
 @property MovieTwoTableViewController *movieTableController;
 @end
 
@@ -55,6 +60,14 @@
     self.tableView.delegate =self.movieTableController;
     self.movieTableController.data = [[NSArray alloc] initWithObjects:[[NSDictionary alloc] init],[[NSDictionary alloc]init], nil];
     self.tableHeight.constant = 320;
+    
+    UIColor *circleColor = [buttonHelper circleColor:.8];
+    self.circleView.percentage = .8;
+    
+    self.circleView.color = circleColor;
+    self.finishLabel.textColor = self.percentLabel.textColor = circleColor;
+    self.percentLabel.text = [NSString stringWithFormat:@"%d%%",(int)(.8*100)];
+    
    // [self.movieTableController ParentController:self];
 }
 
