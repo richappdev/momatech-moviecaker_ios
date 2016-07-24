@@ -34,6 +34,12 @@
 @property (strong, nonatomic) IBOutlet UILabel *topicTitle;
 @property (strong, nonatomic) IBOutlet UILabel *viewCount;
 @property (strong, nonatomic) IBOutlet UILabel *date;
+@property (strong, nonatomic) IBOutlet UIImageView *Chervon;
+@property (strong, nonatomic) IBOutlet UIView *moreBtn;
+@property (strong, nonatomic) IBOutlet UILabel *moreLabel;
+@property BOOL opened;
+@property (strong, nonatomic) IBOutlet NSLayoutConstraint *contentHeight;
+@property (strong, nonatomic) IBOutlet NSLayoutConstraint *moreHeight;
 
 @property MovieTwoTableViewController *movieTableController;
 @end
@@ -44,14 +50,7 @@
     [super viewDidLoad];
     [buttonHelper gradientBg:self.mainBg width:self.view.frame.size.width];
     
-    CAGradientLayer *maskLayer = [CAGradientLayer layer];
-    maskLayer.colors = @[
-                         (id)[UIColor whiteColor].CGColor,
-                         (id)[UIColor whiteColor].CGColor,
-                         (id)[UIColor clearColor].CGColor];
-    maskLayer.locations = @[ @0.0f, @0.0f, @1.0f ];
-    maskLayer.frame = self.mainTxt.bounds;
-    self.mainTxt.layer.mask = maskLayer;
+    [self addMask];
     
     self.scrollDelegate = [[MainVerticalScroller alloc] init];
     self.scrollDelegate.nav = self.navigationController;
@@ -82,6 +81,37 @@
     self.mainTxt.text = [self.data objectForKey:@"Content"];
     self.viewCount.text = [[self.data objectForKey:@"ViewNum"]stringValue];
     self.date.text = [[self.data objectForKey:@"ModifiedOn"] stringByReplacingOccurrencesOfString:@"-" withString:@"/"];
+    
+    self.Chervon.image = [UIImage imageWithIcon:@"fa-chevron-down" backgroundColor:[UIColor clearColor] iconColor:[UIColor whiteColor] andSize:CGSizeMake(18, 20)];
+    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(moreClick)];
+    [self.moreBtn addGestureRecognizer:tap];
+}
+-(void)addMask{
+    CAGradientLayer *maskLayer = [CAGradientLayer layer];
+    maskLayer.colors = @[
+                         (id)[UIColor whiteColor].CGColor,
+                         (id)[UIColor whiteColor].CGColor,
+                         (id)[UIColor clearColor].CGColor];
+    maskLayer.locations = @[ @0.0f, @0.0f, @1.0f ];
+    maskLayer.frame = self.mainTxt.bounds;
+     self.mainTxt.layer.mask = maskLayer;
+}
+-(void)moreClick{
+    if(self.opened){
+        self.Chervon.image = [UIImage imageWithIcon:@"fa-chevron-down" backgroundColor:[UIColor clearColor] iconColor:[UIColor whiteColor] andSize:CGSizeMake(18, 20)];
+        self.moreLabel.text = @"展開全文";
+        self.contentHeight.constant = 94;
+        self.moreHeight.constant = 90;
+        [self addMask];
+    }else{
+        self.Chervon.image = [UIImage imageWithIcon:@"fa-chevron-up" backgroundColor:[UIColor clearColor] iconColor:[UIColor whiteColor] andSize:CGSizeMake(18, 20)];
+        self.moreLabel.text = @"顯示部分";
+        [self.moreLabel sizeToFit];
+        self.mainTxt.layer.mask = nil;
+        self.contentHeight.constant = self.mainTxt.frame.size.height;
+        self.moreHeight.constant = self.contentHeight.constant-3;
+    }
+    self.opened = !self.opened;
 }
 
 -(void)viewWillLayoutSubviews{
