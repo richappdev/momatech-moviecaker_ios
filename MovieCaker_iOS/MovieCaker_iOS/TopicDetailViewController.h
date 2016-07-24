@@ -9,5 +9,6 @@
 #import <UIKit/UIKit.h>
 
 @interface TopicDetailViewController : UIViewController
-
+@property NSMutableDictionary *data;
+@property NSNumber *percent;
 @end

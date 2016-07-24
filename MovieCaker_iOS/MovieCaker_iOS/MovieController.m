@@ -17,6 +17,7 @@
 #import "SDWebImage/UIImageView+WebCache.h"
 #import "MovieViewController.h"
 #import "reviewController.h"
+#import "TopicDetailViewController.h"
 
 @interface MovieController ()
 @property (strong, nonatomic) IBOutlet scrollBoxView *scrollView;
@@ -273,6 +274,12 @@
             vc.sync = YES;
             self.syncReview = NO;
         }
+    }
+    if([[segue identifier] isEqualToString:@"topicSegue"]){
+        TopicDetailViewController *vc = segue.destinationViewController;
+        vc.data = [[NSMutableDictionary alloc]initWithDictionary:[self.movieTableController.data objectAtIndex:self.movieTableController.selectIndex]];
+        vc.percent = [self.movieTableController.circlePercentage objectAtIndex:self.movieTableController.selectIndex];
+        NSLog(@"%@",self.movieTableController.circlePercentage);
     }
 }
 

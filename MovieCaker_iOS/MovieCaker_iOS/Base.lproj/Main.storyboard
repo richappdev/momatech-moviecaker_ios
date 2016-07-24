@@ -1685,6 +1685,34 @@
                                             <constraint firstAttribute="height" constant="200" id="5N2-PY-KEh"/>
                                         </constraints>
                                     </imageView>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="IAl-U9-3mx" customClass="CircleView">
+                                        <rect key="frame" x="299" y="249" width="52" height="52"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="完成度" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OaM-UG-PJ3">
+                                                <rect key="frame" x="13" y="28" width="27" height="11"/>
+                                                <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="9"/>
+                                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="100%" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KVi-XE-cvU">
+                                                <rect key="frame" x="-8" y="9" width="69" height="21"/>
+                                                <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="14"/>
+                                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                        </subviews>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <constraints>
+                                            <constraint firstItem="KVi-XE-cvU" firstAttribute="centerY" secondItem="IAl-U9-3mx" secondAttribute="centerY" constant="-6.5" id="36T-xc-JZT"/>
+                                            <constraint firstAttribute="width" constant="52" id="3Bf-Hm-OtH"/>
+                                            <constraint firstItem="KVi-XE-cvU" firstAttribute="leading" secondItem="IAl-U9-3mx" secondAttribute="leading" constant="-8" id="Raf-Ow-fmh"/>
+                                            <constraint firstItem="OaM-UG-PJ3" firstAttribute="bottom" secondItem="IAl-U9-3mx" secondAttribute="bottomMargin" constant="-5" id="Vkq-gq-4FY"/>
+                                            <constraint firstItem="KVi-XE-cvU" firstAttribute="centerX" secondItem="IAl-U9-3mx" secondAttribute="centerX" id="ZHb-Lc-7L1"/>
+                                            <constraint firstItem="KVi-XE-cvU" firstAttribute="top" secondItem="IAl-U9-3mx" secondAttribute="top" constant="9" id="hNz-Pg-hun"/>
+                                            <constraint firstAttribute="height" constant="52" id="hqF-Hi-OyK"/>
+                                            <constraint firstItem="KVi-XE-cvU" firstAttribute="centerX" secondItem="OaM-UG-PJ3" secondAttribute="centerX" id="mMC-72-yVZ"/>
+                                        </constraints>
+                                    </view>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="rabbit-512" translatesAutoresizingMaskIntoConstraints="NO" id="x1b-1P-dq4">
                                         <rect key="frame" x="18" y="140" width="50" height="50"/>
                                         <constraints>
@@ -1692,16 +1720,6 @@
                                             <constraint firstAttribute="height" constant="50" id="JCa-Dp-wck"/>
                                         </constraints>
                                     </imageView>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SiZ-Qy-OkI">
-                                        <rect key="frame" x="18" y="198" width="134" height="21"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="21" id="EZZ-6R-QYr"/>
-                                            <constraint firstAttribute="width" constant="134" id="s0F-Tl-WOB"/>
-                                        </constraints>
-                                        <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="14"/>
-                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ToatalFilm評價最佳20部靈魂互換身體電影" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="H1B-tn-kJq">
                                         <rect key="frame" x="18" y="227" width="273" height="50"/>
                                         <constraints>
@@ -2162,34 +2180,16 @@
                                             </tableViewCell>
                                         </prototypes>
                                     </tableView>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="IAl-U9-3mx" customClass="CircleView">
-                                        <rect key="frame" x="299" y="249" width="52" height="52"/>
-                                        <subviews>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="完成度" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OaM-UG-PJ3">
-                                                <rect key="frame" x="13" y="28" width="27" height="11"/>
-                                                <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="9"/>
-                                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="100%" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KVi-XE-cvU">
-                                                <rect key="frame" x="-8" y="9" width="69" height="21"/>
-                                                <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="14"/>
-                                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
-                                        </subviews>
-                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SiZ-Qy-OkI">
+                                        <rect key="frame" x="18" y="198" width="134" height="21"/>
                                         <constraints>
-                                            <constraint firstItem="KVi-XE-cvU" firstAttribute="centerY" secondItem="IAl-U9-3mx" secondAttribute="centerY" constant="-6.5" id="36T-xc-JZT"/>
-                                            <constraint firstAttribute="width" constant="52" id="3Bf-Hm-OtH"/>
-                                            <constraint firstItem="KVi-XE-cvU" firstAttribute="leading" secondItem="IAl-U9-3mx" secondAttribute="leading" constant="-8" id="Raf-Ow-fmh"/>
-                                            <constraint firstItem="OaM-UG-PJ3" firstAttribute="bottom" secondItem="IAl-U9-3mx" secondAttribute="bottomMargin" constant="-5" id="Vkq-gq-4FY"/>
-                                            <constraint firstItem="KVi-XE-cvU" firstAttribute="centerX" secondItem="IAl-U9-3mx" secondAttribute="centerX" id="ZHb-Lc-7L1"/>
-                                            <constraint firstItem="KVi-XE-cvU" firstAttribute="top" secondItem="IAl-U9-3mx" secondAttribute="top" constant="9" id="hNz-Pg-hun"/>
-                                            <constraint firstAttribute="height" constant="52" id="hqF-Hi-OyK"/>
-                                            <constraint firstItem="KVi-XE-cvU" firstAttribute="centerX" secondItem="OaM-UG-PJ3" secondAttribute="centerX" id="mMC-72-yVZ"/>
+                                            <constraint firstAttribute="height" constant="21" id="EZZ-6R-QYr"/>
+                                            <constraint firstAttribute="width" constant="134" id="s0F-Tl-WOB"/>
                                         </constraints>
-                                    </view>
+                                        <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="14"/>
+                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
                                 </subviews>
                                 <constraints>
                                     <constraint firstItem="QND-H6-lFP" firstAttribute="baseline" secondItem="juP-51-Itp" secondAttribute="baseline" id="3sC-KJ-foY"/>
@@ -2444,17 +2444,22 @@
                     </view>
                     <navigationItem key="navigationItem" id="NpV-u8-gq3"/>
                     <connections>
+                        <outlet property="Avatar" destination="x1b-1P-dq4" id="SCV-BU-FAo"/>
                         <outlet property="circleView" destination="IAl-U9-3mx" id="RbD-aP-nVx"/>
+                        <outlet property="date" destination="QND-H6-lFP" id="YeV-Qu-cvF"/>
                         <outlet property="eyeBtn" destination="acA-aS-cXE" id="gyr-H7-Iw0"/>
                         <outlet property="finishLabel" destination="OaM-UG-PJ3" id="VhX-jX-Uwi"/>
                         <outlet property="mainBg" destination="iDB-9S-VRO" id="zfa-qg-QpJ"/>
                         <outlet property="mainScroll" destination="dep-Bu-YLG" id="zQH-hL-Nsf"/>
                         <outlet property="mainTxt" destination="gAJ-8Q-HuP" id="P1y-QH-5t7"/>
+                        <outlet property="nickName" destination="SiZ-Qy-OkI" id="nCR-9k-fnZ"/>
                         <outlet property="pcircleBtn" destination="QUh-Yi-eN6" id="ltb-VJ-pXx"/>
                         <outlet property="penIcon" destination="vEz-mX-z8Z" id="QD2-xl-8ZU"/>
                         <outlet property="percentLabel" destination="KVi-XE-cvU" id="WPS-89-OVq"/>
                         <outlet property="tableHeight" destination="LSN-aD-h06" id="vmP-aa-02i"/>
                         <outlet property="tableView" destination="Xpn-qU-oYr" id="uK7-XD-VkJ"/>
+                        <outlet property="topicTitle" destination="H1B-tn-kJq" id="XaK-9m-HVB"/>
+                        <outlet property="viewCount" destination="juP-51-Itp" id="9Sa-Qt-bNk"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="HTY-Lb-RjW" userLabel="First Responder" sceneMemberID="firstResponder"/>

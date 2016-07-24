@@ -26,6 +26,7 @@
         else{
             self.cellHeight = 200;
         }
+        self.circlePercentage = [[NSMutableArray alloc]init];
     }
     return self;
 }
@@ -92,6 +93,7 @@
             cell.Circle.hidden = NO;
             [cell setCirclePercentage:[[returnData objectForKey:@"PercentComplete"]floatValue]*0.01];
             [cell.Circle setNeedsDisplay];
+            [self.circlePercentage insertObject:[[NSNumber alloc] initWithFloat:cell.Circle.percentage] atIndex:0];
         } error:^(NSError *error) {
             NSLog(@"%@",error);
         }];

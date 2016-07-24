@@ -14,6 +14,7 @@
 #import "MovieTwoTableViewController.h"
 #import "CircleView.h"
 #import "buttonHelper.h"
+#import "AustinApi.h"
 
 @interface TopicDetailViewController ()
 @property MainVerticalScroller *scrollDelegate;
@@ -28,6 +29,12 @@
 @property (strong, nonatomic) IBOutlet UILabel *finishLabel;
 @property (strong, nonatomic) IBOutlet UILabel *percentLabel;
 @property (strong, nonatomic) IBOutlet CircleView *circleView;
+@property (strong, nonatomic) IBOutlet UIImageView *Avatar;
+@property (strong, nonatomic) IBOutlet UILabel *nickName;
+@property (strong, nonatomic) IBOutlet UILabel *topicTitle;
+@property (strong, nonatomic) IBOutlet UILabel *viewCount;
+@property (strong, nonatomic) IBOutlet UILabel *date;
+
 @property MovieTwoTableViewController *movieTableController;
 @end
 
@@ -62,13 +69,19 @@
     self.tableHeight.constant = 320;
     
     UIColor *circleColor = [buttonHelper circleColor:.8];
-    self.circleView.percentage = .8;
+    self.circleView.percentage = self.percent.floatValue;
     
     self.circleView.color = circleColor;
     self.finishLabel.textColor = self.percentLabel.textColor = circleColor;
-    self.percentLabel.text = [NSString stringWithFormat:@"%d%%",(int)(.8*100)];
+    self.percentLabel.text = [NSString stringWithFormat:@"%d%%",(int)(self.percent.floatValue*100)];
     
-   // [self.movieTableController ParentController:self];
+    NSLog(@"%@",self.data);
+    [self.Avatar sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@/Uploads/UserAvatar/%@",[[AustinApi sharedInstance] getBaseUrl],[[self.data objectForKey:@"Author"] objectForKey:@"Avatar"]]] placeholderImage:[UIImage imageNamed:@"img-placeholder.jpg"]];
+    self.nickName.text = [[self.data objectForKey:@"Author"] objectForKey:@"NickName"];
+    self.topicTitle.text = [self.data objectForKey:@"Title"];
+    self.mainTxt.text = [self.data objectForKey:@"Content"];
+    self.viewCount.text = [[self.data objectForKey:@"ViewNum"]stringValue];
+    self.date.text = [[self.data objectForKey:@"ModifiedOn"] stringByReplacingOccurrencesOfString:@"-" withString:@"/"];
 }
 
 -(void)viewWillLayoutSubviews{
