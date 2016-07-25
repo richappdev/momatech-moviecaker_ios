@@ -15,6 +15,7 @@
 #import "reviewController.h"
 #import "WXApi.h"
 #import "WechatAccess.h"
+#import "TopicDetailViewController.h"
 
 @interface MovieDetailController ()
 @property (strong, nonatomic) IBOutlet UIImageView *bgImage;
@@ -73,6 +74,7 @@
     
     self.firstTableController = [[MovieTableViewController alloc] init:0];
     self.firstTableController.data = [[NSArray alloc]init];
+    [self.firstTableController ParentController:self];
     
     [self topicCall];
     
@@ -283,6 +285,13 @@
 }
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
+    if([[segue identifier] isEqualToString:@"topicSegue"]){
+        TopicDetailViewController *vc = segue.destinationViewController;
+        vc.data = [[NSMutableDictionary alloc]initWithDictionary:[self.firstTableController.data objectAtIndex:self.firstTableController.selectIndex]];
+        vc.percent = [NSNumber numberWithInt:-1];
+    }
+    
+    if([[segue identifier] isEqualToString:@"reviewSegue"]){
     reviewController *vc = segue.destinationViewController;
     if(self.newReview){
         self.newReview = NO;
@@ -294,6 +303,7 @@
             vc.sync = YES;
             self.syncReview = NO;
         }}
+    }
 }
 -(void)indexClick:(UITapGestureRecognizer *)gesture{
     if([[NSUserDefaults standardUserDefaults] objectForKey:@"userkey"]==nil){

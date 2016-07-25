@@ -15,6 +15,7 @@
 #import "CircleView.h"
 #import "buttonHelper.h"
 #import "AustinApi.h"
+#import "MovieDetailController.h"
 
 @interface TopicDetailViewController ()
 @property MainVerticalScroller *scrollDelegate;
@@ -69,14 +70,19 @@
     self.movieTableController.tableView = self.tableView;
     self.tableView.delegate =self.movieTableController;
     self.tableHeight.constant = 320;
+    [self.movieTableController ParentController:self];
+    self.movieTableController.page = 999;
     
+    if(self.percent.floatValue>0){
     UIColor *circleColor = [buttonHelper circleColor:.8];
     self.circleView.percentage = self.percent.floatValue;
     
     self.circleView.color = circleColor;
     self.finishLabel.textColor = self.percentLabel.textColor = circleColor;
     self.percentLabel.text = [NSString stringWithFormat:@"%d%%",(int)(self.percent.floatValue*100)];
-    
+    }else{
+        self.circleView.hidden = YES;
+    }
     NSLog(@"%@",self.data);
     [self.Avatar sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@/Uploads/UserAvatar/%@",[[AustinApi sharedInstance] getBaseUrl],[[self.data objectForKey:@"Author"] objectForKey:@"Avatar"]]] placeholderImage:[UIImage imageNamed:@"img-placeholder.jpg"]];
     self.nickName.text = [[self.data objectForKey:@"Author"] objectForKey:@"NickName"];
@@ -187,14 +193,10 @@
 -(void)viewWillDisappear:(BOOL)animated{
     [self.tabBarController.tabBar setHidden:NO];
 }
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
+    if([[segue identifier] isEqualToString:@"movieDetail"]){
+        MovieDetailController *vc = segue.destinationViewController;
+        vc.movieDetailInfo = [self.movieTableController.data objectAtIndex:self.movieTableController.selectIndex];
+    }
 }
-*/
-
 @end
