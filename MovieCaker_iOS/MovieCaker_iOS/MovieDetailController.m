@@ -378,7 +378,7 @@
             }
                 label.text = [NSString stringWithFormat:@"%d",count];}
             
-            [[AustinApi sharedInstance]socialAction:[self.movieDetailInfo objectForKey:@"Id"] act:[NSString stringWithFormat:@"%d",view.tag] obj:@"1" function:^(NSString *returnData) {
+            [[AustinApi sharedInstance]socialAction:[self.movieDetailInfo objectForKey:@"Id"] act:[NSString stringWithFormat:@"%ld",(long)view.tag] obj:@"1" function:^(NSString *returnData) {
                 NSLog(@"%@",returnData);
             } error:^(NSError *error) {
                 NSLog(@"%@",error);

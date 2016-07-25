@@ -1676,8 +1676,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="dep-Bu-YLG">
-                                <rect key="frame" x="0.0" y="-64" width="414" height="751"/>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dep-Bu-YLG">
+                                <rect key="frame" x="0.0" y="-108" width="414" height="844"/>
                                 <subviews>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="on" translatesAutoresizingMaskIntoConstraints="NO" id="iDB-9S-VRO">
                                         <rect key="frame" x="0.0" y="0.0" width="414" height="200"/>
@@ -2277,10 +2277,10 @@
                                     <constraint firstItem="gAJ-8Q-HuP" firstAttribute="leading" secondItem="dep-Bu-YLG" secondAttribute="leading" constant="19" id="uHU-Al-mRk"/>
                                 </constraints>
                             </scrollView>
-                            <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="km6-Cx-xZY">
-                                <rect key="frame" x="0.0" y="637" width="414" height="50"/>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="km6-Cx-xZY">
+                                <rect key="frame" x="0.0" y="686" width="414" height="50"/>
                                 <subviews>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8OX-KB-Yq1">
+                                    <view tag="1" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8OX-KB-Yq1">
                                         <rect key="frame" x="137" y="0.0" width="48" height="50"/>
                                         <subviews>
                                             <imageView userInteractionEnabled="NO" tag="5" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="iconHeartIndexActive" translatesAutoresizingMaskIntoConstraints="NO" id="adR-Es-BpD">
@@ -2310,7 +2310,7 @@
                                             <constraint firstItem="CF0-eg-AB1" firstAttribute="top" secondItem="adR-Es-BpD" secondAttribute="bottom" constant="6" id="vK5-8O-ULd"/>
                                         </constraints>
                                     </view>
-                                    <view tag="1" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="KGD-dr-34U">
+                                    <view tag="3" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="KGD-dr-34U">
                                         <rect key="frame" x="180" y="0.0" width="48" height="50"/>
                                         <subviews>
                                             <imageView userInteractionEnabled="NO" tag="5" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="iconShareListShared" translatesAutoresizingMaskIntoConstraints="NO" id="ScC-D1-nKK">
@@ -2496,10 +2496,13 @@
                         <outlet property="Avatar" destination="x1b-1P-dq4" id="SCV-BU-FAo"/>
                         <outlet property="Chervon" destination="67h-uK-kdX" id="lMw-42-hHX"/>
                         <outlet property="circleView" destination="IAl-U9-3mx" id="RbD-aP-nVx"/>
+                        <outlet property="commentLabel" destination="dhN-10-5gL" id="xjM-Jx-6HO"/>
                         <outlet property="contentHeight" destination="Jr3-ge-Ghf" id="6TN-R7-aat"/>
                         <outlet property="date" destination="QND-H6-lFP" id="YeV-Qu-cvF"/>
                         <outlet property="eyeBtn" destination="acA-aS-cXE" id="gyr-H7-Iw0"/>
                         <outlet property="finishLabel" destination="OaM-UG-PJ3" id="VhX-jX-Uwi"/>
+                        <outlet property="likeBtn" destination="8OX-KB-Yq1" id="yH4-DA-WHw"/>
+                        <outlet property="likeLabel" destination="CF0-eg-AB1" id="pJ9-nX-1oF"/>
                         <outlet property="mainBg" destination="iDB-9S-VRO" id="zfa-qg-QpJ"/>
                         <outlet property="mainScroll" destination="dep-Bu-YLG" id="zQH-hL-Nsf"/>
                         <outlet property="mainTxt" destination="gAJ-8Q-HuP" id="P1y-QH-5t7"/>
@@ -2510,6 +2513,8 @@
                         <outlet property="pcircleBtn" destination="QUh-Yi-eN6" id="ltb-VJ-pXx"/>
                         <outlet property="penIcon" destination="vEz-mX-z8Z" id="QD2-xl-8ZU"/>
                         <outlet property="percentLabel" destination="KVi-XE-cvU" id="WPS-89-OVq"/>
+                        <outlet property="shareBtn" destination="KGD-dr-34U" id="nqP-XL-xWi"/>
+                        <outlet property="shareLabel" destination="pY0-1R-tph" id="NER-Xc-q4t"/>
                         <outlet property="tableHeight" destination="LSN-aD-h06" id="vmP-aa-02i"/>
                         <outlet property="tableLabel" destination="ECf-PI-hTa" id="3gX-UZ-ZTP"/>
                         <outlet property="tableView" destination="Xpn-qU-oYr" id="uK7-XD-VkJ"/>

@@ -16,6 +16,8 @@
 #import "buttonHelper.h"
 #import "AustinApi.h"
 #import "MovieDetailController.h"
+#import "WXApi.h"
+#import "WechatAccess.h"
 
 @interface TopicDetailViewController ()
 @property MainVerticalScroller *scrollDelegate;
@@ -44,6 +46,11 @@
 @property (strong, nonatomic) IBOutlet UILabel *tableLabel;
 @property BOOL eyeB;
 @property BOOL playB;
+@property (strong, nonatomic) IBOutlet UIView *likeBtn;
+@property (strong, nonatomic) IBOutlet UIView *shareBtn;
+@property (strong, nonatomic) IBOutlet UILabel *likeLabel;
+@property (strong, nonatomic) IBOutlet UILabel *shareLabel;
+@property (strong, nonatomic) IBOutlet UILabel *commentLabel;
 @property NSArray *original;
 
 @property MovieTwoTableViewController *movieTableController;
@@ -96,6 +103,13 @@
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(moreClick)];
     [self.moreBtn addGestureRecognizer:tap];
     
+    self.likeLabel.text = [[self.data objectForKey:@"LikeNum"] stringValue];
+    self.shareLabel.text = [[self.data objectForKey:@"ShareNum"] stringValue];
+    self.commentLabel.text = [[self.data objectForKey:@"CommentNum"] stringValue];
+    
+    [buttonHelper v2AdjustLike:self.likeBtn state:[[self.data objectForKey:@"IsLiked"] boolValue]];
+    [buttonHelper v2AdjustShare:self.shareBtn state:[[self.data objectForKey:@"IsShared"] boolValue]];
+    
     [[AustinApi sharedInstance]movieListCustom:@"3" location:nil year:nil month:nil page:nil topicId:[self.data objectForKey:@"Id"] function:^(NSArray *returnData) {
         self.original = self.movieTableController.data = returnData;
         self.tableHeight.constant = 165*[returnData count];
@@ -108,6 +122,9 @@
     
     [self filterAddTap:self.eyeBtn];
     [self filterAddTap:self.pcircleBtn];
+    
+    [self addIndexGesture:self.likeBtn];
+    [self addIndexGesture:self.shareBtn];
 }
 -(void)filterAddTap:(UIView*)view{
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(filterClick:)];
@@ -199,4 +216,84 @@
         vc.movieDetailInfo = [self.movieTableController.data objectAtIndex:self.movieTableController.selectIndex];
     }
 }
+-(void)addIndexGesture:(UIView*)view{
+    UITapGestureRecognizer *indexTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(indexClick:)];
+    [view addGestureRecognizer:indexTap];
+}
+-(void)indexClick:(UIGestureRecognizer*)gesture{
+    UIView *view = gesture.view;
+    if([[NSUserDefaults standardUserDefaults] objectForKey:@"userkey"]==nil){
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"注意" message:@"请登入" delegate:self cancelButtonTitle:@"关闭" otherButtonTitles:nil,nil];
+        [alert show];
+    }else{
+        UINavigationController *nav = [self.tabBarController.viewControllers objectAtIndex:0];
+        MovieController *movie = [[nav viewControllers]objectAtIndex:0];
+        movie.refresh = YES;
+      if(view.tag==3){
+            
+            WXMediaMessage *message = [WXMediaMessage message];
+            message.title = [self.data objectForKey:@"Title"];
+            
+            NSString *str;
+            if ([[self.data objectForKey:@"Content"] length]>140) {
+                str=[[self.data objectForKey:@"Content"] substringToIndex:140];
+            }else{
+                str=[self.data objectForKey:@"Content"];
+            }
+            
+            message.description=str;
+            
+            [message setThumbImage:self.Avatar.image];
+            
+            WXWebpageObject *ext = [WXWebpageObject object];
+            ext.webpageUrl =  [NSString stringWithFormat:@"%@/topic/topicpage/%@",[[AustinApi sharedInstance] getBaseUrl],[self.data objectForKey:@"Id"]];
+            NSLog(@"%@",ext.webpageUrl);
+            message.mediaObject = ext;
+            SendMessageToWXReq* req = [[SendMessageToWXReq alloc] init];
+            req.bText = NO;
+            req.message = message;
+            req.scene = WXSceneSession;
+            
+            [WXApi sendReq:req];
+            
+        }
+        
+        UILabel *label = [view viewWithTag:6];
+        NSNumber *boolValue;
+        int count = 0;
+        if(view.tag==1){
+            count = [[self.data objectForKey:@"LikeNum"] integerValue];
+            boolValue = [self.data objectForKey:@"IsLiked"];
+        }else if (view.tag==3){
+            count = [[self.data objectForKey:@"ShareNum"] integerValue];
+            boolValue = [self.data objectForKey:@"IsShared"];
+        }
+        
+        if([boolValue boolValue]){
+            count--;
+        }else{
+            count++;
+        }
+        
+        if(view.tag==1){
+            [buttonHelper v2AdjustLike:self.likeBtn state:![boolValue boolValue]];
+            [self.data setObject:[[NSNumber alloc] initWithBool:![boolValue boolValue]] forKey:@"IsLiked"];
+            [self.data setObject:[NSNumber numberWithInt:count] forKey:@"LikeNum"];
+        }else if (view.tag==3){
+            [buttonHelper v2AdjustShare:self.shareBtn state:TRUE];
+            count = [[self.data objectForKey:@"ShareNum"]integerValue];
+            if(![[self.data objectForKey:@"IsShared"]boolValue]){
+                count++;
+            }
+        }
+        label.text = [NSString stringWithFormat:@"%d",count];
+    
+        [[AustinApi sharedInstance]socialAction:[self.data objectForKey:@"Id"] act:[NSString stringWithFormat:@"%ld",(long)view.tag] obj:@"3" function:^(NSString *returnData) {
+            NSLog(@"%@",returnData);
+        } error:^(NSError *error) {
+            NSLog(@"%@",error);
+        }];
+    }
+    }
+
 @end
