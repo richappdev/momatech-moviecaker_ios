@@ -323,7 +323,7 @@
         yearString = nil;
     }
     
-    [[AustinApi sharedInstance] movieListCustom:type location:locationId year:yearString month:monthString page:page function:^(NSArray *returnData) {
+    [[AustinApi sharedInstance] movieListCustom:type location:locationId year:yearString month:monthString page:page topicId:nil function:^(NSArray *returnData) {
         NSMutableArray *array = [[NSMutableArray alloc]init];
         for (NSDictionary *row in returnData) {
             [array addObject:[[NSMutableDictionary alloc] initWithDictionary:row]];
@@ -456,7 +456,7 @@
     [self setFilter];
 }
 -(void)loadFriends:(NSString*)page{
-    [[AustinApi sharedInstance]movieListCustom:@"1" location:nil year:nil month:nil page:nil function:^(NSArray *returnData) {
+    [[AustinApi sharedInstance]movieListCustom:@"1" location:nil year:nil month:nil page:nil topicId:nil function:^(NSArray *returnData) {
         if(page==nil){
             self.movieTableController.page = 1;
             self.tabThreeData =returnData;

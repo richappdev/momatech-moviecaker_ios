@@ -40,6 +40,7 @@
 @property BOOL opened;
 @property (strong, nonatomic) IBOutlet NSLayoutConstraint *contentHeight;
 @property (strong, nonatomic) IBOutlet NSLayoutConstraint *moreHeight;
+@property (strong, nonatomic) IBOutlet UILabel *tableLabel;
 
 @property MovieTwoTableViewController *movieTableController;
 @end
@@ -64,7 +65,6 @@
     self.movieTableController = [[MovieTwoTableViewController alloc] init];
     self.movieTableController.tableView = self.tableView;
     self.tableView.delegate =self.movieTableController;
-    self.movieTableController.data = [[NSArray alloc] initWithObjects:[[NSDictionary alloc] init],[[NSDictionary alloc]init], nil];
     self.tableHeight.constant = 320;
     
     UIColor *circleColor = [buttonHelper circleColor:.8];
@@ -96,6 +96,15 @@
     maskLayer.locations = @[ @0.0f, @0.0f, @1.0f ];
     maskLayer.frame = self.mainTxt.bounds;
      self.mainTxt.layer.mask = maskLayer;
+    [[AustinApi sharedInstance]movieListCustom:@"3" location:nil year:nil month:nil page:nil topicId:[self.data objectForKey:@"Id"] function:^(NSArray *returnData) {
+        self.movieTableController.data = returnData;
+        self.tableHeight.constant = 160*[returnData count];
+        [self.mainScroll setContentSize:CGSizeMake(self.view.frame.size.width, self.tableHeight.constant+550)];
+        self.tableLabel.text = [NSString stringWithFormat:@"專題單片%lu部",(unsigned long)[returnData count]];
+        [self.movieTableController.tableView reloadData];
+    } error:^(NSError *error) {
+        NSLog(@"%@",error);
+    }];
 }
 -(void)moreClick{
     if(self.opened){
@@ -115,10 +124,6 @@
     self.opened = !self.opened;
 }
 
--(void)viewWillLayoutSubviews{
-    [self.mainScroll setContentSize:CGSizeMake(self.view.frame.size.width, 2000)];
-
-}
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
