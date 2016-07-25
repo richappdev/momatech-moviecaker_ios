@@ -254,6 +254,7 @@
 }
 
 -(void)viewWillAppear:(BOOL)animated{
+    [self.tabBarController.tabBar setHidden:YES];
     self.navigationController.navigationBarHidden = NO;
     self.mainScroll.delegate = self.scrollDelegate;
     
@@ -268,6 +269,7 @@
     }
 }
 -(void)viewWillDisappear:(BOOL)animated{
+    [self.tabBarController.tabBar setHidden:NO];
     self.mainScroll.delegate = nil;
     if(self.syncReview){
         UINavigationController *nav = [self.tabBarController.viewControllers objectAtIndex:0];

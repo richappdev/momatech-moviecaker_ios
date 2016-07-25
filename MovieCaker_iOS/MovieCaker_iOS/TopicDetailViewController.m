@@ -124,6 +124,12 @@
     // Dispose of any resources that can be recreated.
 }
 
+-(void)viewWillAppear:(BOOL)animated{
+    [self.tabBarController.tabBar setHidden:YES];
+}
+-(void)viewWillDisappear:(BOOL)animated{
+    [self.tabBarController.tabBar setHidden:NO];
+}
 /*
 #pragma mark - Navigation
 
