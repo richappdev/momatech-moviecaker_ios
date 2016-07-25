@@ -41,6 +41,9 @@
 @property (strong, nonatomic) IBOutlet NSLayoutConstraint *contentHeight;
 @property (strong, nonatomic) IBOutlet NSLayoutConstraint *moreHeight;
 @property (strong, nonatomic) IBOutlet UILabel *tableLabel;
+@property BOOL eyeB;
+@property BOOL playB;
+@property NSArray *original;
 
 @property MovieTwoTableViewController *movieTableController;
 @end
@@ -86,6 +89,64 @@
     self.Chervon.image = [UIImage imageWithIcon:@"fa-chevron-down" backgroundColor:[UIColor clearColor] iconColor:[UIColor whiteColor] andSize:CGSizeMake(18, 20)];
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(moreClick)];
     [self.moreBtn addGestureRecognizer:tap];
+    
+    [[AustinApi sharedInstance]movieListCustom:@"3" location:nil year:nil month:nil page:nil topicId:[self.data objectForKey:@"Id"] function:^(NSArray *returnData) {
+        self.original = self.movieTableController.data = returnData;
+        self.tableHeight.constant = 165*[returnData count];
+        [self.mainScroll setContentSize:CGSizeMake(self.view.frame.size.width, self.tableHeight.constant+550)];
+        self.tableLabel.text = [NSString stringWithFormat:@"專題單片%lu部",(unsigned long)[returnData count]];
+        [self.movieTableController.tableView reloadData];
+    } error:^(NSError *error) {
+        NSLog(@"%@",error);
+    }];
+    
+    [self filterAddTap:self.eyeBtn];
+    [self filterAddTap:self.pcircleBtn];
+}
+-(void)filterAddTap:(UIView*)view{
+    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(filterClick:)];
+    view.userInteractionEnabled = YES;
+    [view addGestureRecognizer:tap];
+}
+-(void)filterClick:(UIGestureRecognizer*)gesture{
+    if(gesture.view.tag==0){
+        if(self.eyeB){
+            self.eyeBtn.image = [UIImage imageWithIcon:@"fa-eye-slash" backgroundColor:[UIColor clearColor] iconColor:[UIColor colorWithRed:(172/255.0f) green:(189/255.0f) blue:(206/255.0f) alpha:1.0] andSize:CGSizeMake(20, 20)];
+        }else{
+            self.eyeBtn.image = [UIImage imageWithIcon:@"fa-eye-slash" backgroundColor:[UIColor clearColor] iconColor:[UIColor colorWithRed:(128/255.0f) green:(203/255.0f) blue:(196/255.0f) alpha:1.0] andSize:CGSizeMake(20, 20)];
+        }
+        self.eyeB = !self.eyeB;
+    }
+    if(gesture.view.tag==1){
+        if(self.playB){
+            self.pcircleBtn.image = [UIImage imageWithIcon:@"fa-play-circle" backgroundColor:[UIColor clearColor] iconColor:[UIColor colorWithRed:(172/255.0f) green:(189/255.0f) blue:(206/255.0f) alpha:1.0] andSize:CGSizeMake(18, 20)];
+        }else{
+            self.pcircleBtn.image = [UIImage imageWithIcon:@"fa-play-circle" backgroundColor:[UIColor clearColor] iconColor:[UIColor colorWithRed:(128/255.0f) green:(203/255.0f) blue:(196/255.0f) alpha:1.0] andSize:CGSizeMake(18, 20)];
+        }
+        self.playB = !self.playB;
+    }
+    NSMutableArray *temp = [[NSMutableArray alloc]init];
+    for (NSDictionary *row in self.original) {
+        BOOL add = YES;
+        if(self.eyeB){
+            if([[row objectForKey:@"IsViewed"]boolValue]==TRUE){
+                add= NO;
+            }
+        }
+        if(self.playB){
+            if([[row objectForKey:@"IsPlayable"]boolValue]==FALSE){
+                add = NO;
+            }
+        }
+        if(add){
+            [temp addObject:row];
+        }
+    }
+    self.movieTableController.data = temp;
+    self.tableHeight.constant = 165*[temp count];
+    [self.mainScroll setContentSize:CGSizeMake(self.view.frame.size.width, self.tableHeight.constant+550)];
+    self.tableLabel.text = [NSString stringWithFormat:@"專題單片%lu部",(unsigned long)[temp count]];
+    [self.movieTableController.tableView reloadData];
 }
 -(void)addMask{
     CAGradientLayer *maskLayer = [CAGradientLayer layer];
@@ -96,15 +157,6 @@
     maskLayer.locations = @[ @0.0f, @0.0f, @1.0f ];
     maskLayer.frame = self.mainTxt.bounds;
      self.mainTxt.layer.mask = maskLayer;
-    [[AustinApi sharedInstance]movieListCustom:@"3" location:nil year:nil month:nil page:nil topicId:[self.data objectForKey:@"Id"] function:^(NSArray *returnData) {
-        self.movieTableController.data = returnData;
-        self.tableHeight.constant = 165*[returnData count];
-        [self.mainScroll setContentSize:CGSizeMake(self.view.frame.size.width, self.tableHeight.constant+550)];
-        self.tableLabel.text = [NSString stringWithFormat:@"專題單片%lu部",(unsigned long)[returnData count]];
-        [self.movieTableController.tableView reloadData];
-    } error:^(NSError *error) {
-        NSLog(@"%@",error);
-    }];
 }
 -(void)moreClick{
     if(self.opened){
