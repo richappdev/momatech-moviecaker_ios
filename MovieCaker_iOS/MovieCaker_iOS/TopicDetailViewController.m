@@ -77,7 +77,7 @@
     NSLog(@"%@",self.data);
     [self.Avatar sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@/Uploads/UserAvatar/%@",[[AustinApi sharedInstance] getBaseUrl],[[self.data objectForKey:@"Author"] objectForKey:@"Avatar"]]] placeholderImage:[UIImage imageNamed:@"img-placeholder.jpg"]];
     self.nickName.text = [[self.data objectForKey:@"Author"] objectForKey:@"NickName"];
-    self.topicTitle.text = [self.data objectForKey:@"Title"];
+    self.title = self.topicTitle.text = [self.data objectForKey:@"Title"];
     self.mainTxt.text = [self.data objectForKey:@"Content"];
     self.viewCount.text = [[self.data objectForKey:@"ViewNum"]stringValue];
     self.date.text = [[self.data objectForKey:@"ModifiedOn"] stringByReplacingOccurrencesOfString:@"-" withString:@"/"];
