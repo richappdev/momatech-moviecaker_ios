@@ -109,7 +109,6 @@
 -(void)reviewCall{
     [[AustinApi sharedInstance]getReview:@"2" page:nil function:^(NSArray *returnData) {
         //    NSLog(@"bbb%@",returnData);
-
         self.movieTable2Controller.data = returnData;
         self.movieTable2.delegate = self.movieTable2Controller;
         self.movieTable2.dataSource = self.movieTable2Controller;
@@ -126,7 +125,12 @@
 -(void)topicCall{
     [[AustinApi sharedInstance]getTopic:@"6" vid:nil function:^(NSArray *returnData) {
         //     NSLog(@"bbb%@",returnData);
-        self.movieTableController.data =returnData;
+        NSMutableArray *array = [[NSMutableArray alloc]init];
+        for (NSDictionary *row in returnData) {
+            NSMutableDictionary *dict = [[NSMutableDictionary alloc]initWithDictionary:row];
+            [array addObject:dict];
+        }
+        self.movieTableController.data =array;
         self.movieTable.delegate = self.movieTableController;
         self.movieTable.dataSource = self.movieTableController;
         self.movieTableController.tableHeight = self.movieTableHeight;

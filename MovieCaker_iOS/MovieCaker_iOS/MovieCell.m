@@ -47,10 +47,16 @@
         [alert show];
     }else{
     NSString *act;
+        NSLog(@"%@",self.data);
     if(sender.view.tag==0||sender.view.tag==2){
+        if(sender.view.tag==0){
+            [self.data setObject:[NSNumber numberWithBool:TRUE] forKey:@"IsLiked"];
+        }else{
+            [self.data setObject:[NSNumber numberWithBool:FALSE] forKey:@"IsLiked"];
+        }
         act =@"1";
     }else{
-        NSLog(@"three");
+        [self.data setObject:[NSNumber numberWithBool:TRUE] forKey:@"IsShared"];
         WXMediaMessage *message = [WXMediaMessage message];
         message.title = self.title.text;
         

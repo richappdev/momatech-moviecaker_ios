@@ -67,6 +67,7 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     if(self.type==0){
     MovieCell *cell = [tableView dequeueReusableCellWithIdentifier:@"MovieCell" forIndexPath:indexPath];
+        cell.data = [self.data objectAtIndex:indexPath.row];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         cell.Id = [[self.data objectAtIndex:indexPath.row]objectForKey:@"Id"];
         cell.title.text = [[self.data objectAtIndex:indexPath.row]objectForKey:@"Title"];
