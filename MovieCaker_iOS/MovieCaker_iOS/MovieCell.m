@@ -11,6 +11,7 @@
 #import "AustinApi.h"
 #import "WXApi.h"
 #import "WechatAccess.h"
+#import "buttonHelper.h"
 @implementation MovieCell
 
 - (void)awakeFromNib {
@@ -27,16 +28,7 @@
 }
 -(void)setCirclePercentage:(float)percent{
     self.Circle.percentage = percent;
-    UIColor *circleColor;
-    if(percent<=1&&percent>=.75){
-        circleColor = [UIColor colorWithRed:0.39 green:0.73 blue:0.34 alpha:1.0];
-    }else if (percent<=.75&&percent>=.5){
-        circleColor = [UIColor colorWithRed:0.97 green:0.39 blue:0.34 alpha:1.0];
-    }else if(percent<=.5&&percent>=.25){
-        circleColor = [UIColor orangeColor];
-    }else{
-        circleColor = [UIColor blackColor];
-    }
+    UIColor *circleColor = [buttonHelper circleColor:percent];
     
     self.Circle.color = circleColor;
     self.percentageLabel.textColor = circleColor;
@@ -55,10 +47,16 @@
         [alert show];
     }else{
     NSString *act;
+        NSLog(@"%@",self.data);
     if(sender.view.tag==0||sender.view.tag==2){
+        if(sender.view.tag==0){
+            [self.data setObject:[NSNumber numberWithBool:TRUE] forKey:@"IsLiked"];
+        }else{
+            [self.data setObject:[NSNumber numberWithBool:FALSE] forKey:@"IsLiked"];
+        }
         act =@"1";
     }else{
-        NSLog(@"three");
+        [self.data setObject:[NSNumber numberWithBool:TRUE] forKey:@"IsShared"];
         WXMediaMessage *message = [WXMediaMessage message];
         message.title = self.title.text;
         

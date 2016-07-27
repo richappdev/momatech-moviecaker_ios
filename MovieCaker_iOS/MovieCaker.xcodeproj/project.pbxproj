@@ -49,6 +49,7 @@
 		6CA52C5B1CB9587400C5FDC8 /* scrollBoxView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CA52C5A1CB9587400C5FDC8 /* scrollBoxView.m */; };
 		6CA52C841CBB547A00C5FDC8 /* movieModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CA52C831CBB547A00C5FDC8 /* movieModel.m */; };
 		6CA52C871CBEC3A900C5FDC8 /* MovieDetailController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CA52C861CBEC3A900C5FDC8 /* MovieDetailController.m */; };
+		6CB03EF31D3FF40D0037F117 /* TopicDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CB03EF21D3FF40D0037F117 /* TopicDetailViewController.m */; };
 		6CD0DEDE1CC3867300878995 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6CD0DEDD1CC3867300878995 /* SystemConfiguration.framework */; };
 		6CD0DEE01CC3867900878995 /* libsqlite3.0.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 6CD0DEDF1CC3867900878995 /* libsqlite3.0.tbd */; };
 		6CD0DEE21CC3868000878995 /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 6CD0DEE11CC3868000878995 /* libz.tbd */; };
@@ -161,6 +162,8 @@
 		6CA52C831CBB547A00C5FDC8 /* movieModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = movieModel.m; sourceTree = "<group>"; };
 		6CA52C851CBEC3A900C5FDC8 /* MovieDetailController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MovieDetailController.h; sourceTree = "<group>"; };
 		6CA52C861CBEC3A900C5FDC8 /* MovieDetailController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MovieDetailController.m; sourceTree = "<group>"; };
+		6CB03EF11D3FF40D0037F117 /* TopicDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TopicDetailViewController.h; sourceTree = "<group>"; };
+		6CB03EF21D3FF40D0037F117 /* TopicDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TopicDetailViewController.m; sourceTree = "<group>"; };
 		6CD0DEDD1CC3867300878995 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		6CD0DEDF1CC3867900878995 /* libsqlite3.0.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.0.tbd; path = usr/lib/libsqlite3.0.tbd; sourceTree = SDKROOT; };
 		6CD0DEE11CC3868000878995 /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
@@ -337,6 +340,8 @@
 				6CF975601D1B0AB8008BF55A /* reviewController.m */,
 				6C58780B1D2072B50051A4C4 /* ReviewTableViewController.h */,
 				6C58780C1D2072B50051A4C4 /* ReviewTableViewController.m */,
+				6CB03EF11D3FF40D0037F117 /* TopicDetailViewController.h */,
+				6CB03EF21D3FF40D0037F117 /* TopicDetailViewController.m */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -522,6 +527,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				6C1250851CC3857B0009549B /* AFURLSessionManager.m in Sources */,
+				6CB03EF31D3FF40D0037F117 /* TopicDetailViewController.m in Sources */,
 				6C5878161D259F5B0051A4C4 /* reviewCell.m in Sources */,
 				6C67800F1CC5033E005AEB35 /* WechatAccess.m in Sources */,
 				6C1250821CC3857B0009549B /* AFURLConnectionOperation.m in Sources */,

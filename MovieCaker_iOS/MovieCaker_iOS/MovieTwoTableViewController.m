@@ -47,7 +47,12 @@
     return [self.data count];
 }
 
-
+-(void)gotoEdit:(long)row{
+    self.selectIndex =row;
+    self.parentController.newReview = YES;
+    [self.parentController performSegueWithIdentifier:@"reviewSegue" sender:self];
+    NSLog(@"aa%ld",row);
+}
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     UITableViewCell *cell;
     if(indexPath.row>=self.page*10-1){
@@ -64,8 +69,10 @@
         }else{
             cell = [tableView dequeueReusableCellWithIdentifier:@"movieTableOne" forIndexPath:indexPath];
     }
-    
-    NSDictionary *data = [self.data objectAtIndex:indexPath.row];
+    cell.index =indexPath.row;
+    cell.parent= self;
+    NSMutableDictionary *data = [self.data objectAtIndex:indexPath.row];
+    cell.data = data;
     cell.title.text = [data objectForKey:@"CNName"];
     NSString *url = [NSString stringWithFormat:@"http://www.funmovie.tv/Content/pictures/files/%@?width=88",[data objectForKey:@"Picture"]];
     [cell.image sd_setImageWithURL:[NSURL URLWithString:url] placeholderImage:[UIImage imageNamed:@"img-placeholder.jpg"]];
@@ -80,7 +87,11 @@
     cell.viewed.text = [[data objectForKey:@"ViewNum"]stringValue];
     
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
-
+        
+    [cell setWatchState:[[data objectForKey:@"IsViewed"] boolValue]];
+    [cell setLikeState:[[data objectForKey:@"IsLiked"] boolValue]];
+    [cell setWannaState:[[data objectForKey:@"IsWantView"] boolValue]];
+        
     return cell;
     }else if (self.type == 2){
     MovieTabCell *cell = [tableView dequeueReusableCellWithIdentifier:@"MovieTableTwo" forIndexPath:indexPath];

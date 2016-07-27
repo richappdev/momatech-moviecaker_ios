@@ -10,6 +10,7 @@
 
 @interface MovieViewController : UIViewController
 @property int jump;
+@property BOOL newReview;
 -(void)loadMore:(int)page;
 @end
 

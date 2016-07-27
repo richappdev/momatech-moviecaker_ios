@@ -26,6 +26,7 @@
         else{
             self.cellHeight = 200;
         }
+        self.circlePercentage = [[NSMutableArray alloc]init];
     }
     return self;
 }
@@ -66,6 +67,7 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     if(self.type==0){
     MovieCell *cell = [tableView dequeueReusableCellWithIdentifier:@"MovieCell" forIndexPath:indexPath];
+        cell.data = [self.data objectAtIndex:indexPath.row];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         cell.Id = [[self.data objectAtIndex:indexPath.row]objectForKey:@"Id"];
         cell.title.text = [[self.data objectAtIndex:indexPath.row]objectForKey:@"Title"];
@@ -92,6 +94,7 @@
             cell.Circle.hidden = NO;
             [cell setCirclePercentage:[[returnData objectForKey:@"PercentComplete"]floatValue]*0.01];
             [cell.Circle setNeedsDisplay];
+            [self.circlePercentage insertObject:[[NSNumber alloc] initWithFloat:cell.Circle.percentage] atIndex:0];
         } error:^(NSError *error) {
             NSLog(@"%@",error);
         }];
@@ -139,9 +142,13 @@
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
-{
+{ NSLog(@"a");
     self.selectIndex = indexPath.row;
-    [self.parentController performSegueWithIdentifier:@"reviewSegue" sender:self];
+    if(self.type==0){
+        [self.parentController performSegueWithIdentifier:@"topicSegue" sender:self];
+    }else if(self.type==1){
+        [self.parentController performSegueWithIdentifier:@"reviewSegue" sender:self];
+    }
 }
 
 /*

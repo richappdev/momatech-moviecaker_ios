@@ -11,6 +11,7 @@
 #import "MovieTwoTableViewController.h"
 #import "MovieDetailController.h"
 #import "reviewController.h"
+#import "buttonHelper.h"
 
 @interface MovieViewController ()
 @property (strong, nonatomic) IBOutlet UILabel *firstLabel;
@@ -145,6 +146,8 @@
     self.navigationController.navigationBarHidden = YES;
     if(self.loaded) {
         [self doJump];}
+    [self.movieTable reloadData];
+
 }
 -(void)doJump{
     if(self.jump==1){
@@ -320,19 +323,23 @@
         yearString = nil;
     }
     
-    [[AustinApi sharedInstance] movieListCustom:type location:locationId year:yearString month:monthString page:page function:^(NSArray *returnData) {
+    [[AustinApi sharedInstance] movieListCustom:type location:locationId year:yearString month:monthString page:page topicId:nil function:^(NSArray *returnData) {
+        NSMutableArray *array = [[NSMutableArray alloc]init];
+        for (NSDictionary *row in returnData) {
+            [array addObject:[[NSMutableDictionary alloc] initWithDictionary:row]];
+        }
         if(page==nil){
         if(callType==3){
-        self.tabTwoData = returnData;
+        self.tabTwoData = array;
         }
         else{
-        self.tabOneData = returnData;
+        self.tabOneData = array;
         }
         self.movieTableController.page = 1;
         
-            self.movieTableController.data = returnData;}
+            self.movieTableController.data = array;}
         else{
-            NSArray *new = [self.movieTableController.data arrayByAddingObjectsFromArray:returnData];
+            NSArray *new = [self.movieTableController.data arrayByAddingObjectsFromArray:array];
             self.movieTableController.data = new;
         }
         [self.movieTable reloadData];
@@ -385,6 +392,11 @@
         [self getMovieList:@"6" location:nil type:2 page:nil];
     }
     [self confirmLocation:gestureRecongnizer];
+    double delayInSeconds = 0.5;
+    dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, delayInSeconds * NSEC_PER_SEC);
+    dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
+        self.movieTable.delegate =self.movieTableController;
+    });
 }
 -(void)confirmLocation:(UITapGestureRecognizer*)gestureRecongnizer{
     [self.view layoutIfNeeded];
@@ -444,7 +456,7 @@
     [self setFilter];
 }
 -(void)loadFriends:(NSString*)page{
-    [[AustinApi sharedInstance]movieListCustom:@"1" location:nil year:nil month:nil page:nil function:^(NSArray *returnData) {
+    [[AustinApi sharedInstance]movieListCustom:@"1" location:nil year:nil month:nil page:nil topicId:nil function:^(NSArray *returnData) {
         if(page==nil){
             self.movieTableController.page = 1;
             self.tabThreeData =returnData;
@@ -546,14 +558,22 @@
 
 }
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
-    NSLog(@"a");
     if([[segue identifier] isEqualToString:@"movieDetail"]){
     MovieDetailController *vc = segue.destinationViewController;
-    vc.movieDetailInfo = [[NSDictionary alloc] initWithObjectsAndKeys:[[self.movieTableController.data objectAtIndex:self.movieTableController.selectIndex] objectForKey:@"Id"],@"Id", nil];
-        vc.loadLater = YES;}
+        vc.movieDetailInfo = [self.movieTableController.data objectAtIndex:self.movieTableController.selectIndex];
+    }
     else if([[segue identifier] isEqualToString:@"reviewSegue"]){
         reviewController *vc = segue.destinationViewController;
+        if(self.newReview){
+            self.newReview=NO;
+            vc.newReview = YES;
+            NSDictionary *vData = [self.movieTableController.data objectAtIndex:self.movieTableController.selectIndex];
+            NSDictionary *User = [[NSKeyedUnarchiver unarchiveObjectWithData:[[NSUserDefaults standardUserDefaults] objectForKey:@"userkey"]]objectForKey:@"Data"];
+            vc.data = [buttonHelper reviewNewData:vData User:User];
+        }else{
          vc.data = [[NSMutableDictionary alloc]initWithDictionary:[self.movieTableController.data objectAtIndex:self.movieTableController.selectIndex]];
+        }
+        NSLog(@"%@",vc.data);
     }
 }
 

@@ -16,6 +16,7 @@
 -(void)ParentController:(MovieController *)movie;
 @property int type;
 @property NSArray *data;
+@property NSMutableArray *circlePercentage;
 @property int selectIndex;
 -(void)sync;
 @end
