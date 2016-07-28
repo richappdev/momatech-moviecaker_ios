@@ -46,6 +46,7 @@
 		6C7F9F691CDE9870001BE238 /* UIImageView+HighlightedWebCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C7F9F571CDE9870001BE238 /* UIImageView+HighlightedWebCache.m */; };
 		6C7F9F6A1CDE9870001BE238 /* UIImageView+WebCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C7F9F591CDE9870001BE238 /* UIImageView+WebCache.m */; };
 		6C7F9F6B1CDE9870001BE238 /* UIView+WebCacheOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C7F9F5B1CDE9870001BE238 /* UIView+WebCacheOperation.m */; };
+		6C99D6DE1D498034005A12FA /* TopicTabViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C99D6DD1D498034005A12FA /* TopicTabViewController.m */; };
 		6CA52C5B1CB9587400C5FDC8 /* scrollBoxView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CA52C5A1CB9587400C5FDC8 /* scrollBoxView.m */; };
 		6CA52C841CBB547A00C5FDC8 /* movieModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CA52C831CBB547A00C5FDC8 /* movieModel.m */; };
 		6CA52C871CBEC3A900C5FDC8 /* MovieDetailController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CA52C861CBEC3A900C5FDC8 /* MovieDetailController.m */; };
@@ -156,6 +157,8 @@
 		6C7F9F591CDE9870001BE238 /* UIImageView+WebCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImageView+WebCache.m"; sourceTree = "<group>"; };
 		6C7F9F5A1CDE9870001BE238 /* UIView+WebCacheOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+WebCacheOperation.h"; sourceTree = "<group>"; };
 		6C7F9F5B1CDE9870001BE238 /* UIView+WebCacheOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+WebCacheOperation.m"; sourceTree = "<group>"; };
+		6C99D6DC1D498034005A12FA /* TopicTabViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TopicTabViewController.h; sourceTree = "<group>"; };
+		6C99D6DD1D498034005A12FA /* TopicTabViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TopicTabViewController.m; sourceTree = "<group>"; };
 		6CA52C591CB9587400C5FDC8 /* scrollBoxView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = scrollBoxView.h; sourceTree = "<group>"; };
 		6CA52C5A1CB9587400C5FDC8 /* scrollBoxView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = scrollBoxView.m; sourceTree = "<group>"; };
 		6CA52C821CBB547A00C5FDC8 /* movieModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = movieModel.h; sourceTree = "<group>"; };
@@ -342,6 +345,8 @@
 				6C58780C1D2072B50051A4C4 /* ReviewTableViewController.m */,
 				6CB03EF11D3FF40D0037F117 /* TopicDetailViewController.h */,
 				6CB03EF21D3FF40D0037F117 /* TopicDetailViewController.m */,
+				6C99D6DC1D498034005A12FA /* TopicTabViewController.h */,
+				6C99D6DD1D498034005A12FA /* TopicTabViewController.m */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -544,6 +549,7 @@
 				6C7F9F5E1CDE9870001BE238 /* SDImageCache.m in Sources */,
 				6C61EAF11CD6D7E90026CCCC /* buttonHelper.m in Sources */,
 				6C12507E1CC3857B0009549B /* AFHTTPRequestOperationManager.m in Sources */,
+				6C99D6DE1D498034005A12FA /* TopicTabViewController.m in Sources */,
 				6C758B941CEE4A0A001E5252 /* MovieTabCell.m in Sources */,
 				6C6780121CC7C826005AEB35 /* AustinApi.m in Sources */,
 				6C7F9F5F1CDE9870001BE238 /* SDWebImageCompat.m in Sources */,
