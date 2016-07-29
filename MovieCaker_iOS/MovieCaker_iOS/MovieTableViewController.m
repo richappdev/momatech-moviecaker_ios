@@ -35,7 +35,6 @@
 
 }
 -(void)viewWillLayoutSubviews{
-    self.tableView.scrollEnabled = false;
     self.tableHeight.constant = self.cellHeight*[self.data count];
 //    self.tableView.allowsSelection = NO;
     [self.tableView setSeparatorColor:[UIColor clearColor]];
@@ -79,7 +78,7 @@
 
         for(int i =0;i<5;i++){
             UIImageView *view = [cell.imageArray objectAtIndex:i];
-            if([[[self.data objectAtIndex:indexPath.row]objectForKey:@"Picture"]count]>i){
+            if(![[[self.data objectAtIndex:indexPath.row]objectForKey:@"Picture"]isKindOfClass:[NSNull class]]&&[[[self.data objectAtIndex:indexPath.row]objectForKey:@"Picture"]count]>i){
                 NSString *url = [NSString stringWithFormat:@"http://www.funmovie.tv/Content/pictures/files/%@?width=88",[[[self.data objectAtIndex:indexPath.row]objectForKey:@"Picture"]objectAtIndex:i]];
                 [view sd_setImageWithURL:[NSURL URLWithString:url] placeholderImage:[UIImage imageNamed:@"img-placeholder.jpg"]];
             }else{

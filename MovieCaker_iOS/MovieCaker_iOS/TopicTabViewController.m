@@ -7,6 +7,8 @@
 //
 
 #import "TopicTabViewController.h"
+#import "MovieTableViewController.h"
+#import "AustinApi.h"
 
 @interface TopicTabViewController ()
 @property (strong, nonatomic) IBOutlet UILabel *tabOne;
@@ -14,7 +16,12 @@
 @property (strong, nonatomic) IBOutlet UILabel *tabThree;
 @property (strong, nonatomic) IBOutlet UIView *lowerBar;
 @property int index;
+@property (strong, nonatomic) IBOutlet UITableView *tableView;
 @property NSArray *labelArray;
+@property MovieTableViewController *movieTableController;
+@property NSMutableArray *tabOneData;
+@property NSMutableArray *tabTwoData;
+@property NSMutableArray *tabThreeData;
 @end
 
 @implementation TopicTabViewController
@@ -37,34 +44,64 @@
         [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleSingleTap:)];
         [label addGestureRecognizer:singleFingerTap];
     }
-
+    
+    self.movieTableController = [[MovieTableViewController alloc] init:0];
+    self.tableView.delegate = self.movieTableController;
+    self.tableView.dataSource = self.movieTableController;
+    self.movieTableController.tableView = self.tableView;
+    self.index =0;
+    [self setData:@"6"];
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+-(void)setData:(NSString*)type{
 
+    [[AustinApi sharedInstance]getTopic:type vid:nil function:^(NSArray *returnData) {
+        //     NSLog(@"bbb%@",returnData);
+        NSMutableArray *array = [[NSMutableArray alloc]init];
+        for (NSDictionary *row in returnData) {
+            NSMutableDictionary *dict = [[NSMutableDictionary alloc]initWithDictionary:row];
+            [array addObject:dict];
+        }
+        self.movieTableController.data =array;
+        if(self.index==0){
+            self.tabOneData = array;
+        }else if(self.index==1){
+            self.tabTwoData = array;
+        }else if (self.index==2){
+            self.tabThreeData=array;
+        }
+        [self.movieTableController.tableView reloadData];
+        self.movieTableController.tableView.scrollEnabled = YES;
+        
+    } error:^(NSError *error) {
+        NSLog(@"%@",error);
+    }];
+    
+}
 
 -(void)handleSingleTap:(UIGestureRecognizer*)gestureRecongnizer{
-    self.index = (int)gestureRecongnizer.view.tag;
     [self moveBar:[self.labelArray objectAtIndex:gestureRecongnizer.view.tag]];
-    [self setFilter];
+    [self setFilter:(int)gestureRecongnizer.view.tag];
+    self.index = (int)gestureRecongnizer.view.tag;
 }
 
 -(void)swipeLeft:(UISwipeGestureRecognizer*)gestureRecongnizer{
     if(self.index>0){
+        [self setFilter:self.index-1];
         self.index--;
         [self moveBar:[self.labelArray objectAtIndex:self.index]];
     }
-    [self setFilter];
 }
 -(void)swipeRight:(UISwipeGestureRecognizer*)gestureRecongnizer{
     if(self.index<[self.labelArray count]-1){
+        [self setFilter:self.index+1];
         self.index++;
         [self moveBar:[self.labelArray objectAtIndex:self.index]];
     }
-    [self setFilter];
 }
 -(void)moveBar:(UILabel*)label{
     [UIView beginAnimations:nil context:nil];
@@ -75,7 +112,32 @@
     [UIView commitAnimations];
     
 }
--(void)setFilter{
-
+-(void)setFilter:(int)page{
+    NSLog(@"%d",page);
+    if(self.index!=page){
+        self.index = page;
+        if(self.index==0){
+            if(self.tabOneData==nil){
+                [self setData:@"6"];
+            }else{
+                self.movieTableController.data = self.tabOneData;
+                [self.tableView reloadData];
+            }
+        }else if(self.index==1){
+            if(self.tabTwoData==nil){
+                [self setData:@"1"];
+            }else{
+                self.movieTableController.data = self.tabTwoData;
+                [self.tableView reloadData];
+            }
+        }else if(self.index==2){
+            if(self.tabThreeData==nil){
+                [self setData:@"0"];
+            }else{
+                self.movieTableController.data = self.tabThreeData;
+                [self.tableView reloadData];
+            }
+        }
+    }
 }
 @end

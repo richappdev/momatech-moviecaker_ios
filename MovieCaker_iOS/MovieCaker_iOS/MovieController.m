@@ -100,6 +100,7 @@
 
     self.movieTable2Controller = [[MovieTableViewController alloc] init:1];
     self.movieTableController = [[MovieTableViewController alloc] init:0];
+    self.movieTable.scrollEnabled = NO;
     
     [self imageScrollCall];
     [self topicCall];
