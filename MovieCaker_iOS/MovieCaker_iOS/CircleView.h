@@ -11,4 +11,5 @@
 @interface CircleView : UIView
 @property UIColor *color;
 @property float percentage;
+@property NSMutableArray *layers;
 @end
