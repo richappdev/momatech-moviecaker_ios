@@ -9,6 +9,7 @@
 #import "TopicTabViewController.h"
 #import "MovieTableViewController.h"
 #import "AustinApi.h"
+#import "TopicDetailViewController.h"
 
 @interface TopicTabViewController ()
 @property (strong, nonatomic) IBOutlet UILabel *tabOne;
@@ -49,6 +50,7 @@
     self.tableView.delegate = self.movieTableController;
     self.tableView.dataSource = self.movieTableController;
     self.movieTableController.tableView = self.tableView;
+    [self.movieTableController ParentController:self];
     self.index =0;
     [self setData:@"6"];
 }
@@ -140,4 +142,11 @@
         }
     }
 }
+-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
+if([[segue identifier] isEqualToString:@"topicSegue"]){
+    TopicDetailViewController *vc = segue.destinationViewController;
+    vc.data = [[NSMutableDictionary alloc]initWithDictionary:[self.movieTableController.data objectAtIndex:self.movieTableController.selectIndex]];
+    vc.percent = [self.movieTableController.circlePercentage objectAtIndex:self.movieTableController.selectIndex];
+    NSLog(@"%@",self.movieTableController.circlePercentage);
+}}
 @end

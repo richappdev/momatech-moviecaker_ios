@@ -206,9 +206,11 @@
 
 -(void)viewWillAppear:(BOOL)animated{
     [self.tabBarController.tabBar setHidden:YES];
+    [[self navigationController] setNavigationBarHidden:NO];
 }
 -(void)viewWillDisappear:(BOOL)animated{
     [self.tabBarController.tabBar setHidden:NO];
+    [[self navigationController] setNavigationBarHidden:YES];
 }
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
     if([[segue identifier] isEqualToString:@"movieDetail"]){
