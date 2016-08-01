@@ -105,7 +105,7 @@
     [self imageScrollCall];
     [self topicCall];
     [self reviewCall];
-    
+    [[AustinApi sharedInstance]getFriends:@"30693"];
 }
 -(void)reviewCall{
     [[AustinApi sharedInstance]getReview:@"2" page:nil function:^(NSArray *returnData) {

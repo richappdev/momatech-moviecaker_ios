@@ -11,7 +11,11 @@
 #define SERVERAPI @"http://test.moviecaker.com"
 #define SERVERAPI2 @"http://test.moviecaker.com:8082"
 
-
+@interface AustinApi()
+@property NSMutableArray* friendList;
+@property NSMutableArray* friendWaitList;
+@property NSDate *date;
+@end
 @implementation AustinApi
 + (instancetype)sharedInstance{
     static dispatch_once_t once;
@@ -20,7 +24,7 @@
     dispatch_once(&once, ^
                   {
                       sharedInstance = [self new];
-                  });
+                     });
     
     return sharedInstance;
 }
@@ -285,5 +289,37 @@
     } error:^(NSError *error2) {
         error(error2);
     }];
+}
+-(void)getFriends:(NSString*)uid{
+    if(self.date==nil){
+        self.friendList = [[NSMutableArray alloc]init];
+        self.friendWaitList = [[NSMutableArray alloc] init];
+        self.date = [[NSDate alloc]init];
+    }
+    
+    [self apiGetMethod:[NSString stringWithFormat:@"api/friend/%@",uid] parameter:nil addTokenHeader:nil completion:^(id response) {
+        self.friendList =response;
+    } error:^(NSError *error) {
+    NSLog(@"%@",error);
+    }];
+    [self apiGetMethod:[NSString stringWithFormat:@"api/friend/%@?invite=true",uid] parameter:nil addTokenHeader:nil completion:^(id response) {
+        self.friendWaitList =response;
+    } error:^(NSError *error) {
+        NSLog(@"%@",error);
+    }];
+}
+-(int)testFriend:(NSString*)uid{
+
+    for (NSDictionary *row in self.friendList) {
+        if([[[row objectForKey:@"UserId"]stringValue]isEqualToString:uid]){
+            return 2;
+        }
+    }
+    for (NSDictionary *row in self.friendWaitList) {
+        if([[[row objectForKey:@"UserId"]stringValue]isEqualToString:uid]){
+            return 1;
+        }
+    }
+    return 0;
 }
 @end

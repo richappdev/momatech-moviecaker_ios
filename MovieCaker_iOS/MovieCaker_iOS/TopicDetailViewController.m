@@ -51,6 +51,8 @@
 @property (strong, nonatomic) IBOutlet UILabel *likeLabel;
 @property (strong, nonatomic) IBOutlet UILabel *shareLabel;
 @property (strong, nonatomic) IBOutlet UILabel *commentLabel;
+@property (strong, nonatomic) IBOutlet UIView *friendStatus;
+@property (strong, nonatomic) IBOutlet UIImageView *friendAdd;
 @property NSArray *original;
 
 @property MovieTwoTableViewController *movieTableController;
@@ -125,6 +127,22 @@
     
     [self addIndexGesture:self.likeBtn];
     [self addIndexGesture:self.shareBtn];
+    [self.friendAdd setUserInteractionEnabled:YES];
+    UITapGestureRecognizer *tap2 = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(addFriend)];
+    [self.friendAdd addGestureRecognizer:tap2];
+}
+-(void)addFriend{
+    self.friendAdd.hidden = YES;
+    [buttonHelper adjustFriendStatus:self.friendStatus state:1];
+}
+-(void)testFriend{
+    int test = [[AustinApi sharedInstance]testFriend:[[[self.data objectForKey:@"Author"] objectForKey:@"Id"]stringValue]];
+    if(test==2||test==1){
+        self.friendAdd.hidden = YES;
+    }else{
+        self.friendAdd.hidden = NO;
+    }
+    [buttonHelper adjustFriendStatus:self.friendStatus state:test];
 }
 -(void)filterAddTap:(UIView*)view{
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(filterClick:)];
@@ -207,6 +225,7 @@
 -(void)viewWillAppear:(BOOL)animated{
     [self.tabBarController.tabBar setHidden:YES];
     [[self navigationController] setNavigationBarHidden:NO];
+    [self testFriend];
 }
 -(void)viewWillDisappear:(BOOL)animated{
     [self.tabBarController.tabBar setHidden:NO];

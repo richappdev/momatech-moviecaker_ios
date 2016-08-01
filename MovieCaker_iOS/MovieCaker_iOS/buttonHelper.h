@@ -20,4 +20,5 @@
 +(void)v2AdjustWanna:(UIView*)view state:(BOOL)state;
 +(UIColor*)circleColor:(float)percent;
 +(void)v2AdjustShare:(UIView*)view state:(BOOL)state;
++(void)adjustFriendStatus:(UIView*)view state:(int)state;
 @end
