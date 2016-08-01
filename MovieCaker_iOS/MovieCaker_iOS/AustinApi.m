@@ -291,12 +291,10 @@
     }];
 }
 -(void)getFriends:(NSString*)uid{
-    if(self.date==nil){
-        self.friendList = [[NSMutableArray alloc]init];
-        self.friendWaitList = [[NSMutableArray alloc] init];
-        self.date = [[NSDate alloc]init];
-    }
-    
+
+    NSDate *now = [[NSDate alloc]init];
+    if(self.date!=nil&&[now timeIntervalSinceDate:self.date]>180){
+        self.date = now;
     [self apiGetMethod:[NSString stringWithFormat:@"api/friend/%@",uid] parameter:nil addTokenHeader:nil completion:^(id response) {
         self.friendList =response;
         NSLog(@"%@",response);
@@ -308,7 +306,15 @@
         NSLog(@"%@",response);
     } error:^(NSError *error) {
         NSLog(@"%@",error);
-    }];
+    }];}
+    
+    if(self.date==nil){
+        self.friendList = [[NSMutableArray alloc]init];
+        self.friendWaitList = [[NSMutableArray alloc] init];
+        self.date = [[NSDate alloc]init];
+    }else{
+        NSLog(@"%f",[now timeIntervalSinceDate:self.date]);
+    }
 }
 -(int)testFriend:(NSString*)uid{
 

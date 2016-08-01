@@ -137,10 +137,13 @@
     [[AustinApi sharedInstance] addFriend:[[self.data objectForKey:@"Author"] objectForKey:@"Id"]];
 }
 -(void)testFriend{
-    if([[NSUserDefaults standardUserDefaults] objectForKey:@"userkey"]==nil){
+    NSDictionary *returnData = [NSKeyedUnarchiver unarchiveObjectWithData:[[NSUserDefaults standardUserDefaults] objectForKey:@"userkey"]];
+    
+    if(returnData==nil||[[[[returnData objectForKey:@"Data"] objectForKey:@"UserId"]stringValue] isEqualToString:[[[self.data objectForKey:@"Author"] objectForKey:@"Id"]stringValue]]){
         self.friendAdd.hidden = YES;
         self.friendStatus.hidden = YES;
     }else{
+    [[AustinApi sharedInstance]getFriends:[[[returnData objectForKey:@"Data"] objectForKey:@"UserId"]stringValue]];
     int test = [[AustinApi sharedInstance]testFriend:[[[self.data objectForKey:@"Author"] objectForKey:@"Id"]stringValue]];
     if(test==2||test==1){
         self.friendAdd.hidden = YES;
