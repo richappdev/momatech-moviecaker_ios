@@ -299,11 +299,13 @@
     
     [self apiGetMethod:[NSString stringWithFormat:@"api/friend/%@",uid] parameter:nil addTokenHeader:nil completion:^(id response) {
         self.friendList =response;
+        NSLog(@"%@",response);
     } error:^(NSError *error) {
     NSLog(@"%@",error);
     }];
     [self apiGetMethod:[NSString stringWithFormat:@"api/friend/%@?invite=true",uid] parameter:nil addTokenHeader:nil completion:^(id response) {
-        self.friendWaitList =response;
+        self.friendWaitList =[[NSMutableArray alloc] initWithArray:response];
+        NSLog(@"%@",response);
     } error:^(NSError *error) {
         NSLog(@"%@",error);
     }];
@@ -316,10 +318,18 @@
         }
     }
     for (NSDictionary *row in self.friendWaitList) {
-        if([[[row objectForKey:@"UserId"]stringValue]isEqualToString:uid]){
+        if([[[row objectForKey:@"UserId"]stringValue]isEqualToString:uid]&&[[row objectForKey:@"IsBeingInviting"]boolValue]==TRUE){
             return 1;
         }
     }
     return 0;
+}
+-(void)addFriend:(NSNumber *)uid{
+    [self.friendWaitList addObject:[[NSDictionary alloc] initWithObjectsAndKeys:[NSNumber numberWithBool:TRUE],@"IsBeingInviting",uid,@"UserId", nil]];
+    [self apiPostMethod:[NSString stringWithFormat:@"api/Inviting/Invite/%@",[uid stringValue]] parameter:@"nil" addTokenHeader:@"1" completion:^(id response) {
+        NSLog(@"%@",response);
+    } error:^(NSError *error) {
+        NSLog(@"%@",error);
+    }];
 }
 @end

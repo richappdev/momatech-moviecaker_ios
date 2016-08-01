@@ -134,8 +134,13 @@
 -(void)addFriend{
     self.friendAdd.hidden = YES;
     [buttonHelper adjustFriendStatus:self.friendStatus state:1];
+    [[AustinApi sharedInstance] addFriend:[[self.data objectForKey:@"Author"] objectForKey:@"Id"]];
 }
 -(void)testFriend{
+    if([[NSUserDefaults standardUserDefaults] objectForKey:@"userkey"]==nil){
+        self.friendAdd.hidden = YES;
+        self.friendStatus.hidden = YES;
+    }else{
     int test = [[AustinApi sharedInstance]testFriend:[[[self.data objectForKey:@"Author"] objectForKey:@"Id"]stringValue]];
     if(test==2||test==1){
         self.friendAdd.hidden = YES;
@@ -143,6 +148,7 @@
         self.friendAdd.hidden = NO;
     }
     [buttonHelper adjustFriendStatus:self.friendStatus state:test];
+    }
 }
 -(void)filterAddTap:(UIView*)view{
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(filterClick:)];

@@ -34,4 +34,5 @@
 -(void)reviewReply:(NSString*)ReviewId message:(NSString *)message function:(void (^)(NSString *returnData))completion error:(void (^)(NSError *error))error;
 -(void)getFriends:(NSString*)uid;
 -(int)testFriend:(NSString*)uid;
+-(void)addFriend:(NSNumber*)uid;
 @end

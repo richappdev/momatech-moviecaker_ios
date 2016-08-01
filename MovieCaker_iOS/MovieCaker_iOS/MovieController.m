@@ -105,7 +105,7 @@
     [self imageScrollCall];
     [self topicCall];
     [self reviewCall];
-    [[AustinApi sharedInstance]getFriends:@"30693"];
+
 }
 -(void)reviewCall{
     [[AustinApi sharedInstance]getReview:@"2" page:nil function:^(NSArray *returnData) {
@@ -218,6 +218,7 @@
     self.MainScroll.delegate = nil;
 }
 -(void)viewWillAppear:(BOOL)animated{
+    [self.navigationController setNavigationBarHidden:NO];
     self.notSelected = YES;
     self.MainScroll.delegate = self.scrollDelegate;
     if(self.refresh){
@@ -239,6 +240,10 @@
         int indexOfPage = self.imageScroll.contentOffset.x / self.imageScroll.frame.size.width;
         [self setMovieDetails:[self.movieArray objectAtIndex:indexOfPage] blur:YES];
         self.lastIndex = indexOfPage;
+    }
+    NSDictionary *returnData = [NSKeyedUnarchiver unarchiveObjectWithData:[[NSUserDefaults standardUserDefaults] objectForKey:@"userkey"]];
+    if(returnData!=nil){
+        [[AustinApi sharedInstance]getFriends:[[[returnData objectForKey:@"Data"] objectForKey:@"UserId"]stringValue]];
     }
 }
 
