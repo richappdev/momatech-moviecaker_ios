@@ -100,11 +100,12 @@
 
     self.movieTable2Controller = [[MovieTableViewController alloc] init:1];
     self.movieTableController = [[MovieTableViewController alloc] init:0];
+    self.movieTable.scrollEnabled = NO;
     
     [self imageScrollCall];
     [self topicCall];
     [self reviewCall];
-    
+
 }
 -(void)reviewCall{
     [[AustinApi sharedInstance]getReview:@"2" page:nil function:^(NSArray *returnData) {
@@ -217,6 +218,7 @@
     self.MainScroll.delegate = nil;
 }
 -(void)viewWillAppear:(BOOL)animated{
+    [self.navigationController setNavigationBarHidden:NO];
     self.notSelected = YES;
     self.MainScroll.delegate = self.scrollDelegate;
     if(self.refresh){
@@ -238,6 +240,10 @@
         int indexOfPage = self.imageScroll.contentOffset.x / self.imageScroll.frame.size.width;
         [self setMovieDetails:[self.movieArray objectAtIndex:indexOfPage] blur:YES];
         self.lastIndex = indexOfPage;
+    }
+    NSDictionary *returnData = [NSKeyedUnarchiver unarchiveObjectWithData:[[NSUserDefaults standardUserDefaults] objectForKey:@"userkey"]];
+    if(returnData!=nil){
+        [[AustinApi sharedInstance]getFriends:[[[returnData objectForKey:@"Data"] objectForKey:@"UserId"]stringValue]];
     }
 }
 
@@ -282,7 +288,10 @@
     if([[segue identifier] isEqualToString:@"topicSegue"]){
         TopicDetailViewController *vc = segue.destinationViewController;
         vc.data = [[NSMutableDictionary alloc]initWithDictionary:[self.movieTableController.data objectAtIndex:self.movieTableController.selectIndex]];
-        vc.percent = [self.movieTableController.circlePercentage objectAtIndex:self.movieTableController.selectIndex];
+        if([self.movieTableController.circlePercentage count]>0){
+            vc.percent = [self.movieTableController.circlePercentage objectAtIndex:self.movieTableController.selectIndex];}else{
+                vc.percent = [[NSNumber alloc]initWithInt:-1];
+            }
         NSLog(@"%@",self.movieTableController.circlePercentage);
     }
 }

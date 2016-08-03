@@ -7,6 +7,7 @@
 //
 
 #import "buttonHelper.h"
+#import "UIImage+FontAwesome.h"
 
 @implementation buttonHelper
 +(void)likeShareClick:(UIView*)view{
@@ -135,5 +136,22 @@
         circleColor = [UIColor blackColor];
     }
     return circleColor;
+}
++(void)adjustFriendStatus:(UIView*)view state:(int)state{
+    view.hidden = NO;
+    if(state==0){
+        view.hidden = YES;
+    }else if(state==1){
+        UIImageView *imageview = (UIImageView*)[view viewWithTag:2];
+        UILabel *label = [view viewWithTag:1];
+        imageview.image =  [UIImage imageWithIcon:@"fa-clock-o" backgroundColor:[UIColor clearColor] iconColor:[UIColor colorWithRed:(51/255.0f) green:(68/255.0f) blue:(85/255.0f) alpha:1.0] andSize:CGSizeMake(12, 12)];
+        label.text = @"等待接受";
+    }else if(state==2){
+        UIImageView *imageview = (UIImageView*)[view viewWithTag:2];
+        UILabel *label = [view viewWithTag:1];
+        imageview.image =  [UIImage imageWithIcon:@"fa-check-circle" backgroundColor:[UIColor clearColor] iconColor:[UIColor colorWithRed:(51/255.0f) green:(68/255.0f) blue:(85/255.0f) alpha:1.0] andSize:CGSizeMake(12, 12)];
+        label.text = @"好友";
+    }
+
 }
 @end

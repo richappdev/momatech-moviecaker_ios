@@ -51,6 +51,8 @@
 @property (strong, nonatomic) IBOutlet UILabel *likeLabel;
 @property (strong, nonatomic) IBOutlet UILabel *shareLabel;
 @property (strong, nonatomic) IBOutlet UILabel *commentLabel;
+@property (strong, nonatomic) IBOutlet UIView *friendStatus;
+@property (strong, nonatomic) IBOutlet UIImageView *friendAdd;
 @property NSArray *original;
 
 @property MovieTwoTableViewController *movieTableController;
@@ -111,7 +113,11 @@
     [buttonHelper v2AdjustShare:self.shareBtn state:[[self.data objectForKey:@"IsShared"] boolValue]];
     
     [[AustinApi sharedInstance]movieListCustom:@"3" location:nil year:nil month:nil page:nil topicId:[self.data objectForKey:@"Id"] function:^(NSArray *returnData) {
-        self.original = self.movieTableController.data = returnData;
+        NSMutableArray *newArray = [[NSMutableArray alloc]init];
+        for (NSDictionary *row in returnData) {
+            [newArray addObject:[[NSMutableDictionary alloc] initWithDictionary:row]];
+        }
+        self.original = self.movieTableController.data = newArray;
         self.tableHeight.constant = 165*[returnData count];
         [self.mainScroll setContentSize:CGSizeMake(self.view.frame.size.width, self.tableHeight.constant+550)];
         self.tableLabel.text = [NSString stringWithFormat:@"專題單片%lu部",(unsigned long)[returnData count]];
@@ -125,6 +131,31 @@
     
     [self addIndexGesture:self.likeBtn];
     [self addIndexGesture:self.shareBtn];
+    [self.friendAdd setUserInteractionEnabled:YES];
+    UITapGestureRecognizer *tap2 = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(addFriend)];
+    [self.friendAdd addGestureRecognizer:tap2];
+}
+-(void)addFriend{
+    self.friendAdd.hidden = YES;
+    [buttonHelper adjustFriendStatus:self.friendStatus state:1];
+    [[AustinApi sharedInstance] addFriend:[[self.data objectForKey:@"Author"] objectForKey:@"Id"]];
+}
+-(void)testFriend{
+    NSDictionary *returnData = [NSKeyedUnarchiver unarchiveObjectWithData:[[NSUserDefaults standardUserDefaults] objectForKey:@"userkey"]];
+    
+    if(returnData==nil||[[[[returnData objectForKey:@"Data"] objectForKey:@"UserId"]stringValue] isEqualToString:[[[self.data objectForKey:@"Author"] objectForKey:@"Id"]stringValue]]){
+        self.friendAdd.hidden = YES;
+        self.friendStatus.hidden = YES;
+    }else{
+    [[AustinApi sharedInstance]getFriends:[[[returnData objectForKey:@"Data"] objectForKey:@"UserId"]stringValue]];
+    int test = [[AustinApi sharedInstance]testFriend:[[[self.data objectForKey:@"Author"] objectForKey:@"Id"]stringValue]];
+    if(test==2||test==1){
+        self.friendAdd.hidden = YES;
+    }else{
+        self.friendAdd.hidden = NO;
+    }
+    [buttonHelper adjustFriendStatus:self.friendStatus state:test];
+    }
 }
 -(void)filterAddTap:(UIView*)view{
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(filterClick:)];
@@ -170,6 +201,7 @@
     [self.mainScroll setContentSize:CGSizeMake(self.view.frame.size.width, self.tableHeight.constant+550)];
     self.tableLabel.text = [NSString stringWithFormat:@"專題單片%lu部",(unsigned long)[temp count]];
     [self.movieTableController.tableView reloadData];
+    
 }
 -(void)addMask{
     CAGradientLayer *maskLayer = [CAGradientLayer layer];
@@ -178,7 +210,7 @@
                          (id)[UIColor whiteColor].CGColor,
                          (id)[UIColor clearColor].CGColor];
     maskLayer.locations = @[ @0.0f, @0.0f, @1.0f ];
-    maskLayer.frame = self.mainTxt.bounds;
+    maskLayer.frame = CGRectMake(0,0, self.view.frame.size.width, self.moreHeight.constant);
      self.mainTxt.layer.mask = maskLayer;
 }
 -(void)moreClick{
@@ -193,8 +225,8 @@
         self.moreLabel.text = @"顯示部分";
         [self.moreLabel sizeToFit];
         self.mainTxt.layer.mask = nil;
-        self.contentHeight.constant = self.mainTxt.frame.size.height;
-        self.moreHeight.constant = self.contentHeight.constant-3;
+        self.contentHeight.constant = self.mainTxt.frame.size.height+10;
+        self.moreHeight.constant = self.contentHeight.constant-3+10;
     }
     self.opened = !self.opened;
 }
@@ -206,9 +238,14 @@
 
 -(void)viewWillAppear:(BOOL)animated{
     [self.tabBarController.tabBar setHidden:YES];
+    [[self navigationController] setNavigationBarHidden:NO];
+    [self testFriend];
+    self.mainScroll.delegate = self.scrollDelegate;
 }
 -(void)viewWillDisappear:(BOOL)animated{
     [self.tabBarController.tabBar setHidden:NO];
+    [[self navigationController] setNavigationBarHidden:YES];
+    self.mainScroll.delegate = nil;
 }
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
     if([[segue identifier] isEqualToString:@"movieDetail"]){

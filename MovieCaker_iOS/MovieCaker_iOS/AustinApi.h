@@ -32,4 +32,7 @@
 -(void)reviewChange:(NSString*)Id videoId:(NSString *)videoId score:(NSString*)score review:(NSString*)review function:(void (^)(NSDictionary *returnData))completion error:(void (^)(NSError *error))error;
 -(void)reviewReplyTable:(NSString*)Id function:(void (^)(NSArray *returnData))completion error:(void (^)(NSError *error))error;
 -(void)reviewReply:(NSString*)ReviewId message:(NSString *)message function:(void (^)(NSString *returnData))completion error:(void (^)(NSError *error))error;
+-(void)getFriends:(NSString*)uid;
+-(int)testFriend:(NSString*)uid;
+-(void)addFriend:(NSNumber*)uid;
 @end

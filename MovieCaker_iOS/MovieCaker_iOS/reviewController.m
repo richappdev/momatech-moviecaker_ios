@@ -54,6 +54,8 @@
 @property (strong, nonatomic) IBOutlet UILabel *replyTop;
 @property (strong, nonatomic) IBOutlet UIView *replyView;
 @property (strong, nonatomic) IBOutlet UIView *respondBtn;
+@property (strong, nonatomic) IBOutlet UIView *friendStatus;
+@property (strong, nonatomic) IBOutlet UIImageView *friendAdd;
 @end
 
 
@@ -139,6 +141,32 @@
     }
     UITapGestureRecognizer *respond = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(respond)];
     [self.respondBtn addGestureRecognizer:respond];
+    
+    [self.friendAdd setUserInteractionEnabled:YES];
+    UITapGestureRecognizer *tap3 = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(addFriend)];
+    [self.friendAdd addGestureRecognizer:tap3];
+}
+-(void)addFriend{
+    self.friendAdd.hidden = YES;
+    [buttonHelper adjustFriendStatus:self.friendStatus state:1];
+    [[AustinApi sharedInstance] addFriend:[self.data objectForKey:@"UserId"]];
+}
+-(void)testFriend{
+    NSDictionary *returnData = [NSKeyedUnarchiver unarchiveObjectWithData:[[NSUserDefaults standardUserDefaults] objectForKey:@"userkey"]];
+    
+    if(returnData==nil||[[[[returnData objectForKey:@"Data"] objectForKey:@"UserId"]stringValue] isEqualToString:[[self.data objectForKey:@"UserId"] stringValue]]){
+        self.friendAdd.hidden = YES;
+        self.friendStatus.hidden = YES;
+    }else{
+        [[AustinApi sharedInstance]getFriends:[[[returnData objectForKey:@"Data"] objectForKey:@"UserId"]stringValue]];
+        int test = [[AustinApi sharedInstance]testFriend:[[self.data objectForKey:@"UserId"]stringValue]];
+        if(test==2||test==1){
+            self.friendAdd.hidden = YES;
+        }else{
+            self.friendAdd.hidden = NO;
+        }
+        [buttonHelper adjustFriendStatus:self.friendStatus state:test];
+    }
 }
 -(void)loadReplies{
     [[AustinApi sharedInstance]reviewReplyTable:[self.data objectForKey:@"ReviewId"] function:^(NSArray *returnData) {
@@ -389,6 +417,7 @@
     movie.refresh = YES;
 }
 -(void)viewWillAppear:(BOOL)animated{
-self.navigationController.navigationBarHidden = NO;
+    self.navigationController.navigationBarHidden = NO;
+    [self testFriend];
 }
 @end

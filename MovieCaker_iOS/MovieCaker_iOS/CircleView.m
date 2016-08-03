@@ -10,10 +10,18 @@
 
 @implementation CircleView
 
-
+-(void)awakeFromNib{
+    self.layers = [[NSMutableArray alloc]init];
+}
 - (void)drawRect:(CGRect)rect {
-
+    for (CAShapeLayer *row in self.layers) {
+        [row removeFromSuperlayer];
+    }
     float to_value = self.percentage;
+    if(to_value==0){
+        to_value =0.000001;
+        //zero doesn't show gray line for some reason
+    }
     
     float start_angle = -M_PI_2;
     float end_angle = 2*M_PI*to_value-M_PI_2;
@@ -34,6 +42,7 @@
     
     // Add to parent layer
     [self.layer addSublayer:circle];
+    [self.layers addObject:circle];
     
     CAShapeLayer *circle2 = [CAShapeLayer layer];
     circle2.path = [UIBezierPath bezierPathWithArcCenter:CGPointMake(self.frame.size.width/2,self.frame.size.height/2)
@@ -42,6 +51,7 @@
     circle2.strokeColor = [UIColor colorWithRed:0.93 green:0.93 blue:0.93 alpha:1.0].CGColor;
     circle2.lineWidth = 1;
     [self.layer addSublayer:circle2];
+    [self.layers addObject:circle2];
 }
 
 
