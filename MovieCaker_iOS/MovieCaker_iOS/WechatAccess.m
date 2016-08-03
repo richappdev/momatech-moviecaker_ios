@@ -56,7 +56,9 @@
 
 - (void)onResp:(BaseResp *)resp{
     if (0 == [resp errCode]) {
-        [self getUserInfoWith:[(SendAuthResp*)resp code]];
+        if([resp respondsToSelector:@selector(code)]){
+            [self getUserInfoWith:[(SendAuthResp*)resp code]];
+        }
     } else {
         id desc = [NSNull null];
         if (-2 == [resp errCode]) {
