@@ -113,7 +113,11 @@
     [buttonHelper v2AdjustShare:self.shareBtn state:[[self.data objectForKey:@"IsShared"] boolValue]];
     
     [[AustinApi sharedInstance]movieListCustom:@"3" location:nil year:nil month:nil page:nil topicId:[self.data objectForKey:@"Id"] function:^(NSArray *returnData) {
-        self.original = self.movieTableController.data = returnData;
+        NSMutableArray *newArray = [[NSMutableArray alloc]init];
+        for (NSDictionary *row in returnData) {
+            [newArray addObject:[[NSMutableDictionary alloc] initWithDictionary:row]];
+        }
+        self.original = self.movieTableController.data = newArray;
         self.tableHeight.constant = 165*[returnData count];
         [self.mainScroll setContentSize:CGSizeMake(self.view.frame.size.width, self.tableHeight.constant+550)];
         self.tableLabel.text = [NSString stringWithFormat:@"專題單片%lu部",(unsigned long)[returnData count]];
