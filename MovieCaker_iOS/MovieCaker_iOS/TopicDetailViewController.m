@@ -201,6 +201,7 @@
     [self.mainScroll setContentSize:CGSizeMake(self.view.frame.size.width, self.tableHeight.constant+550)];
     self.tableLabel.text = [NSString stringWithFormat:@"專題單片%lu部",(unsigned long)[temp count]];
     [self.movieTableController.tableView reloadData];
+    
 }
 -(void)addMask{
     CAGradientLayer *maskLayer = [CAGradientLayer layer];
@@ -209,7 +210,7 @@
                          (id)[UIColor whiteColor].CGColor,
                          (id)[UIColor clearColor].CGColor];
     maskLayer.locations = @[ @0.0f, @0.0f, @1.0f ];
-    maskLayer.frame = self.mainTxt.bounds;
+    maskLayer.frame = CGRectMake(0,0, self.view.frame.size.width, self.moreHeight.constant);
      self.mainTxt.layer.mask = maskLayer;
 }
 -(void)moreClick{
@@ -224,8 +225,8 @@
         self.moreLabel.text = @"顯示部分";
         [self.moreLabel sizeToFit];
         self.mainTxt.layer.mask = nil;
-        self.contentHeight.constant = self.mainTxt.frame.size.height;
-        self.moreHeight.constant = self.contentHeight.constant-3;
+        self.contentHeight.constant = self.mainTxt.frame.size.height+10;
+        self.moreHeight.constant = self.contentHeight.constant-3+10;
     }
     self.opened = !self.opened;
 }
@@ -239,10 +240,12 @@
     [self.tabBarController.tabBar setHidden:YES];
     [[self navigationController] setNavigationBarHidden:NO];
     [self testFriend];
+    self.mainScroll.delegate = self.scrollDelegate;
 }
 -(void)viewWillDisappear:(BOOL)animated{
     [self.tabBarController.tabBar setHidden:NO];
     [[self navigationController] setNavigationBarHidden:YES];
+    self.mainScroll.delegate = nil;
 }
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
     if([[segue identifier] isEqualToString:@"movieDetail"]){
