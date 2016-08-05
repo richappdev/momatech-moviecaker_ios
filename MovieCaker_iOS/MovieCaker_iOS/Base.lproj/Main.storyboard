@@ -1709,7 +1709,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="dep-Bu-YLG">
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dep-Bu-YLG">
                                 <rect key="frame" x="0.0" y="-64" width="414" height="751"/>
                                 <subviews>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="on" translatesAutoresizingMaskIntoConstraints="NO" id="iDB-9S-VRO">
@@ -2348,7 +2348,7 @@
                                     <constraint firstItem="Cwm-fW-566" firstAttribute="leading" secondItem="x1b-1P-dq4" secondAttribute="trailing" constant="17" id="wnL-SD-tdc"/>
                                 </constraints>
                             </scrollView>
-                            <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="km6-Cx-xZY">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="km6-Cx-xZY">
                                 <rect key="frame" x="0.0" y="637" width="414" height="50"/>
                                 <subviews>
                                     <view tag="1" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8OX-KB-Yq1">
@@ -2649,7 +2649,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="hpU-nl-EIH">
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hpU-nl-EIH">
                                 <rect key="frame" x="0.0" y="-64" width="414" height="751"/>
                                 <subviews>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="img-placeholder" translatesAutoresizingMaskIntoConstraints="NO" id="ApQ-on-j71">
@@ -3578,7 +3578,7 @@
                                     <constraint firstAttribute="trailing" secondItem="Oc3-18-2yn" secondAttribute="trailing" id="zJN-jg-Cfj"/>
                                 </constraints>
                             </scrollView>
-                            <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="4uu-hb-gcS">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4uu-hb-gcS">
                                 <rect key="frame" x="0.0" y="637" width="414" height="50"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fzM-zt-spM">
@@ -5678,8 +5678,8 @@
         <image name="tabbarBg" width="80" height="49"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="qtw-ST-1hK"/>
-        <segue reference="ABz-EY-h1x"/>
-        <segue reference="Ope-LB-hkT"/>
+        <segue reference="RsI-kC-Fb5"/>
+        <segue reference="faQ-HW-B4Q"/>
+        <segue reference="efM-b9-q38"/>
     </inferredMetricsTieBreakers>
 </document>

@@ -127,7 +127,7 @@
 +(UIColor*)circleColor:(float)percent{
     UIColor *circleColor;
     if(percent<=1&&percent>=.75){
-        circleColor = [UIColor colorWithRed:0.39 green:0.73 blue:0.34 alpha:1.0];
+        circleColor = [UIColor colorWithRed:(77/255.0f) green:(182/255.0f) blue:(172/255.0f) alpha:1.0];
     }else if (percent<=.75&&percent>=.5){
         circleColor = [UIColor colorWithRed:0.97 green:0.39 blue:0.34 alpha:1.0];
     }else if(percent<=.5&&percent>=.25){
