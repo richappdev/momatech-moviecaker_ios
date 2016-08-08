@@ -2621,25 +2621,58 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HC2-6D-K6M">
-                                <rect key="frame" x="20" y="239" width="300" height="30"/>
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HC2-6D-K6M">
+                                <rect key="frame" x="0.0" y="239" width="320" height="30"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                 <state key="normal" title="Wechat Login"/>
                                 <connections>
                                     <action selector="Login:" destination="XeJ-Ni-9cD" eventType="touchUpInside" id="Ien-k4-W6m"/>
                                 </connections>
                             </button>
+                            <textField opaque="NO" clipsSubviews="YES" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="username" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Mb7-9Q-2FK">
+                                <rect key="frame" x="112" y="277" width="97" height="30"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <textField opaque="NO" clipsSubviews="YES" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="gDg-5U-gxA">
+                                <rect key="frame" x="112" y="320" width="97" height="30"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="secureTextEntry" value="YES"/>
+                                </userDefinedRuntimeAttributes>
+                            </textField>
+                            <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wUL-rI-O9W">
+                                <rect key="frame" x="16" y="358" width="288" height="30"/>
+                                <state key="normal" title="Login"/>
+                                <connections>
+                                    <action selector="Login:" destination="XeJ-Ni-9cD" eventType="touchUpInside" id="sOS-p2-5eC"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="wUL-rI-O9W" firstAttribute="leading" secondItem="iOw-gh-3GM" secondAttribute="leadingMargin" id="1LE-Qh-eCz"/>
+                            <constraint firstItem="gDg-5U-gxA" firstAttribute="centerX" secondItem="wUL-rI-O9W" secondAttribute="centerX" id="7Zb-bQ-LaW"/>
+                            <constraint firstItem="Mb7-9Q-2FK" firstAttribute="top" secondItem="HC2-6D-K6M" secondAttribute="bottom" constant="8" symbolic="YES" id="AD4-iM-bXy"/>
+                            <constraint firstItem="Mb7-9Q-2FK" firstAttribute="centerX" secondItem="iOw-gh-3GM" secondAttribute="centerX" id="GAZ-YB-tIE"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="wUL-rI-O9W" secondAttribute="trailing" id="TMg-Sw-2v8"/>
                             <constraint firstItem="HC2-6D-K6M" firstAttribute="top" secondItem="uGD-z8-xaj" secondAttribute="bottom" constant="219" id="Vq5-8U-b28"/>
                             <constraint firstAttribute="trailing" secondItem="HC2-6D-K6M" secondAttribute="trailing" id="X35-QU-csc"/>
-                            <constraint firstItem="HC2-6D-K6M" firstAttribute="leading" secondItem="iOw-gh-3GM" secondAttribute="leadingMargin" constant="4" id="kTS-w3-UQ9"/>
+                            <constraint firstItem="gDg-5U-gxA" firstAttribute="top" secondItem="Mb7-9Q-2FK" secondAttribute="bottom" constant="13" id="YzX-T9-rdZ"/>
+                            <constraint firstItem="HC2-6D-K6M" firstAttribute="leading" secondItem="iOw-gh-3GM" secondAttribute="leadingMargin" constant="-20" id="kTS-w3-UQ9"/>
+                            <constraint firstItem="Mb7-9Q-2FK" firstAttribute="trailing" secondItem="gDg-5U-gxA" secondAttribute="trailing" id="khq-aj-4Im"/>
+                            <constraint firstItem="Mb7-9Q-2FK" firstAttribute="leading" secondItem="gDg-5U-gxA" secondAttribute="leading" id="mUH-eX-XoQ"/>
+                            <constraint firstItem="wUL-rI-O9W" firstAttribute="top" secondItem="gDg-5U-gxA" secondAttribute="bottom" constant="8" symbolic="YES" id="uap-dQ-5GN"/>
+                            <constraint firstItem="Mb7-9Q-2FK" firstAttribute="leading" secondItem="iOw-gh-3GM" secondAttribute="leadingMargin" constant="96" id="yby-6s-OGl"/>
                         </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" tag="4" title="我的" image="iconUserMenu" selectedImage="iconUserMenuSelected" id="iWJ-V2-6Xn"/>
                     <connections>
                         <outlet property="Button" destination="HC2-6D-K6M" id="6yC-Ya-AoU"/>
+                        <outlet property="Button2" destination="wUL-rI-O9W" id="CSZ-U0-CWY"/>
+                        <outlet property="password" destination="gDg-5U-gxA" id="iZO-cA-pfb"/>
+                        <outlet property="username" destination="Mb7-9Q-2FK" id="TWa-cv-6Gm"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6pU-v1-2uY" userLabel="First Responder" sceneMemberID="firstResponder"/>
