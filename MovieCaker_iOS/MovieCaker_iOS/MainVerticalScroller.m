@@ -29,7 +29,7 @@
         self.movingButtons.frame = CGRectMake(self.movingButtons.frame.origin.x,19+scrollView.contentOffset.y - 363 , self.movingButtons.frame.size.width, self.movingButtons.frame.size.height);
     
     }else{
-        self.movingButtons.frame = CGRectMake(self.movingButtons.frame.origin.x,19, self.movingButtons.frame.size.width, self.movingButtons.frame.size.height);
+        self.movingButtons.frame = CGRectMake(self.movingButtons.frame.origin.x,12, self.movingButtons.frame.size.width, self.movingButtons.frame.size.height);
         
     }
 }
