@@ -82,8 +82,8 @@
     [self.movieTableController ParentController:self];
     self.movieTableController.page = 999;
     
-    if([self.percent floatValue]>0){
-    UIColor *circleColor = [buttonHelper circleColor:.8];
+    if([self.percent floatValue]>=0){
+    UIColor *circleColor = [buttonHelper circleColor:self.percent.floatValue];
     self.circleView.percentage = self.percent.floatValue;
     
     self.circleView.color = circleColor;

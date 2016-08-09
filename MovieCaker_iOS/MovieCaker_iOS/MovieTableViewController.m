@@ -26,13 +26,20 @@
         else{
             self.cellHeight = 200;
         }
-        self.circlePercentage = [[NSMutableArray alloc]init];
+        [self setNewCircleArray:100];
     }
     return self;
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
 
+}
+-(void)setNewCircleArray:(int)count{
+
+    self.circlePercentage = [NSMutableArray arrayWithCapacity:count];
+    for (int i=0; i<count; i++) {
+        [self.circlePercentage insertObject:[NSNull null] atIndex:i];
+    }
 }
 -(void)viewWillLayoutSubviews{
     self.tableHeight.constant = self.cellHeight*[self.data count];
@@ -90,14 +97,22 @@
         cell.Circle.hidden = YES;
         [cell setLikeState:[[[self.data objectAtIndex:indexPath.row] objectForKey:@"IsLiked"] boolValue]];
         [cell setShareState:[[[self.data objectAtIndex:indexPath.row] objectForKey:@"IsShared"] boolValue]];
+        
+        if(![[self.circlePercentage objectAtIndex:indexPath.row]isKindOfClass:[NSNull class]]){
+            cell.Circle.hidden = NO;
+            [cell setCirclePercentage:[[self.circlePercentage objectAtIndex:indexPath.row]floatValue]];
+            [cell.Circle setNeedsDisplay];
+            
+        }else{
         [[AustinApi sharedInstance] getCircleCompletion:[[self.data objectAtIndex:indexPath.row]objectForKey:@"Id"] userId:[[[self.data objectAtIndex:indexPath.row]objectForKey:@"Author"]objectForKey:@"Id"] function:^(NSDictionary *returnData) {
             cell.Circle.hidden = NO;
             [cell setCirclePercentage:[[returnData objectForKey:@"PercentComplete"]floatValue]*0.01];
             [cell.Circle setNeedsDisplay];
-            [self.circlePercentage insertObject:[[NSNumber alloc] initWithFloat:cell.Circle.percentage] atIndex:0];
+            [self.circlePercentage replaceObjectAtIndex:indexPath.row withObject:[[NSNumber alloc] initWithFloat:cell.Circle.percentage]];
         } error:^(NSError *error) {
             NSLog(@"%@",error);
-        }];
+        }];}
+        
         return cell;
     }else{
         Movie2Cell *cell = [tableView dequeueReusableCellWithIdentifier:@"Movie2Cell" forIndexPath:indexPath];

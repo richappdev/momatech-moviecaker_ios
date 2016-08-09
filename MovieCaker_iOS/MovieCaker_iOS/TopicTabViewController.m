@@ -69,6 +69,7 @@
             [array addObject:dict];
         }
         self.movieTableController.data =array;
+        [self.movieTableController setNewCircleArray:[returnData count]];
         if(self.index==0){
             self.tabOneData = array;
         }else if(self.index==1){
@@ -123,6 +124,7 @@
                 [self setData:@"6"];
             }else{
                 self.movieTableController.data = self.tabOneData;
+                [self.movieTableController setNewCircleArray:[self.tabOneData count]];
                 [self.tableView reloadData];
             }
         }else if(self.index==1){
@@ -130,6 +132,7 @@
                 [self setData:@"1"];
             }else{
                 self.movieTableController.data = self.tabTwoData;
+                [self.movieTableController setNewCircleArray:[self.tabTwoData count]];
                 [self.tableView reloadData];
             }
         }else if(self.index==2){
@@ -137,6 +140,7 @@
                 [self setData:@"0"];
             }else{
                 self.movieTableController.data = self.tabThreeData;
+                [self.movieTableController setNewCircleArray:[self.tabThreeData count]];
                 [self.tableView reloadData];
             }
         }
@@ -146,7 +150,7 @@
 if([[segue identifier] isEqualToString:@"topicSegue"]){
     TopicDetailViewController *vc = segue.destinationViewController;
     vc.data = [[NSMutableDictionary alloc]initWithDictionary:[self.movieTableController.data objectAtIndex:self.movieTableController.selectIndex]];
-    if([self.movieTableController.circlePercentage count]>0){
+    if(![[self.movieTableController.circlePercentage objectAtIndex:self.movieTableController.selectIndex]isKindOfClass:[NSNull class]]){
         vc.percent = [self.movieTableController.circlePercentage objectAtIndex:self.movieTableController.selectIndex];}else{
             vc.percent = [[NSNumber alloc]initWithInt:-1];NSLog(@"aaaaaa");
         }
