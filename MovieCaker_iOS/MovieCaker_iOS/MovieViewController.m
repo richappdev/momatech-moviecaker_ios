@@ -45,6 +45,7 @@
 @property (strong, nonatomic) IBOutlet UILabel *threeOneL;
 @property (strong, nonatomic) IBOutlet UILabel *threeTwoL;
 @property (strong, nonatomic) IBOutlet UILabel *threeThreeL;
+@property (strong, nonatomic) IBOutlet NSLayoutConstraint *layerFilterHeight;
 
 @property NSArray *tabOneData;
 @property NSArray *tabTwoData;
@@ -269,11 +270,13 @@
             UIView *view;
             if(self.view.frame.size.width>=375){
                 view = [[UIView alloc]initWithFrame:CGRectMake(18+count*72, 30, 62, 28)];
+                self.layerFilterHeight.constant = 70;
             }else{
+                self.layerFilterHeight.constant = 90;
                 if(count<4){
-                view = [[UIView alloc]initWithFrame:CGRectMake(18+count*72, 20, 62, 28)];
+                view = [[UIView alloc]initWithFrame:CGRectMake(18+count*72, 25, 62, 28)];
                 }else{
-                view = [[UIView alloc]initWithFrame:CGRectMake(18, 52, 62, 28)];
+                view = [[UIView alloc]initWithFrame:CGRectMake(18, 57, 62, 28)];
                 }
             }
             view.tag = count;
@@ -392,7 +395,7 @@
         [self getMovieList:@"6" location:nil type:2 page:nil];
     }
     [self confirmLocation:gestureRecongnizer];
-    double delayInSeconds = 0.5;
+    double delayInSeconds = 0.2;
     dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, delayInSeconds * NSEC_PER_SEC);
     dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
         self.movieTable.delegate =self.movieTableController;
