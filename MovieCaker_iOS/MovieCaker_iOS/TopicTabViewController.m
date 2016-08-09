@@ -146,7 +146,10 @@
 if([[segue identifier] isEqualToString:@"topicSegue"]){
     TopicDetailViewController *vc = segue.destinationViewController;
     vc.data = [[NSMutableDictionary alloc]initWithDictionary:[self.movieTableController.data objectAtIndex:self.movieTableController.selectIndex]];
-    vc.percent = [self.movieTableController.circlePercentage objectAtIndex:self.movieTableController.selectIndex];
+    if([self.movieTableController.circlePercentage count]>0){
+        vc.percent = [self.movieTableController.circlePercentage objectAtIndex:self.movieTableController.selectIndex];}else{
+            vc.percent = [[NSNumber alloc]initWithInt:-1];NSLog(@"aaaaaa");
+        }
     NSLog(@"%@",self.movieTableController.circlePercentage);
 }}
 @end

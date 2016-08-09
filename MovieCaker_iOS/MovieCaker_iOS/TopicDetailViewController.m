@@ -82,7 +82,7 @@
     [self.movieTableController ParentController:self];
     self.movieTableController.page = 999;
     
-    if(self.percent.floatValue>0){
+    if([self.percent floatValue]>0){
     UIColor *circleColor = [buttonHelper circleColor:.8];
     self.circleView.percentage = self.percent.floatValue;
     
@@ -223,7 +223,7 @@
     }else{
         self.Chervon.image = [UIImage imageWithIcon:@"fa-chevron-up" backgroundColor:[UIColor clearColor] iconColor:[UIColor whiteColor] andSize:CGSizeMake(18, 20)];
         self.moreLabel.text = @"顯示部分";
-        [self.moreLabel sizeToFit];
+        [self.mainTxt sizeToFit];
         self.mainTxt.layer.mask = nil;
         self.contentHeight.constant = self.mainTxt.frame.size.height+10;
         self.moreHeight.constant = self.contentHeight.constant-3+10;
