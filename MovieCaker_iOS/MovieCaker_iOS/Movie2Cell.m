@@ -18,6 +18,8 @@
     [self addIndexGesture:self.likeBtn];
     [self addIndexGesture:self.shareBtn];
     self.starArray = [[NSArray alloc] initWithObjects:self.star1,self.star2,self.star3,self.star4,self.star5, nil];
+    self.mainPic.layer.masksToBounds = YES;
+    self.mainPic.layer.cornerRadius =5;
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {

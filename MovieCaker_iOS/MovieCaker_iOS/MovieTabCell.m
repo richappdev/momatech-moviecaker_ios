@@ -18,6 +18,8 @@
     [self addIndexGesture:self.watchBtn];
     [self addIndexGesture:self.likeBtn];
     [self addIndexGesture:self.wannaBtn];
+    self.image.layer.masksToBounds = YES;
+    self.image.layer.cornerRadius = 5;
 }
 -(void)addIndexGesture:(UIView*)view{
     UITapGestureRecognizer *indexTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(indexClick:)];

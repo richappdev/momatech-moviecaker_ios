@@ -168,6 +168,8 @@
             
             UIImage *placeholder = [UIImage imageNamed:@"img-placeholder.jpg"];
             UIImageView *image = [[UIImageView alloc] initWithImage:temp.movieImage];
+            image.layer.masksToBounds = YES;
+            image.layer.cornerRadius = 5;
             
             NSString *url = [NSString stringWithFormat:@"http://www.funmovie.tv/Content/pictures/files/%@?width=235",[row objectForKey:@"Picture"]];
             
