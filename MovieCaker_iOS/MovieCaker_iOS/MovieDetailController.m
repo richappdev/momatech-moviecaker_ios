@@ -98,7 +98,7 @@
     [[AustinApi sharedInstance] movieDetail:[self.movieDetailInfo objectForKey:@"Id"] function:^(NSMutableDictionary *returnData) {
        // NSLog(@"%@",[returnData objectForKey:@"Actor"]);
         if(self.loadLater==YES){
-            //self.movieDetailInfo = returnData;
+            self.movieDetailInfo = [[NSMutableDictionary alloc] initWithDictionary:returnData];
             [self changeReal];
         }
         

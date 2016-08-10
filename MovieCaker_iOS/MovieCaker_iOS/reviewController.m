@@ -129,6 +129,10 @@
     UITapGestureRecognizer *movieTap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(jumpToMovieDetail)];
     [self.movieJump addGestureRecognizer:movieTap];
     
+    UITapGestureRecognizer *movieTap2 = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(jumpToMovieDetail)];
+    self.reviewTitle.userInteractionEnabled = YES;
+    [self.reviewTitle addGestureRecognizer:movieTap2];
+    
     self.replyTop.hidden = YES;
     self.reviewTable.hidden = YES;
     if(self.newReview){
