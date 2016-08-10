@@ -11,4 +11,5 @@
 @interface TopicDetailViewController : UIViewController
 @property NSMutableDictionary *data;
 @property NSNumber *percent;
+@property BOOL newReview;
 @end

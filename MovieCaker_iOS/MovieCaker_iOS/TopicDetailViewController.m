@@ -18,6 +18,7 @@
 #import "MovieDetailController.h"
 #import "WXApi.h"
 #import "WechatAccess.h"
+#import "reviewController.h"
 
 @interface TopicDetailViewController ()
 @property MainVerticalScroller *scrollDelegate;
@@ -251,6 +252,15 @@
     if([[segue identifier] isEqualToString:@"movieDetail"]){
         MovieDetailController *vc = segue.destinationViewController;
         vc.movieDetailInfo = [self.movieTableController.data objectAtIndex:self.movieTableController.selectIndex];
+    }
+    if([[segue identifier] isEqualToString:@"reviewSegue"]){
+        reviewController *vc = segue.destinationViewController;
+        self.newReview=NO;
+        vc.newReview = YES;
+        NSDictionary *vData = [self.movieTableController.data objectAtIndex:self.movieTableController.selectIndex];
+        NSDictionary *User = [[NSKeyedUnarchiver unarchiveObjectWithData:[[NSUserDefaults standardUserDefaults] objectForKey:@"userkey"]]objectForKey:@"Data"];
+        vc.data = [buttonHelper reviewNewData:vData User:User];
+    
     }
 }
 -(void)addIndexGesture:(UIView*)view{

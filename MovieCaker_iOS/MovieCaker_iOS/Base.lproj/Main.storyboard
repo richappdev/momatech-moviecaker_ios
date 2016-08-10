@@ -656,7 +656,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ld6-Q0-N0A" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2662" y="79"/>
+            <point key="canvasLocation" x="2735" y="-1561"/>
         </scene>
         <!--Movie Controller-->
         <scene sceneID="hNz-n2-bh7">
@@ -2603,11 +2603,12 @@
                         <outlet property="topicTitle" destination="H1B-tn-kJq" id="XaK-9m-HVB"/>
                         <outlet property="viewCount" destination="juP-51-Itp" id="9Sa-Qt-bNk"/>
                         <segue destination="KeK-L1-IfS" kind="push" identifier="movieDetail" id="ABz-EY-h1x"/>
+                        <segue destination="gTw-d3-Ers" kind="push" identifier="reviewSegue" id="Hgx-67-v6k"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="HTY-Lb-RjW" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2123" y="-1260"/>
+            <point key="canvasLocation" x="1717" y="-1622"/>
         </scene>
         <!--我的-->
         <scene sceneID="Yw6-q6-vxF">
@@ -5722,7 +5723,7 @@
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="RsI-kC-Fb5"/>
-        <segue reference="faQ-HW-B4Q"/>
-        <segue reference="efM-b9-q38"/>
+        <segue reference="Hgx-67-v6k"/>
+        <segue reference="ABz-EY-h1x"/>
     </inferredMetricsTieBreakers>
 </document>
