@@ -27,6 +27,7 @@
             self.cellHeight = 200;
         }
         [self setNewCircleArray:100];
+        self.page=999;
     }
     return self;
 }
@@ -38,6 +39,11 @@
 
     self.circlePercentage = [NSMutableArray arrayWithCapacity:count];
     for (int i=0; i<count; i++) {
+        [self.circlePercentage insertObject:[NSNull null] atIndex:i];
+    }
+}
+-(void)addCircleEntry{
+    for (int i=0; i<10; i++) {
         [self.circlePercentage insertObject:[NSNull null] atIndex:i];
     }
 }
@@ -72,6 +78,11 @@
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     if(self.type==0){
+        if(indexPath.row>=self.page*10-1&&self.page!=999){
+            self.page =self.page+1;
+            [self.parentController loadMore:self.page];
+            //loadmore
+        }
     MovieCell *cell = [tableView dequeueReusableCellWithIdentifier:@"MovieCell" forIndexPath:indexPath];
         cell.data = [self.data objectAtIndex:indexPath.row];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;

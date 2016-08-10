@@ -20,4 +20,6 @@
 @property int selectIndex;
 -(void)sync;
 -(void)setNewCircleArray:(int)count;
+-(void)addCircleEntry;
+@property int page;
 @end

@@ -52,22 +52,23 @@
     self.movieTableController.tableView = self.tableView;
     [self.movieTableController ParentController:self];
     self.index =0;
-    [self setData:@"6"];
+    [self setData:@"6" page:nil];
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
--(void)setData:(NSString*)type{
+-(void)setData:(NSString*)type page:(NSString*)page{
 
-    [[AustinApi sharedInstance]getTopic:type vid:nil function:^(NSArray *returnData) {
+    [[AustinApi sharedInstance]getTopic:type vid:nil page:page function:^(NSArray *returnData) {
         //     NSLog(@"bbb%@",returnData);
         NSMutableArray *array = [[NSMutableArray alloc]init];
         for (NSDictionary *row in returnData) {
             NSMutableDictionary *dict = [[NSMutableDictionary alloc]initWithDictionary:row];
             [array addObject:dict];
         }
+        if(page==nil){
         self.movieTableController.data =array;
         [self.movieTableController setNewCircleArray:[returnData count]];
         if(self.index==0){
@@ -77,7 +78,15 @@
         }else if (self.index==2){
             self.tabThreeData=array;
         }
+            self.movieTableController.page=1;
+        }
+        else{
+            NSMutableArray *new =[[NSMutableArray alloc]initWithArray:[self.movieTableController.data arrayByAddingObjectsFromArray:array]];
+            self.movieTableController.data = new;
+            [self.movieTableController addCircleEntry];
+        }
         [self.movieTableController.tableView reloadData];
+        
         self.movieTableController.tableView.scrollEnabled = YES;
         
     } error:^(NSError *error) {
@@ -121,25 +130,28 @@
         self.index = page;
         if(self.index==0){
             if(self.tabOneData==nil){
-                [self setData:@"6"];
+                [self setData:@"6" page:nil];
             }else{
                 self.movieTableController.data = self.tabOneData;
+                self.movieTableController.page=1;
                 [self.movieTableController setNewCircleArray:[self.tabOneData count]];
                 [self.tableView reloadData];
             }
         }else if(self.index==1){
             if(self.tabTwoData==nil){
-                [self setData:@"1"];
+                [self setData:@"1" page:nil];
             }else{
                 self.movieTableController.data = self.tabTwoData;
+                self.movieTableController.page=1;
                 [self.movieTableController setNewCircleArray:[self.tabTwoData count]];
                 [self.tableView reloadData];
             }
         }else if(self.index==2){
             if(self.tabThreeData==nil){
-                [self setData:@"0"];
+                [self setData:@"0" page:nil];
             }else{
                 self.movieTableController.data = self.tabThreeData;
+                self.movieTableController.page=1;
                 [self.movieTableController setNewCircleArray:[self.tabThreeData count]];
                 [self.tableView reloadData];
             }
@@ -156,4 +168,13 @@ if([[segue identifier] isEqualToString:@"topicSegue"]){
         }
     NSLog(@"%@",self.movieTableController.circlePercentage);
 }}
+-(void)loadMore:(int)page{
+    NSString *pageString = [NSString stringWithFormat:@"%d",page];
+    if(self.index==0){
+            [self setData:@"6" page:pageString];
+    }else if(self.index==1){
+            [self setData:@"1" page:pageString];
+    }else if(self.index==2){
+        [self setData:@"0" page:pageString];
+    }}
 @end

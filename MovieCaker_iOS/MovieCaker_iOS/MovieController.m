@@ -124,7 +124,7 @@
     }];
 }
 -(void)topicCall{
-    [[AustinApi sharedInstance]getTopic:@"6" vid:nil function:^(NSArray *returnData) {
+    [[AustinApi sharedInstance]getTopic:@"6" vid:nil page:nil function:^(NSArray *returnData) {
         //     NSLog(@"bbb%@",returnData);
         NSMutableArray *array = [[NSMutableArray alloc]init];
         for (NSDictionary *row in returnData) {
@@ -188,7 +188,8 @@
             star.image = [UIImage imageWithIcon:@"fa-star" backgroundColor:[UIColor clearColor] iconColor:[UIColor whiteColor] andSize:CGSizeMake(18, 18)];
             [ratingBg addSubview:star];
             UILabel *label = [[UILabel alloc]initWithFrame:CGRectMake(3, 36, 52, 21)];
-             label.text = [NSString stringWithFormat:@"%0.1f", [[row objectForKey:@"AverageScore"]floatValue]];
+            if(![[row objectForKey:@"AverageScore"] isKindOfClass:[NSNull class]]){
+                label.text = [NSString stringWithFormat:@"%0.1f", [[row objectForKey:@"AverageScore"]floatValue]];}
             label.textColor = [UIColor whiteColor];
             label.textAlignment = NSTextAlignmentCenter;
             [ratingBg addSubview:label];
@@ -444,5 +445,7 @@
         self.tabBarController.selectedIndex = 1;
     }
 }
+-(void)loadMore:(int)page{
 
+}
 @end
