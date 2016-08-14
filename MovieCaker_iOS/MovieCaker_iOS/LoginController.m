@@ -27,7 +27,14 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
+    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(retract)];
+    [self.view addGestureRecognizer:tap];
+    self.username.delegate = self;
+    self.password.delegate = self;
+}
+-(void)retract{
+    [self.username resignFirstResponder];
+    [self.password resignFirstResponder];
 }
 -(void)viewWillAppear:(BOOL)animated{
     NSDictionary *returnData = [NSKeyedUnarchiver unarchiveObjectWithData:[[NSUserDefaults standardUserDefaults] objectForKey:USERKEY]];
@@ -41,7 +48,11 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
-
+- (BOOL)textFieldShouldReturn:(UITextField *)textField
+{
+    [self retract];
+    return YES;
+}
 /*
 #pragma mark - Navigation
 
