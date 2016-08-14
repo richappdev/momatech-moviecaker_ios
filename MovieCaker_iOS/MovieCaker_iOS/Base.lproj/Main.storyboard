@@ -2881,21 +2881,6 @@
                                             <constraint firstItem="yQe-4E-fPY" firstAttribute="centerY" secondItem="fzM-7Z-zgq" secondAttribute="centerY" id="oWP-ZA-AS7"/>
                                         </constraints>
                                     </view>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Vl1-sD-7R7">
-                                        <rect key="frame" x="339" y="435" width="67" height="30"/>
-                                        <color key="backgroundColor" red="0.86666666670000003" green="0.86666666670000003" blue="0.86666666670000003" alpha="1" colorSpace="calibratedRGB"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="30" id="4dP-ze-qIb"/>
-                                            <constraint firstAttribute="width" constant="67" id="QMc-hA-XMr"/>
-                                        </constraints>
-                                        <state key="normal" title="阅读更多">
-                                            <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                            <color key="titleShadowColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                        </state>
-                                        <connections>
-                                            <action selector="readMore:" destination="KeK-L1-IfS" eventType="touchUpInside" id="MlX-7R-QAm"/>
-                                        </connections>
-                                    </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="很多字很多字很多字很多字很多字很多字很多字很多字很多字很多字很多字很多字很多字很多字很多字很多字很多字很多字很多字很多字很多字很多字很多字很多字很多字很多字很多字很多字很多字很多字很多字很多字很多字很多字很多字很多字很多字很多字很多字很多字很多字很多字" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cIQ-qb-MJd">
                                         <rect key="frame" x="8" y="358" width="398" height="91"/>
                                         <constraints>
@@ -3555,6 +3540,52 @@
                                             <constraint firstItem="xfo-wW-egT" firstAttribute="bottom" secondItem="BpZ-Me-Nt1" secondAttribute="bottomMargin" id="wme-gV-Qqo"/>
                                         </constraints>
                                     </scrollView>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="STU-AF-5L2">
+                                        <rect key="frame" x="342" y="437" width="72" height="18"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="展開全文" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Pov-ot-M8K">
+                                                <rect key="frame" x="18" y="0.0" width="50" height="21"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="50" id="dc5-Ym-iMg"/>
+                                                    <constraint firstAttribute="height" constant="21" id="zHi-VL-KLo"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="12"/>
+                                                <color key="textColor" red="0.95686274510000002" green="0.60392156860000001" blue="0.2666666667" alpha="1" colorSpace="calibratedRGB"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6G2-OV-Vde">
+                                                <rect key="frame" x="0.0" y="5" width="12" height="12"/>
+                                                <subviews>
+                                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="lgV-De-Itv">
+                                                        <rect key="frame" x="3" y="3" width="6" height="6"/>
+                                                    </imageView>
+                                                </subviews>
+                                                <color key="backgroundColor" red="0.95686274510000002" green="0.60392156860000001" blue="0.2666666667" alpha="1" colorSpace="calibratedRGB"/>
+                                                <constraints>
+                                                    <constraint firstItem="lgV-De-Itv" firstAttribute="top" secondItem="6G2-OV-Vde" secondAttribute="top" constant="3" id="BRr-xj-iiJ"/>
+                                                    <constraint firstItem="lgV-De-Itv" firstAttribute="centerY" secondItem="6G2-OV-Vde" secondAttribute="centerY" id="Dha-Z9-36O"/>
+                                                    <constraint firstItem="lgV-De-Itv" firstAttribute="leading" secondItem="6G2-OV-Vde" secondAttribute="leading" constant="3" id="Tve-wt-9xJ"/>
+                                                    <constraint firstItem="lgV-De-Itv" firstAttribute="centerX" secondItem="6G2-OV-Vde" secondAttribute="centerX" id="tcw-Ah-Ejn"/>
+                                                </constraints>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                        <integer key="value" value="6"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                </userDefinedRuntimeAttributes>
+                                            </view>
+                                        </subviews>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <constraints>
+                                            <constraint firstAttribute="bottom" secondItem="6G2-OV-Vde" secondAttribute="bottom" constant="1" id="2ia-gW-XGW"/>
+                                            <constraint firstItem="Pov-ot-M8K" firstAttribute="leading" secondItem="6G2-OV-Vde" secondAttribute="trailing" constant="6" id="DeT-f9-Ai2"/>
+                                            <constraint firstItem="6G2-OV-Vde" firstAttribute="leading" secondItem="STU-AF-5L2" secondAttribute="leading" id="HW0-Uu-MhG"/>
+                                            <constraint firstAttribute="height" constant="18" id="SC8-mf-tCR"/>
+                                            <constraint firstAttribute="width" constant="72" id="U6c-bM-LpG"/>
+                                            <constraint firstItem="6G2-OV-Vde" firstAttribute="top" secondItem="STU-AF-5L2" secondAttribute="top" constant="5" id="n5d-oi-ujm"/>
+                                            <constraint firstAttribute="trailing" secondItem="6G2-OV-Vde" secondAttribute="trailing" constant="60" id="nLF-lp-skc"/>
+                                            <constraint firstItem="Pov-ot-M8K" firstAttribute="top" secondItem="STU-AF-5L2" secondAttribute="top" id="wRK-Cd-yQL"/>
+                                        </constraints>
+                                    </view>
                                 </subviews>
                                 <constraints>
                                     <constraint firstItem="gua-Us-aTq" firstAttribute="leading" secondItem="hpU-nl-EIH" secondAttribute="leading" id="2NF-Kc-bgB"/>
@@ -3581,13 +3612,12 @@
                                     <constraint firstItem="1oZ-9H-3wl" firstAttribute="leading" secondItem="fqH-gS-Xu0" secondAttribute="leading" id="RsS-MS-hhd"/>
                                     <constraint firstItem="IDr-dQ-mhe" firstAttribute="leading" secondItem="hpU-nl-EIH" secondAttribute="leading" constant="8" id="S2U-Bg-kKD"/>
                                     <constraint firstItem="1oZ-9H-3wl" firstAttribute="top" secondItem="cIQ-qb-MJd" secondAttribute="bottom" constant="8" symbolic="YES" id="SUL-BU-LsL"/>
+                                    <constraint firstItem="STU-AF-5L2" firstAttribute="trailing" secondItem="1oZ-9H-3wl" secondAttribute="trailing" id="T8j-Xe-UdP"/>
                                     <constraint firstItem="Sec-ic-6sy" firstAttribute="leading" secondItem="hpU-nl-EIH" secondAttribute="leading" constant="8" id="TxJ-WS-N5I"/>
                                     <constraint firstAttribute="trailing" secondItem="YgX-On-ze2" secondAttribute="trailing" constant="13" id="U1z-Ft-cu7"/>
-                                    <constraint firstAttribute="trailing" secondItem="Vl1-sD-7R7" secondAttribute="trailing" constant="8" id="UBp-W2-bm5"/>
                                     <constraint firstItem="IDr-dQ-mhe" firstAttribute="top" secondItem="Sec-ic-6sy" secondAttribute="bottom" constant="3" id="Und-u4-at7"/>
                                     <constraint firstItem="Sec-ic-6sy" firstAttribute="top" secondItem="ApQ-on-j71" secondAttribute="bottom" constant="27" id="V4B-xm-HpF"/>
                                     <constraint firstItem="1Tf-5l-sDo" firstAttribute="leading" secondItem="Ipr-8R-cBn" secondAttribute="leading" id="VSm-jt-QvN"/>
-                                    <constraint firstItem="BpZ-Me-Nt1" firstAttribute="top" secondItem="Vl1-sD-7R7" secondAttribute="bottom" constant="36" id="W95-tf-DXY"/>
                                     <constraint firstItem="fqH-gS-Xu0" firstAttribute="leading" secondItem="hpU-nl-EIH" secondAttribute="leading" id="WE6-GA-EHa"/>
                                     <constraint firstItem="ApQ-on-j71" firstAttribute="centerX" secondItem="hpU-nl-EIH" secondAttribute="centerX" id="WZ5-TS-Tor"/>
                                     <constraint firstItem="fqH-gS-Xu0" firstAttribute="top" secondItem="cIQ-qb-MJd" secondAttribute="bottom" constant="14" id="Wrx-H9-pPQ"/>
@@ -3616,6 +3646,7 @@
                                     <constraint firstAttribute="trailing" secondItem="gua-Us-aTq" secondAttribute="trailing" id="w95-If-1zD"/>
                                     <constraint firstItem="YgX-On-ze2" firstAttribute="top" secondItem="hpU-nl-EIH" secondAttribute="top" constant="153" id="wJ6-r4-GmP"/>
                                     <constraint firstItem="1Tf-5l-sDo" firstAttribute="top" secondItem="Oc3-18-2yn" secondAttribute="bottom" id="xPQ-79-1b2"/>
+                                    <constraint firstItem="fqH-gS-Xu0" firstAttribute="top" secondItem="STU-AF-5L2" secondAttribute="bottom" constant="8" symbolic="YES" id="ydw-qe-uVN"/>
                                     <constraint firstItem="HLU-pF-Gbg" firstAttribute="leading" secondItem="hpU-nl-EIH" secondAttribute="leading" constant="8" id="z2x-oe-kuU"/>
                                     <constraint firstItem="PDU-Mz-8qO" firstAttribute="bottom" secondItem="BpZ-Me-Nt1" secondAttribute="bottom" constant="8" id="zH9-M3-EK6"/>
                                     <constraint firstAttribute="trailing" secondItem="Oc3-18-2yn" secondAttribute="trailing" id="zJN-jg-Cfj"/>
@@ -3839,6 +3870,7 @@
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <size key="freeformSize" width="414" height="736"/>
                     <connections>
+                        <outlet property="Chervon" destination="lgV-De-Itv" id="bja-s4-Ln2"/>
                         <outlet property="ChineseName" destination="81h-qL-LxI" id="xWz-Ks-oiq"/>
                         <outlet property="EnglishName" destination="Sec-ic-6sy" id="Mv5-TL-YvF"/>
                         <outlet property="LikeNum" destination="3HK-um-ReH" id="Se9-US-2EU"/>
@@ -3853,9 +3885,10 @@
                         <outlet property="imdb" destination="wBh-oS-rcg" id="Ou4-e4-MZM"/>
                         <outlet property="likeBtn" destination="yW4-ks-vGZ" id="P4L-9f-NPr"/>
                         <outlet property="mainScroll" destination="hpU-nl-EIH" id="8ES-jP-Fo1"/>
+                        <outlet property="moreBtn" destination="STU-AF-5L2" id="4Gn-1e-KWR"/>
+                        <outlet property="moreLabel" destination="Pov-ot-M8K" id="imt-gF-uTR"/>
                         <outlet property="movieDescription" destination="cIQ-qb-MJd" id="quD-Po-yd5"/>
                         <outlet property="movieDescriptionHeight" destination="UN4-mm-x7j" id="ElS-oO-bNq"/>
-                        <outlet property="readMoreBtn" destination="Vl1-sD-7R7" id="tol-VZ-iOr"/>
                         <outlet property="releaseDate" destination="HLU-pF-Gbg" id="Y9J-ae-B0P"/>
                         <outlet property="reviewBtn" destination="jPn-Jd-i4C" id="jvW-Wd-gUE"/>
                         <outlet property="reviewGrey" destination="1Tf-5l-sDo" id="wei-WA-vMY"/>
