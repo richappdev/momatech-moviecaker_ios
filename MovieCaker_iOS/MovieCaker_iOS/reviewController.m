@@ -56,6 +56,9 @@
 @property (strong, nonatomic) IBOutlet UIView *respondBtn;
 @property (strong, nonatomic) IBOutlet UIView *friendStatus;
 @property (strong, nonatomic) IBOutlet UIImageView *friendAdd;
+@property (strong, nonatomic) IBOutlet UIImageView *Chervon;
+@property (strong, nonatomic) IBOutlet UILabel *moreLabel;
+@property BOOL opened;
 @end
 
 
@@ -149,6 +152,11 @@
     [self.friendAdd setUserInteractionEnabled:YES];
     UITapGestureRecognizer *tap3 = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(addFriend)];
     [self.friendAdd addGestureRecognizer:tap3];
+    
+    [self addMask];
+    UITapGestureRecognizer *tap4 = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(moreClick)];
+    [self.moreBtn addGestureRecognizer:tap4];
+    self.Chervon.image = [UIImage imageWithIcon:@"fa-chevron-down" backgroundColor:[UIColor clearColor] iconColor:[UIColor whiteColor] andSize:CGSizeMake(18, 20)];
 }
 -(void)addFriend{
     self.friendAdd.hidden = YES;
@@ -244,9 +252,9 @@
         self.shareBtn.tag = 1;
     }
     [buttonHelper adjustShare:self.shareBtn];
-    if([buttonHelper isLabelTruncated:(UILabel*)self.content]==NO){
+    /*if([buttonHelper isLabelTruncated:(UILabel*)self.content]==NO){
         self.moreBtn.hidden = YES;
-    }
+    }*/
     
 }
 -(void)jumpToMovieDetail{
@@ -423,5 +431,31 @@
 -(void)viewWillAppear:(BOOL)animated{
     self.navigationController.navigationBarHidden = NO;
     [self testFriend];
+}
+-(void)addMask{
+    CAGradientLayer *maskLayer = [CAGradientLayer layer];
+    maskLayer.colors = @[
+                         (id)[UIColor whiteColor].CGColor,
+                         (id)[UIColor whiteColor].CGColor,
+                         (id)[UIColor clearColor].CGColor];
+    maskLayer.locations = @[ @0.0f, @0.0f, @1.0f ];
+    maskLayer.frame = CGRectMake(0,0, self.view.frame.size.width, self.contentHeight.constant);
+    self.content.layer.mask = maskLayer;
+}
+-(void)moreClick{
+    if(self.opened){
+        self.Chervon.image = [UIImage imageWithIcon:@"fa-chevron-down" backgroundColor:[UIColor clearColor] iconColor:[UIColor whiteColor] andSize:CGSizeMake(18, 20)];
+        self.moreLabel.text = @"展開全文";
+        self.contentHeight.constant = 94;
+        [self addMask];
+    }else{
+        self.Chervon.image = [UIImage imageWithIcon:@"fa-chevron-up" backgroundColor:[UIColor clearColor] iconColor:[UIColor whiteColor] andSize:CGSizeMake(18, 20)];
+        self.moreLabel.text = @"顯示部分";
+        [self.content sizeToFit];
+        self.content.layer.mask = nil;
+        self.contentHeight.constant = self.content.frame.size.height+10;
+        //     self.moreHeight.constant = self.contentHeight.constant-3+10;
+    }
+    self.opened = !self.opened;
 }
 @end
