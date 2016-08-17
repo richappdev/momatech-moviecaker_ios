@@ -20,6 +20,7 @@
 @property (strong, nonatomic) IBOutlet UITextField *username;
 @property (strong, nonatomic) IBOutlet UITextField *password;
 @property (strong, nonatomic) IBOutlet UIButton *Button2;
+@property (strong, nonatomic) IBOutlet UIImageView *wechatBtn;
 
 @end
 
@@ -31,6 +32,18 @@
     [self.view addGestureRecognizer:tap];
     self.username.delegate = self;
     self.password.delegate = self;
+    CALayer *bottomBorder = [CALayer layer];
+    bottomBorder.frame = CGRectMake(0.0f, self.username.frame.size.height - 1, self.view.frame.size.width, 1.0f);
+    bottomBorder.backgroundColor = [UIColor colorWithRed:(128/255.0f) green:(203/255.0f) blue:(196/255.0f) alpha:1].CGColor;
+    CALayer *bottomBorder2 = [CALayer layer];
+    bottomBorder2.frame = CGRectMake(0.0f, self.username.frame.size.height - 1, self.view.frame.size.width, 1.0f);
+    bottomBorder2.backgroundColor = [UIColor colorWithRed:(128/255.0f) green:(203/255.0f) blue:(196/255.0f) alpha:1].CGColor;
+    [self.username.layer addSublayer:bottomBorder];
+    [self.password.layer addSublayer:bottomBorder2];
+    
+    UITapGestureRecognizer *tap2 = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(wLogin:)];
+    [self.wechatBtn setUserInteractionEnabled:YES];
+    [self.wechatBtn addGestureRecognizer:tap2];
 }
 -(void)retract{
     [self.username resignFirstResponder];
@@ -62,7 +75,9 @@
     // Pass the selected object to the new view controller.
 }
 */
-
+-(void)wLogin:(UIGestureRecognizer*)gesture{
+    [self Login:gesture.view];
+}
 - (IBAction)Login:(id)sender {
     UINavigationController *nav = [self.tabBarController.viewControllers objectAtIndex:0];
     MovieController *movie = [[nav viewControllers]objectAtIndex:0];
