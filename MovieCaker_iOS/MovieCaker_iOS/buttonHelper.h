@@ -21,4 +21,5 @@
 +(UIColor*)circleColor:(float)percent;
 +(void)v2AdjustShare:(UIView*)view state:(BOOL)state;
 +(void)adjustFriendStatus:(UIView*)view state:(int)state;
++ (UIImage*)blurImage:(UIImage*)image withBottomInset:(CGFloat)inset blurRadius:(CGFloat)radius;
 @end

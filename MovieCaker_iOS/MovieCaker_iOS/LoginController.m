@@ -13,6 +13,9 @@
 #import "WechatAccess.h"
 #import "AustinApi.h"
 #import "MovieController.h"
+#import "movieModel.h"
+#import "buttonHelper.h"
+
 #define USERKEY @"userkey"
 @interface LoginController ()
 @property (strong, nonatomic) IBOutlet UIButton *Button;
@@ -21,7 +24,12 @@
 @property (strong, nonatomic) IBOutlet UITextField *password;
 @property (strong, nonatomic) IBOutlet UIButton *Button2;
 @property (strong, nonatomic) IBOutlet UIImageView *wechatBtn;
-
+@property (strong, nonatomic) IBOutlet UIImageView *bgOne;
+@property (strong, nonatomic) IBOutlet UIImageView *bgTwo;
+@property int count;
+@property NSTimer *timer;
+@property UIImageView *current;
+@property UIImageView *next;
 @end
 
 @implementation LoginController
@@ -44,10 +52,46 @@
     UITapGestureRecognizer *tap2 = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(wLogin:)];
     [self.wechatBtn setUserInteractionEnabled:YES];
     [self.wechatBtn addGestureRecognizer:tap2];
+   
+    self.count =0;
+    movieModel *temp = [self.images objectAtIndex:0];
+    self.bgOne.image = [buttonHelper blurImage:temp.movieImageView.image withBottomInset:0 blurRadius:4];
+    movieModel *temp2 = [self.images objectAtIndex:1];
+    self.bgTwo.image = [buttonHelper blurImage:temp2.movieImageView.image withBottomInset:0 blurRadius:4];
+    self.current =self.bgOne;
+    self.next =self.bgTwo;
+}
+
+-(void)timerTicked:(id)sender{
+    if(self.count<[self.images count]-1){
+        self.count++;
+    }else{
+        self.count=0;
+    }
+    [self changePic:self.count];
+}
+
+-(void)changePic:(int)row{
+    NSLog(@"work");
+    [UIView animateWithDuration:1.0f animations:^{
+        self.current.alpha =0;
+        self.next.alpha=1;
+    } completion:^(BOOL finished){
+        UIImageView *temp = self.current;
+        self.current =self.next;
+        self.next = temp;
+        movieModel *temp2 = [self.images objectAtIndex:row];
+        temp.image =[buttonHelper blurImage:temp2
+                     .movieImageView.image withBottomInset:0 blurRadius:4];
+    }];
 }
 -(void)retract{
     [self.username resignFirstResponder];
     [self.password resignFirstResponder];
+}
+-(void)viewWillDisappear:(BOOL)animated{
+    [self.timer invalidate];
+    self.timer=nil;
 }
 -(void)viewWillAppear:(BOOL)animated{
     NSDictionary *returnData = [NSKeyedUnarchiver unarchiveObjectWithData:[[NSUserDefaults standardUserDefaults] objectForKey:USERKEY]];
@@ -56,6 +100,8 @@
         [self.Button setTitle:[NSString stringWithFormat:@"%@:log out",[[returnData objectForKey:@"Data"] objectForKey:@"NickName"]] forState:UIControlStateNormal];
         [self.Button2 setTitle:[NSString stringWithFormat:@"%@:log out",[[returnData objectForKey:@"Data"] objectForKey:@"NickName"]] forState:UIControlStateNormal];
     }
+    
+    self.timer = [NSTimer scheduledTimerWithTimeInterval:5.0 target:self selector:@selector(timerTicked:) userInfo:nil repeats:YES];
 }
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

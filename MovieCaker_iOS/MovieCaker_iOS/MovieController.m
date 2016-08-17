@@ -18,6 +18,8 @@
 #import "MovieViewController.h"
 #import "reviewController.h"
 #import "TopicDetailViewController.h"
+#import "LoginController.h"
+#import "buttonHelper.h"
 
 @interface MovieController ()
 @property (strong, nonatomic) IBOutlet scrollBoxView *scrollView;
@@ -206,6 +208,8 @@
             }
             count++;
             
+            LoginController *nav = [self.tabBarController.viewControllers objectAtIndex:4];
+            nav.images = self.movieArray;
         }
         
     } error:^(NSError *error) {
@@ -310,7 +314,7 @@
 -(void)setMovieDetails:(movieModel*)model blur:(BOOL)blur{
     self.uititle.text = model.title;
     if(blur){
-        self.blurredBg.image =[self blurImage:model.movieImageView.image  withBottomInset:0 blurRadius:43];}
+        self.blurredBg.image =[buttonHelper blurImage:model.movieImageView.image  withBottomInset:0 blurRadius:43];}
     
     if(model.IsViewed){
         self.iconEyeIndex.image = [UIImage imageNamed:@"iconEyeIndexActive.png"];
@@ -352,39 +356,6 @@
     // Dispose of any resources that can be recreated.
 }
 
-- (UIImage*)blurImage:(UIImage*)image withBottomInset:(CGFloat)inset blurRadius:(CGFloat)radius{
-    
-    
-    CIImage *ciImage = [CIImage imageWithCGImage:image.CGImage];
-    CIFilter *filter = [CIFilter filterWithName:@"CIGaussianBlur"];
-    [filter setValue:ciImage forKey:kCIInputImageKey];
-    [filter setValue:@(radius) forKey:kCIInputRadiusKey];
-    
-    CIContext *context = [CIContext contextWithOptions:nil];
-    
-    //First, we'll use CIAffineClamp to prevent black edges on our blurred image
-    //CIAffineClamp extends the edges off to infinity (check the docs, yo)
-    CGAffineTransform transform = CGAffineTransformIdentity;
-    CIFilter *clampFilter = [CIFilter filterWithName:@"CIAffineClamp"];
-    [clampFilter setValue:filter.outputImage forKeyPath:kCIInputImageKey];
-    [clampFilter setValue:[NSValue valueWithBytes:&transform objCType:@encode(CGAffineTransform)] forKeyPath:@"inputTransform"];
-    CIImage *clampedImage = [clampFilter outputImage];
-    
-    //Next, create some darkness
-    CIFilter* blackGenerator = [CIFilter filterWithName:@"CIConstantColorGenerator"];
-    CIColor* black = [CIColor colorWithRed:0.0f green:0.0f blue:0.0f alpha:0.52];
-    [blackGenerator setValue:black forKey:@"inputColor"];
-    CIImage* blackImage = [blackGenerator valueForKey:@"outputImage"];
-    
-    //Apply that black
-    CIFilter *compositeFilter = [CIFilter filterWithName:@"CIMultiplyBlendMode"];
-    [compositeFilter setValue:blackImage forKey:@"inputImage"];
-    [compositeFilter setValue:clampedImage forKey:@"inputBackgroundImage"];
-    CIImage *darkenedImage = [compositeFilter outputImage];
-    
-    return [UIImage imageWithCGImage: [context createCGImage:darkenedImage fromRect:ciImage.extent]];
-    
-}
 -(void)indexClick:(UITapGestureRecognizer *)sender{
     NSLog(@"asd%ld",sender.view.tag);
     
