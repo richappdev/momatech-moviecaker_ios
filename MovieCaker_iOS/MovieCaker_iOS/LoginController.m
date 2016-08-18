@@ -18,7 +18,6 @@
 
 #define USERKEY @"userkey"
 @interface LoginController ()
-@property (strong, nonatomic) IBOutlet UIButton *Button;
 - (IBAction)Login:(id)sender;
 @property (strong, nonatomic) IBOutlet UITextField *username;
 @property (strong, nonatomic) IBOutlet UITextField *password;
@@ -30,6 +29,7 @@
 @property NSTimer *timer;
 @property UIImageView *current;
 @property UIImageView *next;
+@property (strong, nonatomic) IBOutlet UIView *myView;
 @end
 
 @implementation LoginController
@@ -60,6 +60,9 @@
     self.bgTwo.image = [buttonHelper blurImage:temp2.movieImageView.image withBottomInset:0 blurRadius:4];
     self.current =self.bgOne;
     self.next =self.bgTwo;
+    
+    UITapGestureRecognizer *tap3 = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(wLogin:)];
+    [self.myView addGestureRecognizer:tap3];
 }
 
 -(void)timerTicked:(id)sender{
@@ -90,18 +93,16 @@
     [self.password resignFirstResponder];
 }
 -(void)viewWillDisappear:(BOOL)animated{
-    [self.timer invalidate];
-    self.timer=nil;
+    [self stopTimer];
 }
 -(void)viewWillAppear:(BOOL)animated{
     NSDictionary *returnData = [NSKeyedUnarchiver unarchiveObjectWithData:[[NSUserDefaults standardUserDefaults] objectForKey:USERKEY]];
     NSLog(@"%@",returnData);
     if(returnData!=nil){
-        [self.Button setTitle:[NSString stringWithFormat:@"%@:log out",[[returnData objectForKey:@"Data"] objectForKey:@"NickName"]] forState:UIControlStateNormal];
         [self.Button2 setTitle:[NSString stringWithFormat:@"%@:log out",[[returnData objectForKey:@"Data"] objectForKey:@"NickName"]] forState:UIControlStateNormal];
     }
-    
-    self.timer = [NSTimer scheduledTimerWithTimeInterval:5.0 target:self selector:@selector(timerTicked:) userInfo:nil repeats:YES];
+    [self.navigationController setNavigationBarHidden:YES];
+    [self startTimer];
 }
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
@@ -111,6 +112,13 @@
 {
     [self retract];
     return YES;
+}
+-(void)startTimer{
+    self.timer = [NSTimer scheduledTimerWithTimeInterval:5.0 target:self selector:@selector(timerTicked:) userInfo:nil repeats:YES];
+}
+-(void)stopTimer{
+    [self.timer invalidate];
+    self.timer=nil;
 }
 /*
 #pragma mark - Navigation
@@ -131,7 +139,6 @@
     UIButton *btn = (UIButton*)sender;
     if([[NSUserDefaults standardUserDefaults] objectForKey:USERKEY]!=nil){
         [[NSUserDefaults standardUserDefaults] removeObjectForKey:USERKEY];
-        [self.Button setTitle:@"Wechat Login" forState:UIControlStateNormal];
         [self.Button2 setTitle:@"Login" forState:UIControlStateNormal];
         NSArray *cookies = [[NSHTTPCookieStorage sharedHTTPCookieStorage] cookies];
         for (NSHTTPCookie *cookie in cookies) {
@@ -139,15 +146,17 @@
             NSLog(@"%@",cookie);
             [[NSHTTPCookieStorage sharedHTTPCookieStorage] deleteCookie:cookie];
         }
+        [self.myView setHidden:YES];
+        [self startTimer];
     }
     else if(btn.tag==1){
         [[AustinApi sharedInstance]loginWithAccount:self.username.text withPassword:self.password.text withRemember:YES function:^(NSDictionary *returnData) {
             if([[returnData objectForKey:@"success"]boolValue]==TRUE){
             NSDictionary *temp = [[NSDictionary alloc] initWithObjectsAndKeys:[returnData objectForKey:@"data"],@"Data", nil];
             [[NSUserDefaults standardUserDefaults] setObject:[NSKeyedArchiver archivedDataWithRootObject:temp] forKey:USERKEY];
-                [self.Button setTitle:[NSString stringWithFormat:@"%@:log out",[[temp objectForKey:@"Data"] objectForKey:@"NickName"]] forState:UIControlStateNormal];
                 [self.Button2 setTitle:[NSString stringWithFormat:@"%@:log out",[[temp objectForKey:@"Data"] objectForKey:@"NickName"]] forState:UIControlStateNormal];
-                
+                [self.myView setHidden:NO];
+                [self stopTimer];
             }
             else{
                 UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"注意" message:@"用户名或密码不正确" delegate:self cancelButtonTitle:@"关闭" otherButtonTitles:nil,nil];
@@ -170,8 +179,9 @@
             NSLog(@"here%@",returnData);
             [[NSUserDefaults standardUserDefaults] setObject:[NSKeyedArchiver archivedDataWithRootObject:returnData] forKey:USERKEY];
 
-            [self.Button setTitle:[NSString stringWithFormat:@"%@:log out",[[returnData objectForKey:@"Data"] objectForKey:@"NickName"]] forState:UIControlStateNormal];
             [self.Button2 setTitle:[NSString stringWithFormat:@"%@:log out",[[returnData objectForKey:@"Data"] objectForKey:@"NickName"]] forState:UIControlStateNormal];
+            [self.myView setHidden:NO];
+            [self stopTimer];
             
         } error:^(NSError *error) {
             NSLog(@"%@",error.description);

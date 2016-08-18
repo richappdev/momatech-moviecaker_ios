@@ -208,8 +208,9 @@
             }
             count++;
             
-            LoginController *nav = [self.tabBarController.viewControllers objectAtIndex:4];
-            nav.images = self.movieArray;
+            UINavigationController *nav = [self.tabBarController.viewControllers objectAtIndex:4];
+            LoginController *login = [[nav viewControllers]objectAtIndex:0];
+            login.images = self.movieArray;
         }
         
     } error:^(NSError *error) {
