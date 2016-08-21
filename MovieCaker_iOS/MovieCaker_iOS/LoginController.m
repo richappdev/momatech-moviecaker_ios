@@ -15,6 +15,8 @@
 #import "MovieController.h"
 #import "movieModel.h"
 #import "buttonHelper.h"
+#import "UIImageView+WebCache.h"
+#import "UIImage+FontAwesome.h"
 
 #define USERKEY @"userkey"
 @interface LoginController ()
@@ -30,6 +32,12 @@
 @property UIImageView *current;
 @property UIImageView *next;
 @property (strong, nonatomic) IBOutlet UIView *myView;
+@property (strong, nonatomic) IBOutlet UIImageView *BannerUrl;
+@property (strong, nonatomic) IBOutlet UIImageView *avatar;
+@property (strong, nonatomic) IBOutlet UILabel *nickname;
+@property (strong, nonatomic) IBOutlet UIImageView *gender;
+@property (strong, nonatomic) IBOutlet UILabel *location;
+@property (strong, nonatomic) IBOutlet UIImageView *chevron;
 @end
 
 @implementation LoginController
@@ -63,6 +71,15 @@
     
     UITapGestureRecognizer *tap3 = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(wLogin:)];
     [self.myView addGestureRecognizer:tap3];
+    
+    CAGradientLayer *maskLayer = [CAGradientLayer layer];
+    maskLayer.colors = @[
+                         (id)[UIColor whiteColor].CGColor,
+                         (id)[UIColor whiteColor].CGColor,
+                         (id)[UIColor clearColor].CGColor];
+    maskLayer.locations = @[ @0.0f, @0.0f, @1.0f ];
+    maskLayer.frame = CGRectMake(0,0, self.BannerUrl.frame.size.width+200, self.BannerUrl.frame.size.height);
+    self.BannerUrl.layer.mask = maskLayer;
 }
 
 -(void)timerTicked:(id)sender{
@@ -100,9 +117,11 @@
     NSLog(@"%@",returnData);
     if(returnData!=nil){
         [self.Button2 setTitle:[NSString stringWithFormat:@"%@:log out",[[returnData objectForKey:@"Data"] objectForKey:@"NickName"]] forState:UIControlStateNormal];
-    }
+        [self.myView setHidden:NO];
+        [self populate:[returnData objectForKey:@"Data"]];
+    }else{
+        [self startTimer];}
     [self.navigationController setNavigationBarHidden:YES];
-    [self startTimer];
 }
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
@@ -157,6 +176,7 @@
                 [self.Button2 setTitle:[NSString stringWithFormat:@"%@:log out",[[temp objectForKey:@"Data"] objectForKey:@"NickName"]] forState:UIControlStateNormal];
                 [self.myView setHidden:NO];
                 [self stopTimer];
+                [self populate:[returnData objectForKey:@"data"]];
             }
             else{
                 UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"注意" message:@"用户名或密码不正确" delegate:self cancelButtonTitle:@"关闭" otherButtonTitles:nil,nil];
@@ -182,7 +202,7 @@
             [self.Button2 setTitle:[NSString stringWithFormat:@"%@:log out",[[returnData objectForKey:@"Data"] objectForKey:@"NickName"]] forState:UIControlStateNormal];
             [self.myView setHidden:NO];
             [self stopTimer];
-            
+            [self populate:[returnData objectForKey:@"Data"]];
         } error:^(NSError *error) {
             NSLog(@"%@",error.description);
         }];
@@ -198,5 +218,17 @@
         NSLog(@"Wechat not installed");
     }
 }
+}
+-(void)populate:(NSDictionary*)dict{
+    [self.BannerUrl sd_setImageWithURL:[NSURL URLWithString:[dict objectForKey:@"BannerUrl"]] placeholderImage:[UIImage imageNamed:@"img-placeholder.jpg"]];
+    [self.avatar sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@/%@",[[AustinApi sharedInstance] getBaseUrl],[dict objectForKey:@"AvatarUrl"]]] placeholderImage:[UIImage imageNamed:@"img-placeholder.jpg"]];
+    self.nickname.text = [dict objectForKey:@"NickName"];
+    self.location.text = [dict objectForKey:@"LocationName"];
+    if([[dict objectForKey:@"Gender"] integerValue]==1){
+        self.gender.image =[UIImage imageWithIcon:@"fa-male" backgroundColor:[UIColor clearColor] iconColor:[UIColor colorWithRed:(119/255.0f) green:(136/255.0f) blue:(153/255.0f) alpha:1.0] andSize:CGSizeMake(13, 18)];
+    }else{
+        self.gender.image =[UIImage imageWithIcon:@"fa-female" backgroundColor:[UIColor clearColor] iconColor:[UIColor colorWithRed:(255/255.0f) green:(136/255.0f) blue:(153/255.0f) alpha:1.0] andSize:CGSizeMake(13, 18)];
+    }
+    self.chevron.image = [UIImage imageWithIcon:@"fa-chevron-right" backgroundColor:[UIColor clearColor] iconColor:[UIColor colorWithRed:(172/255.0f) green:(189/255.0f) blue:(206/255.0f) alpha:1.0] andSize:CGSizeMake(10, 14)];
 }
 @end
