@@ -38,6 +38,7 @@
 @property (strong, nonatomic) IBOutlet UIImageView *gender;
 @property (strong, nonatomic) IBOutlet UILabel *location;
 @property (strong, nonatomic) IBOutlet UIImageView *chevron;
+@property (strong, nonatomic) IBOutlet UIView *detailView;
 @end
 
 @implementation LoginController
@@ -69,8 +70,8 @@
     self.current =self.bgOne;
     self.next =self.bgTwo;
     
-    UITapGestureRecognizer *tap3 = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(wLogin:)];
-    [self.myView addGestureRecognizer:tap3];
+    UITapGestureRecognizer *tap3 = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(detail)];
+    [self.detailView addGestureRecognizer:tap3];
     
     CAGradientLayer *maskLayer = [CAGradientLayer layer];
     maskLayer.colors = @[
@@ -81,7 +82,9 @@
     maskLayer.frame = CGRectMake(0,0, self.BannerUrl.frame.size.width+200, self.BannerUrl.frame.size.height);
     self.BannerUrl.layer.mask = maskLayer;
 }
-
+-(void)detail{
+    [self performSegueWithIdentifier:@"mypageSegue" sender:self];
+}
 -(void)timerTicked:(id)sender{
     if(self.count<[self.images count]-1){
         self.count++;
