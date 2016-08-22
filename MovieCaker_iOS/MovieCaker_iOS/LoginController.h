@@ -10,4 +10,5 @@
 
 @interface LoginController : UIViewController
 @property NSArray *images;
+-(void)logout;
 @end

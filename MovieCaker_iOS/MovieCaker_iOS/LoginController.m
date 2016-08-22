@@ -125,6 +125,7 @@
     }else{
         [self startTimer];}
     [self.navigationController setNavigationBarHidden:YES];
+    
 }
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
@@ -142,15 +143,19 @@
     [self.timer invalidate];
     self.timer=nil;
 }
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+-(void)logout{
+    [[NSUserDefaults standardUserDefaults] removeObjectForKey:USERKEY];
+    [self.Button2 setTitle:@"Login" forState:UIControlStateNormal];
+    NSArray *cookies = [[NSHTTPCookieStorage sharedHTTPCookieStorage] cookies];
+    for (NSHTTPCookie *cookie in cookies) {
+        // Here I see the correct rails session cookie
+        NSLog(@"%@",cookie);
+        [[NSHTTPCookieStorage sharedHTTPCookieStorage] deleteCookie:cookie];
+    }
+    [self.myView setHidden:YES];
+    if(self.timer!=nil){
+        [self startTimer];}
 }
-*/
 -(void)wLogin:(UIGestureRecognizer*)gesture{
     [self Login:gesture.view];
 }
@@ -160,16 +165,7 @@
     movie.refresh = YES;
     UIButton *btn = (UIButton*)sender;
     if([[NSUserDefaults standardUserDefaults] objectForKey:USERKEY]!=nil){
-        [[NSUserDefaults standardUserDefaults] removeObjectForKey:USERKEY];
-        [self.Button2 setTitle:@"Login" forState:UIControlStateNormal];
-        NSArray *cookies = [[NSHTTPCookieStorage sharedHTTPCookieStorage] cookies];
-        for (NSHTTPCookie *cookie in cookies) {
-            // Here I see the correct rails session cookie
-            NSLog(@"%@",cookie);
-            [[NSHTTPCookieStorage sharedHTTPCookieStorage] deleteCookie:cookie];
-        }
-        [self.myView setHidden:YES];
-        [self startTimer];
+        [self logout];
     }
     else if(btn.tag==1){
         [[AustinApi sharedInstance]loginWithAccount:self.username.text withPassword:self.password.text withRemember:YES function:^(NSDictionary *returnData) {

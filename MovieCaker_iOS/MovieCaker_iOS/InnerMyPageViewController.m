@@ -11,6 +11,7 @@
 #import "UIImage+FontAwesome.h"
 #import "AustinApi.h"
 #import "UIImageView+WebCache.h"
+#import "LoginController.h"
 
 @interface InnerMyPageViewController ()
 @property MainVerticalScroller *helper;
@@ -19,6 +20,7 @@
 @property (strong, nonatomic) IBOutlet UILabel *sex;
 @property (strong, nonatomic) IBOutlet UILabel *bday;
 @property (strong, nonatomic) IBOutlet UILabel *location;
+@property (strong, nonatomic) IBOutlet UIView *logout;
 @end
 
 @implementation InnerMyPageViewController
@@ -50,6 +52,8 @@
     self.location.text = [returnData objectForKey:@"LocationName"];
     self.bday.text = [[returnData objectForKey:@"BrithDay"] stringByReplacingOccurrencesOfString:@"-" withString:@"/"];
     self.bday.text = [self.bday.text substringWithRange:NSMakeRange(0,[self.bday.text rangeOfString:@"T"].location)];
+    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(logoutClick)];
+    [self.logout addGestureRecognizer:tap];
 }
 -(void)viewWillAppear:(BOOL)animated{
     self.navigationController.navigationBarHidden = NO;
@@ -58,7 +62,11 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
-
+-(void)logoutClick{
+    LoginController *root = (LoginController*)[self.navigationController.viewControllers objectAtIndex:0];
+    [root logout];
+    [self.navigationController popViewControllerAnimated:YES];
+}
 /*
 #pragma mark - Navigation
 
