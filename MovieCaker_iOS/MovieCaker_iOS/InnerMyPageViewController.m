@@ -9,9 +9,16 @@
 #import "InnerMyPageViewController.h"
 #import "MainVerticalScroller.h"
 #import "UIImage+FontAwesome.h"
+#import "AustinApi.h"
+#import "UIImageView+WebCache.h"
 
 @interface InnerMyPageViewController ()
 @property MainVerticalScroller *helper;
+@property (strong, nonatomic) IBOutlet UIImageView *avatar;
+@property (strong, nonatomic) IBOutlet UILabel *nickname;
+@property (strong, nonatomic) IBOutlet UILabel *sex;
+@property (strong, nonatomic) IBOutlet UILabel *bday;
+@property (strong, nonatomic) IBOutlet UILabel *location;
 @end
 
 @implementation InnerMyPageViewController
@@ -30,7 +37,19 @@
      @{NSForegroundColorAttributeName:[UIColor colorWithRed:(255/255.0) green:(255/255.0) blue:(255/255.0) alpha:1]}];
 
     [self.view addSubview:statusView];
-
+    
+    NSDictionary *returnData = [[NSKeyedUnarchiver unarchiveObjectWithData:[[NSUserDefaults standardUserDefaults] objectForKey:@"userkey"]] objectForKey:@"Data"];
+    self.nickname.text = [returnData objectForKey:@"NickName"];
+    [self.avatar sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@/%@",[[AustinApi sharedInstance] getBaseUrl],[returnData objectForKey:@"AvatarUrl"]]] placeholderImage:[UIImage imageNamed:@"img-placeholder.jpg"]];
+    
+    if([[returnData objectForKey:@"Gender"] integerValue]==1){
+        self.sex.text = @"男";
+    }else{
+        self.sex.text = @"女";
+    }
+    self.location.text = [returnData objectForKey:@"LocationName"];
+    self.bday.text = [[returnData objectForKey:@"BrithDay"] stringByReplacingOccurrencesOfString:@"-" withString:@"/"];
+    self.bday.text = [self.bday.text substringWithRange:NSMakeRange(0,[self.bday.text rangeOfString:@"T"].location)];
 }
 -(void)viewWillAppear:(BOOL)animated{
     self.navigationController.navigationBarHidden = NO;

@@ -3094,6 +3094,13 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="qfO-eH-qR0"/>
+                    <connections>
+                        <outlet property="avatar" destination="Jq4-mD-yuy" id="m23-iF-4Cr"/>
+                        <outlet property="bday" destination="i0o-9t-G5w" id="X5s-uO-1rp"/>
+                        <outlet property="location" destination="8gn-5r-F1E" id="B8r-g3-k0n"/>
+                        <outlet property="nickname" destination="3BI-qd-eYt" id="jnU-zg-alI"/>
+                        <outlet property="sex" destination="N5U-Oo-kuA" id="Ii2-bN-4rX"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="y9m-9F-glp" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
