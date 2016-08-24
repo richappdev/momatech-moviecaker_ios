@@ -9,5 +9,5 @@
 #import <UIKit/UIKit.h>
 
 @interface TopicTabViewController : UIViewController
-
+-(void)loadMore:(int)page;
 @end

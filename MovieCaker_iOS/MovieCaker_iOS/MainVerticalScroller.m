@@ -7,6 +7,7 @@
 //
 
 #import "MainVerticalScroller.h"
+#import "UIImage+FontAwesome.h"
 
 @implementation MainVerticalScroller
 
@@ -29,7 +30,7 @@
         self.movingButtons.frame = CGRectMake(self.movingButtons.frame.origin.x,19+scrollView.contentOffset.y - 363 , self.movingButtons.frame.size.width, self.movingButtons.frame.size.height);
     
     }else{
-        self.movingButtons.frame = CGRectMake(self.movingButtons.frame.origin.x,19, self.movingButtons.frame.size.width, self.movingButtons.frame.size.height);
+        self.movingButtons.frame = CGRectMake(self.movingButtons.frame.origin.x,12, self.movingButtons.frame.size.width, self.movingButtons.frame.size.height);
         
     }
 }
@@ -46,6 +47,19 @@
     view.navigationController.navigationBar.translucent = YES;
     view.navigationController.view.backgroundColor = [UIColor clearColor];
     view.navigationController.navigationBar.backgroundColor = [UIColor clearColor];
+}
+-(void)setupBackBtn2:(UIViewController *)view{
+    UIBarButtonItem *barButtonItem =[[UIBarButtonItem alloc]initWithImage:[UIImage imageWithIcon:@"fa-chevron-left" backgroundColor:[UIColor clearColor] iconColor:[UIColor colorWithRed:(172/255.0f) green:(189/255.0f) blue:(206/255.0f) alpha:1.0] andSize:CGSizeMake(10, 14)] style:UIBarButtonItemStylePlain target:self action:@selector(goBack)];
+    barButtonItem.tintColor = [UIColor whiteColor];
+    [view.navigationItem setLeftBarButtonItem:barButtonItem];
+    
+    [view.navigationController.navigationBar setBackgroundImage:[UIImage new]
+                                                  forBarMetrics:UIBarMetricsDefault];
+    view.navigationController.navigationBar.shadowImage = [UIImage new];
+    view.navigationController.navigationBar.translucent = YES;
+    view.navigationController.view.backgroundColor = [UIColor clearColor];
+    view.navigationController.navigationBar.backgroundColor = [UIColor clearColor];
+
 }
 -(void)setupStatusbar:(UIView*)targetView{
     UIView *statusView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, targetView.frame.size.width, 20)];

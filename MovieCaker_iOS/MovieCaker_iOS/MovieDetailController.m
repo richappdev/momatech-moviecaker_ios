@@ -16,6 +16,7 @@
 #import "WXApi.h"
 #import "WechatAccess.h"
 #import "TopicDetailViewController.h"
+#import "UIImage+FontAwesome.h"
 
 @interface MovieDetailController ()
 @property (strong, nonatomic) IBOutlet UIImageView *bgImage;
@@ -56,7 +57,11 @@
 @property (strong, nonatomic) IBOutlet UIView *watchBtn;
 @property (strong, nonatomic) IBOutlet UIView *wannaBtn;
 @property (strong, nonatomic) IBOutlet UIView *shareBtn;
+@property (strong, nonatomic) IBOutlet UIView *moreBtn;
+@property (strong, nonatomic) IBOutlet UIImageView *Chervon;
+@property (strong, nonatomic) IBOutlet UILabel *moreLabel;
 @property BOOL newReview;
+@property BOOL opened;
 @property MainVerticalScroller *scrollDelegate;
 @end
 
@@ -98,7 +103,7 @@
     [[AustinApi sharedInstance] movieDetail:[self.movieDetailInfo objectForKey:@"Id"] function:^(NSMutableDictionary *returnData) {
        // NSLog(@"%@",[returnData objectForKey:@"Actor"]);
         if(self.loadLater==YES){
-            //self.movieDetailInfo = returnData;
+            self.movieDetailInfo = [[NSMutableDictionary alloc] initWithDictionary:returnData];
             [self changeReal];
         }
         
@@ -123,6 +128,11 @@
     [self addIndexGesture:self.watchBtn];
     [self addIndexGesture:self.wannaBtn];
     [self addIndexGesture:self.shareBtn];
+    
+    [self addMask];
+    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(moreClick)];
+    [self.moreBtn addGestureRecognizer:tap];
+   self.Chervon.image = [UIImage imageWithIcon:@"fa-chevron-down" backgroundColor:[UIColor clearColor] iconColor:[UIColor whiteColor] andSize:CGSizeMake(18, 20)];
 }
 -(void)addIndexGesture:(UIView*)view{
     UITapGestureRecognizer *indexTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(indexClick:)];
@@ -130,7 +140,7 @@
 }
 
 -(void)topicCall{
-    [[AustinApi sharedInstance]getTopic:@"7" vid:[self.movieDetailInfo objectForKey:@"Id"] function:^(NSArray *returnData) {
+    [[AustinApi sharedInstance]getTopic:@"7" vid:[self.movieDetailInfo objectForKey:@"Id"] page:nil function:^(NSArray *returnData) {
         NSLog(@"a%lu",(unsigned long)[returnData count]);
         self.topicTable.scrollEnabled = false;
         self.topicTable.delegate = self.firstTableController;
@@ -181,9 +191,9 @@
     self.releaseDate.text = [NSString stringWithFormat:@"%@ 上映",[[self.movieDetailInfo objectForKey:@"ReleaseDate"]stringByReplacingOccurrencesOfString:@"-" withString:@"/"]];
     self.movieDescription.text = [self.movieDetailInfo objectForKey:@"Intro"];
     
-    if([buttonHelper isLabelTruncated:self.movieDescription]==NO){
+  /*  if([buttonHelper isLabelTruncated:self.movieDescription]==NO){
         self.readMoreBtn.hidden = YES;
-    }
+    }*/
     if(![[self.movieDetailInfo objectForKey:@"Ratings_Douban"] isKindOfClass:[NSNull class]]){
     self.bean.text = [NSString stringWithFormat:@"%.1f",[[self.movieDetailInfo objectForKey:@"Ratings_Douban"]floatValue]];}
     if(![[self.movieDetailInfo objectForKey:@"Ratings_IMDB"] isKindOfClass:[NSNull class]]){
@@ -388,5 +398,31 @@
             [self performSegueWithIdentifier:@"reviewSegue" sender:self];
         }
     }
+}
+-(void)addMask{
+    CAGradientLayer *maskLayer = [CAGradientLayer layer];
+    maskLayer.colors = @[
+                         (id)[UIColor whiteColor].CGColor,
+                         (id)[UIColor whiteColor].CGColor,
+                         (id)[UIColor clearColor].CGColor];
+    maskLayer.locations = @[ @0.0f, @0.0f, @1.0f ];
+    maskLayer.frame = CGRectMake(0,0, self.view.frame.size.width, self.movieDescriptionHeight.constant);
+    self.movieDescription.layer.mask = maskLayer;
+}
+-(void)moreClick{
+    if(self.opened){
+        self.Chervon.image = [UIImage imageWithIcon:@"fa-chevron-down" backgroundColor:[UIColor clearColor] iconColor:[UIColor whiteColor] andSize:CGSizeMake(18, 20)];
+        self.moreLabel.text = @"展開全文";
+        self.movieDescriptionHeight.constant = 94;
+        [self addMask];
+    }else{
+        self.Chervon.image = [UIImage imageWithIcon:@"fa-chevron-up" backgroundColor:[UIColor clearColor] iconColor:[UIColor whiteColor] andSize:CGSizeMake(18, 20)];
+        self.moreLabel.text = @"顯示部分";
+        [self.movieDescription sizeToFit];
+        self.movieDescription.layer.mask = nil;
+        self.movieDescriptionHeight.constant = self.movieDescription.frame.size.height+10;
+   //     self.moreHeight.constant = self.contentHeight.constant-3+10;
+    }
+    self.opened = !self.opened;
 }
 @end

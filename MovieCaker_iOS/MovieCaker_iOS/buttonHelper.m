@@ -127,7 +127,7 @@
 +(UIColor*)circleColor:(float)percent{
     UIColor *circleColor;
     if(percent<=1&&percent>=.75){
-        circleColor = [UIColor colorWithRed:0.39 green:0.73 blue:0.34 alpha:1.0];
+        circleColor = [UIColor colorWithRed:(77/255.0f) green:(182/255.0f) blue:(172/255.0f) alpha:1.0];
     }else if (percent<=.75&&percent>=.5){
         circleColor = [UIColor colorWithRed:0.97 green:0.39 blue:0.34 alpha:1.0];
     }else if(percent<=.5&&percent>=.25){
@@ -153,5 +153,38 @@
         label.text = @"好友";
     }
 
+}
++ (UIImage*)blurImage:(UIImage*)image withBottomInset:(CGFloat)inset blurRadius:(CGFloat)radius{
+    
+    
+    CIImage *ciImage = [CIImage imageWithCGImage:image.CGImage];
+    CIFilter *filter = [CIFilter filterWithName:@"CIGaussianBlur"];
+    [filter setValue:ciImage forKey:kCIInputImageKey];
+    [filter setValue:@(radius) forKey:kCIInputRadiusKey];
+    
+    CIContext *context = [CIContext contextWithOptions:nil];
+    
+    //First, we'll use CIAffineClamp to prevent black edges on our blurred image
+    //CIAffineClamp extends the edges off to infinity (check the docs, yo)
+    CGAffineTransform transform = CGAffineTransformIdentity;
+    CIFilter *clampFilter = [CIFilter filterWithName:@"CIAffineClamp"];
+    [clampFilter setValue:filter.outputImage forKeyPath:kCIInputImageKey];
+    [clampFilter setValue:[NSValue valueWithBytes:&transform objCType:@encode(CGAffineTransform)] forKeyPath:@"inputTransform"];
+    CIImage *clampedImage = [clampFilter outputImage];
+    
+    //Next, create some darkness
+    CIFilter* blackGenerator = [CIFilter filterWithName:@"CIConstantColorGenerator"];
+    CIColor* black = [CIColor colorWithRed:0.0f green:0.0f blue:0.0f alpha:0.52];
+    [blackGenerator setValue:black forKey:@"inputColor"];
+    CIImage* blackImage = [blackGenerator valueForKey:@"outputImage"];
+    
+    //Apply that black
+    CIFilter *compositeFilter = [CIFilter filterWithName:@"CIMultiplyBlendMode"];
+    [compositeFilter setValue:blackImage forKey:@"inputImage"];
+    [compositeFilter setValue:clampedImage forKey:@"inputBackgroundImage"];
+    CIImage *darkenedImage = [compositeFilter outputImage];
+    
+    return [UIImage imageWithCGImage: [context createCGImage:darkenedImage fromRect:ciImage.extent]];
+    
 }
 @end

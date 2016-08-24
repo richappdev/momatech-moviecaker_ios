@@ -18,6 +18,8 @@
 #import "MovieViewController.h"
 #import "reviewController.h"
 #import "TopicDetailViewController.h"
+#import "LoginController.h"
+#import "buttonHelper.h"
 
 @interface MovieController ()
 @property (strong, nonatomic) IBOutlet scrollBoxView *scrollView;
@@ -124,7 +126,7 @@
     }];
 }
 -(void)topicCall{
-    [[AustinApi sharedInstance]getTopic:@"6" vid:nil function:^(NSArray *returnData) {
+    [[AustinApi sharedInstance]getTopic:@"6" vid:nil page:nil function:^(NSArray *returnData) {
         //     NSLog(@"bbb%@",returnData);
         NSMutableArray *array = [[NSMutableArray alloc]init];
         for (NSDictionary *row in returnData) {
@@ -168,6 +170,8 @@
             
             UIImage *placeholder = [UIImage imageNamed:@"img-placeholder.jpg"];
             UIImageView *image = [[UIImageView alloc] initWithImage:temp.movieImage];
+            image.layer.masksToBounds = YES;
+            image.layer.cornerRadius = 5;
             
             NSString *url = [NSString stringWithFormat:@"http://www.funmovie.tv/Content/pictures/files/%@?width=235",[row objectForKey:@"Picture"]];
             
@@ -186,7 +190,8 @@
             star.image = [UIImage imageWithIcon:@"fa-star" backgroundColor:[UIColor clearColor] iconColor:[UIColor whiteColor] andSize:CGSizeMake(18, 18)];
             [ratingBg addSubview:star];
             UILabel *label = [[UILabel alloc]initWithFrame:CGRectMake(3, 36, 52, 21)];
-             label.text = [NSString stringWithFormat:@"%0.1f", [[row objectForKey:@"AverageScore"]floatValue]];
+            if(![[row objectForKey:@"AverageScore"] isKindOfClass:[NSNull class]]){
+                label.text = [NSString stringWithFormat:@"%0.1f", [[row objectForKey:@"AverageScore"]floatValue]];}
             label.textColor = [UIColor whiteColor];
             label.textAlignment = NSTextAlignmentCenter;
             [ratingBg addSubview:label];
@@ -203,6 +208,9 @@
             }
             count++;
             
+            UINavigationController *nav = [self.tabBarController.viewControllers objectAtIndex:3];
+            LoginController *login = [[nav viewControllers]objectAtIndex:0];
+            login.images = self.movieArray;
         }
         
     } error:^(NSError *error) {
@@ -288,7 +296,7 @@
     if([[segue identifier] isEqualToString:@"topicSegue"]){
         TopicDetailViewController *vc = segue.destinationViewController;
         vc.data = [[NSMutableDictionary alloc]initWithDictionary:[self.movieTableController.data objectAtIndex:self.movieTableController.selectIndex]];
-        if([self.movieTableController.circlePercentage count]>0){
+        if(![[self.movieTableController.circlePercentage objectAtIndex:self.movieTableController.selectIndex]isKindOfClass:[NSNull class]]){
             vc.percent = [self.movieTableController.circlePercentage objectAtIndex:self.movieTableController.selectIndex];}else{
                 vc.percent = [[NSNumber alloc]initWithInt:-1];
             }
@@ -307,7 +315,7 @@
 -(void)setMovieDetails:(movieModel*)model blur:(BOOL)blur{
     self.uititle.text = model.title;
     if(blur){
-        self.blurredBg.image =[self blurImage:model.movieImageView.image  withBottomInset:0 blurRadius:43];}
+        self.blurredBg.image =[buttonHelper blurImage:model.movieImageView.image  withBottomInset:0 blurRadius:43];}
     
     if(model.IsViewed){
         self.iconEyeIndex.image = [UIImage imageNamed:@"iconEyeIndexActive.png"];
@@ -349,39 +357,6 @@
     // Dispose of any resources that can be recreated.
 }
 
-- (UIImage*)blurImage:(UIImage*)image withBottomInset:(CGFloat)inset blurRadius:(CGFloat)radius{
-    
-    
-    CIImage *ciImage = [CIImage imageWithCGImage:image.CGImage];
-    CIFilter *filter = [CIFilter filterWithName:@"CIGaussianBlur"];
-    [filter setValue:ciImage forKey:kCIInputImageKey];
-    [filter setValue:@(radius) forKey:kCIInputRadiusKey];
-    
-    CIContext *context = [CIContext contextWithOptions:nil];
-    
-    //First, we'll use CIAffineClamp to prevent black edges on our blurred image
-    //CIAffineClamp extends the edges off to infinity (check the docs, yo)
-    CGAffineTransform transform = CGAffineTransformIdentity;
-    CIFilter *clampFilter = [CIFilter filterWithName:@"CIAffineClamp"];
-    [clampFilter setValue:filter.outputImage forKeyPath:kCIInputImageKey];
-    [clampFilter setValue:[NSValue valueWithBytes:&transform objCType:@encode(CGAffineTransform)] forKeyPath:@"inputTransform"];
-    CIImage *clampedImage = [clampFilter outputImage];
-    
-    //Next, create some darkness
-    CIFilter* blackGenerator = [CIFilter filterWithName:@"CIConstantColorGenerator"];
-    CIColor* black = [CIColor colorWithRed:0.0f green:0.0f blue:0.0f alpha:0.52];
-    [blackGenerator setValue:black forKey:@"inputColor"];
-    CIImage* blackImage = [blackGenerator valueForKey:@"outputImage"];
-    
-    //Apply that black
-    CIFilter *compositeFilter = [CIFilter filterWithName:@"CIMultiplyBlendMode"];
-    [compositeFilter setValue:blackImage forKey:@"inputImage"];
-    [compositeFilter setValue:clampedImage forKey:@"inputBackgroundImage"];
-    CIImage *darkenedImage = [compositeFilter outputImage];
-    
-    return [UIImage imageWithCGImage: [context createCGImage:darkenedImage fromRect:ciImage.extent]];
-    
-}
 -(void)indexClick:(UITapGestureRecognizer *)sender{
     NSLog(@"asd%ld",sender.view.tag);
     
@@ -442,5 +417,7 @@
         self.tabBarController.selectedIndex = 1;
     }
 }
+-(void)loadMore:(int)page{
 
+}
 @end

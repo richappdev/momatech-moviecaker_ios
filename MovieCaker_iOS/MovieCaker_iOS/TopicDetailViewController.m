@@ -18,6 +18,7 @@
 #import "MovieDetailController.h"
 #import "WXApi.h"
 #import "WechatAccess.h"
+#import "reviewController.h"
 
 @interface TopicDetailViewController ()
 @property MainVerticalScroller *scrollDelegate;
@@ -82,8 +83,8 @@
     [self.movieTableController ParentController:self];
     self.movieTableController.page = 999;
     
-    if(self.percent.floatValue>0){
-    UIColor *circleColor = [buttonHelper circleColor:.8];
+    if([self.percent floatValue]>=0){
+    UIColor *circleColor = [buttonHelper circleColor:self.percent.floatValue];
     self.circleView.percentage = self.percent.floatValue;
     
     self.circleView.color = circleColor;
@@ -223,7 +224,7 @@
     }else{
         self.Chervon.image = [UIImage imageWithIcon:@"fa-chevron-up" backgroundColor:[UIColor clearColor] iconColor:[UIColor whiteColor] andSize:CGSizeMake(18, 20)];
         self.moreLabel.text = @"顯示部分";
-        [self.moreLabel sizeToFit];
+        [self.mainTxt sizeToFit];
         self.mainTxt.layer.mask = nil;
         self.contentHeight.constant = self.mainTxt.frame.size.height+10;
         self.moreHeight.constant = self.contentHeight.constant-3+10;
@@ -251,6 +252,15 @@
     if([[segue identifier] isEqualToString:@"movieDetail"]){
         MovieDetailController *vc = segue.destinationViewController;
         vc.movieDetailInfo = [self.movieTableController.data objectAtIndex:self.movieTableController.selectIndex];
+    }
+    if([[segue identifier] isEqualToString:@"reviewSegue"]){
+        reviewController *vc = segue.destinationViewController;
+        self.newReview=NO;
+        vc.newReview = YES;
+        NSDictionary *vData = [self.movieTableController.data objectAtIndex:self.movieTableController.selectIndex];
+        NSDictionary *User = [[NSKeyedUnarchiver unarchiveObjectWithData:[[NSUserDefaults standardUserDefaults] objectForKey:@"userkey"]]objectForKey:@"Data"];
+        vc.data = [buttonHelper reviewNewData:vData User:User];
+    
     }
 }
 -(void)addIndexGesture:(UIView*)view{

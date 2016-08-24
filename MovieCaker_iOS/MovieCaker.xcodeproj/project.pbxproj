@@ -50,6 +50,7 @@
 		6CA52C5B1CB9587400C5FDC8 /* scrollBoxView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CA52C5A1CB9587400C5FDC8 /* scrollBoxView.m */; };
 		6CA52C841CBB547A00C5FDC8 /* movieModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CA52C831CBB547A00C5FDC8 /* movieModel.m */; };
 		6CA52C871CBEC3A900C5FDC8 /* MovieDetailController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CA52C861CBEC3A900C5FDC8 /* MovieDetailController.m */; };
+		6CA751031D6A480A003C9214 /* InnerMyPageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CA751021D6A480A003C9214 /* InnerMyPageViewController.m */; };
 		6CB03EF31D3FF40D0037F117 /* TopicDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CB03EF21D3FF40D0037F117 /* TopicDetailViewController.m */; };
 		6CD0DEDE1CC3867300878995 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6CD0DEDD1CC3867300878995 /* SystemConfiguration.framework */; };
 		6CD0DEE01CC3867900878995 /* libsqlite3.0.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 6CD0DEDF1CC3867900878995 /* libsqlite3.0.tbd */; };
@@ -165,6 +166,8 @@
 		6CA52C831CBB547A00C5FDC8 /* movieModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = movieModel.m; sourceTree = "<group>"; };
 		6CA52C851CBEC3A900C5FDC8 /* MovieDetailController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MovieDetailController.h; sourceTree = "<group>"; };
 		6CA52C861CBEC3A900C5FDC8 /* MovieDetailController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MovieDetailController.m; sourceTree = "<group>"; };
+		6CA751011D6A480A003C9214 /* InnerMyPageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InnerMyPageViewController.h; sourceTree = "<group>"; };
+		6CA751021D6A480A003C9214 /* InnerMyPageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InnerMyPageViewController.m; sourceTree = "<group>"; };
 		6CB03EF11D3FF40D0037F117 /* TopicDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TopicDetailViewController.h; sourceTree = "<group>"; };
 		6CB03EF21D3FF40D0037F117 /* TopicDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TopicDetailViewController.m; sourceTree = "<group>"; };
 		6CD0DEDD1CC3867300878995 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
@@ -347,6 +350,8 @@
 				6CB03EF21D3FF40D0037F117 /* TopicDetailViewController.m */,
 				6C99D6DC1D498034005A12FA /* TopicTabViewController.h */,
 				6C99D6DD1D498034005A12FA /* TopicTabViewController.m */,
+				6CA751011D6A480A003C9214 /* InnerMyPageViewController.h */,
+				6CA751021D6A480A003C9214 /* InnerMyPageViewController.m */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -543,6 +548,7 @@
 				6C61EAEE1CD68E1B0026CCCC /* CircleView.m in Sources */,
 				6C61EAF41CD7772F0026CCCC /* Movie2Cell.m in Sources */,
 				6CD58C4B1CACBD3F0089DB38 /* MovieViewController.m in Sources */,
+				6CA751031D6A480A003C9214 /* InnerMyPageViewController.m in Sources */,
 				6C7F9F681CDE9870001BE238 /* UIImage+WebP.m in Sources */,
 				6C7F9F601CDE9870001BE238 /* SDWebImageDecoder.m in Sources */,
 				6C7F9F671CDE9870001BE238 /* UIImage+MultiFormat.m in Sources */,

@@ -9,5 +9,6 @@
 #import <UIKit/UIKit.h>
 
 @interface LoginController : UIViewController
-
+@property NSArray *images;
+-(void)logout;
 @end

@@ -14,5 +14,6 @@
 @property (strong, nonatomic) IBOutlet UITableView *movieTable2;
 @property BOOL refresh;
 @property BOOL syncReview;
+-(void)loadMore:(int)page;
 @end
 

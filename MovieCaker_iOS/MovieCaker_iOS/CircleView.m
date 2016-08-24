@@ -22,7 +22,9 @@
         to_value =0.000001;
         //zero doesn't show gray line for some reason
     }
-    
+    if(to_value==1){
+        to_value=0.9999;
+    }
     float start_angle = -M_PI_2;
     float end_angle = 2*M_PI*to_value-M_PI_2;
 
