@@ -2779,7 +2779,7 @@
                                     <constraint firstItem="HC2-6D-K6M" firstAttribute="top" secondItem="gdA-WZ-ZXf" secondAttribute="bottom" constant="16" id="y0j-VW-pYX"/>
                                 </constraints>
                             </view>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="CWC-Tc-WOy">
+                            <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="CWC-Tc-WOy">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="519"/>
                                 <subviews>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="sNO-Yv-DL6">
