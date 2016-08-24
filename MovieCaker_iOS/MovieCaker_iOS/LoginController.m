@@ -39,6 +39,12 @@
 @property (strong, nonatomic) IBOutlet UILabel *location;
 @property (strong, nonatomic) IBOutlet UIImageView *chevron;
 @property (strong, nonatomic) IBOutlet UIView *detailView;
+@property (strong, nonatomic) IBOutlet UIImageView *chevron2;
+@property (strong, nonatomic) IBOutlet UIImageView *chevron3;
+@property (strong, nonatomic) IBOutlet UIImageView *chevron4;
+@property (strong, nonatomic) IBOutlet UIImageView *chevron5;
+@property (strong, nonatomic) IBOutlet UIView *noticeView;
+@property (strong, nonatomic) IBOutlet UIImageView *bullhorn;
 @end
 
 @implementation LoginController
@@ -76,11 +82,23 @@
     CAGradientLayer *maskLayer = [CAGradientLayer layer];
     maskLayer.colors = @[
                          (id)[UIColor whiteColor].CGColor,
-                         (id)[UIColor whiteColor].CGColor,
+                         (id)[UIColor clearColor].CGColor,
                          (id)[UIColor clearColor].CGColor];
-    maskLayer.locations = @[ @0.0f, @0.0f, @1.0f ];
+    maskLayer.locations = @[ @0.0f, @0.8f, @1.0f ];
     maskLayer.frame = CGRectMake(0,0, self.BannerUrl.frame.size.width+200, self.BannerUrl.frame.size.height);
     self.BannerUrl.layer.mask = maskLayer;
+    [self addIndexClick:self.noticeView];
+   
+    self.bullhorn.image = [UIImage imageWithIcon:@"fa-bullhorn" backgroundColor:[UIColor clearColor] iconColor:[UIColor colorWithRed:(51/255.0f) green:(68/255.0f) blue:(85/255.0f) alpha:1.0] andSize:CGSizeMake(16, 16)];
+}
+
+-(void)addIndexClick:(UIView*)view{
+    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(indexClick:)];
+    [view addGestureRecognizer:tap];
+}
+-(void)indexClick:(UITapGestureRecognizer*)gesture{
+    NSLog(@"%ld",gesture.view.tag);
+    [self performSegueWithIdentifier:@"noticeSegue" sender:self];
 }
 -(void)detail{
     [self performSegueWithIdentifier:@"mypageSegue" sender:self];
@@ -228,6 +246,6 @@
     }else{
         self.gender.image =[UIImage imageWithIcon:@"fa-female" backgroundColor:[UIColor clearColor] iconColor:[UIColor colorWithRed:(255/255.0f) green:(136/255.0f) blue:(153/255.0f) alpha:1.0] andSize:CGSizeMake(13, 18)];
     }
-    self.chevron.image = [UIImage imageWithIcon:@"fa-chevron-right" backgroundColor:[UIColor clearColor] iconColor:[UIColor colorWithRed:(172/255.0f) green:(189/255.0f) blue:(206/255.0f) alpha:1.0] andSize:CGSizeMake(10, 14)];
+   self.chevron2.image = self.chevron3.image = self.chevron4.image = self.chevron5.image = self.chevron.image = [UIImage imageWithIcon:@"fa-chevron-right" backgroundColor:[UIColor clearColor] iconColor:[UIColor colorWithRed:(172/255.0f) green:(189/255.0f) blue:(206/255.0f) alpha:1.0] andSize:CGSizeMake(10, 14)];
 }
 @end

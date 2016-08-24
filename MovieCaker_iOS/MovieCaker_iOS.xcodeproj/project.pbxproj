@@ -51,6 +51,7 @@
 		6CA52C841CBB547A00C5FDC8 /* movieModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CA52C831CBB547A00C5FDC8 /* movieModel.m */; };
 		6CA52C871CBEC3A900C5FDC8 /* MovieDetailController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CA52C861CBEC3A900C5FDC8 /* MovieDetailController.m */; };
 		6CA751031D6A480A003C9214 /* InnerMyPageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CA751021D6A480A003C9214 /* InnerMyPageViewController.m */; };
+		6CA751061D6E34C8003C9214 /* noticeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CA751051D6E34C8003C9214 /* noticeViewController.m */; };
 		6CB03EF31D3FF40D0037F117 /* TopicDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CB03EF21D3FF40D0037F117 /* TopicDetailViewController.m */; };
 		6CD0DEDE1CC3867300878995 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6CD0DEDD1CC3867300878995 /* SystemConfiguration.framework */; };
 		6CD0DEE01CC3867900878995 /* libsqlite3.0.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 6CD0DEDF1CC3867900878995 /* libsqlite3.0.tbd */; };
@@ -168,6 +169,8 @@
 		6CA52C861CBEC3A900C5FDC8 /* MovieDetailController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MovieDetailController.m; sourceTree = "<group>"; };
 		6CA751011D6A480A003C9214 /* InnerMyPageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InnerMyPageViewController.h; sourceTree = "<group>"; };
 		6CA751021D6A480A003C9214 /* InnerMyPageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InnerMyPageViewController.m; sourceTree = "<group>"; };
+		6CA751041D6E34C8003C9214 /* noticeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = noticeViewController.h; sourceTree = "<group>"; };
+		6CA751051D6E34C8003C9214 /* noticeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = noticeViewController.m; sourceTree = "<group>"; };
 		6CB03EF11D3FF40D0037F117 /* TopicDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TopicDetailViewController.h; sourceTree = "<group>"; };
 		6CB03EF21D3FF40D0037F117 /* TopicDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TopicDetailViewController.m; sourceTree = "<group>"; };
 		6CD0DEDD1CC3867300878995 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
@@ -352,6 +355,8 @@
 				6C99D6DD1D498034005A12FA /* TopicTabViewController.m */,
 				6CA751011D6A480A003C9214 /* InnerMyPageViewController.h */,
 				6CA751021D6A480A003C9214 /* InnerMyPageViewController.m */,
+				6CA751041D6E34C8003C9214 /* noticeViewController.h */,
+				6CA751051D6E34C8003C9214 /* noticeViewController.m */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -570,6 +575,7 @@
 				6CD58C421CACBD3F0089DB38 /* main.m in Sources */,
 				6C5878101D23C5470051A4C4 /* starView.m in Sources */,
 				6CFC098E1CCD529C0045C93E /* MainVerticalScroller.m in Sources */,
+				6CA751061D6E34C8003C9214 /* noticeViewController.m in Sources */,
 				6CFC09911CD2668E0045C93E /* MovieTableViewController.m in Sources */,
 				6C1250811CC3857B0009549B /* AFSecurityPolicy.m in Sources */,
 				6C7F9F6B1CDE9870001BE238 /* UIView+WebCacheOperation.m in Sources */,
