@@ -7,16 +7,35 @@
 //
 
 #import "noticeViewController.h"
+#import "MainVerticalScroller.h"
+#import "AustinApi.h"
+#import "NoticeTableViewController.h"
 
 @interface noticeViewController ()
-
+@property (strong, nonatomic) IBOutlet UITableView *tableview;
+@property MainVerticalScroller *helper;
+@property NoticeTableViewController *tableController;
 @end
 
 @implementation noticeViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
+    self.title = @"我的通知";
+    self.helper = [[MainVerticalScroller alloc]init];
+    self.helper.nav = self.navigationController;
+    [self.helper setupBackBtn2:self];
+    [self.helper setupSinglePage:self.view];
+    self.tableController = [[NoticeTableViewController alloc]init];
+    self.tableController.tableView = self.tableview;
+    
+    [[AustinApi sharedInstance] getNotice:^(NSArray *returnData) {
+        NSLog(@"%@",returnData);
+        self.tableController.data = returnData;
+        [self.tableController.tableView reloadData];
+    } error:^(NSError *error) {
+        NSLog(@"%@",error);
+    }];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -24,14 +43,7 @@
     // Dispose of any resources that can be recreated.
 }
 
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+-(void)viewWillAppear:(BOOL)animated{
+    self.navigationController.navigationBarHidden = NO;
 }
-*/
-
 @end

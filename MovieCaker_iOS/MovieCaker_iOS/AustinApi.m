@@ -342,4 +342,12 @@
         NSLog(@"%@",error);
     }];
 }
+
+-(void)getNotice:(void (^)(NSArray *returnData))completion error:(void (^)(NSError *error))error{
+    [self apiGetMethod:@"api/Notification" parameter:nil addTokenHeader:@"1" completion:^(id response) {
+        completion(response);
+    } error:^(NSError *error2) {
+        error(error2);
+    }];
+}
 @end
