@@ -45,6 +45,12 @@
 @property (strong, nonatomic) IBOutlet UIImageView *chevron5;
 @property (strong, nonatomic) IBOutlet UIView *noticeView;
 @property (strong, nonatomic) IBOutlet UIImageView *bullhorn;
+@property (strong, nonatomic) IBOutlet UIView *inviting;
+@property (strong, nonatomic) IBOutlet UIView *friendList;
+@property (strong, nonatomic) IBOutlet UIView *qrcode;
+@property (strong, nonatomic) IBOutlet UIImageView *invitingIcon;
+@property (strong, nonatomic) IBOutlet UIImageView *friendListIcon;
+@property (strong, nonatomic) IBOutlet UILabel *friendLabel;
 @end
 
 @implementation LoginController
@@ -88,8 +94,16 @@
     maskLayer.frame = CGRectMake(0,0, self.BannerUrl.frame.size.width+200, self.BannerUrl.frame.size.height);
     self.BannerUrl.layer.mask = maskLayer;
     [self addIndexClick:self.noticeView];
+    [self addIndexClick:self.qrcode];
+    [self addIndexClick:self.friendList];
+    [self addIndexClick:self.inviting];
    
     self.bullhorn.image = [UIImage imageWithIcon:@"fa-bullhorn" backgroundColor:[UIColor clearColor] iconColor:[UIColor colorWithRed:(51/255.0f) green:(68/255.0f) blue:(85/255.0f) alpha:1.0] andSize:CGSizeMake(16, 16)];
+    self.friendListIcon.image =  [UIImage imageWithIcon:@"fa-users" backgroundColor:[UIColor clearColor] iconColor:[UIColor colorWithRed:(51/255.0f) green:(68/255.0f) blue:(85/255.0f) alpha:1.0] andSize:CGSizeMake(16, 16)];
+    self.invitingIcon.image =  [UIImage imageWithIcon:@"fa-bell" backgroundColor:[UIColor clearColor] iconColor:[UIColor colorWithRed:(51/255.0f) green:(68/255.0f) blue:(85/255.0f) alpha:1.0] andSize:CGSizeMake(16, 16)];
+    
+    AustinApi *temp3 = [AustinApi sharedInstance];
+    self.friendLabel.text = [NSString stringWithFormat:@"%lu 個朋友",(unsigned long)[temp3.friendList count]];
 }
 
 -(void)addIndexClick:(UIView*)view{
@@ -98,7 +112,12 @@
 }
 -(void)indexClick:(UITapGestureRecognizer*)gesture{
     NSLog(@"%ld",gesture.view.tag);
-    [self performSegueWithIdentifier:@"noticeSegue" sender:self];
+    if(gesture.view.tag==1){
+        [self performSegueWithIdentifier:@"friendsSegue" sender:self];
+    }
+    if(gesture.view.tag==3){
+        [self performSegueWithIdentifier:@"noticeSegue" sender:self];
+    }
 }
 -(void)detail{
     [self performSegueWithIdentifier:@"mypageSegue" sender:self];
