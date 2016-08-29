@@ -9,5 +9,5 @@
 #import <UIKit/UIKit.h>
 
 @interface friendsViewController : UIViewController
-
+@property NSString* nickName;
 @end

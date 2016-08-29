@@ -17,6 +17,7 @@
 #import "buttonHelper.h"
 #import "UIImageView+WebCache.h"
 #import "UIImage+FontAwesome.h"
+#import "friendsViewController.h"
 
 #define USERKEY @"userkey"
 @interface LoginController ()
@@ -118,6 +119,13 @@
     if(gesture.view.tag==3){
         [self performSegueWithIdentifier:@"noticeSegue" sender:self];
     }
+}
+-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
+    if([[segue identifier]isEqualToString:@"friendsSegue"]){
+        friendsViewController *dest = segue.destinationViewController;
+        dest.nickName = self.nickname.text;
+    }
+
 }
 -(void)detail{
     [self performSegueWithIdentifier:@"mypageSegue" sender:self];
