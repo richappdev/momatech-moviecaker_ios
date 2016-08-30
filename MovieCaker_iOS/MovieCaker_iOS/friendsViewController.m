@@ -9,6 +9,7 @@
 #import "friendsViewController.h"
 #import "MainVerticalScroller.h"
 #import "AustinApi.h"
+#import "friendTableViewController.h"
 
 @interface friendsViewController ()
 @property MainVerticalScroller *helper;
@@ -16,6 +17,8 @@
 @property (strong, nonatomic) IBOutlet UILabel *lTwo;
 @property (strong, nonatomic) IBOutlet UILabel *lThree;
 @property (strong, nonatomic) IBOutlet UIView *bar;
+@property (strong, nonatomic) IBOutlet UITableView *tableview;
+@property friendTableViewController *tableController;
 @property UILabel *current;
 
 @end
@@ -34,6 +37,14 @@
     [self addTap:self.lTwo];
     [self addTap:self.lThree];
     self.current = self.lOne;
+    
+    self.tableController = [[friendTableViewController alloc]init];
+    self.tableController.tableView = self.tableview;
+    self.tableview.allowsSelection = NO;
+    self.tableview.dataSource = self.tableController;
+    self.tableview.delegate = self.tableController;
+    self.tableController.type = 0;
+    [self.tableview reloadData];
 }
 -(void)addTap:(UILabel*)label{
     label.userInteractionEnabled = YES;
@@ -53,19 +64,23 @@
     // Dispose of any resources that can be recreated.
 }
 -(void)selected:(UILabel*)label{
+    if(label!=self.current){
     self.current.textColor = [UIColor colorWithRed:(121/255.0f) green:(124/255.0f) blue:(131/255.0f) alpha:1];
     label.textColor = [UIColor colorWithRed:(77/255.0f) green:(182/255.0f) blue:(172/255.0f) alpha:1];
     
-    self.current = label;
+        self.current = label;
     
-    [self moveBar:self.current];
+        [self moveBar:self.current];
+        self.tableController.type = (int)label.tag;
+        [self.tableview reloadData];
+    }
 }
 
 -(void)moveBar:(UILabel*)label{
     [UIView beginAnimations:nil context:nil];
     [UIView setAnimationDuration:0.2];
     
-    self.bar.frame = CGRectMake(label.frame.origin.x-4, label.frame.origin.y+30, 64, 3);
+    self.bar.frame = CGRectMake(label.frame.origin.x-4, label.frame.origin.y+25, 64, 3);
     
     [UIView commitAnimations];
     

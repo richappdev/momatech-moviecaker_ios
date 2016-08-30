@@ -55,6 +55,8 @@
 		6CA751091D6F979F003C9214 /* NoticeTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CA751081D6F979F003C9214 /* NoticeTableViewController.m */; };
 		6CA7510C1D6F9A96003C9214 /* noticeCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CA7510B1D6F9A96003C9214 /* noticeCell.m */; };
 		6CA7510F1D7470A5003C9214 /* friendsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CA7510E1D7470A5003C9214 /* friendsViewController.m */; };
+		6CA751121D7502CB003C9214 /* friendCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CA751111D7502CB003C9214 /* friendCell.m */; };
+		6CA751151D7502DE003C9214 /* friendTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CA751141D7502DE003C9214 /* friendTableViewController.m */; };
 		6CB03EF31D3FF40D0037F117 /* TopicDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CB03EF21D3FF40D0037F117 /* TopicDetailViewController.m */; };
 		6CD0DEDE1CC3867300878995 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6CD0DEDD1CC3867300878995 /* SystemConfiguration.framework */; };
 		6CD0DEE01CC3867900878995 /* libsqlite3.0.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 6CD0DEDF1CC3867900878995 /* libsqlite3.0.tbd */; };
@@ -180,6 +182,10 @@
 		6CA7510B1D6F9A96003C9214 /* noticeCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = noticeCell.m; sourceTree = "<group>"; };
 		6CA7510D1D7470A5003C9214 /* friendsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = friendsViewController.h; sourceTree = "<group>"; };
 		6CA7510E1D7470A5003C9214 /* friendsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = friendsViewController.m; sourceTree = "<group>"; };
+		6CA751101D7502CB003C9214 /* friendCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = friendCell.h; sourceTree = "<group>"; };
+		6CA751111D7502CB003C9214 /* friendCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = friendCell.m; sourceTree = "<group>"; };
+		6CA751131D7502DE003C9214 /* friendTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = friendTableViewController.h; sourceTree = "<group>"; };
+		6CA751141D7502DE003C9214 /* friendTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = friendTableViewController.m; sourceTree = "<group>"; };
 		6CB03EF11D3FF40D0037F117 /* TopicDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TopicDetailViewController.h; sourceTree = "<group>"; };
 		6CB03EF21D3FF40D0037F117 /* TopicDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TopicDetailViewController.m; sourceTree = "<group>"; };
 		6CD0DEDD1CC3867300878995 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
@@ -370,6 +376,8 @@
 				6CA751081D6F979F003C9214 /* NoticeTableViewController.m */,
 				6CA7510D1D7470A5003C9214 /* friendsViewController.h */,
 				6CA7510E1D7470A5003C9214 /* friendsViewController.m */,
+				6CA751131D7502DE003C9214 /* friendTableViewController.h */,
+				6CA751141D7502DE003C9214 /* friendTableViewController.m */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -402,6 +410,8 @@
 				6C5878151D259F5B0051A4C4 /* reviewCell.m */,
 				6CA7510A1D6F9A96003C9214 /* noticeCell.h */,
 				6CA7510B1D6F9A96003C9214 /* noticeCell.m */,
+				6CA751101D7502CB003C9214 /* friendCell.h */,
+				6CA751111D7502CB003C9214 /* friendCell.m */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -580,6 +590,7 @@
 				6C12507E1CC3857B0009549B /* AFHTTPRequestOperationManager.m in Sources */,
 				6C99D6DE1D498034005A12FA /* TopicTabViewController.m in Sources */,
 				6C758B941CEE4A0A001E5252 /* MovieTabCell.m in Sources */,
+				6CA751151D7502DE003C9214 /* friendTableViewController.m in Sources */,
 				6C6780121CC7C826005AEB35 /* AustinApi.m in Sources */,
 				6C7F9F5F1CDE9870001BE238 /* SDWebImageCompat.m in Sources */,
 				6C1250681CC37ED50009549B /* LoginController.m in Sources */,
@@ -599,6 +610,7 @@
 				6C7F9F6B1CDE9870001BE238 /* UIView+WebCacheOperation.m in Sources */,
 				6CFC09851CCBC0B50045C93E /* NSString+FontAwesome.m in Sources */,
 				6C7F9F5C1CDE9870001BE238 /* MKAnnotationView+WebCache.m in Sources */,
+				6CA751121D7502CB003C9214 /* friendCell.m in Sources */,
 				6C7F9F6A1CDE9870001BE238 /* UIImageView+WebCache.m in Sources */,
 				6CA52C5B1CB9587400C5FDC8 /* scrollBoxView.m in Sources */,
 				6C1250831CC3857B0009549B /* AFURLRequestSerialization.m in Sources */,
