@@ -51,6 +51,12 @@
 		6CA52C841CBB547A00C5FDC8 /* movieModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CA52C831CBB547A00C5FDC8 /* movieModel.m */; };
 		6CA52C871CBEC3A900C5FDC8 /* MovieDetailController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CA52C861CBEC3A900C5FDC8 /* MovieDetailController.m */; };
 		6CA751031D6A480A003C9214 /* InnerMyPageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CA751021D6A480A003C9214 /* InnerMyPageViewController.m */; };
+		6CA751061D6E34C8003C9214 /* noticeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CA751051D6E34C8003C9214 /* noticeViewController.m */; };
+		6CA751091D6F979F003C9214 /* NoticeTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CA751081D6F979F003C9214 /* NoticeTableViewController.m */; };
+		6CA7510C1D6F9A96003C9214 /* noticeCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CA7510B1D6F9A96003C9214 /* noticeCell.m */; };
+		6CA7510F1D7470A5003C9214 /* friendsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CA7510E1D7470A5003C9214 /* friendsViewController.m */; };
+		6CA751121D7502CB003C9214 /* friendCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CA751111D7502CB003C9214 /* friendCell.m */; };
+		6CA751151D7502DE003C9214 /* friendTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CA751141D7502DE003C9214 /* friendTableViewController.m */; };
 		6CB03EF31D3FF40D0037F117 /* TopicDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CB03EF21D3FF40D0037F117 /* TopicDetailViewController.m */; };
 		6CD0DEDE1CC3867300878995 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6CD0DEDD1CC3867300878995 /* SystemConfiguration.framework */; };
 		6CD0DEE01CC3867900878995 /* libsqlite3.0.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 6CD0DEDF1CC3867900878995 /* libsqlite3.0.tbd */; };
@@ -168,6 +174,18 @@
 		6CA52C861CBEC3A900C5FDC8 /* MovieDetailController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MovieDetailController.m; sourceTree = "<group>"; };
 		6CA751011D6A480A003C9214 /* InnerMyPageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InnerMyPageViewController.h; sourceTree = "<group>"; };
 		6CA751021D6A480A003C9214 /* InnerMyPageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InnerMyPageViewController.m; sourceTree = "<group>"; };
+		6CA751041D6E34C8003C9214 /* noticeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = noticeViewController.h; sourceTree = "<group>"; };
+		6CA751051D6E34C8003C9214 /* noticeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = noticeViewController.m; sourceTree = "<group>"; };
+		6CA751071D6F979F003C9214 /* NoticeTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NoticeTableViewController.h; sourceTree = "<group>"; };
+		6CA751081D6F979F003C9214 /* NoticeTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NoticeTableViewController.m; sourceTree = "<group>"; };
+		6CA7510A1D6F9A96003C9214 /* noticeCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = noticeCell.h; sourceTree = "<group>"; };
+		6CA7510B1D6F9A96003C9214 /* noticeCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = noticeCell.m; sourceTree = "<group>"; };
+		6CA7510D1D7470A5003C9214 /* friendsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = friendsViewController.h; sourceTree = "<group>"; };
+		6CA7510E1D7470A5003C9214 /* friendsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = friendsViewController.m; sourceTree = "<group>"; };
+		6CA751101D7502CB003C9214 /* friendCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = friendCell.h; sourceTree = "<group>"; };
+		6CA751111D7502CB003C9214 /* friendCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = friendCell.m; sourceTree = "<group>"; };
+		6CA751131D7502DE003C9214 /* friendTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = friendTableViewController.h; sourceTree = "<group>"; };
+		6CA751141D7502DE003C9214 /* friendTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = friendTableViewController.m; sourceTree = "<group>"; };
 		6CB03EF11D3FF40D0037F117 /* TopicDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TopicDetailViewController.h; sourceTree = "<group>"; };
 		6CB03EF21D3FF40D0037F117 /* TopicDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TopicDetailViewController.m; sourceTree = "<group>"; };
 		6CD0DEDD1CC3867300878995 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
@@ -352,6 +370,14 @@
 				6C99D6DD1D498034005A12FA /* TopicTabViewController.m */,
 				6CA751011D6A480A003C9214 /* InnerMyPageViewController.h */,
 				6CA751021D6A480A003C9214 /* InnerMyPageViewController.m */,
+				6CA751041D6E34C8003C9214 /* noticeViewController.h */,
+				6CA751051D6E34C8003C9214 /* noticeViewController.m */,
+				6CA751071D6F979F003C9214 /* NoticeTableViewController.h */,
+				6CA751081D6F979F003C9214 /* NoticeTableViewController.m */,
+				6CA7510D1D7470A5003C9214 /* friendsViewController.h */,
+				6CA7510E1D7470A5003C9214 /* friendsViewController.m */,
+				6CA751131D7502DE003C9214 /* friendTableViewController.h */,
+				6CA751141D7502DE003C9214 /* friendTableViewController.m */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -374,14 +400,18 @@
 				6CFC09931CD50E2E0045C93E /* MovieCell.m */,
 				6C61EAF21CD7772F0026CCCC /* Movie2Cell.h */,
 				6C61EAF31CD7772F0026CCCC /* Movie2Cell.m */,
+				6C58780E1D23C5470051A4C4 /* starView.h */,
 				6C61EAEC1CD68E1B0026CCCC /* CircleView.h */,
 				6C61EAED1CD68E1B0026CCCC /* CircleView.m */,
 				6C758B921CEE4A0A001E5252 /* MovieTabCell.h */,
 				6C758B931CEE4A0A001E5252 /* MovieTabCell.m */,
-				6C58780E1D23C5470051A4C4 /* starView.h */,
 				6C58780F1D23C5470051A4C4 /* starView.m */,
 				6C5878141D259F5B0051A4C4 /* reviewCell.h */,
 				6C5878151D259F5B0051A4C4 /* reviewCell.m */,
+				6CA7510A1D6F9A96003C9214 /* noticeCell.h */,
+				6CA7510B1D6F9A96003C9214 /* noticeCell.m */,
+				6CA751101D7502CB003C9214 /* friendCell.h */,
+				6CA751111D7502CB003C9214 /* friendCell.m */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -547,16 +577,20 @@
 				6C7F9F691CDE9870001BE238 /* UIImageView+HighlightedWebCache.m in Sources */,
 				6C61EAEE1CD68E1B0026CCCC /* CircleView.m in Sources */,
 				6C61EAF41CD7772F0026CCCC /* Movie2Cell.m in Sources */,
+				6CA7510F1D7470A5003C9214 /* friendsViewController.m in Sources */,
 				6CD58C4B1CACBD3F0089DB38 /* MovieViewController.m in Sources */,
+				6CA751091D6F979F003C9214 /* NoticeTableViewController.m in Sources */,
 				6CA751031D6A480A003C9214 /* InnerMyPageViewController.m in Sources */,
 				6C7F9F681CDE9870001BE238 /* UIImage+WebP.m in Sources */,
 				6C7F9F601CDE9870001BE238 /* SDWebImageDecoder.m in Sources */,
 				6C7F9F671CDE9870001BE238 /* UIImage+MultiFormat.m in Sources */,
+				6CA7510C1D6F9A96003C9214 /* noticeCell.m in Sources */,
 				6C7F9F5E1CDE9870001BE238 /* SDImageCache.m in Sources */,
 				6C61EAF11CD6D7E90026CCCC /* buttonHelper.m in Sources */,
 				6C12507E1CC3857B0009549B /* AFHTTPRequestOperationManager.m in Sources */,
 				6C99D6DE1D498034005A12FA /* TopicTabViewController.m in Sources */,
 				6C758B941CEE4A0A001E5252 /* MovieTabCell.m in Sources */,
+				6CA751151D7502DE003C9214 /* friendTableViewController.m in Sources */,
 				6C6780121CC7C826005AEB35 /* AustinApi.m in Sources */,
 				6C7F9F5F1CDE9870001BE238 /* SDWebImageCompat.m in Sources */,
 				6C1250681CC37ED50009549B /* LoginController.m in Sources */,
@@ -570,11 +604,13 @@
 				6CD58C421CACBD3F0089DB38 /* main.m in Sources */,
 				6C5878101D23C5470051A4C4 /* starView.m in Sources */,
 				6CFC098E1CCD529C0045C93E /* MainVerticalScroller.m in Sources */,
+				6CA751061D6E34C8003C9214 /* noticeViewController.m in Sources */,
 				6CFC09911CD2668E0045C93E /* MovieTableViewController.m in Sources */,
 				6C1250811CC3857B0009549B /* AFSecurityPolicy.m in Sources */,
 				6C7F9F6B1CDE9870001BE238 /* UIView+WebCacheOperation.m in Sources */,
 				6CFC09851CCBC0B50045C93E /* NSString+FontAwesome.m in Sources */,
 				6C7F9F5C1CDE9870001BE238 /* MKAnnotationView+WebCache.m in Sources */,
+				6CA751121D7502CB003C9214 /* friendCell.m in Sources */,
 				6C7F9F6A1CDE9870001BE238 /* UIImageView+WebCache.m in Sources */,
 				6CA52C5B1CB9587400C5FDC8 /* scrollBoxView.m in Sources */,
 				6C1250831CC3857B0009549B /* AFURLRequestSerialization.m in Sources */,

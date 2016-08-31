@@ -12,8 +12,6 @@
 #define SERVERAPI2 @"http://moviecaker.com:8082"
 
 @interface AustinApi()
-@property NSMutableArray* friendList;
-@property NSMutableArray* friendWaitList;
 @property NSDate *date;
 @end
 @implementation AustinApi
@@ -297,7 +295,7 @@
 -(void)getFriends:(NSString*)uid{
 
     NSDate *now = [[NSDate alloc]init];
-    if(self.date!=nil&&[now timeIntervalSinceDate:self.date]>180){
+    if(self.date==nil||[now timeIntervalSinceDate:self.date]>180){
         self.date = now;
     [self apiGetMethod:[NSString stringWithFormat:@"api/friend/%@",uid] parameter:nil addTokenHeader:nil completion:^(id response) {
         self.friendList =response;
@@ -340,6 +338,14 @@
         NSLog(@"%@",response);
     } error:^(NSError *error) {
         NSLog(@"%@",error);
+    }];
+}
+
+-(void)getNotice:(void (^)(NSArray *returnData))completion error:(void (^)(NSError *error))error{
+    [self apiGetMethod:@"api/Notification" parameter:nil addTokenHeader:@"1" completion:^(id response) {
+        completion(response);
+    } error:^(NSError *error2) {
+        error(error2);
     }];
 }
 @end

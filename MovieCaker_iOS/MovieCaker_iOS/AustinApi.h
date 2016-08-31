@@ -35,4 +35,8 @@
 -(void)getFriends:(NSString*)uid;
 -(int)testFriend:(NSString*)uid;
 -(void)addFriend:(NSNumber*)uid;
+-(void)getNotice:(void (^)(NSArray *returnData))completion error:(void (^)(NSError *error))error;
+
+@property NSMutableArray* friendList;
+@property NSMutableArray* friendWaitList;
 @end

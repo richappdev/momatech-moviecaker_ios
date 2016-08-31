@@ -17,4 +17,5 @@
 -(void)setupBackBtn:(UIViewController*)view;
 -(void)setupStatusbar:(UIView*)view;
 -(void)setupBackBtn2:(UIViewController *)view;
+-(void)setupSinglePage:(UIView*)view;
 @end

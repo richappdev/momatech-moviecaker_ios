@@ -27,18 +27,12 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    UIView *statusView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 20)];
-    statusView.backgroundColor = [UIColor colorWithRed:(77/255.0) green:(182/255.0) blue:(172/255.0) alpha:1];
+
     self.title = @"我的裝置";
     self.helper = [[MainVerticalScroller alloc]init];
     self.helper.nav = self.navigationController;
     [self.helper setupBackBtn2:self];
-    
-    self.navigationController.navigationBar.backgroundColor = [UIColor colorWithRed:(128/255.0) green:(203/255.0) blue:(196/255.0) alpha:1];
-    [self.navigationController.navigationBar setTitleTextAttributes:
-     @{NSForegroundColorAttributeName:[UIColor colorWithRed:(255/255.0) green:(255/255.0) blue:(255/255.0) alpha:1]}];
-
-    [self.view addSubview:statusView];
+    [self.helper setupSinglePage:self.view];
     
     NSDictionary *returnData = [[NSKeyedUnarchiver unarchiveObjectWithData:[[NSUserDefaults standardUserDefaults] objectForKey:@"userkey"]] objectForKey:@"Data"];
     self.nickname.text = [returnData objectForKey:@"NickName"];
