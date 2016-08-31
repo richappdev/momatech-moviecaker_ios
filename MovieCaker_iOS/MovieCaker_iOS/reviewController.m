@@ -170,7 +170,7 @@
         self.friendAdd.hidden = YES;
         self.friendStatus.hidden = YES;
     }else{
-        [[AustinApi sharedInstance]getFriends:[[[returnData objectForKey:@"Data"] objectForKey:@"UserId"]stringValue]];
+        [[AustinApi sharedInstance]getFriends:[[[returnData objectForKey:@"Data"] objectForKey:@"UserId"]stringValue] function:nil refresh:NO];
         int test = [[AustinApi sharedInstance]testFriend:[[self.data objectForKey:@"UserId"]stringValue]];
         if(test==2||test==1){
             self.friendAdd.hidden = YES;

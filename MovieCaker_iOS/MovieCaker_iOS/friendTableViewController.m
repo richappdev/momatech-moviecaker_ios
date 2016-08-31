@@ -9,6 +9,8 @@
 #import "friendTableViewController.h"
 #import "friendCell.h"
 #import "UIImage+FontAwesome.h"
+#import "UIImageView+WebCache.h"
+#import "AustinApi.h"
 @interface friendTableViewController ()
 
 @end
@@ -37,7 +39,7 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return 3;
+    return [self.data count];
 }
 
 
@@ -49,17 +51,24 @@
         cell.bgWidth.constant = 75;
         cell.statusBg.backgroundColor = [UIColor colorWithRed:(128/255.0f) green:(203/255.0f) blue:(172/255.0f) alpha:1];
         cell.statusIcon.image =  [UIImage imageWithIcon:@"fa-check-circle" backgroundColor:[UIColor colorWithRed:(128/255.0f) green:(203/255.0f) blue:(172/255.0f) alpha:1] iconColor:[UIColor whiteColor] andSize:CGSizeMake(12, 12)];
+
     }else if(self.type==1){
         cell.statusTxt.text = @"確認接受";
         cell.bgWidth.constant = 97;
         cell.statusBg.backgroundColor = [UIColor colorWithRed:(248/255.0f) green:(100/255.0f) blue:(0/255.0f) alpha:1];
         cell.statusIcon.image =  [UIImage imageWithIcon:@"fa-check-circle" backgroundColor:[UIColor colorWithRed:(248/255.0f) green:(100/255.0f) blue:(0/255.0f) alpha:1] iconColor:[UIColor whiteColor] andSize:CGSizeMake(12, 12)];
+
     }else{
         cell.statusTxt.text = @"等待接受";
         cell.bgWidth.constant = 97;
         cell.statusBg.backgroundColor = [UIColor colorWithRed:(68/255.0f) green:(85/255.0f) blue:(102/255.0f) alpha:1];
                 cell.statusIcon.image =  [UIImage imageWithIcon:@"fa-clock-o" backgroundColor:[UIColor colorWithRed:(68/255.0f) green:(85/255.0f) blue:(102/255.0f) alpha:1] iconColor:[UIColor whiteColor] andSize:CGSizeMake(12, 12)];
     }
+    
+    
+    [cell.avatar sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@",[[self.data objectAtIndex:indexPath.row]objectForKey:@"AvatarUrl"]]] placeholderImage:[UIImage imageNamed:@"img-placeholder.jpg"]];
+    cell.nickName.text = [[self.data objectAtIndex:indexPath.row]objectForKey:@"NickName"];
+    cell.location.text = [[self.data objectAtIndex:indexPath.row]objectForKey:@"LocationName"];
     return cell;
 }
 

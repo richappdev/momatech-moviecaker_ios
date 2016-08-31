@@ -3300,7 +3300,10 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
+                                            <outlet property="avatar" destination="K13-Yb-kT1" id="2uG-vY-eua"/>
                                             <outlet property="bgWidth" destination="Ukq-N1-J7e" id="5ET-XW-ZNN"/>
+                                            <outlet property="location" destination="a5R-mK-XCs" id="tt9-ne-Cmx"/>
+                                            <outlet property="nickName" destination="rcH-Jh-B3f" id="x66-WV-CKj"/>
                                             <outlet property="statusBg" destination="AmX-7B-uUp" id="fQN-EP-BCc"/>
                                             <outlet property="statusIcon" destination="giP-tJ-Gsb" id="MaI-71-tsw"/>
                                             <outlet property="statusTxt" destination="hQr-kd-Kxk" id="uX5-ds-VYR"/>

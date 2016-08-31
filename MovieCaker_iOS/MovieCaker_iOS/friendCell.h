@@ -13,5 +13,8 @@
 @property (strong, nonatomic) IBOutlet UIImageView *statusIcon;
 @property (strong, nonatomic) IBOutlet UIView *statusBg;
 @property (strong, nonatomic) IBOutlet NSLayoutConstraint *bgWidth;
+@property (strong, nonatomic) IBOutlet UIImageView *avatar;
+@property (strong, nonatomic) IBOutlet UILabel *nickName;
+@property (strong, nonatomic) IBOutlet UILabel *location;
 
 @end

@@ -10,4 +10,5 @@
 
 @interface friendTableViewController : UITableViewController
 @property int type;
+@property NSArray *data;
 @end

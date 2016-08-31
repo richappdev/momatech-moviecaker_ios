@@ -8,8 +8,8 @@
 
 #import "AustinApi.h"
 #import "AFNetworking.h"
-#define SERVERAPI @"http://moviecaker.com"
-#define SERVERAPI2 @"http://moviecaker.com:8082"
+#define SERVERAPI @"http://test.moviecaker.com"
+#define SERVERAPI2 @"http://test.moviecaker.com:8082"
 
 @interface AustinApi()
 @property NSDate *date;
@@ -292,20 +292,26 @@
         error(error2);
     }];
 }
--(void)getFriends:(NSString*)uid{
+-(void)getFriends:(NSString*)uid function:(void (^)(NSString *returnData))completion refresh:(BOOL)refresh{
 
     NSDate *now = [[NSDate alloc]init];
-    if(self.date==nil||[now timeIntervalSinceDate:self.date]>180){
+    if(self.date==nil||[now timeIntervalSinceDate:self.date]>180||refresh){
         self.date = now;
     [self apiGetMethod:[NSString stringWithFormat:@"api/friend/%@",uid] parameter:nil addTokenHeader:nil completion:^(id response) {
         self.friendList =response;
-        NSLog(@"%@",response);
+        NSLog(@"list%@",response);
+        if(completion!=nil){
+            completion(response);
+        }
     } error:^(NSError *error) {
     NSLog(@"%@",error);
     }];
     [self apiGetMethod:[NSString stringWithFormat:@"api/friend/%@?invite=true",uid] parameter:nil addTokenHeader:nil completion:^(id response) {
         self.friendWaitList =[[NSMutableArray alloc] initWithArray:response];
-        NSLog(@"%@",response);
+        NSLog(@"inviting%@",response);
+        if(completion!=nil){
+            completion(response);
+        }
     } error:^(NSError *error) {
         NSLog(@"%@",error);
     }];}

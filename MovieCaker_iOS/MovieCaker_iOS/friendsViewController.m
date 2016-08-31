@@ -44,6 +44,8 @@
     self.tableview.dataSource = self.tableController;
     self.tableview.delegate = self.tableController;
     self.tableController.type = 0;
+    AustinApi *temp3 = [AustinApi sharedInstance];
+    self.tableController.data = temp3.friendList;
     [self.tableview reloadData];
 }
 -(void)addTap:(UILabel*)label{
@@ -72,6 +74,26 @@
     
         [self moveBar:self.current];
         self.tableController.type = (int)label.tag;
+        AustinApi *temp3 = [AustinApi sharedInstance];
+        if(label.tag==0){
+            self.tableController.data = temp3.friendList;
+        }else{
+            NSMutableArray *one= [[NSMutableArray alloc]init];
+            NSMutableArray *two = [[NSMutableArray alloc]init];
+            for (NSDictionary *row in temp3.friendWaitList) {
+                if([[row objectForKey:@"IsInviting"]integerValue]==1){
+                    [one addObject:row];
+                }else{
+                    [two addObject:row];
+                }
+            }
+            if(label.tag==1){
+                self.tableController.data = one;
+            }else{
+                self.tableController.data = two;
+            }
+        }
+        
         [self.tableview reloadData];
     }
 }
