@@ -59,6 +59,14 @@
 }
 -(void)viewWillAppear:(BOOL)animated{
     self.navigationController.navigationBarHidden = NO;
+    if(self.jump){
+        double delayInSeconds = 0.3;
+        dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, delayInSeconds * NSEC_PER_SEC);
+        dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
+                [self selected:self.lTwo];   
+        });
+        self.jump = NO;
+    }
 }
 
 - (void)didReceiveMemoryWarning {

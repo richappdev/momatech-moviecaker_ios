@@ -52,6 +52,7 @@
 @property (strong, nonatomic) IBOutlet UIImageView *invitingIcon;
 @property (strong, nonatomic) IBOutlet UIImageView *friendListIcon;
 @property (strong, nonatomic) IBOutlet UILabel *friendLabel;
+@property BOOL jump;
 @end
 
 @implementation LoginController
@@ -113,7 +114,10 @@
 }
 -(void)indexClick:(UITapGestureRecognizer*)gesture{
     NSLog(@"%ld",gesture.view.tag);
-    if(gesture.view.tag==1){
+    if(gesture.view.tag==1||gesture.view.tag==2){
+        if(gesture.view.tag==2){
+            self.jump = YES;
+        }
         [self performSegueWithIdentifier:@"friendsSegue" sender:self];
     }
     if(gesture.view.tag==3){
@@ -124,6 +128,10 @@
     if([[segue identifier]isEqualToString:@"friendsSegue"]){
         friendsViewController *dest = segue.destinationViewController;
         dest.nickName = self.nickname.text;
+        if(self.jump){
+            dest.jump = YES;
+            self.jump = NO;
+        }
     }
 
 }
