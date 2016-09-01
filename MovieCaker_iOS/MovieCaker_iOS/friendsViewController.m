@@ -45,7 +45,7 @@
     self.tableview.delegate = self.tableController;
     self.tableController.type = 0;
     AustinApi *temp3 = [AustinApi sharedInstance];
-    self.tableController.data = temp3.friendList;
+    self.tableController.data = [[NSMutableArray alloc] initWithArray:temp3.friendList];
     [self.tableview reloadData];
 }
 -(void)addTap:(UILabel*)label{
@@ -88,9 +88,9 @@
                 }
             }
             if(label.tag==1){
-                self.tableController.data = one;
+                self.tableController.data =  [[NSMutableArray alloc] initWithArray:one];
             }else{
-                self.tableController.data = two;
+                self.tableController.data =  [[NSMutableArray alloc] initWithArray:two];
             }
         }
         

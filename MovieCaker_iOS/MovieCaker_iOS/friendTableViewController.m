@@ -45,7 +45,8 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     friendCell *cell = [tableView dequeueReusableCellWithIdentifier:@"friendCell" forIndexPath:indexPath];
-    
+    cell.parent = self;
+    cell.path = indexPath;
     if(self.type==0){
         cell.statusTxt.text = @"好友";
         cell.bgWidth.constant = 75;
@@ -77,6 +78,18 @@
     return 75.0f;
 }
 
+-(void)acceptFriend:(NSIndexPath*)path{
+    if(self.type==1){
+
+    [[AustinApi sharedInstance] acceptFriend:[[self.data objectAtIndex:path.row] objectForKey:@"UserId"] function:^(NSString *returnData) {
+        NSDictionary *returnData2 = [NSKeyedUnarchiver unarchiveObjectWithData:[[NSUserDefaults standardUserDefaults] objectForKey:@"userkey"]];
+        [[AustinApi sharedInstance]getFriends:[[[returnData2 objectForKey:@"Data"] objectForKey:@"UserId"]stringValue] function:nil refresh:YES];
+        
+    }];
+        [self.data removeObjectAtIndex:path.row];
+        [self.tableView reloadData];
+    }
+}
 /*
 // Override to support conditional editing of the table view.
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
