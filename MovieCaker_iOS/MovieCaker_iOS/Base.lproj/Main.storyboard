@@ -2866,7 +2866,7 @@
                                                                     <constraint firstAttribute="width" constant="16" id="JRX-KD-Tma"/>
                                                                 </constraints>
                                                             </imageView>
-                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ty9-6q-xU4">
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="QR Code" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ty9-6q-xU4">
                                                                 <rect key="frame" x="41" y="14" width="88" height="21"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="width" constant="88" id="Ddi-Ma-UOc"/>
@@ -3125,16 +3125,18 @@
                         <outlet property="noticeView" destination="8nG-oe-VM4" id="lfi-jB-OoS"/>
                         <outlet property="password" destination="gDg-5U-gxA" id="iZO-cA-pfb"/>
                         <outlet property="qrcode" destination="wT3-Gp-HUN" id="pRd-1Q-wnD"/>
+                        <outlet property="qrcodeIcon" destination="zZP-cs-1Lr" id="9oW-RJ-t2J"/>
                         <outlet property="username" destination="Mb7-9Q-2FK" id="TWa-cv-6Gm"/>
                         <outlet property="wechatBtn" destination="gdA-WZ-ZXf" id="K4F-y9-t8a"/>
                         <segue destination="GJ0-B9-gT5" kind="push" identifier="mypageSegue" id="GeP-sL-0Z5"/>
                         <segue destination="zkw-ml-t7c" kind="push" identifier="noticeSegue" id="llp-eA-TJy"/>
                         <segue destination="X3G-YG-JLW" kind="push" identifier="friendsSegue" id="CbV-l4-bzA"/>
+                        <segue destination="OjJ-MJ-3T6" kind="push" identifier="qrcodeSegue" id="okh-FG-9Jq"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6pU-v1-2uY" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2223" y="703"/>
+            <point key="canvasLocation" x="2223" y="773"/>
         </scene>
         <!--Friends View Controller-->
         <scene sceneID="dk6-bK-vwH">
@@ -3335,6 +3337,25 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="UYk-ER-wl3" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2688" y="859"/>
+        </scene>
+        <!--Qrcode View Controller-->
+        <scene sceneID="g4l-nB-1Uo">
+            <objects>
+                <viewController id="OjJ-MJ-3T6" customClass="qrcodeViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="1Jp-zh-ALm"/>
+                        <viewControllerLayoutGuide type="bottom" id="7fN-Zj-A2y"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="Uqj-tm-FVR">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="540-sx-x6b"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="0CG-fJ-jdb" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3084" y="1061"/>
         </scene>
         <!--Inner My Page View Controller-->
         <scene sceneID="bOV-M8-5ak">

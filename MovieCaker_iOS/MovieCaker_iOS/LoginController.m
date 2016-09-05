@@ -52,6 +52,7 @@
 @property (strong, nonatomic) IBOutlet UIImageView *invitingIcon;
 @property (strong, nonatomic) IBOutlet UIImageView *friendListIcon;
 @property (strong, nonatomic) IBOutlet UILabel *friendLabel;
+@property (strong, nonatomic) IBOutlet UIImageView *qrcodeIcon;
 @property BOOL jump;
 @end
 
@@ -104,6 +105,8 @@
     self.friendListIcon.image =  [UIImage imageWithIcon:@"fa-users" backgroundColor:[UIColor clearColor] iconColor:[UIColor colorWithRed:(51/255.0f) green:(68/255.0f) blue:(85/255.0f) alpha:1.0] andSize:CGSizeMake(16, 16)];
     self.invitingIcon.image =  [UIImage imageWithIcon:@"fa-bell" backgroundColor:[UIColor clearColor] iconColor:[UIColor colorWithRed:(51/255.0f) green:(68/255.0f) blue:(85/255.0f) alpha:1.0] andSize:CGSizeMake(16, 16)];
     
+    self.qrcodeIcon.image =  [UIImage imageWithIcon:@"fa-qrcode" backgroundColor:[UIColor clearColor] iconColor:[UIColor colorWithRed:(51/255.0f) green:(68/255.0f) blue:(85/255.0f) alpha:1.0] andSize:CGSizeMake(16, 16)];
+    
     AustinApi *temp3 = [AustinApi sharedInstance];
     self.friendLabel.text = [NSString stringWithFormat:@"%lu 個朋友",(unsigned long)[temp3.friendList count]];
 }
@@ -114,6 +117,9 @@
 }
 -(void)indexClick:(UITapGestureRecognizer*)gesture{
     NSLog(@"%ld",gesture.view.tag);
+    if(gesture.view.tag==0){
+        [self performSegueWithIdentifier:@"qrcodeSegue" sender:self];
+    }
     if(gesture.view.tag==1||gesture.view.tag==2){
         if(gesture.view.tag==2){
             self.jump = YES;

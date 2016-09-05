@@ -1,0 +1,11 @@
+//
+//  PrefixHeader.pch
+//  moviecaptain
+//
+//  Created by Albert Hsu on 2/28/16.
+//  Copyright © 2016 test. All rights reserved.
+//
+
+#import <UIKit/UIKit.h>
+#import <Foundation/Foundation.h>
+#import "zbarSDK.h"
