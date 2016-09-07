@@ -10,4 +10,6 @@
 
 @interface friendTableViewController : UITableViewController
 @property int type;
+@property NSMutableArray *data;
+-(void)acceptFriend:(NSIndexPath*)path;
 @end

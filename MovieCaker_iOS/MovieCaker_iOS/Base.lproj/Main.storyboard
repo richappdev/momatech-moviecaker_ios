@@ -2866,7 +2866,7 @@
                                                                     <constraint firstAttribute="width" constant="16" id="JRX-KD-Tma"/>
                                                                 </constraints>
                                                             </imageView>
-                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ty9-6q-xU4">
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="QR Code" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ty9-6q-xU4">
                                                                 <rect key="frame" x="41" y="14" width="88" height="21"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="width" constant="88" id="Ddi-Ma-UOc"/>
@@ -3125,16 +3125,18 @@
                         <outlet property="noticeView" destination="8nG-oe-VM4" id="lfi-jB-OoS"/>
                         <outlet property="password" destination="gDg-5U-gxA" id="iZO-cA-pfb"/>
                         <outlet property="qrcode" destination="wT3-Gp-HUN" id="pRd-1Q-wnD"/>
+                        <outlet property="qrcodeIcon" destination="zZP-cs-1Lr" id="9oW-RJ-t2J"/>
                         <outlet property="username" destination="Mb7-9Q-2FK" id="TWa-cv-6Gm"/>
                         <outlet property="wechatBtn" destination="gdA-WZ-ZXf" id="K4F-y9-t8a"/>
                         <segue destination="GJ0-B9-gT5" kind="push" identifier="mypageSegue" id="GeP-sL-0Z5"/>
                         <segue destination="zkw-ml-t7c" kind="push" identifier="noticeSegue" id="llp-eA-TJy"/>
                         <segue destination="X3G-YG-JLW" kind="push" identifier="friendsSegue" id="CbV-l4-bzA"/>
+                        <segue destination="OjJ-MJ-3T6" kind="push" identifier="qrcodeSegue" id="okh-FG-9Jq"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6pU-v1-2uY" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2223" y="703"/>
+            <point key="canvasLocation" x="2223" y="773"/>
         </scene>
         <!--Friends View Controller-->
         <scene sceneID="dk6-bK-vwH">
@@ -3300,7 +3302,10 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
+                                            <outlet property="avatar" destination="K13-Yb-kT1" id="2uG-vY-eua"/>
                                             <outlet property="bgWidth" destination="Ukq-N1-J7e" id="5ET-XW-ZNN"/>
+                                            <outlet property="location" destination="a5R-mK-XCs" id="tt9-ne-Cmx"/>
+                                            <outlet property="nickName" destination="rcH-Jh-B3f" id="x66-WV-CKj"/>
                                             <outlet property="statusBg" destination="AmX-7B-uUp" id="fQN-EP-BCc"/>
                                             <outlet property="statusIcon" destination="giP-tJ-Gsb" id="MaI-71-tsw"/>
                                             <outlet property="statusTxt" destination="hQr-kd-Kxk" id="uX5-ds-VYR"/>
@@ -3332,6 +3337,79 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="UYk-ER-wl3" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2688" y="859"/>
+        </scene>
+        <!--Qrcode View Controller-->
+        <scene sceneID="g4l-nB-1Uo">
+            <objects>
+                <viewController id="OjJ-MJ-3T6" customClass="qrcodeViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="1Jp-zh-ALm"/>
+                        <viewControllerLayoutGuide type="bottom" id="7fN-Zj-A2y"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="Uqj-tm-FVR">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Ypn-rQ-shc">
+                                <rect key="frame" x="86" y="210" width="148" height="148"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="148" id="Q2Q-h9-AeQ"/>
+                                    <constraint firstAttribute="width" constant="148" id="oNn-Bq-m6E"/>
+                                </constraints>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="對方讀取您的 QR code 即可將您加入好友。" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sm7-1x-sfq">
+                                <rect key="frame" x="86" y="379" width="148" height="28"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="12"/>
+                                <color key="textColor" red="0.20000000000000001" green="0.26666666666666666" blue="0.33333333333333331" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vbC-JK-RMI">
+                                <rect key="frame" x="120" y="420" width="100" height="25"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="開始掃瞄" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="z9y-pW-vaR">
+                                        <rect key="frame" x="8" y="4" width="84" height="17"/>
+                                        <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="14"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <nil key="highlightedColor"/>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                <integer key="value" value="5"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" red="0.97254901960784312" green="0.39215686274509803" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstItem="z9y-pW-vaR" firstAttribute="trailing" secondItem="vbC-JK-RMI" secondAttribute="trailingMargin" id="4fO-R7-PuC"/>
+                                    <constraint firstAttribute="height" constant="25" id="Enz-wq-fCF"/>
+                                    <constraint firstItem="z9y-pW-vaR" firstAttribute="centerY" secondItem="vbC-JK-RMI" secondAttribute="centerY" id="SqA-Ju-miW"/>
+                                    <constraint firstItem="z9y-pW-vaR" firstAttribute="leading" secondItem="vbC-JK-RMI" secondAttribute="leadingMargin" id="h66-ra-gcw"/>
+                                </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="layer.cornerRadius" value="13"/>
+                                </userDefinedRuntimeAttributes>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="vbC-JK-RMI" firstAttribute="leading" secondItem="Uqj-tm-FVR" secondAttribute="leading" constant="120" id="0v6-ek-B53"/>
+                            <constraint firstItem="sm7-1x-sfq" firstAttribute="trailing" secondItem="Ypn-rQ-shc" secondAttribute="trailing" id="F02-SZ-zuD"/>
+                            <constraint firstItem="sm7-1x-sfq" firstAttribute="leading" secondItem="Ypn-rQ-shc" secondAttribute="leading" id="Gll-fn-Ut2"/>
+                            <constraint firstItem="Ypn-rQ-shc" firstAttribute="centerY" secondItem="Uqj-tm-FVR" secondAttribute="centerY" id="IMx-DX-sbB"/>
+                            <constraint firstItem="vbC-JK-RMI" firstAttribute="top" secondItem="sm7-1x-sfq" secondAttribute="bottom" constant="13" id="OH4-cQ-fAR"/>
+                            <constraint firstItem="sm7-1x-sfq" firstAttribute="top" secondItem="Ypn-rQ-shc" secondAttribute="bottom" constant="21" id="UM0-Y7-aPM"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="vbC-JK-RMI" secondAttribute="trailing" constant="84" id="rek-4c-1WJ"/>
+                            <constraint firstItem="Ypn-rQ-shc" firstAttribute="centerX" secondItem="Uqj-tm-FVR" secondAttribute="centerX" id="yrr-IJ-j1l"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="540-sx-x6b"/>
+                    <connections>
+                        <outlet property="qrcode" destination="Ypn-rQ-shc" id="KvM-l9-dWm"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="0CG-fJ-jdb" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3084" y="1061"/>
         </scene>
         <!--Inner My Page View Controller-->
         <scene sceneID="bOV-M8-5ak">

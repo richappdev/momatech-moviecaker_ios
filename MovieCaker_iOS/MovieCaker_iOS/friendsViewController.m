@@ -44,6 +44,8 @@
     self.tableview.dataSource = self.tableController;
     self.tableview.delegate = self.tableController;
     self.tableController.type = 0;
+    AustinApi *temp3 = [AustinApi sharedInstance];
+    self.tableController.data = [[NSMutableArray alloc] initWithArray:temp3.friendList];
     [self.tableview reloadData];
 }
 -(void)addTap:(UILabel*)label{
@@ -57,6 +59,14 @@
 }
 -(void)viewWillAppear:(BOOL)animated{
     self.navigationController.navigationBarHidden = NO;
+    if(self.jump){
+        double delayInSeconds = 0.3;
+        dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, delayInSeconds * NSEC_PER_SEC);
+        dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
+                [self selected:self.lTwo];   
+        });
+        self.jump = NO;
+    }
 }
 
 - (void)didReceiveMemoryWarning {
@@ -72,6 +82,26 @@
     
         [self moveBar:self.current];
         self.tableController.type = (int)label.tag;
+        AustinApi *temp3 = [AustinApi sharedInstance];
+        if(label.tag==0){
+            self.tableController.data = temp3.friendList;
+        }else{
+            NSMutableArray *one= [[NSMutableArray alloc]init];
+            NSMutableArray *two = [[NSMutableArray alloc]init];
+            for (NSDictionary *row in temp3.friendWaitList) {
+                if([[row objectForKey:@"IsInviting"]integerValue]==1){
+                    [one addObject:row];
+                }else{
+                    [two addObject:row];
+                }
+            }
+            if(label.tag==1){
+                self.tableController.data =  [[NSMutableArray alloc] initWithArray:one];
+            }else{
+                self.tableController.data =  [[NSMutableArray alloc] initWithArray:two];
+            }
+        }
+        
         [self.tableview reloadData];
     }
 }

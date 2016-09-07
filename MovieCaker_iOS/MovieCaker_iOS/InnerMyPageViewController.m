@@ -38,7 +38,7 @@
     self.nickname.text = [returnData objectForKey:@"NickName"];
     [self.avatar sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@/%@",[[AustinApi sharedInstance] getBaseUrl],[returnData objectForKey:@"AvatarUrl"]]] placeholderImage:[UIImage imageNamed:@"img-placeholder.jpg"]];
     
-    if([[returnData objectForKey:@"Gender"] integerValue]==1){
+    if(![[returnData objectForKey:@"Gender"]isKindOfClass:[NSNull class]]&&[[returnData objectForKey:@"Gender"] integerValue]==1){
         self.sex.text = @"男";
     }else{
         self.sex.text = @"女";

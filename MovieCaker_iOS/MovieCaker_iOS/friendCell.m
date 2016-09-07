@@ -12,9 +12,14 @@
 
 - (void)awakeFromNib {
     [super awakeFromNib];
-    // Initialization code
+    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(click)];
+    [self.statusBg addGestureRecognizer:tap];
 }
+-(void)click{
 
+    NSLog(@"work");
+    [self.parent acceptFriend:self.path];
+}
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
     [super setSelected:selected animated:animated];
 

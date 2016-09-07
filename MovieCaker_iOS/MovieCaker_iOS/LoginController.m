@@ -52,6 +52,8 @@
 @property (strong, nonatomic) IBOutlet UIImageView *invitingIcon;
 @property (strong, nonatomic) IBOutlet UIImageView *friendListIcon;
 @property (strong, nonatomic) IBOutlet UILabel *friendLabel;
+@property (strong, nonatomic) IBOutlet UIImageView *qrcodeIcon;
+@property BOOL jump;
 @end
 
 @implementation LoginController
@@ -103,6 +105,8 @@
     self.friendListIcon.image =  [UIImage imageWithIcon:@"fa-users" backgroundColor:[UIColor clearColor] iconColor:[UIColor colorWithRed:(51/255.0f) green:(68/255.0f) blue:(85/255.0f) alpha:1.0] andSize:CGSizeMake(16, 16)];
     self.invitingIcon.image =  [UIImage imageWithIcon:@"fa-bell" backgroundColor:[UIColor clearColor] iconColor:[UIColor colorWithRed:(51/255.0f) green:(68/255.0f) blue:(85/255.0f) alpha:1.0] andSize:CGSizeMake(16, 16)];
     
+    self.qrcodeIcon.image =  [UIImage imageWithIcon:@"fa-qrcode" backgroundColor:[UIColor clearColor] iconColor:[UIColor colorWithRed:(51/255.0f) green:(68/255.0f) blue:(85/255.0f) alpha:1.0] andSize:CGSizeMake(16, 16)];
+    
     AustinApi *temp3 = [AustinApi sharedInstance];
     self.friendLabel.text = [NSString stringWithFormat:@"%lu 個朋友",(unsigned long)[temp3.friendList count]];
 }
@@ -113,7 +117,13 @@
 }
 -(void)indexClick:(UITapGestureRecognizer*)gesture{
     NSLog(@"%ld",gesture.view.tag);
-    if(gesture.view.tag==1){
+    if(gesture.view.tag==0){
+        [self performSegueWithIdentifier:@"qrcodeSegue" sender:self];
+    }
+    if(gesture.view.tag==1||gesture.view.tag==2){
+        if(gesture.view.tag==2){
+            self.jump = YES;
+        }
         [self performSegueWithIdentifier:@"friendsSegue" sender:self];
     }
     if(gesture.view.tag==3){
@@ -124,6 +134,10 @@
     if([[segue identifier]isEqualToString:@"friendsSegue"]){
         friendsViewController *dest = segue.destinationViewController;
         dest.nickName = self.nickname.text;
+        if(self.jump){
+            dest.jump = YES;
+            self.jump = NO;
+        }
     }
 
 }
@@ -167,6 +181,7 @@
         [self.Button2 setTitle:[NSString stringWithFormat:@"%@:log out",[[returnData objectForKey:@"Data"] objectForKey:@"NickName"]] forState:UIControlStateNormal];
         [self.myView setHidden:NO];
         [self populate:[returnData objectForKey:@"Data"]];
+        [self refreshFriend:[returnData objectForKey:@"Data"]];
     }else{
         [self startTimer];}
     [self.navigationController setNavigationBarHidden:YES];
@@ -204,6 +219,12 @@
 -(void)wLogin:(UIGestureRecognizer*)gesture{
     [self Login:gesture.view];
 }
+-(void)refreshFriend:(NSDictionary*)returnData{
+        [[AustinApi sharedInstance]getFriends:[[returnData objectForKey:@"UserId"]stringValue] function:^(NSString *returnData) {
+            AustinApi *temp3 = [AustinApi sharedInstance];
+            self.friendLabel.text = [NSString stringWithFormat:@"%lu 個朋友",(unsigned long)[temp3.friendList count]];
+        } refresh:YES];
+}
 - (IBAction)Login:(id)sender {
     UINavigationController *nav = [self.tabBarController.viewControllers objectAtIndex:0];
     MovieController *movie = [[nav viewControllers]objectAtIndex:0];
@@ -215,6 +236,7 @@
     else if(btn.tag==1){
         [[AustinApi sharedInstance]loginWithAccount:self.username.text withPassword:self.password.text withRemember:YES function:^(NSDictionary *returnData) {
             if([[returnData objectForKey:@"success"]boolValue]==TRUE){
+                [self refreshFriend:[returnData objectForKey:@"data"]];
             NSDictionary *temp = [[NSDictionary alloc] initWithObjectsAndKeys:[returnData objectForKey:@"data"],@"Data", nil];
             [[NSUserDefaults standardUserDefaults] setObject:[NSKeyedArchiver archivedDataWithRootObject:temp] forKey:USERKEY];
                 [self.Button2 setTitle:[NSString stringWithFormat:@"%@:log out",[[temp objectForKey:@"Data"] objectForKey:@"NickName"]] forState:UIControlStateNormal];
@@ -247,6 +269,7 @@
             [self.myView setHidden:NO];
             [self stopTimer];
             [self populate:[returnData objectForKey:@"Data"]];
+            [self refreshFriend:[returnData objectForKey:@"Data"]];
         } error:^(NSError *error) {
             NSLog(@"%@",error.description);
         }];
@@ -268,7 +291,8 @@
     [self.avatar sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@/%@",[[AustinApi sharedInstance] getBaseUrl],[dict objectForKey:@"AvatarUrl"]]] placeholderImage:[UIImage imageNamed:@"img-placeholder.jpg"]];
     self.nickname.text = [dict objectForKey:@"NickName"];
     self.location.text = [dict objectForKey:@"LocationName"];
-    if([[dict objectForKey:@"Gender"] integerValue]==1){
+    if(![[dict objectForKey:@"Gender"] isKindOfClass:[NSNull class]]&&[[dict objectForKey:@"Gender"] integerValue]==1
+       ){
         self.gender.image =[UIImage imageWithIcon:@"fa-male" backgroundColor:[UIColor clearColor] iconColor:[UIColor colorWithRed:(119/255.0f) green:(136/255.0f) blue:(153/255.0f) alpha:1.0] andSize:CGSizeMake(13, 18)];
     }else{
         self.gender.image =[UIImage imageWithIcon:@"fa-female" backgroundColor:[UIColor clearColor] iconColor:[UIColor colorWithRed:(255/255.0f) green:(136/255.0f) blue:(153/255.0f) alpha:1.0] andSize:CGSizeMake(13, 18)];
