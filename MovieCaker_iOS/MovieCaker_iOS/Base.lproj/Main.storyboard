@@ -3338,6 +3338,65 @@
             </objects>
             <point key="canvasLocation" x="2688" y="859"/>
         </scene>
+        <!--Scan View Controller-->
+        <scene sceneID="dDv-cg-uQ9">
+            <objects>
+                <viewController id="u01-14-mor" customClass="scanViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="LlR-vx-mTZ"/>
+                        <viewControllerLayoutGuide type="bottom" id="FAA-Y6-cS0"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="5H0-k1-KDd">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bXD-U0-Bfi">
+                                <rect key="frame" x="12" y="99" width="296" height="280"/>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8HW-QX-I8d">
+                                <rect key="frame" x="-4" y="129" width="328" height="220"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="uHs-HL-9aD">
+                                <rect key="frame" x="40" y="0.0" width="240" height="400"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </view>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="将QR Code置於取票框内，即可自动扫描" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MOW-Yp-qTW">
+                                <rect key="frame" x="40" y="388" width="240" height="46"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="16"/>
+                                <color key="textColor" red="0.20000000000000001" green="0.26666666666666666" blue="0.33333333333333331" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="bXD-U0-Bfi" firstAttribute="top" secondItem="LlR-vx-mTZ" secondAttribute="bottom" constant="35" id="1Hg-JX-ube"/>
+                            <constraint firstItem="8HW-QX-I8d" firstAttribute="top" secondItem="LlR-vx-mTZ" secondAttribute="bottom" constant="65" id="8e2-V3-rcj"/>
+                            <constraint firstItem="bXD-U0-Bfi" firstAttribute="trailing" secondItem="5H0-k1-KDd" secondAttribute="trailingMargin" constant="4" id="CuC-Gg-Yqh"/>
+                            <constraint firstItem="FAA-Y6-cS0" firstAttribute="top" secondItem="bXD-U0-Bfi" secondAttribute="bottom" constant="140" id="EJa-ef-8HU"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="8HW-QX-I8d" secondAttribute="trailing" constant="-20" id="GJg-KH-8AP"/>
+                            <constraint firstItem="MOW-Yp-qTW" firstAttribute="leading" secondItem="uHs-HL-9aD" secondAttribute="leading" id="H09-TN-0ba"/>
+                            <constraint firstItem="uHs-HL-9aD" firstAttribute="leading" secondItem="5H0-k1-KDd" secondAttribute="leadingMargin" constant="24" id="JpW-V6-6Qj"/>
+                            <constraint firstItem="uHs-HL-9aD" firstAttribute="top" secondItem="5H0-k1-KDd" secondAttribute="topMargin" id="VAv-8I-OKH"/>
+                            <constraint firstItem="8HW-QX-I8d" firstAttribute="leading" secondItem="5H0-k1-KDd" secondAttribute="leadingMargin" constant="-20" id="VcI-La-qLO"/>
+                            <constraint firstItem="MOW-Yp-qTW" firstAttribute="trailing" secondItem="uHs-HL-9aD" secondAttribute="trailing" id="VzE-qu-ucc"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="uHs-HL-9aD" secondAttribute="trailing" constant="24" id="XSv-pg-FDZ"/>
+                            <constraint firstItem="FAA-Y6-cS0" firstAttribute="top" secondItem="uHs-HL-9aD" secondAttribute="bottom" constant="119" id="ZBj-qx-rTH"/>
+                            <constraint firstItem="FAA-Y6-cS0" firstAttribute="top" secondItem="8HW-QX-I8d" secondAttribute="bottom" constant="170" id="dhu-jU-vFu"/>
+                            <constraint firstItem="MOW-Yp-qTW" firstAttribute="top" secondItem="uHs-HL-9aD" secondAttribute="bottom" constant="-12" id="jZc-a3-aSL"/>
+                            <constraint firstItem="bXD-U0-Bfi" firstAttribute="leading" secondItem="5H0-k1-KDd" secondAttribute="leadingMargin" constant="-4" id="pCl-fD-yaF"/>
+                            <constraint firstItem="FAA-Y6-cS0" firstAttribute="top" secondItem="MOW-Yp-qTW" secondAttribute="bottom" constant="85" id="uPg-UZ-Ckk"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="I8A-wY-COC"/>
+                    <connections>
+                        <outlet property="bg" destination="bXD-U0-Bfi" id="hVg-JW-h01"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="tHH-eQ-ZHP" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2688" y="1534"/>
+        </scene>
         <!--Qrcode View Controller-->
         <scene sceneID="g4l-nB-1Uo">
             <objects>
@@ -3405,6 +3464,8 @@
                     <navigationItem key="navigationItem" id="540-sx-x6b"/>
                     <connections>
                         <outlet property="qrcode" destination="Ypn-rQ-shc" id="KvM-l9-dWm"/>
+                        <outlet property="scanBtn" destination="vbC-JK-RMI" id="Tbt-KU-bnb"/>
+                        <segue destination="u01-14-mor" kind="push" identifier="scanSegue" id="r48-Aq-aNi"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="0CG-fJ-jdb" userLabel="First Responder" sceneMemberID="firstResponder"/>

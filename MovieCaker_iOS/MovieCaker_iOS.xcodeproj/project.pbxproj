@@ -266,6 +266,7 @@
 		6C94C23F1D7CF95F00C0F519 /* qrcodeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C94C23E1D7CF95F00C0F519 /* qrcodeViewController.m */; };
 		6C94C2411D7CFB4D00C0F519 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6C94C2401D7CFB4D00C0F519 /* UIKit.framework */; };
 		6C94C2431D7CFC4000C0F519 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6C084AC21CCBBF5100DB07E5 /* Foundation.framework */; };
+		6C94C2471D7FF3A600C0F519 /* scanViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C94C2461D7FF3A600C0F519 /* scanViewController.m */; };
 		6C99D6DE1D498034005A12FA /* TopicTabViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C99D6DD1D498034005A12FA /* TopicTabViewController.m */; };
 		6CA52C5B1CB9587400C5FDC8 /* scrollBoxView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CA52C5A1CB9587400C5FDC8 /* scrollBoxView.m */; };
 		6CA52C841CBB547A00C5FDC8 /* movieModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CA52C831CBB547A00C5FDC8 /* movieModel.m */; };
@@ -869,6 +870,8 @@
 		6C94C23E1D7CF95F00C0F519 /* qrcodeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = qrcodeViewController.m; sourceTree = "<group>"; };
 		6C94C2401D7CFB4D00C0F519 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		6C94C2441D7CFDB000C0F519 /* PrefixHeader.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.pch; sourceTree = "<group>"; };
+		6C94C2451D7FF3A600C0F519 /* scanViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = scanViewController.h; sourceTree = "<group>"; };
+		6C94C2461D7FF3A600C0F519 /* scanViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = scanViewController.m; sourceTree = "<group>"; };
 		6C99D6DC1D498034005A12FA /* TopicTabViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TopicTabViewController.h; sourceTree = "<group>"; };
 		6C99D6DD1D498034005A12FA /* TopicTabViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TopicTabViewController.m; sourceTree = "<group>"; };
 		6CA52C591CB9587400C5FDC8 /* scrollBoxView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = scrollBoxView.h; sourceTree = "<group>"; };
@@ -1873,6 +1876,8 @@
 				6CA751141D7502DE003C9214 /* friendTableViewController.m */,
 				6C94C23D1D7CF95F00C0F519 /* qrcodeViewController.h */,
 				6C94C23E1D7CF95F00C0F519 /* qrcodeViewController.m */,
+				6C94C2451D7FF3A600C0F519 /* scanViewController.h */,
+				6C94C2461D7FF3A600C0F519 /* scanViewController.m */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -2253,6 +2258,7 @@
 				6CA52C841CBB547A00C5FDC8 /* movieModel.m in Sources */,
 				6CD58C481CACBD3F0089DB38 /* MovieController.m in Sources */,
 				6C94C1781D7CF5A700C0F519 /* ZXEmailAddressResultParser.m in Sources */,
+				6C94C2471D7FF3A600C0F519 /* scanViewController.m in Sources */,
 				6C94C1FE1D7CF5A700C0F519 /* ZXUPCEReader.m in Sources */,
 				6CD58C421CACBD3F0089DB38 /* main.m in Sources */,
 				6C5878101D23C5470051A4C4 /* starView.m in Sources */,
