@@ -362,4 +362,13 @@
         NSLog(@"%@",error2);
     }];
 }
+
+-(void)inviteFriend:(NSString*)uid function:(void (^)(NSString *returnData))completion{
+    [self apiPostMethod:[NSString stringWithFormat:@"api/Friend/Invite/%@",uid] parameter:nil addTokenHeader:@"1" completion:^(id response) {
+        NSLog(@"%@",response);
+        completion(response);
+    } error:^(NSError *error2) {
+        NSLog(@"%@",error2);
+    }];
+}
 @end

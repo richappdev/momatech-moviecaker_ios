@@ -40,4 +40,5 @@
 @property NSMutableArray* friendList;
 @property NSMutableArray* friendWaitList;
 -(void)acceptFriend:(NSString*)uid function:(void (^)(NSString *returnData))completion;
+-(void)inviteFriend:(NSString*)uid function:(void (^)(NSString *returnData))completion;
 @end

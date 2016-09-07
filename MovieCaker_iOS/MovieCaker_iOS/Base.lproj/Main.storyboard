@@ -3367,6 +3367,10 @@
                                 <color key="textColor" red="0.20000000000000001" green="0.26666666666666666" blue="0.33333333333333331" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5jA-As-SCQ" customClass="ZBarReaderView">
+                                <rect key="frame" x="15" y="102" width="290" height="274"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -3382,15 +3386,20 @@
                             <constraint firstItem="MOW-Yp-qTW" firstAttribute="trailing" secondItem="uHs-HL-9aD" secondAttribute="trailing" id="VzE-qu-ucc"/>
                             <constraint firstAttribute="trailingMargin" secondItem="uHs-HL-9aD" secondAttribute="trailing" constant="24" id="XSv-pg-FDZ"/>
                             <constraint firstItem="FAA-Y6-cS0" firstAttribute="top" secondItem="uHs-HL-9aD" secondAttribute="bottom" constant="119" id="ZBj-qx-rTH"/>
+                            <constraint firstItem="MOW-Yp-qTW" firstAttribute="top" secondItem="5jA-As-SCQ" secondAttribute="bottom" constant="12" id="bc7-Sp-FaH"/>
                             <constraint firstItem="FAA-Y6-cS0" firstAttribute="top" secondItem="8HW-QX-I8d" secondAttribute="bottom" constant="170" id="dhu-jU-vFu"/>
+                            <constraint firstItem="5jA-As-SCQ" firstAttribute="leading" secondItem="5H0-k1-KDd" secondAttribute="leadingMargin" constant="-1" id="iM6-oo-8Xv"/>
                             <constraint firstItem="MOW-Yp-qTW" firstAttribute="top" secondItem="uHs-HL-9aD" secondAttribute="bottom" constant="-12" id="jZc-a3-aSL"/>
+                            <constraint firstItem="5jA-As-SCQ" firstAttribute="centerX" secondItem="8HW-QX-I8d" secondAttribute="centerX" id="p3p-2e-GUn"/>
                             <constraint firstItem="bXD-U0-Bfi" firstAttribute="leading" secondItem="5H0-k1-KDd" secondAttribute="leadingMargin" constant="-4" id="pCl-fD-yaF"/>
                             <constraint firstItem="FAA-Y6-cS0" firstAttribute="top" secondItem="MOW-Yp-qTW" secondAttribute="bottom" constant="85" id="uPg-UZ-Ckk"/>
+                            <constraint firstItem="5jA-As-SCQ" firstAttribute="centerY" secondItem="bXD-U0-Bfi" secondAttribute="centerY" id="uqH-TF-0kO"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="I8A-wY-COC"/>
                     <connections>
                         <outlet property="bg" destination="bXD-U0-Bfi" id="hVg-JW-h01"/>
+                        <outlet property="reader" destination="5jA-As-SCQ" id="c2P-GW-PKN"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="tHH-eQ-ZHP" userLabel="First Responder" sceneMemberID="firstResponder"/>

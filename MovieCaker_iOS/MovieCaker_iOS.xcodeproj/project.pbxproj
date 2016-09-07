@@ -267,6 +267,7 @@
 		6C94C2411D7CFB4D00C0F519 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6C94C2401D7CFB4D00C0F519 /* UIKit.framework */; };
 		6C94C2431D7CFC4000C0F519 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6C084AC21CCBBF5100DB07E5 /* Foundation.framework */; };
 		6C94C2471D7FF3A600C0F519 /* scanViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C94C2461D7FF3A600C0F519 /* scanViewController.m */; };
+		6C94C2491D807B1100C0F519 /* libiconv.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 6C94C2481D807B1100C0F519 /* libiconv.tbd */; };
 		6C99D6DE1D498034005A12FA /* TopicTabViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C99D6DD1D498034005A12FA /* TopicTabViewController.m */; };
 		6CA52C5B1CB9587400C5FDC8 /* scrollBoxView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CA52C5A1CB9587400C5FDC8 /* scrollBoxView.m */; };
 		6CA52C841CBB547A00C5FDC8 /* movieModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CA52C831CBB547A00C5FDC8 /* movieModel.m */; };
@@ -872,6 +873,7 @@
 		6C94C2441D7CFDB000C0F519 /* PrefixHeader.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.pch; sourceTree = "<group>"; };
 		6C94C2451D7FF3A600C0F519 /* scanViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = scanViewController.h; sourceTree = "<group>"; };
 		6C94C2461D7FF3A600C0F519 /* scanViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = scanViewController.m; sourceTree = "<group>"; };
+		6C94C2481D807B1100C0F519 /* libiconv.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libiconv.tbd; path = usr/lib/libiconv.tbd; sourceTree = SDKROOT; };
 		6C99D6DC1D498034005A12FA /* TopicTabViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TopicTabViewController.h; sourceTree = "<group>"; };
 		6C99D6DD1D498034005A12FA /* TopicTabViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TopicTabViewController.m; sourceTree = "<group>"; };
 		6CA52C591CB9587400C5FDC8 /* scrollBoxView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = scrollBoxView.h; sourceTree = "<group>"; };
@@ -938,6 +940,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6C94C2491D807B1100C0F519 /* libiconv.tbd in Frameworks */,
 				6C94C2431D7CFC4000C0F519 /* Foundation.framework in Frameworks */,
 				6C94C2411D7CFB4D00C0F519 /* UIKit.framework in Frameworks */,
 				6CD0DEE41CC386B800878995 /* libstdc++.tbd in Frameworks */,
@@ -1919,6 +1922,7 @@
 		6CD58C341CACBD3F0089DB38 = {
 			isa = PBXGroup;
 			children = (
+				6C94C2481D807B1100C0F519 /* libiconv.tbd */,
 				6C94C2401D7CFB4D00C0F519 /* UIKit.framework */,
 				6C084AC21CCBBF5100DB07E5 /* Foundation.framework */,
 				6C084AC01CCBBF3200DB07E5 /* CoreGraphics.framework */,
@@ -2458,6 +2462,9 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				ENABLE_BITCODE = NO;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/$(PROJECT_NAME)/PrefixHeader.pch";
 				INFOPLIST_FILE = MovieCaker_iOS/Info.plist;
@@ -2469,6 +2476,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "com.moma-tech.MovieCaker-iOS";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Debug;
 		};
@@ -2476,6 +2484,9 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				ENABLE_BITCODE = NO;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/$(PROJECT_NAME)/PrefixHeader.pch";
 				INFOPLIST_FILE = MovieCaker_iOS/Info.plist;
@@ -2487,6 +2498,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "com.moma-tech.MovieCaker-iOS";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Release;
 		};

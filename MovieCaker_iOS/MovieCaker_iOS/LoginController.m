@@ -94,7 +94,7 @@
                          (id)[UIColor clearColor].CGColor,
                          (id)[UIColor clearColor].CGColor];
     maskLayer.locations = @[ @0.0f, @0.8f, @1.0f ];
-    maskLayer.frame = CGRectMake(0,0, self.BannerUrl.frame.size.width+200, self.BannerUrl.frame.size.height);
+    maskLayer.frame = CGRectMake(0,0, self.view.frame.size.width, self.BannerUrl.frame.size.height);
     self.BannerUrl.layer.mask = maskLayer;
     [self addIndexClick:self.noticeView];
     [self addIndexClick:self.qrcode];

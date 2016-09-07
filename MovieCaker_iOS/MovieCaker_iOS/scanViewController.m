@@ -8,10 +8,12 @@
 
 #import "scanViewController.h"
 #import "MainVerticalScroller.h"
+#import "AustinApi.h"
 
 @interface scanViewController ()
 @property MainVerticalScroller *helper;
 @property (strong, nonatomic) IBOutlet UIView *bg;
+@property (strong, nonatomic) IBOutlet ZBarReaderView *reader;
 @end
 
 @implementation scanViewController
@@ -27,6 +29,27 @@
     
     self.bg.layer.borderColor = [UIColor colorWithRed:(77/255.0f) green:(182/255.0f) blue:(172/255.0f) alpha:1].CGColor;
     self.bg.layer.borderWidth = 3.0f;
+    
+    self.reader.readerDelegate = self;
+    [self.reader start];
+}
+
+- (void)readerView:(ZBarReaderView*)readerView
+    didReadSymbols:(ZBarSymbolSet*)symbols
+         fromImage:(UIImage*)image
+{
+    
+    NSString *code =@"as";
+    for(ZBarSymbol *sym in symbols)
+    {
+        code = sym.data;
+        NSLog(@"%@",code);
+        
+    }
+    [[AustinApi sharedInstance]inviteFriend:code function:^(NSString *returnData) {
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"成功" message:@"朋友已被邀请" delegate:self cancelButtonTitle:@"关闭" otherButtonTitles:nil,nil];
+        [alert show];
+    }];
 }
 
 - (void)didReceiveMemoryWarning {
