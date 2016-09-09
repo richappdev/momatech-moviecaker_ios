@@ -2779,11 +2779,11 @@
                                     <constraint firstItem="HC2-6D-K6M" firstAttribute="top" secondItem="gdA-WZ-ZXf" secondAttribute="bottom" constant="16" id="y0j-VW-pYX"/>
                                 </constraints>
                             </view>
-                            <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="CWC-Tc-WOy">
-                                <rect key="frame" x="0.0" y="-300" width="320" height="800"/>
+                            <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="CWC-Tc-WOy">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="519"/>
                                 <subviews>
-                                    <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="4UK-Sk-aoN">
-                                        <rect key="frame" x="0.0" y="0.0" width="320" height="740"/>
+                                    <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4UK-Sk-aoN">
+                                        <rect key="frame" x="0.0" y="0.0" width="320" height="519"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ZZY-oF-8Hm">
                                                 <rect key="frame" x="0.0" y="0.0" width="320" height="265"/>
