@@ -114,12 +114,7 @@
     
     AustinApi *temp3 = [AustinApi sharedInstance];
     self.friendLabel.text = [NSString stringWithFormat:@"%lu 個朋友",(unsigned long)[temp3.friendList count]];
-    
-    NSDictionary *returnData = [NSKeyedUnarchiver unarchiveObjectWithData:[[NSUserDefaults standardUserDefaults] objectForKey:@"userkey"]];
-    
-    self.btnLabel.text = [NSString stringWithFormat:@"%@的電影",[[returnData objectForKey:@"Data"] objectForKey:@"NickName"]];
-    self.topicLabel.text = [NSString stringWithFormat:@"%@的專題",[[returnData objectForKey:@"Data"] objectForKey:@"NickName"]];
-   
+
     self.iconFilm.image = [UIImage imageWithIcon:@"fa-film" backgroundColor:[UIColor whiteColor] iconColor:[UIColor colorWithRed:(51/255.0f) green:(68/255.0f) blue:(85/255.0f) alpha:1] andSize:CGSizeMake(18, 16)];
     
     self.archive.image = [UIImage imageWithIcon:@"fa-archive" backgroundColor:[UIColor whiteColor] iconColor:[UIColor colorWithRed:(51/255.0f) green:(68/255.0f) blue:(85/255.0f) alpha:1] andSize:CGSizeMake(16, 16)];
@@ -314,5 +309,9 @@
         self.gender.image =[UIImage imageWithIcon:@"fa-female" backgroundColor:[UIColor clearColor] iconColor:[UIColor colorWithRed:(255/255.0f) green:(136/255.0f) blue:(153/255.0f) alpha:1.0] andSize:CGSizeMake(13, 18)];
     }
    self.chevron2.image = self.chevron3.image = self.chevron4.image = self.chevron5.image = self.chevron.image = [UIImage imageWithIcon:@"fa-chevron-right" backgroundColor:[UIColor clearColor] iconColor:[UIColor colorWithRed:(172/255.0f) green:(189/255.0f) blue:(206/255.0f) alpha:1.0] andSize:CGSizeMake(10, 14)];
+    
+    self.btnLabel.text = [NSString stringWithFormat:@"%@的電影",[dict objectForKey:@"NickName"]];
+    self.topicLabel.text = [NSString stringWithFormat:@"%@的專題",[dict objectForKey:@"NickName"]];
+
 }
 @end
