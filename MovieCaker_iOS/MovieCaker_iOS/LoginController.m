@@ -55,6 +55,10 @@
 @property (strong, nonatomic) IBOutlet UIImageView *qrcodeIcon;
 @property BOOL jump;
 @property (strong, nonatomic) IBOutlet UILabel *btnLabel;
+@property (strong, nonatomic) IBOutlet UIImageView *iconFilm;
+@property (strong, nonatomic) IBOutlet UIScrollView *scrollView;
+@property (strong, nonatomic) IBOutlet UIImageView *archive;
+@property (strong, nonatomic) IBOutlet UILabel *topicLabel;
 @end
 
 @implementation LoginController
@@ -114,8 +118,15 @@
     NSDictionary *returnData = [NSKeyedUnarchiver unarchiveObjectWithData:[[NSUserDefaults standardUserDefaults] objectForKey:@"userkey"]];
     
     self.btnLabel.text = [NSString stringWithFormat:@"%@的電影",[[returnData objectForKey:@"Data"] objectForKey:@"NickName"]];
+    self.topicLabel.text = [NSString stringWithFormat:@"%@的專題",[[returnData objectForKey:@"Data"] objectForKey:@"NickName"]];
+   
+    self.iconFilm.image = [UIImage imageWithIcon:@"fa-film" backgroundColor:[UIColor whiteColor] iconColor:[UIColor colorWithRed:(51/255.0f) green:(68/255.0f) blue:(85/255.0f) alpha:1] andSize:CGSizeMake(18, 16)];
+    
+    self.archive.image = [UIImage imageWithIcon:@"fa-archive" backgroundColor:[UIColor whiteColor] iconColor:[UIColor colorWithRed:(51/255.0f) green:(68/255.0f) blue:(85/255.0f) alpha:1] andSize:CGSizeMake(16, 16)];
 }
-
+-(void)viewDidLayoutSubviews{
+    [self.scrollView setContentSize:CGSizeMake(self.view.frame.size.width, 750)];
+}
 -(void)addIndexClick:(UIView*)view{
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(indexClick:)];
     [view addGestureRecognizer:tap];
