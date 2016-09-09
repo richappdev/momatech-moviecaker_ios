@@ -54,6 +54,7 @@
 @property (strong, nonatomic) IBOutlet UILabel *friendLabel;
 @property (strong, nonatomic) IBOutlet UIImageView *qrcodeIcon;
 @property BOOL jump;
+@property (strong, nonatomic) IBOutlet UILabel *btnLabel;
 @end
 
 @implementation LoginController
@@ -109,6 +110,10 @@
     
     AustinApi *temp3 = [AustinApi sharedInstance];
     self.friendLabel.text = [NSString stringWithFormat:@"%lu 個朋友",(unsigned long)[temp3.friendList count]];
+    
+    NSDictionary *returnData = [NSKeyedUnarchiver unarchiveObjectWithData:[[NSUserDefaults standardUserDefaults] objectForKey:@"userkey"]];
+    
+    self.btnLabel.text = [NSString stringWithFormat:@"%@的電影",[[returnData objectForKey:@"Data"] objectForKey:@"NickName"]];
 }
 
 -(void)addIndexClick:(UIView*)view{
