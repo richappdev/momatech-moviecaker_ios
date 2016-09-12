@@ -18,6 +18,7 @@
 #import "UIImageView+WebCache.h"
 #import "UIImage+FontAwesome.h"
 #import "friendsViewController.h"
+#import "myTopicsViewController.h"
 
 #define USERKEY @"userkey"
 @interface LoginController ()
@@ -59,6 +60,8 @@
 @property (strong, nonatomic) IBOutlet UIScrollView *scrollView;
 @property (strong, nonatomic) IBOutlet UIImageView *archive;
 @property (strong, nonatomic) IBOutlet UILabel *topicLabel;
+@property (strong, nonatomic) IBOutlet UIView *myTopic;
+@property (strong, nonatomic) IBOutlet UIView *likedTopic;
 @end
 
 @implementation LoginController
@@ -105,6 +108,8 @@
     [self addIndexClick:self.qrcode];
     [self addIndexClick:self.friendList];
     [self addIndexClick:self.inviting];
+    [self addIndexClick:self.myTopic];
+    [self addIndexClick:self.likedTopic];
    
     self.bullhorn.image = [UIImage imageWithIcon:@"fa-bullhorn" backgroundColor:[UIColor clearColor] iconColor:[UIColor colorWithRed:(51/255.0f) green:(68/255.0f) blue:(85/255.0f) alpha:1.0] andSize:CGSizeMake(16, 16)];
     self.friendListIcon.image =  [UIImage imageWithIcon:@"fa-users" backgroundColor:[UIColor clearColor] iconColor:[UIColor colorWithRed:(51/255.0f) green:(68/255.0f) blue:(85/255.0f) alpha:1.0] andSize:CGSizeMake(16, 16)];
@@ -140,6 +145,9 @@
     if(gesture.view.tag==3){
         [self performSegueWithIdentifier:@"noticeSegue" sender:self];
     }
+    if(gesture.view.tag==4||gesture.view.tag==5){
+        [self performSegueWithIdentifier:@"topicSegue" sender:self];
+    }
 }
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
     if([[segue identifier]isEqualToString:@"friendsSegue"]){
@@ -149,6 +157,14 @@
             dest.jump = YES;
             self.jump = NO;
         }
+    }
+    if([[segue identifier]isEqualToString:@"topicSegue"]){
+        myTopicsViewController *dest = segue.destinationViewController;
+        dest.nickName = self.nickname.text;
+      /*  if(self.jump){
+            dest.jump = YES;
+            self.jump = NO;
+        }*/
     }
 
 }

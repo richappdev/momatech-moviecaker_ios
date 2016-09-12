@@ -8,8 +8,8 @@
 
 #import "AustinApi.h"
 #import "AFNetworking.h"
-#define SERVERAPI @"http://test.moviecaker.com"
-#define SERVERAPI2 @"http://test.moviecaker.com:8082"
+#define SERVERAPI @"http://moviecaker.com"
+#define SERVERAPI2 @"http://moviecaker.com:8082"
 
 @interface AustinApi()
 @property NSDate *date;

@@ -3252,10 +3252,10 @@
                                                     <constraint firstItem="bGr-xW-Qjn" firstAttribute="baseline" secondItem="crG-CF-XPt" secondAttribute="baseline" id="zzh-nb-IDd"/>
                                                 </constraints>
                                             </view>
-                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="oeS-a8-DIz">
+                                            <view tag="4" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="oeS-a8-DIz">
                                                 <rect key="frame" x="161" y="650" width="159" height="41"/>
                                                 <subviews>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="我的專題" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XCa-1p-5Ej">
+                                                    <label opaque="NO" userInteractionEnabled="NO" tag="4" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="我的專題" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XCa-1p-5Ej">
                                                         <rect key="frame" x="68" y="10" width="77" height="21"/>
                                                         <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="16"/>
                                                         <color key="textColor" red="0.47450980390000003" green="0.48627450979999998" blue="0.51372549020000002" alpha="1" colorSpace="calibratedRGB"/>
@@ -3280,7 +3280,7 @@
                                                     <constraint firstAttribute="trailing" secondItem="XCa-1p-5Ej" secondAttribute="trailing" constant="14" id="rbW-8J-nP2"/>
                                                 </constraints>
                                             </view>
-                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="VBn-au-Lq2">
+                                            <view tag="5" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="VBn-au-Lq2">
                                                 <rect key="frame" x="0.0" y="650" width="160" height="41"/>
                                                 <subviews>
                                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="XUa-YO-M7n">
@@ -3387,7 +3387,9 @@
                         <outlet property="iconFilm" destination="XUa-YO-M7n" id="mVD-il-8qM"/>
                         <outlet property="inviting" destination="bNr-Br-sO5" id="r2t-Am-i9k"/>
                         <outlet property="invitingIcon" destination="Q9s-Qj-fN2" id="b9d-cd-EnS"/>
+                        <outlet property="likedTopic" destination="VBn-au-Lq2" id="jiV-We-Ocx"/>
                         <outlet property="location" destination="5TV-SE-nsg" id="yg9-NE-eqM"/>
+                        <outlet property="myTopic" destination="oeS-a8-DIz" id="sGb-Zz-BVF"/>
                         <outlet property="myView" destination="CWC-Tc-WOy" id="qFz-r4-CKL"/>
                         <outlet property="nickname" destination="SyR-Wb-qWI" id="EMB-ie-jmf"/>
                         <outlet property="noticeView" destination="8nG-oe-VM4" id="lfi-jB-OoS"/>
@@ -3402,11 +3404,31 @@
                         <segue destination="zkw-ml-t7c" kind="push" identifier="noticeSegue" id="llp-eA-TJy"/>
                         <segue destination="X3G-YG-JLW" kind="push" identifier="friendsSegue" id="CbV-l4-bzA"/>
                         <segue destination="OjJ-MJ-3T6" kind="push" identifier="qrcodeSegue" id="okh-FG-9Jq"/>
+                        <segue destination="aA5-jh-dAl" kind="push" identifier="topicSegue" id="y0c-k3-H6q"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6pU-v1-2uY" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2223" y="773"/>
+        </scene>
+        <!--My Topics View Controller-->
+        <scene sceneID="hAc-IX-yK6">
+            <objects>
+                <viewController id="aA5-jh-dAl" customClass="myTopicsViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="hXQ-Fb-Bo3"/>
+                        <viewControllerLayoutGuide type="bottom" id="mo3-2L-dbF"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="fkW-sJ-Jko">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="wzy-al-6w2"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="YU1-TD-cfy" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2223" y="1576"/>
         </scene>
         <!--Friends View Controller-->
         <scene sceneID="dk6-bK-vwH">

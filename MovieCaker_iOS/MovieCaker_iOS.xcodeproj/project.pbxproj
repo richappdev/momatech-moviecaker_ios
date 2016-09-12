@@ -268,6 +268,7 @@
 		6C94C2431D7CFC4000C0F519 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6C084AC21CCBBF5100DB07E5 /* Foundation.framework */; };
 		6C94C2471D7FF3A600C0F519 /* scanViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C94C2461D7FF3A600C0F519 /* scanViewController.m */; };
 		6C94C2491D807B1100C0F519 /* libiconv.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 6C94C2481D807B1100C0F519 /* libiconv.tbd */; };
+		6C94C24C1D86412A00C0F519 /* myTopicsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C94C24B1D86412A00C0F519 /* myTopicsViewController.m */; };
 		6C99D6DE1D498034005A12FA /* TopicTabViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C99D6DD1D498034005A12FA /* TopicTabViewController.m */; };
 		6CA52C5B1CB9587400C5FDC8 /* scrollBoxView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CA52C5A1CB9587400C5FDC8 /* scrollBoxView.m */; };
 		6CA52C841CBB547A00C5FDC8 /* movieModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CA52C831CBB547A00C5FDC8 /* movieModel.m */; };
@@ -874,6 +875,8 @@
 		6C94C2451D7FF3A600C0F519 /* scanViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = scanViewController.h; sourceTree = "<group>"; };
 		6C94C2461D7FF3A600C0F519 /* scanViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = scanViewController.m; sourceTree = "<group>"; };
 		6C94C2481D807B1100C0F519 /* libiconv.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libiconv.tbd; path = usr/lib/libiconv.tbd; sourceTree = SDKROOT; };
+		6C94C24A1D86412A00C0F519 /* myTopicsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = myTopicsViewController.h; sourceTree = "<group>"; };
+		6C94C24B1D86412A00C0F519 /* myTopicsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = myTopicsViewController.m; sourceTree = "<group>"; };
 		6C99D6DC1D498034005A12FA /* TopicTabViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TopicTabViewController.h; sourceTree = "<group>"; };
 		6C99D6DD1D498034005A12FA /* TopicTabViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TopicTabViewController.m; sourceTree = "<group>"; };
 		6CA52C591CB9587400C5FDC8 /* scrollBoxView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = scrollBoxView.h; sourceTree = "<group>"; };
@@ -1881,6 +1884,8 @@
 				6C94C23E1D7CF95F00C0F519 /* qrcodeViewController.m */,
 				6C94C2451D7FF3A600C0F519 /* scanViewController.h */,
 				6C94C2461D7FF3A600C0F519 /* scanViewController.m */,
+				6C94C24A1D86412A00C0F519 /* myTopicsViewController.h */,
+				6C94C24B1D86412A00C0F519 /* myTopicsViewController.m */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -2106,6 +2111,7 @@
 				6C94C2021D7CF5A700C0F519 /* ZXPDF417BarcodeMetadata.m in Sources */,
 				6C5878161D259F5B0051A4C4 /* reviewCell.m in Sources */,
 				6C94C1AE1D7CF5A700C0F519 /* ZXDataMatrixVersion.m in Sources */,
+				6C94C24C1D86412A00C0F519 /* myTopicsViewController.m in Sources */,
 				6C94C1DA1D7CF5A700C0F519 /* ZXGeneralAppIdDecoder.m in Sources */,
 				6C67800F1CC5033E005AEB35 /* WechatAccess.m in Sources */,
 				6C94C1BF1D7CF5A700C0F519 /* ZXMaxiCodeBitMatrixParser.m in Sources */,
