@@ -159,7 +159,7 @@
         error(error2);	
     }];
 }
--(void)getTopic:(NSString*)type vid:(NSString *)vid page:(NSString *)page function:(void (^)(NSArray *returnData))completion error:(void (^)(NSError *error))error{
+-(void)getTopic:(NSString*)type vid:(NSString *)vid page:(NSString *)page uid:(NSString*)uid function:(void (^)(NSArray *returnData))completion error:(void (^)(NSError *error))error{
     NSMutableDictionary *parameter =[[NSMutableDictionary alloc]initWithDictionary: @{@"type":type}];
     if(vid!=nil){
         [parameter setObject:vid forKey:@"vid"];
@@ -167,6 +167,9 @@
     if(page!=nil){
         [parameter setObject:page forKey:@"page"];
         [parameter setObject:@"10" forKey:@"limit"];
+    }
+    if(uid!=nil){
+        [parameter setObject:uid forKey:@"uid"];
     }
     NSLog(@"%@",parameter);
     [self apiGetMethod:@"api/topic" parameter:parameter addTokenHeader:@"1" completion:^(id response) {

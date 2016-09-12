@@ -8,12 +8,17 @@
 
 #import "myTopicsViewController.h"
 #import "MainVerticalScroller.h"
+#import "MovieTableViewController.h"
+#import "AustinApi.h"
+#import "TopicDetailViewController.h"
 
 @interface myTopicsViewController ()
 @property (strong, nonatomic) IBOutlet UITableView *tableView;
 @property (strong, nonatomic) IBOutlet UILabel *lOne;
 @property (strong, nonatomic) IBOutlet UILabel *lTwo;
 @property (strong, nonatomic) IBOutlet UIView *bar;
+@property NSString *uid;
+@property MovieTableViewController *topicController;
 @property UILabel *current;
 @property MainVerticalScroller *helper;
 @end
@@ -30,6 +35,29 @@
     [self addTap:self.lOne];
     [self addTap:self.lTwo];
     self.current = self.lOne;
+    
+    self.topicController = [[MovieTableViewController alloc] init:0];
+    self.topicController.data = [[NSArray alloc]init];
+    [self.topicController ParentController:self];
+    self.topicController.page= 999;
+    self.tableView.delegate = self.topicController;
+    self.tableView.dataSource = self.topicController;
+    self.topicController.tableView = self.tableView;
+
+    NSDictionary *returnData = [NSKeyedUnarchiver unarchiveObjectWithData:[[NSUserDefaults standardUserDefaults] objectForKey:@"userkey"]];
+    self.uid = [[[returnData objectForKey:@"Data"] objectForKey:@"UserId"]stringValue];
+    
+    [[AustinApi sharedInstance]getTopic:@"4" vid:nil page:nil uid:self.uid function:^(NSArray *returnData) {
+        NSMutableArray *array = [[NSMutableArray alloc]init];
+        for (NSDictionary *row in returnData) {
+            NSMutableDictionary *dict = [[NSMutableDictionary alloc]initWithDictionary:row];
+            [array addObject:dict];
+        }
+        self.topicController.data = array;
+        [self.tableView reloadData];
+    } error:^(NSError *error) {
+        NSLog(@"%@",error);
+    }];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -60,10 +88,45 @@
 }
 -(void)selected:(UILabel*)label{
     if(label!=self.current){
+        if(label.tag==0){
+            [[AustinApi sharedInstance]getTopic:@"4" vid:nil page:nil uid:self.uid function:^(NSArray *returnData) {
+                NSMutableArray *array = [[NSMutableArray alloc]init];
+                for (NSDictionary *row in returnData) {
+                    NSMutableDictionary *dict = [[NSMutableDictionary alloc]initWithDictionary:row];
+                    [array addObject:dict];
+                }
+                self.topicController.data = array;
+                [self.tableView reloadData];
+            } error:^(NSError *error) {
+                NSLog(@"%@",error);
+            }];
+        }else{
+            [[AustinApi sharedInstance]getTopic:@"3" vid:nil page:nil uid:self.uid function:^(NSArray *returnData) {
+                NSMutableArray *array = [[NSMutableArray alloc]init];
+                for (NSDictionary *row in returnData) {
+                    NSMutableDictionary *dict = [[NSMutableDictionary alloc]initWithDictionary:row];
+                    [array addObject:dict];
+                }
+                self.topicController.data = array;
+                [self.tableView reloadData];
+            } error:^(NSError *error) {
+                NSLog(@"%@",error);
+            }];
+        }
+        
         self.current.textColor = [UIColor colorWithRed:(121/255.0f) green:(124/255.0f) blue:(131/255.0f) alpha:1];
         label.textColor = [UIColor colorWithRed:(77/255.0f) green:(182/255.0f) blue:(172/255.0f) alpha:1];
         self.current = label;
     }
     [self moveBar:label];
 }
+-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
+    if([[segue identifier] isEqualToString:@"topicSegue"]){
+        TopicDetailViewController *vc = segue.destinationViewController;
+        vc.data = [[NSMutableDictionary alloc]initWithDictionary:[self.topicController.data objectAtIndex:self.topicController.selectIndex]];
+        if(![[self.topicController.circlePercentage objectAtIndex:self.topicController.selectIndex]isKindOfClass:[NSNull class]]){
+            vc.percent = [self.topicController.circlePercentage objectAtIndex:self.topicController.selectIndex];}else{
+                vc.percent = [[NSNumber alloc]initWithInt:-1];NSLog(@"aaaaaa");
+            }
+    }}
 @end

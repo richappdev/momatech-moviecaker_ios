@@ -61,7 +61,7 @@
 }
 -(void)setData:(NSString*)type page:(NSString*)page{
 
-    [[AustinApi sharedInstance]getTopic:type vid:nil page:page function:^(NSArray *returnData) {
+    [[AustinApi sharedInstance]getTopic:type vid:nil page:page uid:nil function:^(NSArray *returnData) {
         //     NSLog(@"bbb%@",returnData);
         NSMutableArray *array = [[NSMutableArray alloc]init];
         for (NSDictionary *row in returnData) {
