@@ -62,6 +62,10 @@
 @property (strong, nonatomic) IBOutlet UILabel *topicLabel;
 @property (strong, nonatomic) IBOutlet UIView *myTopic;
 @property (strong, nonatomic) IBOutlet UIView *likedTopic;
+@property (strong, nonatomic) IBOutlet UILabel *viewLabel;
+@property (strong, nonatomic) IBOutlet UILabel *likeLabel;
+@property (strong, nonatomic) IBOutlet UILabel *wantLabel;
+@property (strong, nonatomic) IBOutlet UILabel *topicSLabel;
 @end
 
 @implementation LoginController
@@ -328,6 +332,15 @@
     
     self.btnLabel.text = [NSString stringWithFormat:@"%@的電影",[dict objectForKey:@"NickName"]];
     self.topicLabel.text = [NSString stringWithFormat:@"%@的專題",[dict objectForKey:@"NickName"]];
-
+    [[AustinApi sharedInstance] getStatistics:[dict objectForKey:@"UserId"] function:^(NSDictionary *returnData) {
+        self.viewLabel.text = [[returnData objectForKey:@"ViewCount"]stringValue];
+        self.likeLabel.text = [[returnData objectForKey:@"LikeCount"] stringValue];
+        self.wantLabel.text = [[returnData objectForKey:@"WantViewCount"] stringValue];
+        self.topicSLabel.text = [[returnData objectForKey:@"TopicCount"] stringValue];
+        
+        NSLog(@"%@",returnData);
+    } error:^(NSError *error) {
+        NSLog(@"%@",error);
+    }];
 }
 @end

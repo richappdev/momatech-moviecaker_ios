@@ -374,4 +374,12 @@
         NSLog(@"%@",error2);
     }];
 }
+
+-(void)getStatistics:(NSString *)uid function:(void (^)(NSDictionary *))completion error:(void (^)(NSError *))error{
+    [self apiGetMethod:[NSString stringWithFormat:@"api/UserDashBoard/%@",uid] parameter:nil addTokenHeader:@"1" completion:^(id response) {
+        completion([response objectForKey:@"Data"]);
+    } error:^(NSError *error2) {
+        error(error2);
+    }];
+}
 @end
