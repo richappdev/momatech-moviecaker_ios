@@ -10,4 +10,5 @@
 
 @interface myTopicsViewController : UIViewController
 @property NSString *nickName;
+@property BOOL jump;
 @end

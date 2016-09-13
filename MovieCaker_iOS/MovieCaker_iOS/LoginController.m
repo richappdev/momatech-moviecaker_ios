@@ -55,6 +55,7 @@
 @property (strong, nonatomic) IBOutlet UILabel *friendLabel;
 @property (strong, nonatomic) IBOutlet UIImageView *qrcodeIcon;
 @property BOOL jump;
+@property BOOL jump2;
 @property (strong, nonatomic) IBOutlet UILabel *btnLabel;
 @property (strong, nonatomic) IBOutlet UIImageView *iconFilm;
 @property (strong, nonatomic) IBOutlet UIScrollView *scrollView;
@@ -150,6 +151,9 @@
         [self performSegueWithIdentifier:@"noticeSegue" sender:self];
     }
     if(gesture.view.tag==4||gesture.view.tag==5){
+        if(gesture.view.tag==5){
+            self.jump2 = YES;
+        }
         [self performSegueWithIdentifier:@"topicSegue" sender:self];
     }
 }
@@ -165,10 +169,10 @@
     if([[segue identifier]isEqualToString:@"topicSegue"]){
         myTopicsViewController *dest = segue.destinationViewController;
         dest.nickName = self.nickname.text;
-      /*  if(self.jump){
+        if(self.jump2){
             dest.jump = YES;
-            self.jump = NO;
-        }*/
+            self.jump2 = NO;
+        }
     }
 
 }

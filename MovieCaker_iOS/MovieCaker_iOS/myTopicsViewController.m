@@ -67,6 +67,14 @@
 
 -(void)viewWillAppear:(BOOL)animated{
     self.navigationController.navigationBarHidden = NO;
+    if(self.jump){
+        double delayInSeconds = 0.3;
+        dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, delayInSeconds * NSEC_PER_SEC);
+        dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
+            [self selected:self.lTwo];
+        });
+        self.jump = NO;
+    }
 }
 -(void)moveBar:(UILabel*)label{
     [UIView beginAnimations:nil context:nil];
@@ -87,6 +95,7 @@
     [self selected:gesture.view];
 }
 -(void)selected:(UILabel*)label{
+            NSLog(@"work2");
     if(label!=self.current){
         if(label.tag==0){
             [[AustinApi sharedInstance]getTopic:@"4" vid:nil page:nil uid:self.uid function:^(NSArray *returnData) {
