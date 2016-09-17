@@ -140,7 +140,7 @@
 }
 
 -(void)topicCall{
-    [[AustinApi sharedInstance]getTopic:@"7" vid:[self.movieDetailInfo objectForKey:@"Id"] page:nil function:^(NSArray *returnData) {
+    [[AustinApi sharedInstance]getTopic:@"7" vid:[self.movieDetailInfo objectForKey:@"Id"] page:nil uid:nil function:^(NSArray *returnData) {
         NSLog(@"a%lu",(unsigned long)[returnData count]);
         self.topicTable.scrollEnabled = false;
         self.topicTable.delegate = self.firstTableController;

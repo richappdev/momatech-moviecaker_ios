@@ -126,7 +126,7 @@
     }];
 }
 -(void)topicCall{
-    [[AustinApi sharedInstance]getTopic:@"6" vid:nil page:nil function:^(NSArray *returnData) {
+    [[AustinApi sharedInstance]getTopic:@"6" vid:nil page:nil uid:nil function:^(NSArray *returnData) {
         //     NSLog(@"bbb%@",returnData);
         NSMutableArray *array = [[NSMutableArray alloc]init];
         for (NSDictionary *row in returnData) {

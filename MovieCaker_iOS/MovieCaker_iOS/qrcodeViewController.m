@@ -13,6 +13,7 @@
 @interface qrcodeViewController ()
 @property MainVerticalScroller *helper;
 @property (strong, nonatomic) IBOutlet UIImageView *qrcode;
+@property (strong, nonatomic) IBOutlet UIView *scanBtn;
 @end
 
 @implementation qrcodeViewController
@@ -45,8 +46,13 @@
     } else {
         NSString *errorMessage = [error localizedDescription];
     }
+    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(scanClick)];
+    [self.scanBtn addGestureRecognizer:tap];
 }
 
+-(void)scanClick{
+    [self performSegueWithIdentifier:@"scanSegue" sender:self];
+}
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.

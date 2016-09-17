@@ -17,7 +17,7 @@
 -(void)movieList:(void (^)(NSArray *returnData))completion error:(void (^)(NSError *error))error;
 -(void)locationList:(void (^)(NSArray *returnData))completion error:(void (^)(NSError *error))error;
 -(void)movieDetail:(NSString*)vid function:(void (^)(NSMutableDictionary *returnData))completion error:(void (^)(NSError *error))error;
--(void)getTopic:(NSString*)type vid:(NSString *)vid page:(NSString*)page function:(void (^)(NSArray *returnData))completion error:(void (^)(NSError *error))error;
+-(void)getTopic:(NSString*)type vid:(NSString *)vid page:(NSString*)page  uid:(NSString*)uid function:(void (^)(NSArray *returnData))completion error:(void (^)(NSError *error))error;
 -(void)getReview:(NSString*)order page:(NSString*)page function:(void (^)(NSArray *returnData))completion error:(void (^)(NSError *error))error;
 -(void)getCircleCompletion:(NSString*)topicId userId:(NSString*)userId function:(void (^)(NSDictionary *returnData))completion error:(void (^)(NSError *error))error;
 -(NSString*)getBaseUrl;
@@ -40,4 +40,6 @@
 @property NSMutableArray* friendList;
 @property NSMutableArray* friendWaitList;
 -(void)acceptFriend:(NSString*)uid function:(void (^)(NSString *returnData))completion;
+-(void)inviteFriend:(NSString*)uid function:(void (^)(NSString *returnData))completion;
+-(void)getStatistics:(NSString *)uid function:(void (^)(NSDictionary *))completion error:(void (^)(NSError *))error;
 @end

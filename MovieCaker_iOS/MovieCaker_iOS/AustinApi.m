@@ -8,8 +8,8 @@
 
 #import "AustinApi.h"
 #import "AFNetworking.h"
-#define SERVERAPI @"http://test.moviecaker.com"
-#define SERVERAPI2 @"http://test.moviecaker.com:8082"
+#define SERVERAPI @"http://moviecaker.com"
+#define SERVERAPI2 @"http://moviecaker.com:8082"
 
 @interface AustinApi()
 @property NSDate *date;
@@ -159,7 +159,7 @@
         error(error2);	
     }];
 }
--(void)getTopic:(NSString*)type vid:(NSString *)vid page:(NSString *)page function:(void (^)(NSArray *returnData))completion error:(void (^)(NSError *error))error{
+-(void)getTopic:(NSString*)type vid:(NSString *)vid page:(NSString *)page uid:(NSString*)uid function:(void (^)(NSArray *returnData))completion error:(void (^)(NSError *error))error{
     NSMutableDictionary *parameter =[[NSMutableDictionary alloc]initWithDictionary: @{@"type":type}];
     if(vid!=nil){
         [parameter setObject:vid forKey:@"vid"];
@@ -167,6 +167,9 @@
     if(page!=nil){
         [parameter setObject:page forKey:@"page"];
         [parameter setObject:@"10" forKey:@"limit"];
+    }
+    if(uid!=nil){
+        [parameter setObject:uid forKey:@"uid"];
     }
     NSLog(@"%@",parameter);
     [self apiGetMethod:@"api/topic" parameter:parameter addTokenHeader:@"1" completion:^(id response) {
@@ -360,6 +363,23 @@
         completion(response);
     } error:^(NSError *error2) {
         NSLog(@"%@",error2);
+    }];
+}
+
+-(void)inviteFriend:(NSString*)uid function:(void (^)(NSString *returnData))completion{
+    [self apiPostMethod:[NSString stringWithFormat:@"api/Friend/Invite/%@",uid] parameter:nil addTokenHeader:@"1" completion:^(id response) {
+        NSLog(@"%@",response);
+        completion(response);
+    } error:^(NSError *error2) {
+        NSLog(@"%@",error2);
+    }];
+}
+
+-(void)getStatistics:(NSString *)uid function:(void (^)(NSDictionary *))completion error:(void (^)(NSError *))error{
+    [self apiGetMethod:[NSString stringWithFormat:@"api/UserDashBoard/%@",uid] parameter:nil addTokenHeader:@"1" completion:^(id response) {
+        completion([response objectForKey:@"Data"]);
+    } error:^(NSError *error2) {
+        error(error2);
     }];
 }
 @end

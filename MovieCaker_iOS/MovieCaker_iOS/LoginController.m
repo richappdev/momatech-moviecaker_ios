@@ -18,6 +18,7 @@
 #import "UIImageView+WebCache.h"
 #import "UIImage+FontAwesome.h"
 #import "friendsViewController.h"
+#import "myTopicsViewController.h"
 
 #define USERKEY @"userkey"
 @interface LoginController ()
@@ -54,6 +55,18 @@
 @property (strong, nonatomic) IBOutlet UILabel *friendLabel;
 @property (strong, nonatomic) IBOutlet UIImageView *qrcodeIcon;
 @property BOOL jump;
+@property BOOL jump2;
+@property (strong, nonatomic) IBOutlet UILabel *btnLabel;
+@property (strong, nonatomic) IBOutlet UIImageView *iconFilm;
+@property (strong, nonatomic) IBOutlet UIScrollView *scrollView;
+@property (strong, nonatomic) IBOutlet UIImageView *archive;
+@property (strong, nonatomic) IBOutlet UILabel *topicLabel;
+@property (strong, nonatomic) IBOutlet UIView *myTopic;
+@property (strong, nonatomic) IBOutlet UIView *likedTopic;
+@property (strong, nonatomic) IBOutlet UILabel *viewLabel;
+@property (strong, nonatomic) IBOutlet UILabel *likeLabel;
+@property (strong, nonatomic) IBOutlet UILabel *wantLabel;
+@property (strong, nonatomic) IBOutlet UILabel *topicSLabel;
 @end
 
 @implementation LoginController
@@ -94,12 +107,14 @@
                          (id)[UIColor clearColor].CGColor,
                          (id)[UIColor clearColor].CGColor];
     maskLayer.locations = @[ @0.0f, @0.8f, @1.0f ];
-    maskLayer.frame = CGRectMake(0,0, self.BannerUrl.frame.size.width+200, self.BannerUrl.frame.size.height);
+    maskLayer.frame = CGRectMake(0,0, self.view.frame.size.width, self.BannerUrl.frame.size.height);
     self.BannerUrl.layer.mask = maskLayer;
     [self addIndexClick:self.noticeView];
     [self addIndexClick:self.qrcode];
     [self addIndexClick:self.friendList];
     [self addIndexClick:self.inviting];
+    [self addIndexClick:self.myTopic];
+    [self addIndexClick:self.likedTopic];
    
     self.bullhorn.image = [UIImage imageWithIcon:@"fa-bullhorn" backgroundColor:[UIColor clearColor] iconColor:[UIColor colorWithRed:(51/255.0f) green:(68/255.0f) blue:(85/255.0f) alpha:1.0] andSize:CGSizeMake(16, 16)];
     self.friendListIcon.image =  [UIImage imageWithIcon:@"fa-users" backgroundColor:[UIColor clearColor] iconColor:[UIColor colorWithRed:(51/255.0f) green:(68/255.0f) blue:(85/255.0f) alpha:1.0] andSize:CGSizeMake(16, 16)];
@@ -109,8 +124,14 @@
     
     AustinApi *temp3 = [AustinApi sharedInstance];
     self.friendLabel.text = [NSString stringWithFormat:@"%lu 個朋友",(unsigned long)[temp3.friendList count]];
-}
 
+    self.iconFilm.image = [UIImage imageWithIcon:@"fa-film" backgroundColor:[UIColor whiteColor] iconColor:[UIColor colorWithRed:(51/255.0f) green:(68/255.0f) blue:(85/255.0f) alpha:1] andSize:CGSizeMake(18, 16)];
+    
+    self.archive.image = [UIImage imageWithIcon:@"fa-archive" backgroundColor:[UIColor whiteColor] iconColor:[UIColor colorWithRed:(51/255.0f) green:(68/255.0f) blue:(85/255.0f) alpha:1] andSize:CGSizeMake(16, 16)];
+}
+-(void)viewDidLayoutSubviews{
+    [self.scrollView setContentSize:CGSizeMake(self.view.frame.size.width, 750)];
+}
 -(void)addIndexClick:(UIView*)view{
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(indexClick:)];
     [view addGestureRecognizer:tap];
@@ -129,6 +150,12 @@
     if(gesture.view.tag==3){
         [self performSegueWithIdentifier:@"noticeSegue" sender:self];
     }
+    if(gesture.view.tag==4||gesture.view.tag==5){
+        if(gesture.view.tag==5){
+            self.jump2 = YES;
+        }
+        [self performSegueWithIdentifier:@"topicSegue" sender:self];
+    }
 }
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
     if([[segue identifier]isEqualToString:@"friendsSegue"]){
@@ -137,6 +164,14 @@
         if(self.jump){
             dest.jump = YES;
             self.jump = NO;
+        }
+    }
+    if([[segue identifier]isEqualToString:@"topicSegue"]){
+        myTopicsViewController *dest = segue.destinationViewController;
+        dest.nickName = self.nickname.text;
+        if(self.jump2){
+            dest.jump = YES;
+            self.jump2 = NO;
         }
     }
 
@@ -298,5 +333,18 @@
         self.gender.image =[UIImage imageWithIcon:@"fa-female" backgroundColor:[UIColor clearColor] iconColor:[UIColor colorWithRed:(255/255.0f) green:(136/255.0f) blue:(153/255.0f) alpha:1.0] andSize:CGSizeMake(13, 18)];
     }
    self.chevron2.image = self.chevron3.image = self.chevron4.image = self.chevron5.image = self.chevron.image = [UIImage imageWithIcon:@"fa-chevron-right" backgroundColor:[UIColor clearColor] iconColor:[UIColor colorWithRed:(172/255.0f) green:(189/255.0f) blue:(206/255.0f) alpha:1.0] andSize:CGSizeMake(10, 14)];
+    
+    self.btnLabel.text = [NSString stringWithFormat:@"%@的電影",[dict objectForKey:@"NickName"]];
+    self.topicLabel.text = [NSString stringWithFormat:@"%@的專題",[dict objectForKey:@"NickName"]];
+    [[AustinApi sharedInstance] getStatistics:[dict objectForKey:@"UserId"] function:^(NSDictionary *returnData) {
+        self.viewLabel.text = [[returnData objectForKey:@"ViewCount"]stringValue];
+        self.likeLabel.text = [[returnData objectForKey:@"LikeCount"] stringValue];
+        self.wantLabel.text = [[returnData objectForKey:@"WantViewCount"] stringValue];
+        self.topicSLabel.text = [[returnData objectForKey:@"TopicCount"] stringValue];
+        
+        NSLog(@"%@",returnData);
+    } error:^(NSError *error) {
+        NSLog(@"%@",error);
+    }];
 }
 @end

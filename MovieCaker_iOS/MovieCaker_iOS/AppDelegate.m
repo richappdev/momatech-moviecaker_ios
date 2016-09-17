@@ -28,6 +28,7 @@
     } error:^(NSError *error) {
         NSLog(@"%@",error);
     }];*/
+    [ZBarReaderView class];
     return YES;
 }
 
