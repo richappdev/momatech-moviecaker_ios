@@ -16,11 +16,11 @@
 @interface InnerMyPageViewController ()
 @property MainVerticalScroller *helper;
 @property (strong, nonatomic) IBOutlet UIImageView *avatar;
-@property (strong, nonatomic) IBOutlet UILabel *nickname;
 @property (strong, nonatomic) IBOutlet UILabel *sex;
 @property (strong, nonatomic) IBOutlet UILabel *bday;
 @property (strong, nonatomic) IBOutlet UILabel *location;
 @property (strong, nonatomic) IBOutlet UIView *logout;
+@property (strong, nonatomic) IBOutlet UIView *editView;
 @end
 
 @implementation InnerMyPageViewController
@@ -48,6 +48,12 @@
     self.bday.text = [self.bday.text substringWithRange:NSMakeRange(0,[self.bday.text rangeOfString:@"T"].location)];
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(logoutClick)];
     [self.logout addGestureRecognizer:tap];
+    UITapGestureRecognizer *tap2 = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(editClick)];
+    [self.editView addGestureRecognizer:tap2];
+}
+
+-(void)editClick{
+    [self performSegueWithIdentifier:@"editSegue" sender:self];
 }
 -(void)viewWillAppear:(BOOL)animated{
     self.navigationController.navigationBarHidden = NO;
