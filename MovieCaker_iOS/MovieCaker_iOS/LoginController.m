@@ -303,8 +303,13 @@
             [self.Button2 setTitle:[NSString stringWithFormat:@"%@:log out",[[returnData objectForKey:@"Data"] objectForKey:@"NickName"]] forState:UIControlStateNormal];
             [self.myView setHidden:NO];
             [self stopTimer];
-            [self populate:[returnData objectForKey:@"Data"]];
-            [self refreshFriend:[returnData objectForKey:@"Data"]];
+            NSDictionary *test = [returnData objectForKey:@"Data"];
+            if([[test allKeys]count]<2){
+                test = returnData;
+            }
+            [self populate:test];
+            [self refreshFriend:test];
+            
         } error:^(NSError *error) {
             NSLog(@"%@",error.description);
         }];
@@ -323,7 +328,7 @@
 }
 -(void)populate:(NSDictionary*)dict{
     [self.BannerUrl sd_setImageWithURL:[NSURL URLWithString:[dict objectForKey:@"BannerUrl"]] placeholderImage:[UIImage imageNamed:@"img-placeholder.jpg"]];
-    [self.avatar sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@/%@",[[AustinApi sharedInstance] getBaseUrl],[dict objectForKey:@"AvatarUrl"]]] placeholderImage:[UIImage imageNamed:@"img-placeholder.jpg"]];
+    [self.avatar sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@",[dict objectForKey:@"AvatarUrl"]]] placeholderImage:[UIImage imageNamed:@"img-placeholder.jpg"]];
     self.nickname.text = [dict objectForKey:@"NickName"];
     self.location.text = [dict objectForKey:@"LocationName"];
     if(![[dict objectForKey:@"Gender"] isKindOfClass:[NSNull class]]&&[[dict objectForKey:@"Gender"] integerValue]==1
