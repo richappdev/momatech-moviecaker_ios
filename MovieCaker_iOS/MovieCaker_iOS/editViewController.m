@@ -47,6 +47,12 @@
     [[returnData objectForKey:@"Data"] setObject:self.textfield.text forKey:@"NickName"];
     [[NSUserDefaults standardUserDefaults] setObject:[NSKeyedArchiver archivedDataWithRootObject:returnData] forKey:@"userkey"];
     
+    [[AustinApi sharedInstance]changeProfile:self.textfield.text gender:nil birthday:nil function:^(NSDictionary *returnData) {
+    
+    } error:^(NSError *error) {
+        
+    }];
+    
     [self.navigationController popViewControllerAnimated:YES];
 }
 

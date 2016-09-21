@@ -382,4 +382,16 @@
         error(error2);
     }];
 }
+-(void)changeProfile:(NSString*)nick gender:(BOOL)gender birthday:(NSString*)birthday function:(void (^)(NSDictionary *))completion error:(void (^)(NSError *))error{
+    NSMutableDictionary *params = [[NSMutableDictionary alloc]init];
+    [params setObject:nick forKey:@"NickName"];
+    
+    [self apiPostMethod:@"api/account/userInfo" parameter:params addTokenHeader:@"1" completion:^(id response) {
+        NSLog(@"%@",response);
+        completion(response);
+    } error:^(NSError *error2) {
+        NSLog(@"%@",error2);
+    }];
+
+}
 @end
