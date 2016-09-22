@@ -3403,6 +3403,8 @@
                         <outlet property="viewLabel" destination="gkt-lx-aUc" id="Mep-mL-LjJ"/>
                         <outlet property="wantLabel" destination="XSz-p5-m7M" id="QKe-o0-q69"/>
                         <outlet property="wechatBtn" destination="gdA-WZ-ZXf" id="K4F-y9-t8a"/>
+                        <outlet property="wechatLine" destination="bXr-1K-ph1" id="p0w-bm-je7"/>
+                        <outlet property="wechatOr" destination="gZf-Sv-53C" id="PSn-9t-m3S"/>
                         <segue destination="GJ0-B9-gT5" kind="push" identifier="mypageSegue" id="GeP-sL-0Z5"/>
                         <segue destination="zkw-ml-t7c" kind="push" identifier="noticeSegue" id="llp-eA-TJy"/>
                         <segue destination="X3G-YG-JLW" kind="push" identifier="friendsSegue" id="CbV-l4-bzA"/>

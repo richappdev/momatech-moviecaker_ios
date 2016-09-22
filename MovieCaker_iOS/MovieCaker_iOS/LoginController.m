@@ -67,6 +67,8 @@
 @property (strong, nonatomic) IBOutlet UILabel *likeLabel;
 @property (strong, nonatomic) IBOutlet UILabel *wantLabel;
 @property (strong, nonatomic) IBOutlet UILabel *topicSLabel;
+@property (strong, nonatomic) IBOutlet UIView *wechatLine;
+@property (strong, nonatomic) IBOutlet UILabel *wechatOr;
 @end
 
 @implementation LoginController
@@ -221,6 +223,16 @@
         [self startTimer];}
     [self.navigationController setNavigationBarHidden:YES];
     
+    if([[WechatAccess sharedInstance]isWechatAppInstalled]==YES){
+        self.wechatOr.hidden = NO;
+        self.wechatBtn.hidden = NO;
+        self.wechatLine.hidden = NO;
+    }else{
+        self.wechatOr.hidden = YES;
+        self.wechatBtn.hidden = YES;
+        self.wechatLine.hidden = YES;
+    }
+    
 }
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
@@ -320,7 +332,7 @@
         }
     } viewController:self];}
     else{
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"注意" message:@"请使用微信登入" delegate:self cancelButtonTitle:@"关闭" otherButtonTitles:nil,nil];
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"注意" message:@"请安裝微信" delegate:self cancelButtonTitle:@"关闭" otherButtonTitles:nil,nil];
         [alert show];
         NSLog(@"Wechat not installed");
     }
