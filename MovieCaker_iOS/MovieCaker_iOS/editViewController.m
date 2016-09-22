@@ -47,7 +47,7 @@
     [[returnData objectForKey:@"Data"] setObject:self.textfield.text forKey:@"NickName"];
     [[NSUserDefaults standardUserDefaults] setObject:[NSKeyedArchiver archivedDataWithRootObject:returnData] forKey:@"userkey"];
     
-    [[AustinApi sharedInstance]changeProfile:self.textfield.text gender:nil birthday:nil function:^(NSDictionary *returnData) {
+    [[AustinApi sharedInstance]changeProfile:self.textfield.text gender:[[returnData objectForKey:@"Data"]objectForKey:@"Gender"] birthday:[[returnData objectForKey:@"Data"]objectForKey:@"BrithDay"] function:^(NSDictionary *returnData) {
     
     } error:^(NSError *error) {
         
