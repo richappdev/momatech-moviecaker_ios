@@ -42,4 +42,5 @@
 -(void)acceptFriend:(NSString*)uid function:(void (^)(NSString *returnData))completion;
 -(void)inviteFriend:(NSString*)uid function:(void (^)(NSString *returnData))completion;
 -(void)getStatistics:(NSString *)uid function:(void (^)(NSDictionary *))completion error:(void (^)(NSError *))error;
+-(void)changeProfile:(NSString*)nick gender:(BOOL)gender birthday:(NSString*)birthday function:(void (^)(NSDictionary *))completion error:(void (^)(NSError *))error;
 @end

@@ -281,6 +281,7 @@
 		6CA751121D7502CB003C9214 /* friendCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CA751111D7502CB003C9214 /* friendCell.m */; };
 		6CA751151D7502DE003C9214 /* friendTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CA751141D7502DE003C9214 /* friendTableViewController.m */; };
 		6CB03EF31D3FF40D0037F117 /* TopicDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CB03EF21D3FF40D0037F117 /* TopicDetailViewController.m */; };
+		6CCE4C941D90A0EA00BA4F6E /* editViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CCE4C931D90A0EA00BA4F6E /* editViewController.m */; };
 		6CD0DEDE1CC3867300878995 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6CD0DEDD1CC3867300878995 /* SystemConfiguration.framework */; };
 		6CD0DEE01CC3867900878995 /* libsqlite3.0.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 6CD0DEDF1CC3867900878995 /* libsqlite3.0.tbd */; };
 		6CD0DEE21CC3868000878995 /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 6CD0DEE11CC3868000878995 /* libz.tbd */; };
@@ -901,6 +902,8 @@
 		6CA751141D7502DE003C9214 /* friendTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = friendTableViewController.m; sourceTree = "<group>"; };
 		6CB03EF11D3FF40D0037F117 /* TopicDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TopicDetailViewController.h; sourceTree = "<group>"; };
 		6CB03EF21D3FF40D0037F117 /* TopicDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TopicDetailViewController.m; sourceTree = "<group>"; };
+		6CCE4C921D90A0E900BA4F6E /* editViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = editViewController.h; sourceTree = "<group>"; };
+		6CCE4C931D90A0EA00BA4F6E /* editViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = editViewController.m; sourceTree = "<group>"; };
 		6CD0DEDD1CC3867300878995 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		6CD0DEDF1CC3867900878995 /* libsqlite3.0.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.0.tbd; path = usr/lib/libsqlite3.0.tbd; sourceTree = SDKROOT; };
 		6CD0DEE11CC3868000878995 /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
@@ -1886,6 +1889,8 @@
 				6C94C2461D7FF3A600C0F519 /* scanViewController.m */,
 				6C94C24A1D86412A00C0F519 /* myTopicsViewController.h */,
 				6C94C24B1D86412A00C0F519 /* myTopicsViewController.m */,
+				6CCE4C921D90A0E900BA4F6E /* editViewController.h */,
+				6CCE4C931D90A0EA00BA4F6E /* editViewController.m */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -2247,6 +2252,7 @@
 				6C94C2321D7CF5A700C0F519 /* ZXDimension.m in Sources */,
 				6C94C2071D7CF5A700C0F519 /* ZXPDF417DecodedBitStreamParser.m in Sources */,
 				6C94C17E1D7CF5A700C0F519 /* ZXISBNParsedResult.m in Sources */,
+				6CCE4C941D90A0EA00BA4F6E /* editViewController.m in Sources */,
 				6C94C17C1D7CF5A700C0F519 /* ZXGeoParsedResult.m in Sources */,
 				6C94C19D1D7CF5A700C0F519 /* ZXBitArray.m in Sources */,
 				6CD58C451CACBD3F0089DB38 /* AppDelegate.m in Sources */,

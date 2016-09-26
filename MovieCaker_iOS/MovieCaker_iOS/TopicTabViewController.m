@@ -23,12 +23,14 @@
 @property NSMutableArray *tabOneData;
 @property NSMutableArray *tabTwoData;
 @property NSMutableArray *tabThreeData;
+@property BOOL lock;
 @end
 
 @implementation TopicTabViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.lock = NO;
     self.labelArray = [[NSArray alloc]initWithObjects:self.tabOne,self.tabTwo,self.tabThree, nil];
     
     UISwipeGestureRecognizer * swipeleft=[[UISwipeGestureRecognizer alloc]initWithTarget:self action:@selector(swipeLeft:)];
@@ -60,7 +62,9 @@
     // Dispose of any resources that can be recreated.
 }
 -(void)setData:(NSString*)type page:(NSString*)page{
-
+    if(self.lock==NO){
+        self.lock=YES;
+    
     [[AustinApi sharedInstance]getTopic:type vid:nil page:page uid:nil function:^(NSArray *returnData) {
         //     NSLog(@"bbb%@",returnData);
         NSMutableArray *array = [[NSMutableArray alloc]init];
@@ -88,28 +92,31 @@
         [self.movieTableController.tableView reloadData];
         
         self.movieTableController.tableView.scrollEnabled = YES;
+        self.lock = NO;
         
     } error:^(NSError *error) {
         NSLog(@"%@",error);
+        self.lock = NO;
     }];
-    
+    }
 }
 
 -(void)handleSingleTap:(UIGestureRecognizer*)gestureRecongnizer{
+    if(self.lock ==NO){
     [self moveBar:[self.labelArray objectAtIndex:gestureRecongnizer.view.tag]];
     [self setFilter:(int)gestureRecongnizer.view.tag];
-    self.index = (int)gestureRecongnizer.view.tag;
+        self.index = (int)gestureRecongnizer.view.tag;}
 }
 
 -(void)swipeLeft:(UISwipeGestureRecognizer*)gestureRecongnizer{
-    if(self.index>0){
+    if(self.index>0&&self.lock ==NO){
         [self setFilter:self.index-1];
         self.index--;
         [self moveBar:[self.labelArray objectAtIndex:self.index]];
     }
 }
 -(void)swipeRight:(UISwipeGestureRecognizer*)gestureRecongnizer{
-    if(self.index<[self.labelArray count]-1){
+    if(self.index<[self.labelArray count]-1&&self.lock ==NO){
         [self setFilter:self.index+1];
         self.index++;
         [self moveBar:[self.labelArray objectAtIndex:self.index]];
@@ -124,39 +131,58 @@
     [UIView commitAnimations];
     
 }
+-(void)cacheLock{
+    self.lock = YES;
+    double delayInSeconds = 0.5;
+    dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, delayInSeconds * NSEC_PER_SEC);
+    dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
+        self.lock = NO;
+    });
+}
 -(void)setFilter:(int)page{
     NSLog(@"%d",page);
+
     if(self.index!=page){
         self.index = page;
         if(self.index==0){
             if(self.tabOneData==nil){
                 [self setData:@"6" page:nil];
             }else{
-                self.movieTableController.data = self.tabOneData;
-                self.movieTableController.page=1;
-                [self.movieTableController setNewCircleArray:[self.tabOneData count]];
-                [self.tableView reloadData];
+                if(self.lock == NO){
+                    [self cacheLock];
+                    self.movieTableController.data = self.tabOneData;
+                    self.movieTableController.page=1;
+                    [self.movieTableController setNewCircleArray:[self.tabOneData count]];
+                    [self.tableView reloadData];
+                }
             }
         }else if(self.index==1){
             if(self.tabTwoData==nil){
                 [self setData:@"1" page:nil];
             }else{
-                self.movieTableController.data = self.tabTwoData;
-                self.movieTableController.page=1;
-                [self.movieTableController setNewCircleArray:[self.tabTwoData count]];
-                [self.tableView reloadData];
+                if(self.lock == NO){
+                    [self cacheLock];
+                    self.movieTableController.data = self.tabTwoData;
+                    self.movieTableController.page=1;
+                    [self.movieTableController setNewCircleArray:[self.tabTwoData count]];
+                    [self.tableView reloadData];
+                }
             }
         }else if(self.index==2){
             if(self.tabThreeData==nil){
                 [self setData:@"0" page:nil];
             }else{
-                self.movieTableController.data = self.tabThreeData;
-                self.movieTableController.page=1;
-                [self.movieTableController setNewCircleArray:[self.tabThreeData count]];
-                [self.tableView reloadData];
+                if(self.lock == NO){
+                    [self cacheLock];
+                    self.movieTableController.data = self.tabThreeData;
+                    self.movieTableController.page=1;
+                    [self.movieTableController setNewCircleArray:[self.tabThreeData count]];
+                    [self.tableView reloadData];
+                }
             }
         }
     }
+    
 }
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
 if([[segue identifier] isEqualToString:@"topicSegue"]){

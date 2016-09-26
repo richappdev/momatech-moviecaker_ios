@@ -67,6 +67,8 @@
 @property (strong, nonatomic) IBOutlet UILabel *likeLabel;
 @property (strong, nonatomic) IBOutlet UILabel *wantLabel;
 @property (strong, nonatomic) IBOutlet UILabel *topicSLabel;
+@property (strong, nonatomic) IBOutlet UIView *wechatLine;
+@property (strong, nonatomic) IBOutlet UILabel *wechatOr;
 @end
 
 @implementation LoginController
@@ -221,6 +223,16 @@
         [self startTimer];}
     [self.navigationController setNavigationBarHidden:YES];
     
+    if([[WechatAccess sharedInstance]isWechatAppInstalled]==YES){
+        self.wechatOr.hidden = NO;
+        self.wechatBtn.hidden = NO;
+        self.wechatLine.hidden = NO;
+    }else{
+        self.wechatOr.hidden = YES;
+        self.wechatBtn.hidden = YES;
+        self.wechatLine.hidden = YES;
+    }
+    
 }
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
@@ -303,8 +315,13 @@
             [self.Button2 setTitle:[NSString stringWithFormat:@"%@:log out",[[returnData objectForKey:@"Data"] objectForKey:@"NickName"]] forState:UIControlStateNormal];
             [self.myView setHidden:NO];
             [self stopTimer];
-            [self populate:[returnData objectForKey:@"Data"]];
-            [self refreshFriend:[returnData objectForKey:@"Data"]];
+            NSDictionary *test = [returnData objectForKey:@"Data"];
+            if([[test allKeys]count]<2){
+                test = returnData;
+            }
+            [self populate:test];
+            [self refreshFriend:test];
+            
         } error:^(NSError *error) {
             NSLog(@"%@",error.description);
         }];
@@ -315,7 +332,7 @@
         }
     } viewController:self];}
     else{
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"注意" message:@"请使用微信登入" delegate:self cancelButtonTitle:@"关闭" otherButtonTitles:nil,nil];
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"注意" message:@"请安裝微信" delegate:self cancelButtonTitle:@"关闭" otherButtonTitles:nil,nil];
         [alert show];
         NSLog(@"Wechat not installed");
     }
@@ -323,7 +340,7 @@
 }
 -(void)populate:(NSDictionary*)dict{
     [self.BannerUrl sd_setImageWithURL:[NSURL URLWithString:[dict objectForKey:@"BannerUrl"]] placeholderImage:[UIImage imageNamed:@"img-placeholder.jpg"]];
-    [self.avatar sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@/%@",[[AustinApi sharedInstance] getBaseUrl],[dict objectForKey:@"AvatarUrl"]]] placeholderImage:[UIImage imageNamed:@"img-placeholder.jpg"]];
+    [self.avatar sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@",[dict objectForKey:@"AvatarUrl"]]] placeholderImage:[UIImage imageNamed:@"img-placeholder.jpg"]];
     self.nickname.text = [dict objectForKey:@"NickName"];
     self.location.text = [dict objectForKey:@"LocationName"];
     if(![[dict objectForKey:@"Gender"] isKindOfClass:[NSNull class]]&&[[dict objectForKey:@"Gender"] integerValue]==1

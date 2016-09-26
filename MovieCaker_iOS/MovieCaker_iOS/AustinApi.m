@@ -45,6 +45,46 @@
     }];
 }
 
+-(void)apiPatchMethod:(NSString *)postUrl parameter:parameters addTokenHeader:(NSString*)addToken completion:(void (^)(id response))completion error:(void (^)(NSError *error))error
+{
+    //[[LoadingView sharedView] open];
+    NSURL *baseURL = [NSURL URLWithString:SERVERAPI];
+    
+    AFHTTPSessionManager *manager = [[AFHTTPSessionManager alloc] initWithBaseURL:baseURL];
+    
+    //test- manager.requestSerializer = [AFJSONRequestSerializer serializer];
+    manager.requestSerializer = [AFHTTPRequestSerializer serializer]; //test+
+    
+    manager.responseSerializer = [AFJSONResponseSerializer serializer];
+    
+    manager.responseSerializer.acceptableContentTypes = [manager.responseSerializer.acceptableContentTypes setByAddingObject:@"text/html"];
+    manager.responseSerializer.acceptableContentTypes = [manager.responseSerializer.acceptableContentTypes setByAddingObject:@"application/json"];
+    
+    //test - [manager.requestSerializer setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
+    [manager.requestSerializer setValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"Content-Type"]; //test+
+    
+    [manager.requestSerializer setValue:@"application/json" forHTTPHeaderField:@"Accept"];
+    
+    [manager.requestSerializer setValue:@"zh_tw" forHTTPHeaderField:@"language"];
+    
+    /* if (addToken != nil) {
+     NSString * access_token_s = (NSString*)[[Api sharedInstance] loadSetting:@"access_token_s"];
+     NSString *token = [NSString stringWithFormat:@"Bearer %@",access_token_s];
+     [manager.requestSerializer setValue:token forHTTPHeaderField:@"Authorization"];
+     }*/
+    
+    [manager PATCH:postUrl parameters:parameters success:^(NSURLSessionDataTask *task, id responseObject) {
+        //[[LoadingView sharedView] close];
+        
+        completion(responseObject);
+        
+    } failure:^(NSURLSessionDataTask *task, NSError *err) {
+        //[[LoadingView sharedView] close];
+        
+        error(err);
+    }];
+}
+
 -(void)apiPostMethod:(NSString *)postUrl parameter:parameters addTokenHeader:(NSString*)addToken completion:(void (^)(id response))completion error:(void (^)(NSError *error))error
 {
     //[[LoadingView sharedView] open];
@@ -381,5 +421,23 @@
     } error:^(NSError *error2) {
         error(error2);
     }];
+}
+-(void)changeProfile:(NSString*)nick gender:(BOOL)gender birthday:(NSString*)birthday function:(void (^)(NSDictionary *))completion error:(void (^)(NSError *))error{
+    NSString *genderString;
+    if(gender){
+        genderString = @"TRUE";
+    }else{
+        genderString = @"FALSE";
+    }
+    
+    NSDictionary *params = [[NSDictionary alloc]initWithObjectsAndKeys:nick,@"NickName",genderString,@"Gender",birthday,@"BirthDay", nil];
+    NSLog(@"%@",params);
+    [self apiPatchMethod:@"api/Account/UserInfo" parameter:params addTokenHeader:@"1" completion:^(id response) {
+        NSLog(@"%@",response);
+        completion(response);
+    } error:^(NSError *error2) {
+        NSLog(@"%@",error2);
+    }];
+
 }
 @end

@@ -9,5 +9,5 @@
 #import <UIKit/UIKit.h>
 
 @interface InnerMyPageViewController : UIViewController
-
+@property (strong, nonatomic) IBOutlet UILabel *nickname;
 @end
