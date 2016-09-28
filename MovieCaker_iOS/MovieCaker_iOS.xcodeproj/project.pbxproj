@@ -30,6 +30,8 @@
 		6C6780121CC7C826005AEB35 /* AustinApi.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C6780111CC7C826005AEB35 /* AustinApi.m */; };
 		6C758B911CED42EC001E5252 /* MovieTwoTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C758B901CED42EC001E5252 /* MovieTwoTableViewController.m */; };
 		6C758B941CEE4A0A001E5252 /* MovieTabCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C758B931CEE4A0A001E5252 /* MovieTabCell.m */; };
+		6C7AB0301D9C85D7001276E0 /* Fabric.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6C7AB02E1D9C85D7001276E0 /* Fabric.framework */; };
+		6C7AB0311D9C85D7001276E0 /* Crashlytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6C7AB02F1D9C85D7001276E0 /* Crashlytics.framework */; };
 		6C7F9F5C1CDE9870001BE238 /* MKAnnotationView+WebCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C7F9F3C1CDE9870001BE238 /* MKAnnotationView+WebCache.m */; };
 		6C7F9F5D1CDE9870001BE238 /* NSData+ImageContentType.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C7F9F3E1CDE9870001BE238 /* NSData+ImageContentType.m */; };
 		6C7F9F5E1CDE9870001BE238 /* SDImageCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C7F9F401CDE9870001BE238 /* SDImageCache.m */; };
@@ -355,6 +357,8 @@
 		6C758B901CED42EC001E5252 /* MovieTwoTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MovieTwoTableViewController.m; sourceTree = "<group>"; };
 		6C758B921CEE4A0A001E5252 /* MovieTabCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MovieTabCell.h; sourceTree = "<group>"; };
 		6C758B931CEE4A0A001E5252 /* MovieTabCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MovieTabCell.m; sourceTree = "<group>"; };
+		6C7AB02E1D9C85D7001276E0 /* Fabric.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Fabric.framework; sourceTree = "<group>"; };
+		6C7AB02F1D9C85D7001276E0 /* Crashlytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Crashlytics.framework; sourceTree = "<group>"; };
 		6C7F9F3B1CDE9870001BE238 /* MKAnnotationView+WebCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "MKAnnotationView+WebCache.h"; sourceTree = "<group>"; };
 		6C7F9F3C1CDE9870001BE238 /* MKAnnotationView+WebCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "MKAnnotationView+WebCache.m"; sourceTree = "<group>"; };
 		6C7F9F3D1CDE9870001BE238 /* NSData+ImageContentType.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSData+ImageContentType.h"; sourceTree = "<group>"; };
@@ -956,6 +960,8 @@
 				6CD0DEDE1CC3867300878995 /* SystemConfiguration.framework in Frameworks */,
 				6C1250651CC37E9F0009549B /* CoreTelephony.framework in Frameworks */,
 				6C1250621CC37E4F0009549B /* libWeChatSDK.a in Frameworks */,
+				6C7AB0311D9C85D7001276E0 /* Crashlytics.framework in Frameworks */,
+				6C7AB0301D9C85D7001276E0 /* Fabric.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -965,6 +971,8 @@
 		6C12505C1CC37E110009549B /* Library */ = {
 			isa = PBXGroup;
 			children = (
+				6C7AB02E1D9C85D7001276E0 /* Fabric.framework */,
+				6C7AB02F1D9C85D7001276E0 /* Crashlytics.framework */,
 				6C94BF5D1D7CF5A600C0F519 /* ZBarSDK */,
 				6C94BF901D7CF5A600C0F519 /* ZXingObjC */,
 				6C7F9F3A1CDE9870001BE238 /* SDWebImage */,
@@ -2018,6 +2026,7 @@
 				6CD58C391CACBD3F0089DB38 /* Sources */,
 				6CD58C3B1CACBD3F0089DB38 /* Resources */,
 				6CD58C3A1CACBD3F0089DB38 /* Frameworks */,
+				6C7AB02D1D9C8594001276E0 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -2080,6 +2089,22 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		6C7AB02D1D9C8594001276E0 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "./Fabric.framework/run fff7c14d76ed6c4fa3561108cd3538a3dab46a0a 99de209cf534f76f4afb58c59d5d936c6f65c1e2b3da1f1066de6706ab5ea4c7";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		6CD58C391CACBD3F0089DB38 /* Sources */ = {
@@ -2477,6 +2502,10 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				ENABLE_BITCODE = NO;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/MovieCaker_iOS",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/$(PROJECT_NAME)/PrefixHeader.pch";
 				INFOPLIST_FILE = MovieCaker_iOS/Info.plist;
@@ -2499,6 +2528,10 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				ENABLE_BITCODE = NO;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/MovieCaker_iOS",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/$(PROJECT_NAME)/PrefixHeader.pch";
 				INFOPLIST_FILE = MovieCaker_iOS/Info.plist;
