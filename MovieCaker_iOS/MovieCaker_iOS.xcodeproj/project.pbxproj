@@ -28,6 +28,7 @@
 		6C61EAF41CD7772F0026CCCC /* Movie2Cell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C61EAF31CD7772F0026CCCC /* Movie2Cell.m */; };
 		6C67800F1CC5033E005AEB35 /* WechatAccess.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C67800E1CC5033E005AEB35 /* WechatAccess.m */; };
 		6C6780121CC7C826005AEB35 /* AustinApi.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C6780111CC7C826005AEB35 /* AustinApi.m */; };
+		6C698C8B1D9DE42F00B0C2CA /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C698C8A1D9DE42F00B0C2CA /* MBProgressHUD.m */; };
 		6C758B911CED42EC001E5252 /* MovieTwoTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C758B901CED42EC001E5252 /* MovieTwoTableViewController.m */; };
 		6C758B941CEE4A0A001E5252 /* MovieTabCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C758B931CEE4A0A001E5252 /* MovieTabCell.m */; };
 		6C7AB0301D9C85D7001276E0 /* Fabric.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6C7AB02E1D9C85D7001276E0 /* Fabric.framework */; };
@@ -353,6 +354,8 @@
 		6C67800E1CC5033E005AEB35 /* WechatAccess.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WechatAccess.m; sourceTree = "<group>"; };
 		6C6780101CC7C826005AEB35 /* AustinApi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AustinApi.h; sourceTree = "<group>"; };
 		6C6780111CC7C826005AEB35 /* AustinApi.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AustinApi.m; sourceTree = "<group>"; };
+		6C698C891D9DE42F00B0C2CA /* MBProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MBProgressHUD.h; sourceTree = "<group>"; };
+		6C698C8A1D9DE42F00B0C2CA /* MBProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MBProgressHUD.m; sourceTree = "<group>"; };
 		6C758B8F1CED42EC001E5252 /* MovieTwoTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MovieTwoTableViewController.h; sourceTree = "<group>"; };
 		6C758B901CED42EC001E5252 /* MovieTwoTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MovieTwoTableViewController.m; sourceTree = "<group>"; };
 		6C758B921CEE4A0A001E5252 /* MovieTabCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MovieTabCell.h; sourceTree = "<group>"; };
@@ -971,6 +974,8 @@
 		6C12505C1CC37E110009549B /* Library */ = {
 			isa = PBXGroup;
 			children = (
+				6C698C891D9DE42F00B0C2CA /* MBProgressHUD.h */,
+				6C698C8A1D9DE42F00B0C2CA /* MBProgressHUD.m */,
 				6C7AB02E1D9C85D7001276E0 /* Fabric.framework */,
 				6C7AB02F1D9C85D7001276E0 /* Crashlytics.framework */,
 				6C94BF5D1D7CF5A600C0F519 /* ZBarSDK */,
@@ -2332,6 +2337,7 @@
 				6C94C1921D7CF5A700C0F519 /* ZXCapture.m in Sources */,
 				6C7F9F6A1CDE9870001BE238 /* UIImageView+WebCache.m in Sources */,
 				6C94C2131D7CF5A700C0F519 /* ZXPDF417HighLevelEncoder.m in Sources */,
+				6C698C8B1D9DE42F00B0C2CA /* MBProgressHUD.m in Sources */,
 				6C94C1841D7CF5A700C0F519 /* ZXSMSMMSResultParser.m in Sources */,
 				6C94C20C1D7CF5A700C0F519 /* ZXPDF417Detector.m in Sources */,
 				6C94C1DD1D7CF5A700C0F519 /* ZXExpandedRow.m in Sources */,
