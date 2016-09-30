@@ -10,6 +10,7 @@
 #import "MovieTableViewController.h"
 #import "AustinApi.h"
 #import "TopicDetailViewController.h"
+#import "MBProgressHUD.h"
 
 @interface TopicTabViewController ()
 @property (strong, nonatomic) IBOutlet UILabel *tabOne;
@@ -64,7 +65,7 @@
 -(void)setData:(NSString*)type page:(NSString*)page{
     if(self.lock==NO){
         self.lock=YES;
-    
+    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     [[AustinApi sharedInstance]getTopic:type vid:nil page:page uid:nil function:^(NSArray *returnData) {
         //     NSLog(@"bbb%@",returnData);
         NSMutableArray *array = [[NSMutableArray alloc]init];
@@ -93,10 +94,12 @@
         
         self.movieTableController.tableView.scrollEnabled = YES;
         self.lock = NO;
+        [MBProgressHUD hideHUDForView:self.view animated:YES];
         
     } error:^(NSError *error) {
         NSLog(@"%@",error);
         self.lock = NO;
+        [MBProgressHUD hideHUDForView:self.view animated:YES];
     }];
     }
 }
@@ -132,11 +135,13 @@
     
 }
 -(void)cacheLock{
+    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     self.lock = YES;
     double delayInSeconds = 0.5;
     dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, delayInSeconds * NSEC_PER_SEC);
     dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
         self.lock = NO;
+        [MBProgressHUD hideHUDForView:self.view animated:YES];
     });
 }
 -(void)setFilter:(int)page{

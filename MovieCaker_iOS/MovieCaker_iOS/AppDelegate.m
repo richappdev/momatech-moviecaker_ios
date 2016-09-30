@@ -8,6 +8,8 @@
 
 #import "AppDelegate.h"
 #import "WechatAccess.h"
+#import <Fabric/Fabric.h>
+#import <Crashlytics/Crashlytics.h>
 
 @interface AppDelegate ()
 
@@ -29,6 +31,7 @@
         NSLog(@"%@",error);
     }];*/
     [ZBarReaderView class];
+    [Fabric with:@[[Crashlytics class]]];
     return YES;
 }
 
