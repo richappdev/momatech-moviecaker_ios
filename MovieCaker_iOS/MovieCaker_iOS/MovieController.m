@@ -408,7 +408,7 @@
         self.tabBarController.selectedIndex = 1;
     }
     if(sender.view.tag==6){
-        self.tabBarController.selectedIndex = 3;
+        self.tabBarController.selectedIndex = 2;
     }
     if(sender.view.tag==7){
         UINavigationController *nav = [self.tabBarController.viewControllers objectAtIndex:1];

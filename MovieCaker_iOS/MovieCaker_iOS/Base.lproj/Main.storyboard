@@ -876,7 +876,7 @@
                                                     <constraint firstAttribute="height" constant="3" id="G5a-Wx-hTQ"/>
                                                 </constraints>
                                             </view>
-                                            <view tag="7" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zdg-7V-qlb">
+                                            <view tag="6" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zdg-7V-qlb">
                                                 <rect key="frame" x="313" y="3" width="101" height="45"/>
                                                 <subviews>
                                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="O5F-Ob-gyP">
