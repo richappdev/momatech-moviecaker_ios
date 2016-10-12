@@ -152,6 +152,13 @@
     [self.movieTable reloadData];
 
 }
+-(void)refresh{
+    self.view = nil;
+    self.tabOneData = nil;
+    self.tabTwoData = nil;
+    self.tabThreeData = nil;
+    self.tabFourData = nil;
+}
 -(void)doJump{
     if(self.jump==1){
         self.index =0;

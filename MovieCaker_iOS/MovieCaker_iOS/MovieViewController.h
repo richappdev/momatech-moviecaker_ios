@@ -12,5 +12,6 @@
 @property int jump;
 @property BOOL newReview;
 -(void)loadMore:(int)page;
+-(void)refresh;
 @end
 
