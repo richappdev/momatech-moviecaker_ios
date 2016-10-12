@@ -12,6 +12,7 @@
 #import "MovieDetailController.h"
 #import "reviewController.h"
 #import "buttonHelper.h"
+#import "MBProgressHUD.h"
 
 @interface MovieViewController ()
 @property (strong, nonatomic) IBOutlet UILabel *firstLabel;
@@ -57,6 +58,7 @@
 @property UILabel* fFourIndex;
 
 @property BOOL loaded;
+@property BOOL locked;
 @end
 
 @implementation MovieViewController
@@ -309,6 +311,10 @@
 }
 
 -(void)getMovieList:(NSString*)type location:(NSString*)locationId type:(int)callType page:(NSString*)page {
+    if(self.locked!=YES){
+        self.locked = YES;
+    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+
     NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
     [formatter setDateFormat:@"yyyy"];
     NSString *yearString = [formatter stringFromDate:[NSDate date]];
@@ -346,9 +352,14 @@
             self.movieTableController.data = new;
         }
         [self.movieTable reloadData];
+        self.locked = NO;
+        [MBProgressHUD hideHUDForView:self.view animated:YES];
     } error:^(NSError *error) {
+        self.locked = NO;
+        [MBProgressHUD hideHUDForView:self.view animated:YES];
         NSLog(@"%@",error);
     }];
+    }
 }
 -(void)loadMore:(int)page{
     NSString *pageString = [NSString stringWithFormat:@"%d",page];
