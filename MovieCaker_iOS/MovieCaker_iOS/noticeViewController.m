@@ -10,6 +10,7 @@
 #import "MainVerticalScroller.h"
 #import "AustinApi.h"
 #import "NoticeTableViewController.h"
+#import "MBProgressHUD.h"
 
 @interface noticeViewController ()
 @property (strong, nonatomic) IBOutlet UITableView *tableview;
@@ -29,11 +30,14 @@
     self.tableController = [[NoticeTableViewController alloc]init];
     self.tableController.tableView = self.tableview;
     
+    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     [[AustinApi sharedInstance] getNotice:^(NSArray *returnData) {
         NSLog(@"%@",returnData);
         self.tableController.data = returnData;
         [self.tableController.tableView reloadData];
+        [MBProgressHUD hideHUDForView:self.view animated:YES];
     } error:^(NSError *error) {
+        [MBProgressHUD hideHUDForView:self.view animated:YES];
         NSLog(@"%@",error);
     }];
 }
