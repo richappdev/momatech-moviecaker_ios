@@ -26,13 +26,13 @@
     [self.nav.navigationBar setTitleTextAttributes:
      @{NSForegroundColorAttributeName:[UIColor colorWithRed:(255/255.0) green:(255/255.0) blue:(255/255.0) alpha:alpha]}];
     
-    if(scrollView.contentOffset.y>=363){
+    /*if(scrollView.contentOffset.y>=363){
         self.movingButtons.frame = CGRectMake(self.movingButtons.frame.origin.x,19+scrollView.contentOffset.y - 363 , self.movingButtons.frame.size.width, self.movingButtons.frame.size.height);
     
     }else{
         self.movingButtons.frame = CGRectMake(self.movingButtons.frame.origin.x,12, self.movingButtons.frame.size.width, self.movingButtons.frame.size.height);
         
-    }
+    }*/
 }
 
 -(void)setupBackBtn:(UIViewController*)view{

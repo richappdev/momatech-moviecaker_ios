@@ -424,5 +424,6 @@
    //     self.moreHeight.constant = self.contentHeight.constant-3+10;
     }
     self.opened = !self.opened;
+    [self scrollSize];
 }
 @end
