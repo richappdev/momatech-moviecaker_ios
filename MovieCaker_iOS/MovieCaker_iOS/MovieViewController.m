@@ -470,6 +470,8 @@
     [self setFilter];
 }
 -(void)loadFriends:(NSString*)page{
+    self.locked = YES;
+    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     [[AustinApi sharedInstance]movieListCustom:@"1" location:nil year:nil month:nil page:nil topicId:nil function:^(NSArray *returnData) {
         if(page==nil){
             self.movieTableController.page = 1;
@@ -480,7 +482,11 @@
             self.movieTableController.data = new;
         }
         [self.movieTableController.tableView reloadData];
+        self.locked = NO;
+        [MBProgressHUD hideHUDForView:self.view animated:YES];
     } error:^(NSError *error) {
+        self.locked = NO;
+        [MBProgressHUD hideHUDForView:self.view animated:YES];
         NSLog(@"%@",error);
     }];
 }
@@ -543,6 +549,8 @@
         }
 }
 -(void)loadReviews:(NSString*)page{
+    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    self.locked = YES;
     [[AustinApi sharedInstance]getReview:@"2" page:page function:^(NSArray *returnData) {
         if(page==nil){
             self.movieTableController.page=1;
@@ -554,7 +562,11 @@
             self.tabFourData = new;
         }
         [self.movieTableController.tableView reloadData];
+        self.locked = NO;
+        [MBProgressHUD hideHUDForView:self.view animated:YES];
     } error:^(NSError *error) {
+        self.locked = NO;
+        [MBProgressHUD hideHUDForView:self.view animated:YES];
         NSLog(@"%@",error);
     }];
 }
