@@ -154,7 +154,7 @@
 }
 
 -(void)movieList:(void (^)(NSArray *returnData))completion error:(void (^)(NSError *error))error{
-    [self apiGetMethod:@"api/video" parameter:nil addTokenHeader:@"1" completion:^(id response) {
+    [self apiGetMethod:@"api/video?type=released" parameter:nil addTokenHeader:@"1" completion:^(id response) {
        
         completion([response objectForKey:@"Data"]);
     } error:^(NSError *error2) {
