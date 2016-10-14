@@ -284,6 +284,7 @@
 }
 - (IBAction)Login:(id)sender {
     [self refresh];
+    [self retract];
     UIButton *btn = (UIButton*)sender;
     if([[NSUserDefaults standardUserDefaults] objectForKey:USERKEY]!=nil){
         [self logout];
