@@ -30,6 +30,8 @@
 @property NSNumber *wannaBool;
 @property MovieTwoTableViewController *parent;
 @property long index;
+@property (strong, nonatomic) IBOutlet UIView *imdbWhole;
+@property (strong, nonatomic) IBOutlet UIView *douWhole;
 -(void)setWatchState:(BOOL)state;
 -(void)setLikeState:(BOOL)state;
 -(void)setWannaState:(BOOL)state;
