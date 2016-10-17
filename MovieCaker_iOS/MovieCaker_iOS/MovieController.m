@@ -191,7 +191,9 @@
             [ratingBg addSubview:star];
             UILabel *label = [[UILabel alloc]initWithFrame:CGRectMake(3, 36, 52, 21)];
             if(![[row objectForKey:@"AverageScore"] isKindOfClass:[NSNull class]]){
-                label.text = [NSString stringWithFormat:@"%0.1f", [[row objectForKey:@"AverageScore"]floatValue]];}
+                label.text = [NSString stringWithFormat:@"%0.1f", [[row objectForKey:@"AverageScore"]floatValue]];}else{
+                label.text = @"10";
+                }
             label.textColor = [UIColor whiteColor];
             label.textAlignment = NSTextAlignmentCenter;
             [ratingBg addSubview:label];

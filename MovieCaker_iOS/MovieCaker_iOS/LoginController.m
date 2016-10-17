@@ -19,6 +19,7 @@
 #import "UIImage+FontAwesome.h"
 #import "friendsViewController.h"
 #import "myTopicsViewController.h"
+#import "MovieViewController.h"
 
 #define USERKEY @"userkey"
 @interface LoginController ()
@@ -251,6 +252,7 @@
     self.timer=nil;
 }
 -(void)logout{
+    [self refresh];
     [[NSUserDefaults standardUserDefaults] removeObjectForKey:USERKEY];
     [self.Button2 setTitle:@"Login" forState:UIControlStateNormal];
     NSArray *cookies = [[NSHTTPCookieStorage sharedHTTPCookieStorage] cookies];
@@ -272,10 +274,17 @@
             self.friendLabel.text = [NSString stringWithFormat:@"%lu 個朋友",(unsigned long)[temp3.friendList count]];
         } refresh:YES];
 }
-- (IBAction)Login:(id)sender {
+-(void)refresh{
     UINavigationController *nav = [self.tabBarController.viewControllers objectAtIndex:0];
     MovieController *movie = [[nav viewControllers]objectAtIndex:0];
     movie.refresh = YES;
+    nav =  [self.tabBarController.viewControllers objectAtIndex:1];
+    MovieViewController *tab=[[nav viewControllers]objectAtIndex:0];
+    [tab refresh];
+}
+- (IBAction)Login:(id)sender {
+    [self refresh];
+    [self retract];
     UIButton *btn = (UIButton*)sender;
     if([[NSUserDefaults standardUserDefaults] objectForKey:USERKEY]!=nil){
         [self logout];

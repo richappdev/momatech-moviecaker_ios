@@ -11,6 +11,7 @@
 #import "MovieTableViewController.h"
 #import "AustinApi.h"
 #import "TopicDetailViewController.h"
+#import "MBProgressHUD.h"
 
 @interface myTopicsViewController ()
 @property (strong, nonatomic) IBOutlet UITableView *tableView;
@@ -21,6 +22,7 @@
 @property MovieTableViewController *topicController;
 @property UILabel *current;
 @property MainVerticalScroller *helper;
+@property BOOL locked;
 @end
 
 @implementation myTopicsViewController
@@ -46,18 +48,7 @@
 
     NSDictionary *returnData = [NSKeyedUnarchiver unarchiveObjectWithData:[[NSUserDefaults standardUserDefaults] objectForKey:@"userkey"]];
     self.uid = [[[returnData objectForKey:@"Data"] objectForKey:@"UserId"]stringValue];
-    
-    [[AustinApi sharedInstance]getTopic:@"4" vid:nil page:nil uid:self.uid function:^(NSArray *returnData) {
-        NSMutableArray *array = [[NSMutableArray alloc]init];
-        for (NSDictionary *row in returnData) {
-            NSMutableDictionary *dict = [[NSMutableDictionary alloc]initWithDictionary:row];
-            [array addObject:dict];
-        }
-        self.topicController.data = array;
-        [self.tableView reloadData];
-    } error:^(NSError *error) {
-        NSLog(@"%@",error);
-    }];
+
 }
 
 - (void)didReceiveMemoryWarning {
@@ -71,9 +62,17 @@
         double delayInSeconds = 0.3;
         dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, delayInSeconds * NSEC_PER_SEC);
         dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
+            self.locked = NO;
+            [MBProgressHUD hideHUDForView:self.view animated:YES];
             [self selected:self.lTwo];
         });
         self.jump = NO;
+    }else{
+        if(self.current==self.lOne){
+             [self topicCall:@"4"];
+        }else{
+             [self topicCall:@"3"];
+        }
     }
 }
 -(void)moveBar:(UILabel*)label{
@@ -98,29 +97,9 @@
             NSLog(@"work2");
     if(label!=self.current){
         if(label.tag==0){
-            [[AustinApi sharedInstance]getTopic:@"4" vid:nil page:nil uid:self.uid function:^(NSArray *returnData) {
-                NSMutableArray *array = [[NSMutableArray alloc]init];
-                for (NSDictionary *row in returnData) {
-                    NSMutableDictionary *dict = [[NSMutableDictionary alloc]initWithDictionary:row];
-                    [array addObject:dict];
-                }
-                self.topicController.data = array;
-                [self.tableView reloadData];
-            } error:^(NSError *error) {
-                NSLog(@"%@",error);
-            }];
+            [self topicCall:@"4"];
         }else{
-            [[AustinApi sharedInstance]getTopic:@"3" vid:nil page:nil uid:self.uid function:^(NSArray *returnData) {
-                NSMutableArray *array = [[NSMutableArray alloc]init];
-                for (NSDictionary *row in returnData) {
-                    NSMutableDictionary *dict = [[NSMutableDictionary alloc]initWithDictionary:row];
-                    [array addObject:dict];
-                }
-                self.topicController.data = array;
-                [self.tableView reloadData];
-            } error:^(NSError *error) {
-                NSLog(@"%@",error);
-            }];
+            [self topicCall:@"3"];
         }
         
         self.current.textColor = [UIColor colorWithRed:(121/255.0f) green:(124/255.0f) blue:(131/255.0f) alpha:1];
@@ -128,6 +107,28 @@
         self.current = label;
     }
     [self moveBar:label];
+}
+-(void)topicCall:(NSString*)string{
+    if(self.locked!=YES){
+        self.locked = YES;
+    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    [[AustinApi sharedInstance]getTopic:string vid:nil page:nil uid:self.uid function:^(NSArray *returnData) {
+        NSMutableArray *array = [[NSMutableArray alloc]init];
+        for (NSDictionary *row in returnData) {
+            NSMutableDictionary *dict = [[NSMutableDictionary alloc]initWithDictionary:row];
+            [array addObject:dict];
+        }
+        self.topicController.data = array;
+        [self.tableView reloadData];
+        self.locked = NO;
+        [MBProgressHUD hideHUDForView:self.view animated:YES];
+    } error:^(NSError *error) {
+        self.locked= NO;
+        [MBProgressHUD hideHUDForView:self.view animated:YES];
+        NSLog(@"%@",error);
+    }];
+    }
+
 }
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
     if([[segue identifier] isEqualToString:@"topicSegue"]){

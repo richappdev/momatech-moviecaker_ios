@@ -12,6 +12,7 @@
 #import "MovieDetailController.h"
 #import "reviewController.h"
 #import "buttonHelper.h"
+#import "MBProgressHUD.h"
 
 @interface MovieViewController ()
 @property (strong, nonatomic) IBOutlet UILabel *firstLabel;
@@ -57,6 +58,7 @@
 @property UILabel* fFourIndex;
 
 @property BOOL loaded;
+@property BOOL locked;
 @end
 
 @implementation MovieViewController
@@ -149,6 +151,13 @@
         [self doJump];}
     [self.movieTable reloadData];
 
+}
+-(void)refresh{
+    self.view = nil;
+    self.tabOneData = nil;
+    self.tabTwoData = nil;
+    self.tabThreeData = nil;
+    self.tabFourData = nil;
 }
 -(void)doJump{
     if(self.jump==1){
@@ -309,6 +318,10 @@
 }
 
 -(void)getMovieList:(NSString*)type location:(NSString*)locationId type:(int)callType page:(NSString*)page {
+    if(self.locked!=YES){
+        self.locked = YES;
+    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+
     NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
     [formatter setDateFormat:@"yyyy"];
     NSString *yearString = [formatter stringFromDate:[NSDate date]];
@@ -346,9 +359,14 @@
             self.movieTableController.data = new;
         }
         [self.movieTable reloadData];
+        self.locked = NO;
+        [MBProgressHUD hideHUDForView:self.view animated:YES];
     } error:^(NSError *error) {
+        self.locked = NO;
+        [MBProgressHUD hideHUDForView:self.view animated:YES];
         NSLog(@"%@",error);
     }];
+    }
 }
 -(void)loadMore:(int)page{
     NSString *pageString = [NSString stringWithFormat:@"%d",page];
@@ -459,6 +477,8 @@
     [self setFilter];
 }
 -(void)loadFriends:(NSString*)page{
+    self.locked = YES;
+    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     [[AustinApi sharedInstance]movieListCustom:@"1" location:nil year:nil month:nil page:nil topicId:nil function:^(NSArray *returnData) {
         if(page==nil){
             self.movieTableController.page = 1;
@@ -469,7 +489,11 @@
             self.movieTableController.data = new;
         }
         [self.movieTableController.tableView reloadData];
+        self.locked = NO;
+        [MBProgressHUD hideHUDForView:self.view animated:YES];
     } error:^(NSError *error) {
+        self.locked = NO;
+        [MBProgressHUD hideHUDForView:self.view animated:YES];
         NSLog(@"%@",error);
     }];
 }
@@ -532,6 +556,8 @@
         }
 }
 -(void)loadReviews:(NSString*)page{
+    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    self.locked = YES;
     [[AustinApi sharedInstance]getReview:@"2" page:page function:^(NSArray *returnData) {
         if(page==nil){
             self.movieTableController.page=1;
@@ -543,7 +569,11 @@
             self.tabFourData = new;
         }
         [self.movieTableController.tableView reloadData];
+        self.locked = NO;
+        [MBProgressHUD hideHUDForView:self.view animated:YES];
     } error:^(NSError *error) {
+        self.locked = NO;
+        [MBProgressHUD hideHUDForView:self.view animated:YES];
         NSLog(@"%@",error);
     }];
 }

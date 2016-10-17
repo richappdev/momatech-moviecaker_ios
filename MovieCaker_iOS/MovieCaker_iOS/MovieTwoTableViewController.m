@@ -77,7 +77,17 @@
     NSString *url = [NSString stringWithFormat:@"http://www.funmovie.tv/Content/pictures/files/%@?width=88",[data objectForKey:@"Picture"]];
     [cell.image sd_setImageWithURL:[NSURL URLWithString:url] placeholderImage:[UIImage imageNamed:@"img-placeholder.jpg"]];
     cell.imdb.text = [self testNil:[data objectForKey:@"Ratings_IMDB"]];
+    if([cell.imdb.text isEqualToString:@""]){
+        cell.imdbWhole.hidden = YES;
+    }else{
+        cell.imdbWhole.hidden = NO;
+    }
     cell.dou.text = [self testNil:[data objectForKey:@"Ratings_Douban"]];
+        if([cell.dou.text isEqualToString:@""]){
+            cell.douWhole.hidden = YES;
+        }else{
+            cell.douWhole.hidden = NO;
+        }
     cell.date.text = [NSString stringWithFormat:@"%@ 上映",[data objectForKey:@"ReleaseDate"]];
     cell.ratingLabel.text = [NSString stringWithFormat:@"%ld",(long)indexPath.row+1];
     
