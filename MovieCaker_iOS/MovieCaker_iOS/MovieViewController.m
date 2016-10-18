@@ -171,6 +171,7 @@
         [self setFilter];
     }
     if(self.jump==3){
+        self.index = 3;
         [self moveBar:self.fourthLabel];
         [self setFilter];
     }
