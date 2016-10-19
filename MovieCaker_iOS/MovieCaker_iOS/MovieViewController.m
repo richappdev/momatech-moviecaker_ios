@@ -171,6 +171,7 @@
         [self setFilter];
     }
     if(self.jump==3){
+        self.index = 3;
         [self moveBar:self.fourthLabel];
         [self setFilter];
     }
@@ -187,7 +188,7 @@
             }else if (current.tag==1){
                 [self getMovieList:@"6" location:[[self.locationBackend objectAtIndex:self.locationIndex]objectForKey:@"Id"] type:1 page:nil];
             }else if (current.tag==2){
-                [self getMovieList:@"6" location:nil type:2 page:nil];
+                [self getMovieList:@"released" location:[[self.locationBackend objectAtIndex:self.locationIndex]objectForKey:@"Id"] type:2 page:nil];
             }
             
             self.fOneIndex = current;
@@ -375,7 +376,7 @@
         if(self.fOneIndex.tag!=2){
             [self getMovieList:@"6" location:[[self.locationBackend objectAtIndex:self.locationIndex]objectForKey:@"Id"] type:(int)self.fOneIndex.tag page:pageString];}
         else{
-            [self getMovieList:@"6" location:nil type:2 page:pageString];
+            [self getMovieList:@"released" location:[[self.locationBackend objectAtIndex:self.locationIndex]objectForKey:@"Id"] type:2 page:pageString];
         }
     }else if (self.filterIndex==1){
         if(self.fTwoIndex.tag==0){
@@ -410,7 +411,7 @@
     if(self.fOneIndex.tag!=2){
         [self getMovieList:@"6" location:[[self.locationBackend objectAtIndex:(int)gestureRecongnizer.view.tag] objectForKey:@"Id"] type:(int)self.fOneIndex.tag page:nil];}
     else{
-        [self getMovieList:@"6" location:nil type:2 page:nil];
+        [self getMovieList:@"released" location:[[self.locationBackend objectAtIndex:(int)gestureRecongnizer.view.tag] objectForKey:@"Id"] type:2 page:nil];
     }
     [self confirmLocation:gestureRecongnizer];
     double delayInSeconds = 0.2;
