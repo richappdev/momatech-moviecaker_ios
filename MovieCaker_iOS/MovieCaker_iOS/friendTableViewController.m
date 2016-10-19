@@ -48,6 +48,10 @@
     cell.parent = self;
     cell.path = indexPath;
     if(self.type==0){
+        if(indexPath.row>=self.page*10-1){
+            self.page =self.page+1;
+            [self.parentController loadMore:self.page];
+        }
         cell.statusTxt.text = @"好友";
         cell.bgWidth.constant = 75;
         cell.statusBg.backgroundColor = [UIColor colorWithRed:(128/255.0f) green:(203/255.0f) blue:(172/255.0f) alpha:1];
@@ -83,7 +87,7 @@
 
     [[AustinApi sharedInstance] acceptFriend:[[self.data objectAtIndex:path.row] objectForKey:@"UserId"] function:^(NSString *returnData) {
         NSDictionary *returnData2 = [NSKeyedUnarchiver unarchiveObjectWithData:[[NSUserDefaults standardUserDefaults] objectForKey:@"userkey"]];
-        [[AustinApi sharedInstance]getFriends:[[[returnData2 objectForKey:@"Data"] objectForKey:@"UserId"]stringValue] function:nil refresh:YES];
+        [[AustinApi sharedInstance]getFriends:[[[returnData2 objectForKey:@"Data"] objectForKey:@"UserId"]stringValue] page:1 function:nil refresh:YES];
         
     }];
         [self.data removeObjectAtIndex:path.row];

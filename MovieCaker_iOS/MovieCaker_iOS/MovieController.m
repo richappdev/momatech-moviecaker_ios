@@ -253,7 +253,7 @@
     }
     NSDictionary *returnData = [NSKeyedUnarchiver unarchiveObjectWithData:[[NSUserDefaults standardUserDefaults] objectForKey:@"userkey"]];
     if(returnData!=nil){
-        [[AustinApi sharedInstance]getFriends:[[[returnData objectForKey:@"Data"] objectForKey:@"UserId"]stringValue] function:nil refresh:NO];
+        [[AustinApi sharedInstance]getFriends:[[[returnData objectForKey:@"Data"] objectForKey:@"UserId"]stringValue] page:1 function:nil refresh:NO];
     }
 }
 

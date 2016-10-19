@@ -32,13 +32,14 @@
 -(void)reviewChange:(NSString*)Id videoId:(NSString *)videoId score:(NSString*)score review:(NSString*)review function:(void (^)(NSDictionary *returnData))completion error:(void (^)(NSError *error))error;
 -(void)reviewReplyTable:(NSString*)Id function:(void (^)(NSArray *returnData))completion error:(void (^)(NSError *error))error;
 -(void)reviewReply:(NSString*)ReviewId message:(NSString *)message function:(void (^)(NSString *returnData))completion error:(void (^)(NSError *error))error;
--(void)getFriends:(NSString*)uid function:(void (^)(NSString *returnData))completion refresh:(BOOL)refresh;
+-(void)getFriends:(NSString*)uid page:(int)page function:(void (^)(NSString *returnData))completion refresh:(BOOL)refresh;
 -(int)testFriend:(NSString*)uid;
 -(void)addFriend:(NSNumber*)uid;
 -(void)getNotice:(void (^)(NSArray *returnData))completion error:(void (^)(NSError *error))error;
 
 @property NSMutableArray* friendList;
 @property NSMutableArray* friendWaitList;
+@property int friendPage;
 -(void)acceptFriend:(NSString*)uid function:(void (^)(NSString *returnData))completion;
 -(void)inviteFriend:(NSString*)uid function:(void (^)(NSString *returnData))completion;
 -(void)getStatistics:(NSString *)uid function:(void (^)(NSDictionary *))completion error:(void (^)(NSError *))error;

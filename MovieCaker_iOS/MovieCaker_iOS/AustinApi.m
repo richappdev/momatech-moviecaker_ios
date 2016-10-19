@@ -13,6 +13,7 @@
 
 @interface AustinApi()
 @property NSDate *date;
+@property NSMutableArray *friendTemp;
 @end
 @implementation AustinApi
 + (instancetype)sharedInstance{
@@ -335,14 +336,32 @@
         error(error2);
     }];
 }
--(void)getFriends:(NSString*)uid function:(void (^)(NSString *returnData))completion refresh:(BOOL)refresh{
+-(void)getFriends:(NSString*)uid page:(int)page function:(void (^)(NSString *returnData))completion refresh:(BOOL)refresh{
 
     NSDate *now = [[NSDate alloc]init];
     if(self.date==nil||[now timeIntervalSinceDate:self.date]>180||refresh){
         self.date = now;
-    [self apiGetMethod:[NSString stringWithFormat:@"api/friend/%@",uid] parameter:nil addTokenHeader:nil completion:^(id response) {
-        self.friendList =response;
-        NSLog(@"list%@",response);
+    [self apiGetMethod:[NSString stringWithFormat:@"api/friend/%@?page=%d",uid,page] parameter:nil addTokenHeader:nil completion:^(id response) {
+        if(page==1&&page>self.friendPage){
+            self.friendPage = 1;
+            self.friendTemp = [[NSMutableArray alloc]init];
+            for (int i = 0; i<20; i++) {
+                [self.friendTemp addObject:[NSNull null]];
+            }
+        }
+ 
+        
+        if(page>=self.friendPage){
+            self.friendPage = page;
+            [self.friendTemp replaceObjectAtIndex:page withObject:response];
+        }
+        
+        NSArray *temp = [[NSArray alloc]init];
+        for(int i=1;i<=self.friendPage;i++){
+             temp = [temp arrayByAddingObjectsFromArray:[self.friendTemp objectAtIndex:i]];
+        }
+        self.friendList =[[NSMutableArray alloc]initWithArray:temp];
+        
         if(completion!=nil){
             completion(response);
         }
