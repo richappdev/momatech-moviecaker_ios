@@ -341,6 +341,9 @@
     NSDate *now = [[NSDate alloc]init];
     if(self.date==nil||[now timeIntervalSinceDate:self.date]>180||refresh){
         self.date = now;
+        if(self.friendPage>page){
+            page = self.friendPage;
+        }
     [self apiGetMethod:[NSString stringWithFormat:@"api/friend/%@?page=%d",uid,page] parameter:nil addTokenHeader:nil completion:^(id response) {
         if(page==1&&page>self.friendPage){
             self.friendPage = 1;
