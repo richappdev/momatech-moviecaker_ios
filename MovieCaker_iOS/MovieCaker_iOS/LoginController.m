@@ -269,7 +269,7 @@
     [self Login:gesture.view];
 }
 -(void)refreshFriend:(NSDictionary*)returnData{
-        [[AustinApi sharedInstance]getFriends:[[returnData objectForKey:@"UserId"]stringValue] function:^(NSString *returnData) {
+    [[AustinApi sharedInstance]getFriends:[[returnData objectForKey:@"UserId"]stringValue] page:1 function:^(NSString *returnData) {
             AustinApi *temp3 = [AustinApi sharedInstance];
             self.friendLabel.text = [NSString stringWithFormat:@"%lu 個朋友",(unsigned long)[temp3.friendList count]];
         } refresh:YES];

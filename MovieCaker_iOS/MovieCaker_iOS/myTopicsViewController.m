@@ -41,7 +41,7 @@
     self.topicController = [[MovieTableViewController alloc] init:0];
     self.topicController.data = [[NSArray alloc]init];
     [self.topicController ParentController:self];
-    self.topicController.page= 999;
+    self.topicController.page= 1;
     self.tableView.delegate = self.topicController;
     self.tableView.dataSource = self.topicController;
     self.topicController.tableView = self.tableView;
@@ -49,6 +49,13 @@
     NSDictionary *returnData = [NSKeyedUnarchiver unarchiveObjectWithData:[[NSUserDefaults standardUserDefaults] objectForKey:@"userkey"]];
     self.uid = [[[returnData objectForKey:@"Data"] objectForKey:@"UserId"]stringValue];
 
+}
+-(void)loadMore:(int)page{
+    if(self.current==self.lOne){
+        [self topicCall:@"4" page:page];
+    }else{
+        [self topicCall:@"3" page:page];
+    }
 }
 
 - (void)didReceiveMemoryWarning {
@@ -69,9 +76,9 @@
         self.jump = NO;
     }else{
         if(self.current==self.lOne){
-             [self topicCall:@"4"];
+             [self topicCall:@"4" page:1];
         }else{
-             [self topicCall:@"3"];
+            [self topicCall:@"3" page:1];
         }
     }
 }
@@ -97,9 +104,9 @@
             NSLog(@"work2");
     if(label!=self.current){
         if(label.tag==0){
-            [self topicCall:@"4"];
+            [self topicCall:@"4" page:1];
         }else{
-            [self topicCall:@"3"];
+            [self topicCall:@"3" page:1];
         }
         
         self.current.textColor = [UIColor colorWithRed:(121/255.0f) green:(124/255.0f) blue:(131/255.0f) alpha:1];
@@ -108,17 +115,22 @@
     }
     [self moveBar:label];
 }
--(void)topicCall:(NSString*)string{
+-(void)topicCall:(NSString*)string page:(int)page{
     if(self.locked!=YES){
         self.locked = YES;
     [MBProgressHUD showHUDAddedTo:self.view animated:YES];
-    [[AustinApi sharedInstance]getTopic:string vid:nil page:nil uid:self.uid function:^(NSArray *returnData) {
+    [[AustinApi sharedInstance]getTopic:string vid:nil page:[NSString stringWithFormat:@"%d",page] uid:self.uid function:^(NSArray *returnData) {
         NSMutableArray *array = [[NSMutableArray alloc]init];
         for (NSDictionary *row in returnData) {
             NSMutableDictionary *dict = [[NSMutableDictionary alloc]initWithDictionary:row];
             [array addObject:dict];
         }
-        self.topicController.data = array;
+        if(page>1){
+            self.topicController.data = [self.topicController.data arrayByAddingObjectsFromArray:returnData];
+        }else{
+            self.topicController.data = array;
+            self.topicController.page=1;
+        }
         [self.tableView reloadData];
         self.locked = NO;
         [MBProgressHUD hideHUDForView:self.view animated:YES];

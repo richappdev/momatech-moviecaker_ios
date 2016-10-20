@@ -7,9 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "friendsViewController.h"
 
 @interface friendTableViewController : UITableViewController
 @property int type;
 @property NSMutableArray *data;
+@property int page;
+@property friendsViewController *parentController;
 -(void)acceptFriend:(NSIndexPath*)path;
 @end

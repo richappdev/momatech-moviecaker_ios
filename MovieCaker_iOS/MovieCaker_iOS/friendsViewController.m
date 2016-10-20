@@ -10,7 +10,7 @@
 #import "MainVerticalScroller.h"
 #import "AustinApi.h"
 #import "friendTableViewController.h"
-
+#import "MBProgressHUD.h"
 @interface friendsViewController ()
 @property MainVerticalScroller *helper;
 @property (strong, nonatomic) IBOutlet UILabel *lOne;
@@ -39,6 +39,8 @@
     self.current = self.lOne;
     
     self.tableController = [[friendTableViewController alloc]init];
+    self.tableController.page = 1;
+    self.tableController.parentController = self;
     self.tableController.tableView = self.tableview;
     self.tableview.allowsSelection = NO;
     self.tableview.dataSource = self.tableController;
@@ -115,5 +117,15 @@
     [UIView commitAnimations];
     
 }
-    
+-(void)loadMore:(int)page{
+    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+
+        NSDictionary *returnData = [NSKeyedUnarchiver unarchiveObjectWithData:[[NSUserDefaults standardUserDefaults] objectForKey:@"userkey"]];
+    [[AustinApi sharedInstance]getFriends:[[[returnData objectForKey:@"Data"] objectForKey:@"UserId"]stringValue] page:page function:^(NSString *returnData) {
+        [MBProgressHUD hideHUDForView:self.view animated:YES];
+        AustinApi *temp = [AustinApi sharedInstance];
+        self.tableController.data = temp.friendList;
+        [self.tableController.tableView reloadData];
+    } refresh:YES];
+}
 @end

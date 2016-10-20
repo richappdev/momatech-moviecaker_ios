@@ -11,4 +11,5 @@
 @interface friendsViewController : UIViewController
 @property NSString* nickName;
 @property BOOL jump;
+-(void)loadMore:(int)page;
 @end
