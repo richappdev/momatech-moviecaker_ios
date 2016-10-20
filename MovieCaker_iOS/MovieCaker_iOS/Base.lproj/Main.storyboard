@@ -3390,6 +3390,7 @@
                         <outlet property="likeLabel" destination="Aur-n9-9BM" id="8Gw-Jr-Xh1"/>
                         <outlet property="likedTopic" destination="VBn-au-Lq2" id="jiV-We-Ocx"/>
                         <outlet property="location" destination="5TV-SE-nsg" id="yg9-NE-eqM"/>
+                        <outlet property="loginConstraint" destination="lCH-0N-yGv" id="TPn-v4-XIo"/>
                         <outlet property="myTopic" destination="oeS-a8-DIz" id="sGb-Zz-BVF"/>
                         <outlet property="myView" destination="CWC-Tc-WOy" id="qFz-r4-CKL"/>
                         <outlet property="nickname" destination="SyR-Wb-qWI" id="EMB-ie-jmf"/>

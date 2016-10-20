@@ -70,6 +70,7 @@
 @property (strong, nonatomic) IBOutlet UILabel *topicSLabel;
 @property (strong, nonatomic) IBOutlet UIView *wechatLine;
 @property (strong, nonatomic) IBOutlet UILabel *wechatOr;
+@property (strong, nonatomic) IBOutlet NSLayoutConstraint *loginConstraint;
 @end
 
 @implementation LoginController
@@ -211,6 +212,13 @@
 }
 -(void)viewWillDisappear:(BOOL)animated{
     [self stopTimer];
+    [[NSNotificationCenter defaultCenter] removeObserver:self
+                                                    name:UIKeyboardWillShowNotification
+                                                  object:nil];
+    
+    [[NSNotificationCenter defaultCenter] removeObserver:self
+                                                    name:UIKeyboardWillHideNotification
+                                                  object:nil];
 }
 -(void)viewWillAppear:(BOOL)animated{
     NSDictionary *returnData = [NSKeyedUnarchiver unarchiveObjectWithData:[[NSUserDefaults standardUserDefaults] objectForKey:USERKEY]];
@@ -233,7 +241,28 @@
         self.wechatBtn.hidden = YES;
         self.wechatLine.hidden = YES;
     }
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(keyboardWillShow)
+                                                 name:UIKeyboardWillShowNotification
+                                               object:nil];
     
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(keyboardWillHide)
+                                                 name:UIKeyboardWillHideNotification
+                                               object:nil];
+}
+-(void)keyboardWillShow{
+    [UIView beginAnimations:nil context:NULL];
+    [UIView setAnimationDuration:0.3];
+    self.loginConstraint.constant = -100;
+    [UIView commitAnimations];
+    
+}
+-(void)keyboardWillHide{
+    [UIView beginAnimations:nil context:NULL];
+    [UIView setAnimationDuration:0.3];
+    self.loginConstraint.constant = 0;
+    [UIView commitAnimations];
 }
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
