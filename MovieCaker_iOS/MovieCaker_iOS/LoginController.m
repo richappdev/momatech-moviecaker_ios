@@ -70,7 +70,9 @@
 @property (strong, nonatomic) IBOutlet UILabel *topicSLabel;
 @property (strong, nonatomic) IBOutlet UIView *wechatLine;
 @property (strong, nonatomic) IBOutlet UILabel *wechatOr;
+@property (strong, nonatomic) IBOutlet UILabel *noticeDot;
 @property (strong, nonatomic) IBOutlet NSLayoutConstraint *loginConstraint;
+@property NSTimer *dotTimer;
 @end
 
 @implementation LoginController
@@ -178,6 +180,10 @@
             self.jump2 = NO;
         }
     }
+    
+    if([[segue identifier]isEqualToString:@"noticeSegue"]){
+        self.noticeDot.hidden = YES;
+    }
 
 }
 -(void)detail{
@@ -219,11 +225,20 @@
     [[NSNotificationCenter defaultCenter] removeObserver:self
                                                     name:UIKeyboardWillHideNotification
                                                   object:nil];
+    [self.dotTimer invalidate];
+    self.dotTimer = nil;
+}
+-(void)startDotTimer{
+    if(self.noticeDot.hidden == YES){
+        self.dotTimer = [NSTimer scheduledTimerWithTimeInterval:20.0 target:self selector:@selector(testDot) userInfo:nil repeats:YES];
+        [self testDot];
+    }
 }
 -(void)viewWillAppear:(BOOL)animated{
     NSDictionary *returnData = [NSKeyedUnarchiver unarchiveObjectWithData:[[NSUserDefaults standardUserDefaults] objectForKey:USERKEY]];
     NSLog(@"%@",returnData);
     if(returnData!=nil){
+        [self startDotTimer];
         [self.Button2 setTitle:[NSString stringWithFormat:@"%@:log out",[[returnData objectForKey:@"Data"] objectForKey:@"NickName"]] forState:UIControlStateNormal];
         [self.myView setHidden:NO];
         [self populate:[returnData objectForKey:@"Data"]];
@@ -250,6 +265,21 @@
                                              selector:@selector(keyboardWillHide)
                                                  name:UIKeyboardWillHideNotification
                                                object:nil];
+}
+
+-(void)testDot{
+    NSLog(@"test");
+   NSNumber *num = [[NSUserDefaults standardUserDefaults] objectForKey:@"noticeCount"];
+    
+    [[AustinApi sharedInstance] getNotice:^(NSArray *returnData) {
+        if([returnData count]>[num integerValue]){
+            [self.dotTimer invalidate];
+            self.noticeDot.hidden = NO;
+        }
+    } error:^(NSError *error) {
+        
+    }];
+    
 }
 -(void)keyboardWillShow{
     [UIView beginAnimations:nil context:NULL];
@@ -293,6 +323,8 @@
     [self.myView setHidden:YES];
     if(self.timer!=nil){
         [self startTimer];}
+    [self.dotTimer invalidate];
+    self.dotTimer = nil;
 }
 -(void)wLogin:(UIGestureRecognizer*)gesture{
     [self Login:gesture.view];
@@ -321,6 +353,7 @@
     else if(btn.tag==1){
         [[AustinApi sharedInstance]loginWithAccount:self.username.text withPassword:self.password.text withRemember:YES function:^(NSDictionary *returnData) {
             if([[returnData objectForKey:@"success"]boolValue]==TRUE){
+                [self startDotTimer];
                 [self refreshFriend:[returnData objectForKey:@"data"]];
             NSDictionary *temp = [[NSDictionary alloc] initWithObjectsAndKeys:[returnData objectForKey:@"data"],@"Data", nil];
             [[NSUserDefaults standardUserDefaults] setObject:[NSKeyedArchiver archivedDataWithRootObject:temp] forKey:USERKEY];
@@ -353,6 +386,7 @@
             [self.Button2 setTitle:[NSString stringWithFormat:@"%@:log out",[[returnData objectForKey:@"Data"] objectForKey:@"NickName"]] forState:UIControlStateNormal];
             [self.myView setHidden:NO];
             [self stopTimer];
+            [self startDotTimer];
             NSDictionary *test = [returnData objectForKey:@"Data"];
             if([[test allKeys]count]<2){
                 test = returnData;
