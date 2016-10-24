@@ -73,6 +73,8 @@
 @property (strong, nonatomic) IBOutlet UILabel *noticeDot;
 @property (strong, nonatomic) IBOutlet NSLayoutConstraint *loginConstraint;
 @property NSTimer *dotTimer;
+@property NSTimer *inviteDotTimer;
+@property (strong, nonatomic) IBOutlet UILabel *invitingDot;
 @end
 
 @implementation LoginController
@@ -149,6 +151,7 @@
     }
     if(gesture.view.tag==1||gesture.view.tag==2){
         if(gesture.view.tag==2){
+            self.invitingDot.hidden = YES;
             self.jump = YES;
         }
         [self performSegueWithIdentifier:@"friendsSegue" sender:self];
@@ -225,20 +228,33 @@
     [[NSNotificationCenter defaultCenter] removeObserver:self
                                                     name:UIKeyboardWillHideNotification
                                                   object:nil];
+    [self stopDotTimers];
+}
+-(void)stopDotTimers{
     [self.dotTimer invalidate];
     self.dotTimer = nil;
+    [self.inviteDotTimer invalidate];
+    self.inviteDotTimer = nil;
 }
--(void)startDotTimer{
+-(void)startDotTimer:(NSDictionary*)data{
     if(self.noticeDot.hidden == YES){
         self.dotTimer = [NSTimer scheduledTimerWithTimeInterval:20.0 target:self selector:@selector(testDot) userInfo:nil repeats:YES];
         [self testDot];
     }
+    if(self.invitingDot.hidden == YES){
+        self.inviteDotTimer = [NSTimer scheduledTimerWithTimeInterval:20.0 target:self selector:@selector(preRefresh:) userInfo:data repeats:YES];
+        [self refreshFriend:data];
+    }
+}
+-(void)preRefresh:(NSTimer*)timer{
+    NSDictionary *temp = timer.userInfo;
+    [self refreshFriend:temp];
 }
 -(void)viewWillAppear:(BOOL)animated{
     NSDictionary *returnData = [NSKeyedUnarchiver unarchiveObjectWithData:[[NSUserDefaults standardUserDefaults] objectForKey:USERKEY]];
     NSLog(@"%@",returnData);
     if(returnData!=nil){
-        [self startDotTimer];
+        [self startDotTimer:[returnData objectForKey:@"Data"]];
         [self.Button2 setTitle:[NSString stringWithFormat:@"%@:log out",[[returnData objectForKey:@"Data"] objectForKey:@"NickName"]] forState:UIControlStateNormal];
         [self.myView setHidden:NO];
         [self populate:[returnData objectForKey:@"Data"]];
@@ -323,8 +339,7 @@
     [self.myView setHidden:YES];
     if(self.timer!=nil){
         [self startTimer];}
-    [self.dotTimer invalidate];
-    self.dotTimer = nil;
+    [self stopDotTimers];
 }
 -(void)wLogin:(UIGestureRecognizer*)gesture{
     [self Login:gesture.view];
@@ -333,6 +348,19 @@
     [[AustinApi sharedInstance]getFriends:[[returnData objectForKey:@"UserId"]stringValue] page:1 function:^(NSString *returnData) {
             AustinApi *temp3 = [AustinApi sharedInstance];
             self.friendLabel.text = [NSString stringWithFormat:@"%lu 個朋友",(unsigned long)[temp3.friendList count]];
+        NSNumber *num = [[NSUserDefaults standardUserDefaults] objectForKey:@"inviteCount"];
+        
+        NSMutableArray *one= [[NSMutableArray alloc]init];
+        for (NSDictionary *row in temp3.friendWaitList) {
+            if([[row objectForKey:@"IsInviting"]integerValue]==1){
+                [one addObject:row];
+            }
+        }
+        if([one count]>[num integerValue]){
+            [self.inviteDotTimer invalidate];
+            self.inviteDotTimer =nil;
+            self.invitingDot.hidden =NO;
+        }
         } refresh:YES];
 }
 -(void)refresh{
@@ -353,7 +381,7 @@
     else if(btn.tag==1){
         [[AustinApi sharedInstance]loginWithAccount:self.username.text withPassword:self.password.text withRemember:YES function:^(NSDictionary *returnData) {
             if([[returnData objectForKey:@"success"]boolValue]==TRUE){
-                [self startDotTimer];
+                [self startDotTimer:[returnData objectForKey:@"data"]];
                 [self refreshFriend:[returnData objectForKey:@"data"]];
             NSDictionary *temp = [[NSDictionary alloc] initWithObjectsAndKeys:[returnData objectForKey:@"data"],@"Data", nil];
             [[NSUserDefaults standardUserDefaults] setObject:[NSKeyedArchiver archivedDataWithRootObject:temp] forKey:USERKEY];
@@ -386,7 +414,7 @@
             [self.Button2 setTitle:[NSString stringWithFormat:@"%@:log out",[[returnData objectForKey:@"Data"] objectForKey:@"NickName"]] forState:UIControlStateNormal];
             [self.myView setHidden:NO];
             [self stopTimer];
-            [self startDotTimer];
+            [self startDotTimer:[returnData objectForKey:@"Data"]];
             NSDictionary *test = [returnData objectForKey:@"Data"];
             if([[test allKeys]count]<2){
                 test = returnData;

@@ -3408,6 +3408,7 @@
                         <outlet property="gender" destination="WNm-Le-uSF" id="8rz-ad-hBa"/>
                         <outlet property="iconFilm" destination="XUa-YO-M7n" id="mVD-il-8qM"/>
                         <outlet property="inviting" destination="bNr-Br-sO5" id="r2t-Am-i9k"/>
+                        <outlet property="invitingDot" destination="Fxb-uR-z88" id="t36-UL-U16"/>
                         <outlet property="invitingIcon" destination="Q9s-Qj-fN2" id="b9d-cd-EnS"/>
                         <outlet property="likeLabel" destination="Aur-n9-9BM" id="8Gw-Jr-Xh1"/>
                         <outlet property="likedTopic" destination="VBn-au-Lq2" id="jiV-We-Ocx"/>
