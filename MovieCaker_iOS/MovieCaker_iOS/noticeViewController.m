@@ -33,6 +33,9 @@
     [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     [[AustinApi sharedInstance] getNotice:^(NSArray *returnData) {
         NSLog(@"%@",returnData);
+        [[NSUserDefaults standardUserDefaults] setObject:[NSNumber numberWithInteger:[returnData count]] forKey:@"noticeCount"];
+        [[NSUserDefaults standardUserDefaults]synchronize];
+        
         self.tableController.data = returnData;
         [self.tableController.tableView reloadData];
         [MBProgressHUD hideHUDForView:self.view animated:YES];

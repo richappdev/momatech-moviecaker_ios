@@ -65,7 +65,7 @@
         double delayInSeconds = 0.3;
         dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, delayInSeconds * NSEC_PER_SEC);
         dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
-                [self selected:self.lThree];
+                [self selected:self.lTwo];
         });
         self.jump = NO;
     }
@@ -97,6 +97,9 @@
                     [two addObject:row];
                 }
             }
+            [[NSUserDefaults standardUserDefaults] setObject:[NSNumber numberWithInteger:[one count]] forKey:@"inviteCount"];
+            [[NSUserDefaults standardUserDefaults]synchronize];
+            
             if(label.tag==1){
                 self.tableController.data =  [[NSMutableArray alloc] initWithArray:one];
             }else{

@@ -296,6 +296,7 @@
 		6CD58C4E1CACBD3F0089DB38 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6CD58C4C1CACBD3F0089DB38 /* Main.storyboard */; };
 		6CD58C501CACBD3F0089DB38 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6CD58C4F1CACBD3F0089DB38 /* Assets.xcassets */; };
 		6CD58C531CACBD3F0089DB38 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6CD58C511CACBD3F0089DB38 /* LaunchScreen.storyboard */; };
+		6CD653381DB94B19005B271E /* tabBarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CD653371DB94B19005B271E /* tabBarViewController.m */; };
 		6CF975611D1B0AB8008BF55A /* reviewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CF975601D1B0AB8008BF55A /* reviewController.m */; };
 		6CFC09841CCBC0B50045C93E /* FAImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CFC09781CCBC0B50045C93E /* FAImageView.m */; };
 		6CFC09851CCBC0B50045C93E /* NSString+FontAwesome.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CFC097A1CCBC0B50045C93E /* NSString+FontAwesome.m */; };
@@ -927,6 +928,8 @@
 		6CD58C4F1CACBD3F0089DB38 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		6CD58C521CACBD3F0089DB38 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		6CD58C541CACBD3F0089DB38 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		6CD653361DB94B19005B271E /* tabBarViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = tabBarViewController.h; sourceTree = "<group>"; };
+		6CD653371DB94B19005B271E /* tabBarViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = tabBarViewController.m; sourceTree = "<group>"; };
 		6CF9755F1D1B0AB8008BF55A /* reviewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = reviewController.h; sourceTree = "<group>"; };
 		6CF975601D1B0AB8008BF55A /* reviewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = reviewController.m; sourceTree = "<group>"; };
 		6CFC09771CCBC0B50045C93E /* FAImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FAImageView.h; sourceTree = "<group>"; };
@@ -1904,6 +1907,8 @@
 				6C94C24B1D86412A00C0F519 /* myTopicsViewController.m */,
 				6CCE4C921D90A0E900BA4F6E /* editViewController.h */,
 				6CCE4C931D90A0EA00BA4F6E /* editViewController.m */,
+				6CD653361DB94B19005B271E /* tabBarViewController.h */,
+				6CD653371DB94B19005B271E /* tabBarViewController.m */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -2217,6 +2222,7 @@
 				6C94C1811D7CF5A700C0F519 /* ZXProductParsedResult.m in Sources */,
 				6C94C2051D7CF5A700C0F519 /* ZXPDF417Codeword.m in Sources */,
 				6C94C2361D7CF5A700C0F519 /* ZXLuminanceSource.m in Sources */,
+				6CD653381DB94B19005B271E /* tabBarViewController.m in Sources */,
 				6C94C2341D7CF5A700C0F519 /* ZXErrors.m in Sources */,
 				6C94C2001D7CF5A700C0F519 /* ZXModulusPoly.m in Sources */,
 				6C94C1891D7CF5A700C0F519 /* ZXTelResultParser.m in Sources */,

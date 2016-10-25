@@ -150,7 +150,6 @@
     if(self.loaded) {
         [self doJump];}
     [self.movieTable reloadData];
-
 }
 -(void)refresh{
     self.view = nil;
@@ -309,7 +308,6 @@
         }
         self.locationArray = tempArray;
         [self setLocationBtnColor:0];
-        [self doJump];
         self.loaded=YES;
     } error:^(NSError *error) {
         NSLog(@"%@",error);
@@ -341,6 +339,8 @@
     }
     
     [[AustinApi sharedInstance] movieListCustom:type location:locationId year:yearString month:monthString page:page topicId:nil function:^(NSArray *returnData) {
+        //this jump is need for first time load, because viewwillappear jump isnt triggered
+        [self doJump];
         NSMutableArray *array = [[NSMutableArray alloc]init];
         for (NSDictionary *row in returnData) {
             [array addObject:[[NSMutableDictionary alloc] initWithDictionary:row]];
