@@ -16,4 +16,5 @@
 @property int selectIndex;
 @property int page;
 -(void)gotoEdit:(long)row;
+@property BOOL hideRating;
 @end

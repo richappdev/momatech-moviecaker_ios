@@ -68,6 +68,11 @@
             cell.ratingLabel.text = [NSString stringWithFormat:@"%ld",(long)indexPath.row+1];
         }else{
             cell = [tableView dequeueReusableCellWithIdentifier:@"movieTableOne" forIndexPath:indexPath];
+            if(self.type==0&&self.hideRating == YES){
+                cell.ratingBg.hidden = YES;
+            }else{
+                cell.ratingBg.hidden = NO;
+            }
     }
     cell.index =indexPath.row;
     cell.parent= self;

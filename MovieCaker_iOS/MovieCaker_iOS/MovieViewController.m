@@ -112,6 +112,7 @@
     self.movieTableController.tableView = self.movieTable;
     self.movieTable.delegate =self.movieTableController;
     [self.movieTableController ParentController:self];
+    self.movieTableController.hideRating = YES;
     
     self.view.backgroundColor = [UIColor blackColor];
     UITapGestureRecognizer *cancel = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(cancelLocation)];
@@ -183,10 +184,13 @@
         previous = self.fOneIndex;
         if(previous!=current){
             if(current.tag==0){
+                self.movieTableController.hideRating = YES;
                 [self getMovieList:@"6" location:[[self.locationBackend objectAtIndex:self.locationIndex]objectForKey:@"Id"] type:0 page:nil];
             }else if (current.tag==1){
+                self.movieTableController.hideRating = YES;
                 [self getMovieList:@"6" location:[[self.locationBackend objectAtIndex:self.locationIndex]objectForKey:@"Id"] type:1 page:nil];
             }else if (current.tag==2){
+                self.movieTableController.hideRating = NO;
                 [self getMovieList:@"released" location:[[self.locationBackend objectAtIndex:self.locationIndex]objectForKey:@"Id"] type:2 page:nil];
             }
             
