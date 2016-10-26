@@ -264,9 +264,10 @@
     [self.navigationController setNavigationBarHidden:YES];
     
     if([[WechatAccess sharedInstance]isWechatAppInstalled]==YES){
-        self.wechatOr.hidden = NO;
-        self.wechatBtn.hidden = NO;
-        self.wechatLine.hidden = NO;
+        // remove WeCaht login method temporary for Moma internal user testing
+        self.wechatOr.hidden = YES;
+        self.wechatBtn.hidden = YES;
+        self.wechatLine.hidden = YES;
     }else{
         self.wechatOr.hidden = YES;
         self.wechatBtn.hidden = YES;
