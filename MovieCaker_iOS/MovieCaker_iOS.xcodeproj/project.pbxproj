@@ -297,6 +297,7 @@
 		6CD58C501CACBD3F0089DB38 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6CD58C4F1CACBD3F0089DB38 /* Assets.xcassets */; };
 		6CD58C531CACBD3F0089DB38 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6CD58C511CACBD3F0089DB38 /* LaunchScreen.storyboard */; };
 		6CD653381DB94B19005B271E /* tabBarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CD653371DB94B19005B271E /* tabBarViewController.m */; };
+		6CD6533B1DC27417005B271E /* myMovieViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CD6533A1DC27417005B271E /* myMovieViewController.m */; };
 		6CF975611D1B0AB8008BF55A /* reviewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CF975601D1B0AB8008BF55A /* reviewController.m */; };
 		6CFC09841CCBC0B50045C93E /* FAImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CFC09781CCBC0B50045C93E /* FAImageView.m */; };
 		6CFC09851CCBC0B50045C93E /* NSString+FontAwesome.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CFC097A1CCBC0B50045C93E /* NSString+FontAwesome.m */; };
@@ -930,6 +931,8 @@
 		6CD58C541CACBD3F0089DB38 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		6CD653361DB94B19005B271E /* tabBarViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = tabBarViewController.h; sourceTree = "<group>"; };
 		6CD653371DB94B19005B271E /* tabBarViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = tabBarViewController.m; sourceTree = "<group>"; };
+		6CD653391DC27417005B271E /* myMovieViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = myMovieViewController.h; sourceTree = "<group>"; };
+		6CD6533A1DC27417005B271E /* myMovieViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = myMovieViewController.m; sourceTree = "<group>"; };
 		6CF9755F1D1B0AB8008BF55A /* reviewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = reviewController.h; sourceTree = "<group>"; };
 		6CF975601D1B0AB8008BF55A /* reviewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = reviewController.m; sourceTree = "<group>"; };
 		6CFC09771CCBC0B50045C93E /* FAImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FAImageView.h; sourceTree = "<group>"; };
@@ -1909,6 +1912,8 @@
 				6CCE4C931D90A0EA00BA4F6E /* editViewController.m */,
 				6CD653361DB94B19005B271E /* tabBarViewController.h */,
 				6CD653371DB94B19005B271E /* tabBarViewController.m */,
+				6CD653391DC27417005B271E /* myMovieViewController.h */,
+				6CD6533A1DC27417005B271E /* myMovieViewController.m */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -2208,6 +2213,7 @@
 				6C94C1991D7CF5A700C0F519 /* ZXGenericGF.m in Sources */,
 				6C7F9F601CDE9870001BE238 /* SDWebImageDecoder.m in Sources */,
 				6C94C2151D7CF5A700C0F519 /* ZXPDF417Reader.m in Sources */,
+				6CD6533B1DC27417005B271E /* myMovieViewController.m in Sources */,
 				6C94C1971D7CF5A700C0F519 /* ZXMonochromeRectangleDetector.m in Sources */,
 				6C7F9F671CDE9870001BE238 /* UIImage+MultiFormat.m in Sources */,
 				6C94C1BB1D7CF5A700C0F519 /* ZXTextEncoder.m in Sources */,

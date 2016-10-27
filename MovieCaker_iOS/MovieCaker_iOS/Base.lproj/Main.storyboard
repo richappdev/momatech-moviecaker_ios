@@ -2779,7 +2779,7 @@
                                     <constraint firstItem="HC2-6D-K6M" firstAttribute="top" secondItem="gdA-WZ-ZXf" secondAttribute="bottom" constant="16" id="y0j-VW-pYX"/>
                                 </constraints>
                             </view>
-                            <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="CWC-Tc-WOy">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="CWC-Tc-WOy">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="519"/>
                                 <subviews>
                                     <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4UK-Sk-aoN">
@@ -3124,7 +3124,7 @@
                                                             <userDefinedRuntimeAttribute type="string" keyPath="layer.cornerRadius" value="22"/>
                                                         </userDefinedRuntimeAttributes>
                                                     </view>
-                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="UWr-s6-Jnh">
+                                                    <view tag="1" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="UWr-s6-Jnh">
                                                         <rect key="frame" x="111" y="10" width="44" height="44"/>
                                                         <subviews>
                                                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="iconHeartIndexActive-1" translatesAutoresizingMaskIntoConstraints="NO" id="Wya-hm-jfL">
@@ -3144,7 +3144,7 @@
                                                             <userDefinedRuntimeAttribute type="string" keyPath="layer.cornerRadius" value="22"/>
                                                         </userDefinedRuntimeAttributes>
                                                     </view>
-                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Zbw-82-JAr">
+                                                    <view tag="2" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Zbw-82-JAr">
                                                         <rect key="frame" x="180" y="10" width="44" height="44"/>
                                                         <subviews>
                                                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="iconPocketIndexActive-1" translatesAutoresizingMaskIntoConstraints="NO" id="aqs-I0-j5m">
@@ -3411,6 +3411,7 @@
                         <outlet property="invitingDot" destination="Fxb-uR-z88" id="t36-UL-U16"/>
                         <outlet property="invitingIcon" destination="Q9s-Qj-fN2" id="b9d-cd-EnS"/>
                         <outlet property="likeLabel" destination="Aur-n9-9BM" id="8Gw-Jr-Xh1"/>
+                        <outlet property="likedIcon" destination="UWr-s6-Jnh" id="bZp-SH-ZfK"/>
                         <outlet property="likedTopic" destination="VBn-au-Lq2" id="jiV-We-Ocx"/>
                         <outlet property="location" destination="5TV-SE-nsg" id="yg9-NE-eqM"/>
                         <outlet property="loginConstraint" destination="lCH-0N-yGv" id="TPn-v4-XIo"/>
@@ -3427,7 +3428,9 @@
                         <outlet property="topicSLabel" destination="pTE-FJ-JFJ" id="iIT-eI-LgZ"/>
                         <outlet property="username" destination="Mb7-9Q-2FK" id="TWa-cv-6Gm"/>
                         <outlet property="viewLabel" destination="gkt-lx-aUc" id="Mep-mL-LjJ"/>
+                        <outlet property="wannaWatchIcon" destination="Zbw-82-JAr" id="Adf-Zj-W9X"/>
                         <outlet property="wantLabel" destination="XSz-p5-m7M" id="QKe-o0-q69"/>
+                        <outlet property="watchedIcon" destination="T6P-T6-5S9" id="T2i-fg-qgl"/>
                         <outlet property="wechatBtn" destination="gdA-WZ-ZXf" id="K4F-y9-t8a"/>
                         <outlet property="wechatLine" destination="bXr-1K-ph1" id="p0w-bm-je7"/>
                         <outlet property="wechatOr" destination="gZf-Sv-53C" id="PSn-9t-m3S"/>
@@ -3436,11 +3439,31 @@
                         <segue destination="X3G-YG-JLW" kind="push" identifier="friendsSegue" id="CbV-l4-bzA"/>
                         <segue destination="OjJ-MJ-3T6" kind="push" identifier="qrcodeSegue" id="okh-FG-9Jq"/>
                         <segue destination="aA5-jh-dAl" kind="push" identifier="topicSegue" id="y0c-k3-H6q"/>
+                        <segue destination="AKZ-Gi-xh9" kind="push" identifier="myMovieSegue" id="Jao-Qb-uFS"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6pU-v1-2uY" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2223" y="773"/>
+        </scene>
+        <!--My Movie View Controller-->
+        <scene sceneID="5L6-x1-Ivh">
+            <objects>
+                <viewController id="AKZ-Gi-xh9" customClass="myMovieViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="3PP-vu-wCn"/>
+                        <viewControllerLayoutGuide type="bottom" id="nx4-fT-YUk"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="tUh-po-f7a">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="Y9i-Yo-HSj"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="6yd-jj-JdZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1959" y="1485"/>
         </scene>
         <!--My Topics View Controller-->
         <scene sceneID="hAc-IX-yK6">
@@ -3764,7 +3787,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="YU1-TD-cfy" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2095" y="1568"/>
+            <point key="canvasLocation" x="2357" y="1534"/>
         </scene>
         <!--Friends View Controller-->
         <scene sceneID="dk6-bK-vwH">
