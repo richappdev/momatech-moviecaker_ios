@@ -11,6 +11,7 @@
 #import "MovieTwoTableViewController.h"
 #import "MovieDetailController.h"
 #import "AustinApi.h"
+#import "MBProgressHUD.h"
 @interface myMovieViewController ()
 @property MainVerticalScroller *helper;
 @property MovieTwoTableViewController *movieTableController;
@@ -40,8 +41,9 @@
     self.tableView.delegate =self.movieTableController;
     [self.movieTableController ParentController:self];
     self.movieTableController.hideRating = YES;
-    self.movieTableController.page = 999;
-
+    self.movieTableController.page = 1;
+    
+    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     [[AustinApi sharedInstance] movieListCustom:@"5" myType:[NSString stringWithFormat:@"%d",self.type] location:nil year:nil month:nil page:nil topicId:nil function:^(NSArray *returnData) {
         NSMutableArray *array = [[NSMutableArray alloc]init];
         for (NSDictionary *row in returnData) {
@@ -49,8 +51,9 @@
         }
         self.movieTableController.data = array;
         [self.tableView reloadData];
+        [MBProgressHUD hideHUDForView:self.view animated:YES];
     } error:^(NSError *error) {
-        
+        [MBProgressHUD hideHUDForView:self.view animated:YES];
     }];
 }
 
@@ -67,5 +70,24 @@
         MovieDetailController *vc = segue.destinationViewController;
         vc.movieDetailInfo = [self.movieTableController.data objectAtIndex:self.movieTableController.selectIndex];
     }
+}
+
+-(void)loadMore:(int)page{
+    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    NSString *pageString = [NSString stringWithFormat:@"%d",page];
+    [[AustinApi sharedInstance] movieListCustom:@"5" myType:[NSString stringWithFormat:@"%d",self.type] location:nil year:nil month:nil page:pageString topicId:nil function:^(NSArray *returnData) {
+        NSMutableArray *array = [[NSMutableArray alloc]init];
+        for (NSDictionary *row in returnData) {
+            [array addObject:[[NSMutableDictionary alloc] initWithDictionary:row]];
+        }
+        NSArray *new = [self.movieTableController.data arrayByAddingObjectsFromArray:array];
+        self.movieTableController.data = new;
+        [self.tableView reloadData];
+        [MBProgressHUD hideHUDForView:self.view animated:YES];
+    } error:^(NSError *error) {
+        [MBProgressHUD hideHUDForView:self.view animated:YES];
+    }];
+
+
 }
 @end
