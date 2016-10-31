@@ -113,7 +113,7 @@
     [buttonHelper v2AdjustLike:self.likeBtn state:[[self.data objectForKey:@"IsLiked"] boolValue]];
     [buttonHelper v2AdjustShare:self.shareBtn state:[[self.data objectForKey:@"IsShared"] boolValue]];
     
-    [[AustinApi sharedInstance]movieListCustom:@"3" location:nil year:nil month:nil page:nil topicId:[self.data objectForKey:@"Id"] function:^(NSArray *returnData) {
+    [[AustinApi sharedInstance]movieListCustom:@"3" myType:nil location:nil year:nil month:nil page:nil topicId:[self.data objectForKey:@"Id"] function:^(NSArray *returnData) {
         NSMutableArray *newArray = [[NSMutableArray alloc]init];
         for (NSDictionary *row in returnData) {
             [newArray addObject:[[NSMutableDictionary alloc] initWithDictionary:row]];

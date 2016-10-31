@@ -8,8 +8,13 @@
 
 #import "myMovieViewController.h"
 #import "MainVerticalScroller.h"
+#import "MovieTwoTableViewController.h"
+#import "MovieDetailController.h"
+#import "AustinApi.h"
 @interface myMovieViewController ()
 @property MainVerticalScroller *helper;
+@property MovieTwoTableViewController *movieTableController;
+@property (strong, nonatomic) IBOutlet UITableView *tableView;
 @end
 
 @implementation myMovieViewController
@@ -29,6 +34,24 @@
     self.helper.nav = self.navigationController;
     [self.helper setupBackBtn2:self];
     [self.helper setupSinglePage:self.view];
+    
+    self.movieTableController = [[MovieTwoTableViewController alloc] init];
+    self.movieTableController.tableView = self.tableView;
+    self.tableView.delegate =self.movieTableController;
+    [self.movieTableController ParentController:self];
+    self.movieTableController.hideRating = YES;
+    self.movieTableController.page = 999;
+
+    [[AustinApi sharedInstance] movieListCustom:@"5" myType:[NSString stringWithFormat:@"%d",self.type] location:nil year:nil month:nil page:nil topicId:nil function:^(NSArray *returnData) {
+        NSMutableArray *array = [[NSMutableArray alloc]init];
+        for (NSDictionary *row in returnData) {
+            [array addObject:[[NSMutableDictionary alloc] initWithDictionary:row]];
+        }
+        self.movieTableController.data = array;
+        [self.tableView reloadData];
+    } error:^(NSError *error) {
+        
+    }];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -38,14 +61,11 @@
 -(void)viewWillAppear:(BOOL)animated{
     self.navigationController.navigationBarHidden = NO;
 }
-/*
-#pragma mark - Navigation
 
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
+    if([[segue identifier] isEqualToString:@"movieDetail"]){
+        MovieDetailController *vc = segue.destinationViewController;
+        vc.movieDetailInfo = [self.movieTableController.data objectAtIndex:self.movieTableController.selectIndex];
+    }
 }
-*/
-
 @end
