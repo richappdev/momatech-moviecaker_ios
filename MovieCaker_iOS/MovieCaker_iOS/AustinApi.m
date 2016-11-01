@@ -347,8 +347,8 @@
         if(self.friendPage>page){
             page = self.friendPage;
         }
-    [self apiGetMethod:[NSString stringWithFormat:@"api/friend/%@?page=%d",uid,page] parameter:nil addTokenHeader:nil completion:^(id response) {
-        if(page==1&&page>self.friendPage){
+    [self apiGetMethod:[NSString stringWithFormat:@"api/friend/%@?page=%d&limit=9999",uid,page] parameter:nil addTokenHeader:nil completion:^(id response) {
+        /*if(page==1&&page>self.friendPage){
             self.friendPage = 1;
             self.friendTemp = [[NSMutableArray alloc]init];
             for (int i = 0; i<20; i++) {
@@ -367,7 +367,8 @@
              temp = [temp arrayByAddingObjectsFromArray:[self.friendTemp objectAtIndex:i]];
         }
         self.friendList =[[NSMutableArray alloc]initWithArray:temp];
-        
+        */
+        self.friendList = response;
         if(completion!=nil){
             completion(response);
         }
