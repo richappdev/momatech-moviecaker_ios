@@ -39,7 +39,7 @@
     self.current = self.lOne;
     
     self.tableController = [[friendTableViewController alloc]init];
-    self.tableController.page = 1;
+    self.tableController.page = 999;
     self.tableController.parentController = self;
     self.tableController.tableView = self.tableview;
     self.tableview.allowsSelection = NO;

@@ -20,6 +20,7 @@
 #import "friendsViewController.h"
 #import "myTopicsViewController.h"
 #import "MovieViewController.h"
+#import "myMovieViewController.h"
 
 #define USERKEY @"userkey"
 @interface LoginController ()
@@ -74,7 +75,11 @@
 @property (strong, nonatomic) IBOutlet NSLayoutConstraint *loginConstraint;
 @property NSTimer *dotTimer;
 @property NSTimer *inviteDotTimer;
+@property (strong, nonatomic) IBOutlet UIView *watchedIcon;
+@property (strong, nonatomic) IBOutlet UIView *likedIcon;
+@property (strong, nonatomic) IBOutlet UIView *wannaWatchIcon;
 @property (strong, nonatomic) IBOutlet UILabel *invitingDot;
+@property int movieTemp;
 @end
 
 @implementation LoginController
@@ -123,6 +128,9 @@
     [self addIndexClick:self.inviting];
     [self addIndexClick:self.myTopic];
     [self addIndexClick:self.likedTopic];
+    [self addMovieClick:self.watchedIcon];
+    [self addMovieClick:self.wannaWatchIcon];
+    [self addMovieClick:self.likedIcon];
    
     self.bullhorn.image = [UIImage imageWithIcon:@"fa-bullhorn" backgroundColor:[UIColor clearColor] iconColor:[UIColor colorWithRed:(51/255.0f) green:(68/255.0f) blue:(85/255.0f) alpha:1.0] andSize:CGSizeMake(16, 16)];
     self.friendListIcon.image =  [UIImage imageWithIcon:@"fa-users" backgroundColor:[UIColor clearColor] iconColor:[UIColor colorWithRed:(51/255.0f) green:(68/255.0f) blue:(85/255.0f) alpha:1.0] andSize:CGSizeMake(16, 16)];
@@ -142,6 +150,10 @@
 }
 -(void)addIndexClick:(UIView*)view{
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(indexClick:)];
+    [view addGestureRecognizer:tap];
+}
+-(void)addMovieClick:(UIView*)view{
+    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(movieClick:)];
     [view addGestureRecognizer:tap];
 }
 -(void)indexClick:(UITapGestureRecognizer*)gesture{
@@ -166,6 +178,12 @@
         [self performSegueWithIdentifier:@"topicSegue" sender:self];
     }
 }
+
+-(void)movieClick:(UITapGestureRecognizer*)gesture{
+    self.movieTemp =(int)gesture.view.tag;
+    [self performSegueWithIdentifier:@"myMovieSegue" sender:self];
+}
+
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
     if([[segue identifier]isEqualToString:@"friendsSegue"]){
         friendsViewController *dest = segue.destinationViewController;
@@ -186,6 +204,11 @@
     
     if([[segue identifier]isEqualToString:@"noticeSegue"]){
         self.noticeDot.hidden = YES;
+    }
+    
+    if([[segue identifier]isEqualToString:@"myMovieSegue"]){
+        myMovieViewController *temp = segue.destinationViewController;
+        temp.type =self.movieTemp;
     }
 
 }

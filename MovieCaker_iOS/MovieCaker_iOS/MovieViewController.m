@@ -112,6 +112,7 @@
     self.movieTableController.tableView = self.movieTable;
     self.movieTable.delegate =self.movieTableController;
     [self.movieTableController ParentController:self];
+    self.movieTableController.hideRating = YES;
     
     self.view.backgroundColor = [UIColor blackColor];
     UITapGestureRecognizer *cancel = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(cancelLocation)];
@@ -183,10 +184,13 @@
         previous = self.fOneIndex;
         if(previous!=current){
             if(current.tag==0){
+                self.movieTableController.hideRating = YES;
                 [self getMovieList:@"6" location:[[self.locationBackend objectAtIndex:self.locationIndex]objectForKey:@"Id"] type:0 page:nil];
             }else if (current.tag==1){
+                self.movieTableController.hideRating = YES;
                 [self getMovieList:@"6" location:[[self.locationBackend objectAtIndex:self.locationIndex]objectForKey:@"Id"] type:1 page:nil];
             }else if (current.tag==2){
+                self.movieTableController.hideRating = NO;
                 [self getMovieList:@"released" location:[[self.locationBackend objectAtIndex:self.locationIndex]objectForKey:@"Id"] type:2 page:nil];
             }
             
@@ -338,7 +342,7 @@
         yearString = nil;
     }
     
-    [[AustinApi sharedInstance] movieListCustom:type location:locationId year:yearString month:monthString page:page topicId:nil function:^(NSArray *returnData) {
+    [[AustinApi sharedInstance] movieListCustom:type myType:nil location:locationId year:yearString month:monthString page:page topicId:nil function:^(NSArray *returnData) {
         //this jump is need for first time load, because viewwillappear jump isnt triggered
         [self doJump];
         NSMutableArray *array = [[NSMutableArray alloc]init];
@@ -480,7 +484,7 @@
 -(void)loadFriends:(NSString*)page{
     self.locked = YES;
     [MBProgressHUD showHUDAddedTo:self.view animated:YES];
-    [[AustinApi sharedInstance]movieListCustom:@"1" location:nil year:nil month:nil page:nil topicId:nil function:^(NSArray *returnData) {
+    [[AustinApi sharedInstance]movieListCustom:@"1" myType:nil location:nil year:nil month:nil page:nil topicId:nil function:^(NSArray *returnData) {
         if(page==nil){
             self.movieTableController.page = 1;
             self.tabThreeData =returnData;
