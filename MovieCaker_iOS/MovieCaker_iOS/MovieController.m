@@ -80,7 +80,7 @@
     [self addIndexGesture:self.iconTopicIndex];
     [self addIndexGesture:self.moreBtn];
     [self addIndexGesture:self.moreBtn2];
-    self.title = @"首頁";
+    self.title = NSLocalizedStringFromTableInBundle(@"acW-dT-cKf.title", @"Main", [NSBundle mainBundle], nil);
     
     self.scrollDelegate = [[MainVerticalScroller alloc] init];
     self.MainScroll.delegate = self.scrollDelegate;

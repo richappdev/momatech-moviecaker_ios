@@ -933,6 +933,8 @@
 		6CD653371DB94B19005B271E /* tabBarViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = tabBarViewController.m; sourceTree = "<group>"; };
 		6CD653391DC27417005B271E /* myMovieViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = myMovieViewController.h; sourceTree = "<group>"; };
 		6CD6533A1DC27417005B271E /* myMovieViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = myMovieViewController.m; sourceTree = "<group>"; };
+		6CD653501DCACEAA005B271E /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Main.strings"; sourceTree = "<group>"; };
+		6CD653511DCACEB4005B271E /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/Main.strings"; sourceTree = "<group>"; };
 		6CF9755F1D1B0AB8008BF55A /* reviewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = reviewController.h; sourceTree = "<group>"; };
 		6CF975601D1B0AB8008BF55A /* reviewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = reviewController.m; sourceTree = "<group>"; };
 		6CFC09771CCBC0B50045C93E /* FAImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FAImageView.h; sourceTree = "<group>"; };
@@ -2072,7 +2074,6 @@
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
 			knownRegions = (
-				en,
 				Base,
 			);
 			mainGroup = 6CD58C341CACBD3F0089DB38;
@@ -2416,6 +2417,8 @@
 			isa = PBXVariantGroup;
 			children = (
 				6CD58C4D1CACBD3F0089DB38 /* Base */,
+				6CD653501DCACEAA005B271E /* zh-Hans */,
+				6CD653511DCACEB4005B271E /* zh-Hant */,
 			);
 			name = Main.storyboard;
 			sourceTree = "<group>";
