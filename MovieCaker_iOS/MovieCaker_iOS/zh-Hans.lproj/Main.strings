@@ -442,3 +442,9 @@
 "yph-f9-MOm.text" = "2016/10/29" ;
 /* Class = "UILabel"; text = " 开始扫瞄 "; ObjectID = "z9y-pW-vaR"; */
 "z9y-pW-vaR.text" = " 开始扫瞄 " ;
+
+"edit.title"="编辑昵称";
+"mywatch.title"="我看过的电影";
+"mylike.title"="我喜欢的电影";
+"mywant.title"="我想看的电影";
+"scan.title"="扫瞄";

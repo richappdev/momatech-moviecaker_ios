@@ -21,7 +21,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    self.title = @"掃瞄";
+    self.title = NSLocalizedStringFromTableInBundle(@"scan.title", @"Main", [NSBundle mainBundle], nil);
     self.helper = [[MainVerticalScroller alloc]init];
     self.helper.nav = self.navigationController;
     [self.helper setupBackBtn2:self];

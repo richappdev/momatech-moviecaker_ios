@@ -20,7 +20,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.title = @"編輯暱稱";
+    self.title = NSLocalizedStringFromTableInBundle(@"edit.title", @"Main", [NSBundle mainBundle], nil);
     self.helper = [[MainVerticalScroller alloc]init];
     self.helper.nav = self.navigationController;
     [self.helper setupBackBtn2:self];
