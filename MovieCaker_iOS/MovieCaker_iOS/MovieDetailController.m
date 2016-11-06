@@ -62,6 +62,7 @@
 @property (strong, nonatomic) IBOutlet UILabel *moreLabel;
 @property BOOL newReview;
 @property BOOL opened;
+@property BOOL simplified;
 @property MainVerticalScroller *scrollDelegate;
 @end
 
@@ -69,7 +70,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
+    self.simplified = [[[NSUserDefaults standardUserDefaults] objectForKey:@"simplified"] boolValue];
     [buttonHelper gradientBg:self.bgImage width:self.view.frame.size.width];
     
     self.scrollDelegate = [[MainVerticalScroller alloc] init];
@@ -183,13 +184,19 @@
     }else{
         [self setStars:10];
     }
-    self.title = self.ChineseName.text = [self.movieDetailInfo objectForKey:@"CNName"];
+    if(self.simplified){
+        self.movieDescription.text = [self.movieDetailInfo objectForKey:@"CNIntro"];
+        self.title = self.ChineseName.text = [self.movieDetailInfo objectForKey:@"CNName"];
+    }
+    else{
+        self.movieDescription.text = [self.movieDetailInfo objectForKey:@"Intro"];
+        self.title = self.ChineseName.text = [self.movieDetailInfo objectForKey:@"Name"];
+    }
     self.EnglishName.text = [self.movieDetailInfo objectForKey:@"ENName"];
     [self.smallImage sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@?width=90",[self.movieDetailInfo objectForKey:@"PosterUrl"]]] placeholderImage:[UIImage imageNamed:@"img-placeholder.jpg"]];
     
     [self.bgImage sd_setImageWithURL:[NSURL URLWithString:[self.movieDetailInfo objectForKey:@"BannerUrl"]] placeholderImage:[UIImage imageNamed:@"img-placeholder.jpg"]];
     self.releaseDate.text = [NSString stringWithFormat:@"%@ 上映",[[self.movieDetailInfo objectForKey:@"ReleaseDate"]stringByReplacingOccurrencesOfString:@"-" withString:@"/"]];
-    self.movieDescription.text = [self.movieDetailInfo objectForKey:@"Intro"];
     
   /*  if([buttonHelper isLabelTruncated:self.movieDescription]==NO){
         self.readMoreBtn.hidden = YES;

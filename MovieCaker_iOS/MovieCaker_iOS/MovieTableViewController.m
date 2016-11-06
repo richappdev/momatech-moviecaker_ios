@@ -33,6 +33,7 @@
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.simplified = [[[NSUserDefaults standardUserDefaults] objectForKey:@"simplified"] boolValue];
 
 }
 -(void)setNewCircleArray:(int)count{
@@ -132,7 +133,11 @@
    //     NSLog(@"%@",data);
         cell.Id = [data objectForKey:@"ReviewId"];
         cell.videoId = [data objectForKey:@"VideoId"];
-        cell.Title.text = [data objectForKey:@"VideoCNName"];
+        if(self.simplified){
+            cell.Title.text = [data objectForKey:@"VideoCNName"];}
+        else{
+            cell.Title.text = [data objectForKey:@"VideoName"];
+        }
         cell.Content.text = [data objectForKey:@"Review"];
         cell.CreatedOn.text = [[data objectForKey:@"CreateOn"] stringByReplacingOccurrencesOfString:@"-" withString:@"/"];
         cell.CreatedOn.text = [cell.CreatedOn.text substringWithRange:NSMakeRange(0,[cell.CreatedOn.text rangeOfString:@"T"].location)];

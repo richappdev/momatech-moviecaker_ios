@@ -21,4 +21,5 @@
 -(void)setNewCircleArray:(int)count;
 -(void)addCircleEntry;
 @property int page;
+@property BOOL simplified;
 @end

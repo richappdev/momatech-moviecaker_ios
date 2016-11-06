@@ -14,6 +14,7 @@
 
 @interface MovieTwoTableViewController ()
 @property MovieViewController *parentController;
+@property BOOL simplified;
 @end
 
 @implementation MovieTwoTableViewController
@@ -21,11 +22,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    // Uncomment the following line to preserve selection between presentations.
-    // self.clearsSelectionOnViewWillAppear = NO;
-    
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+     self.simplified = [[[NSUserDefaults standardUserDefaults] objectForKey:@"simplified"] boolValue];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -78,7 +75,11 @@
     cell.parent= self;
     NSMutableDictionary *data = [self.data objectAtIndex:indexPath.row];
     cell.data = data;
-    cell.title.text = [data objectForKey:@"CNName"];
+        if(self.simplified){
+            cell.title.text = [data objectForKey:@"CNName"];}
+        else{
+            cell.title.text = [data objectForKey:@"Name"];
+        }
     NSString *url = [NSString stringWithFormat:@"http://www.funmovie.tv/Content/pictures/files/%@?width=88",[data objectForKey:@"Picture"]];
     [cell.image sd_setImageWithURL:[NSURL URLWithString:url] placeholderImage:[UIImage imageNamed:@"img-placeholder.jpg"]];
     cell.imdb.text = [self testNil:[data objectForKey:@"Ratings_IMDB"]];
@@ -119,7 +120,11 @@
         //     NSLog(@"%@",data);
         cell.Id =[data objectForKey:@"ReviewId"];
         cell.videoId = [data objectForKey:@"VideoId"];
-        cell.Title.text = [data objectForKey:@"VideoCNName"];
+        if(self.simplified){
+            cell.Title.text = [data objectForKey:@"VideoCNName"];
+        }else{
+            cell.Title.text = [data objectForKey:@"VideoName"];
+            }
         cell.Content.text = [data objectForKey:@"Review"];
         cell.CreatedOn.text = [[data objectForKey:@"CreateOn"] stringByReplacingOccurrencesOfString:@"-" withString:@"/"];
         cell.CreatedOn.text = [cell.CreatedOn.text substringWithRange:NSMakeRange(0,[cell.CreatedOn.text rangeOfString:@"T"].location)];

@@ -58,6 +58,14 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    NSString * language = [[NSLocale preferredLanguages] objectAtIndex:0];
+    if([language isEqualToString:@"zh-Hans"]){
+        [[NSUserDefaults standardUserDefaults] setObject:[NSNumber numberWithBool:YES] forKey:@"simplified"];
+    }else{
+        [[NSUserDefaults standardUserDefaults] setObject:[NSNumber numberWithBool:NO] forKey:@"simplified"];
+    }
+    
     self.refresh = NO;
     self.notSelected = YES;
     self.scrollView.scrollView = self.imageScroll;
@@ -103,7 +111,7 @@
     self.movieTable2Controller = [[MovieTableViewController alloc] init:1];
     self.movieTableController = [[MovieTableViewController alloc] init:0];
     self.movieTable.scrollEnabled = NO;
-    
+
     [self imageScrollCall];
     [self topicCall];
     [self reviewCall];
@@ -158,11 +166,17 @@
         int width = 255;
         int height = 341;
         int count = 0;
+        BOOL simplified = [[[NSUserDefaults standardUserDefaults] objectForKey:@"simplified"] boolValue];
         self.imageScroll.contentSize = CGSizeMake(width* [returnData count], 341);
         for(NSDictionary *row in returnData){
             [self.returnData addObject:[[NSMutableDictionary alloc] initWithDictionary:row]];
             movieModel *temp = [movieModel alloc];
-            temp.title = [row objectForKey:@"CNName"];
+            if(simplified){
+                temp.title = [row objectForKey:@"CNName"];
+            }
+            else{
+                temp.title = [row objectForKey:@"Name"];
+            }
             temp.rating = [NSString stringWithFormat:@"%@", [row objectForKey:@"AverageScore"]];
             temp.IsViewed = [[row objectForKey:@"IsViewed"]boolValue];
             temp.IsLiked = [[row objectForKey:@"IsLiked"]boolValue];
