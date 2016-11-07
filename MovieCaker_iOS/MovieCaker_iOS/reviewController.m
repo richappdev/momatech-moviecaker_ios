@@ -433,7 +433,7 @@
     self.navigationController.navigationBarHidden = NO;
     [self testFriend];
 }
--(void)addMask{
+-(void)addMask{/*
     CAGradientLayer *maskLayer = [CAGradientLayer layer];
     maskLayer.colors = @[
                          (id)[UIColor whiteColor].CGColor,
@@ -441,7 +441,7 @@
                          (id)[UIColor clearColor].CGColor];
     maskLayer.locations = @[ @0.0f, @0.0f, @1.0f ];
     maskLayer.frame = CGRectMake(0,0, self.view.frame.size.width, self.contentHeight.constant);
-    self.content.layer.mask = maskLayer;
+    self.content.layer.mask = maskLayer;*/
 }
 -(void)moreClick{
     if(self.opened){

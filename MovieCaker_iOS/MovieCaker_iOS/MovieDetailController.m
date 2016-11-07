@@ -406,7 +406,7 @@
         }
     }
 }
--(void)addMask{
+-(void)addMask{/*
     CAGradientLayer *maskLayer = [CAGradientLayer layer];
     maskLayer.colors = @[
                          (id)[UIColor whiteColor].CGColor,
@@ -414,7 +414,7 @@
                          (id)[UIColor clearColor].CGColor];
     maskLayer.locations = @[ @0.0f, @0.0f, @1.0f ];
     maskLayer.frame = CGRectMake(0,0, self.view.frame.size.width, self.movieDescriptionHeight.constant);
-    self.movieDescription.layer.mask = maskLayer;
+    self.movieDescription.layer.mask = maskLayer;*/
 }
 -(void)moreClick{
     if(self.opened){
