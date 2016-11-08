@@ -52,6 +52,7 @@
 @property (strong, nonatomic) IBOutlet UIImageView *iconLikeIndex;
 @property (strong, nonatomic) IBOutlet UIImageView *iconPoketIndex;
 @property BOOL sync;
+@property BOOL simplified;
 @end
 
 @implementation MovieController
@@ -62,8 +63,10 @@
     NSString * language = [[NSLocale preferredLanguages] objectAtIndex:0];
     if([language isEqualToString:@"zh-Hans"]){
         [[NSUserDefaults standardUserDefaults] setObject:[NSNumber numberWithBool:YES] forKey:@"simplified"];
+        self.simplified = YES;
     }else{
         [[NSUserDefaults standardUserDefaults] setObject:[NSNumber numberWithBool:NO] forKey:@"simplified"];
+        self.simplified = NO;
     }
     
     self.refresh = NO;
@@ -166,12 +169,11 @@
         int width = 255;
         int height = 341;
         int count = 0;
-        BOOL simplified = [[[NSUserDefaults standardUserDefaults] objectForKey:@"simplified"] boolValue];
         self.imageScroll.contentSize = CGSizeMake(width* [returnData count], 341);
         for(NSDictionary *row in returnData){
             [self.returnData addObject:[[NSMutableDictionary alloc] initWithDictionary:row]];
             movieModel *temp = [movieModel alloc];
-            if(simplified){
+            if(self.simplified){
                 temp.title = [row objectForKey:@"CNName"];
             }
             else{
