@@ -112,7 +112,7 @@
     self.movieTableController = [[MovieTableViewController alloc] init:0];
     self.movieTable.scrollEnabled = NO;
 
-    [self 	];
+    [self imageScrollCall];
     [self topicCall];
     [self reviewCall];
 
