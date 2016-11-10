@@ -206,7 +206,8 @@
             UILabel *label = [[UILabel alloc]initWithFrame:CGRectMake(3, 36, 52, 21)];
             if(![[row objectForKey:@"AverageScore"] isKindOfClass:[NSNull class]]){
                 label.text = [NSString stringWithFormat:@"%0.1f", [[row objectForKey:@"AverageScore"]floatValue]];}else{
-                label.text = @"10";
+                label.text = @"";
+                star.image = [UIImage imageWithIcon:@"fa-star-o" backgroundColor:[UIColor clearColor] iconColor:[UIColor whiteColor] andSize:CGSizeMake(18, 18)];
                 }
             label.textColor = [UIColor whiteColor];
             label.textAlignment = NSTextAlignmentCenter;
