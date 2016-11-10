@@ -234,7 +234,7 @@
     
     UIImageView *view = [[UIImageView alloc]init];
     view.frame = CGRectMake(margin+width*count, 0, width-margin*2, height);
-    [view sd_setImageWithURL:[NSURL URLWithString:[row objectForKey:@"Avatar"]]  placeholderImage:[UIImage imageNamed:@"img-placeholder.jpg"]];
+    [view sd_setImageWithURL:[NSURL URLWithString:[row objectForKey:@"Avatar"]]  placeholderImage:[UIImage imageNamed:@"nobody-big.jpg"]];
     UILabel *label  = [[UILabel alloc]initWithFrame:CGRectMake(margin+width*count, height, width-margin*2, 20)];
     label.textAlignment =NSTextAlignmentLeft;
     label.textColor  = [[UIColor alloc]initWithRed:51.0/255.0f green:68.0/255.0f blue:85.0/255.0f alpha:1];
