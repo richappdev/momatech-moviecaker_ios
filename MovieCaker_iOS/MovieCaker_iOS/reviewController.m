@@ -213,7 +213,8 @@
 -(void)changeReal{
     [self.bgImage sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@",[self.data objectForKey:@"VideoPosterUrl"]]] placeholderImage:[UIImage imageNamed:@"img-placeholder.jpg"]];
     [self.userAvatar sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@/Uploads/UserAvatar/%@",[[AustinApi sharedInstance] getBaseUrl],[self.data objectForKey:@"UserAvatar"]]]];
-    self.title = self.UserNickName.text = [self.data objectForKey:@"UserNickName"];
+    self.title = [self.data objectForKey:@"VideoName"];
+    self.UserNickName.text = [self.data objectForKey:@"UserNickName"];
     self.reviewTitle.text = [NSString stringWithFormat:@"%@ 的影評", [self.data objectForKey:@"VideoName"]];
     [self.starView setStars:[[self.data objectForKey:@"OwnerLinkVideo_Score"] integerValue]];
     
