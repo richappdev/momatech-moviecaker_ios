@@ -60,7 +60,8 @@
     [super viewDidLoad];
     
     NSString * language = [[NSLocale preferredLanguages] objectAtIndex:0];
-    if([language isEqualToString:@"zh-Hans"]){
+    NSLog(@"%@",language);
+    if([language containsString:@"zh-Hans"]){
         [[NSUserDefaults standardUserDefaults] setObject:[NSNumber numberWithBool:YES] forKey:@"simplified"];
     }else{
         [[NSUserDefaults standardUserDefaults] setObject:[NSNumber numberWithBool:NO] forKey:@"simplified"];
@@ -171,7 +172,7 @@
             [self.returnData addObject:[[NSMutableDictionary alloc] initWithDictionary:row]];
             movieModel *temp = [movieModel alloc];
             NSString * language = [[NSLocale preferredLanguages] objectAtIndex:0];
-            if([language isEqualToString:@"zh-Hans"]){
+            if([language containsString:@"zh-Hans"]){
                 temp.title = [row objectForKey:@"CNName"];
             }
             else{
