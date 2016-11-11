@@ -4279,20 +4279,28 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9dY-hK-Fff">
                                 <rect key="frame" x="-4" y="64" width="328" height="40"/>
                                 <subviews>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ud1-Gk-k8B">
+                                        <rect key="frame" x="49" y="37" width="68" height="3"/>
+                                        <color key="backgroundColor" red="0.30196078431372547" green="0.71372549019607845" blue="0.67450980392156867" alpha="1" colorSpace="calibratedRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="68" id="089-eS-OmN"/>
+                                            <constraint firstAttribute="height" constant="3" id="vmx-oa-mmx"/>
+                                        </constraints>
+                                    </view>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="我的好友" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QfK-z9-9NA">
-                                        <rect key="frame" x="53" y="12" width="56" height="15"/>
+                                        <rect key="frame" x="49" y="12" width="64" height="15"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="15" id="5Pc-Kj-hav"/>
-                                            <constraint firstAttribute="width" constant="56" id="Mh9-qp-PDT"/>
+                                            <constraint firstAttribute="width" constant="64" id="Mh9-qp-PDT"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="14"/>
                                         <color key="textColor" red="0.30196078431372547" green="0.71372549019607845" blue="0.67450980392156867" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" tag="1" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="收到邀請" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AZk-sz-ZD9">
-                                        <rect key="frame" x="136" y="12" width="56" height="15"/>
+                                        <rect key="frame" x="132" y="12" width="64" height="15"/>
                                         <constraints>
-                                            <constraint firstAttribute="width" constant="56" id="1lk-Om-sj5"/>
+                                            <constraint firstAttribute="width" constant="64" id="1lk-Om-sj5"/>
                                             <constraint firstAttribute="height" constant="15" id="xm8-W7-R13"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="14"/>
@@ -4300,23 +4308,15 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" tag="2" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="送出邀請" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mVA-Uq-QXG">
-                                        <rect key="frame" x="219" y="12" width="56" height="15"/>
+                                        <rect key="frame" x="215" y="12" width="64" height="15"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="15" id="gXe-PI-C9s"/>
-                                            <constraint firstAttribute="width" constant="56" id="w0l-nL-3oy"/>
+                                            <constraint firstAttribute="width" constant="64" id="w0l-nL-3oy"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="14"/>
                                         <color key="textColor" red="0.47450980390000003" green="0.48627450979999998" blue="0.51372549020000002" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ud1-Gk-k8B">
-                                        <rect key="frame" x="49" y="37" width="64" height="3"/>
-                                        <color key="backgroundColor" red="0.30196078431372547" green="0.71372549019607845" blue="0.67450980392156867" alpha="1" colorSpace="calibratedRGB"/>
-                                        <constraints>
-                                            <constraint firstAttribute="width" constant="64" id="089-eS-OmN"/>
-                                            <constraint firstAttribute="height" constant="3" id="vmx-oa-mmx"/>
-                                        </constraints>
-                                    </view>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
@@ -4324,10 +4324,10 @@
                                     <constraint firstItem="mVA-Uq-QXG" firstAttribute="top" secondItem="9dY-hK-Fff" secondAttribute="top" constant="12" id="2Ml-Kb-EYC"/>
                                     <constraint firstItem="AZk-sz-ZD9" firstAttribute="top" secondItem="9dY-hK-Fff" secondAttribute="top" constant="12" id="6wL-Ec-aK6"/>
                                     <constraint firstAttribute="height" constant="40" id="8HH-c8-wif"/>
-                                    <constraint firstItem="AZk-sz-ZD9" firstAttribute="leading" secondItem="ud1-Gk-k8B" secondAttribute="trailing" constant="23" id="DUM-a8-dbJ"/>
-                                    <constraint firstItem="mVA-Uq-QXG" firstAttribute="leading" secondItem="AZk-sz-ZD9" secondAttribute="trailing" constant="27" id="Jid-JW-4rg"/>
+                                    <constraint firstItem="AZk-sz-ZD9" firstAttribute="leading" secondItem="ud1-Gk-k8B" secondAttribute="trailing" constant="15" id="DUM-a8-dbJ"/>
+                                    <constraint firstItem="mVA-Uq-QXG" firstAttribute="leading" secondItem="AZk-sz-ZD9" secondAttribute="trailing" constant="19" id="Jid-JW-4rg"/>
                                     <constraint firstItem="AZk-sz-ZD9" firstAttribute="centerX" secondItem="9dY-hK-Fff" secondAttribute="centerX" id="Qmr-rC-9JO"/>
-                                    <constraint firstItem="AZk-sz-ZD9" firstAttribute="leading" secondItem="QfK-z9-9NA" secondAttribute="trailing" constant="27" id="fEh-Gc-CBq"/>
+                                    <constraint firstItem="AZk-sz-ZD9" firstAttribute="leading" secondItem="QfK-z9-9NA" secondAttribute="trailing" constant="19" id="fEh-Gc-CBq"/>
                                     <constraint firstItem="QfK-z9-9NA" firstAttribute="top" secondItem="9dY-hK-Fff" secondAttribute="top" constant="12" id="lwD-bw-IpV"/>
                                 </constraints>
                             </view>

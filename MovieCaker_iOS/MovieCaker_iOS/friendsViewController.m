@@ -115,7 +115,7 @@
     [UIView beginAnimations:nil context:nil];
     [UIView setAnimationDuration:0.2];
     
-    self.bar.frame = CGRectMake(label.frame.origin.x-4, label.frame.origin.y+25, 64, 3);
+    self.bar.frame = CGRectMake(label.frame.origin.x, label.frame.origin.y+25, 68, 3);
     
     [UIView commitAnimations];
     
