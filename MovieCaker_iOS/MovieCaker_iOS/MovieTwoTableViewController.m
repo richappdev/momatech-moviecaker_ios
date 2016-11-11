@@ -21,9 +21,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
-     self.simplified = [[[NSUserDefaults standardUserDefaults] objectForKey:@"simplified"] boolValue];
-}
+    }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
@@ -32,7 +30,8 @@
 -(void)ParentController:(MovieViewController *)movie{
     self.parentController = movie;
     self.tableView.allowsSelection = YES;
-    NSLog(@"bbb");
+    self.simplified = [[[NSUserDefaults standardUserDefaults] objectForKey:@"simplified"] boolValue];
+    NSLog(@"simplified%d",self.simplified);
 }
 #pragma mark - Table view data source
 

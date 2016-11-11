@@ -29,12 +29,12 @@
         [self setNewCircleArray:100];
         self.page=999;
     }
+    self.simplified = [[[NSUserDefaults standardUserDefaults] objectForKey:@"simplified"] boolValue];
+    NSLog(@"%d",self.simplified);
     return self;
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.simplified = [[[NSUserDefaults standardUserDefaults] objectForKey:@"simplified"] boolValue];
-
 }
 -(void)setNewCircleArray:(int)count{
 
