@@ -187,6 +187,7 @@
     self.EnglishName.text = [self.movieDetailInfo objectForKey:@"ENName"];
     [self.smallImage sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@?width=90",[self.movieDetailInfo objectForKey:@"PosterUrl"]]] placeholderImage:[UIImage imageNamed:@"img-placeholder.jpg"]];
     
+    self.bgImage.contentMode = UIViewContentModeScaleAspectFill;
     [self.bgImage sd_setImageWithURL:[NSURL URLWithString:[self.movieDetailInfo objectForKey:@"BannerUrl"]] placeholderImage:[UIImage imageNamed:@"img-placeholder.jpg"]];
     self.releaseDate.text = [NSString stringWithFormat:@"%@ 上映",[[self.movieDetailInfo objectForKey:@"ReleaseDate"]stringByReplacingOccurrencesOfString:@"-" withString:@"/"]];
     self.movieDescription.text = [self.movieDetailInfo objectForKey:@"Intro"];
