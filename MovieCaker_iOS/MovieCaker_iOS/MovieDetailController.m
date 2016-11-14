@@ -60,6 +60,7 @@
 @property (strong, nonatomic) IBOutlet UIView *moreBtn;
 @property (strong, nonatomic) IBOutlet UIImageView *Chervon;
 @property (strong, nonatomic) IBOutlet UILabel *moreLabel;
+@property UITapGestureRecognizer *watchGesture;
 @property BOOL newReview;
 @property BOOL opened;
 @property BOOL simplified;
@@ -126,9 +127,12 @@
     }];
     [self addIndexGesture:self.reviewBtn];
     [self addIndexGesture:self.likeBtn];
-    [self addIndexGesture:self.watchBtn];
+   // [self addIndexGesture:self.watchBtn];
     [self addIndexGesture:self.wannaBtn];
     [self addIndexGesture:self.shareBtn];
+    
+    UITapGestureRecognizer *indexTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(watchClick:)];
+    [self.watchBtn addGestureRecognizer:indexTap];
     
     [self addMask];
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(moreClick)];
@@ -320,6 +324,28 @@
             vc.sync = YES;
             self.syncReview = NO;
         }}
+    }
+}
+-(void)watchClick:(UITapGestureRecognizer *)gesture{
+    self.watchGesture =gesture;
+    if([[self.movieDetailInfo objectForKey:@"IsViewed"]boolValue]){
+        UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"提示"
+                                                       message:@"你確定要取消看過嗎？"
+                                                      delegate:self
+                                             cancelButtonTitle:@"好"
+                                             otherButtonTitles:@"不要",nil];
+        [alert show];
+    }else{
+        [self indexClick:gesture];
+    }
+
+}
+
+- (void) alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    if (buttonIndex == 0)
+    {
+        [self indexClick:self.watchGesture];
     }
 }
 -(void)indexClick:(UITapGestureRecognizer *)gesture{
