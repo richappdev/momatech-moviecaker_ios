@@ -127,12 +127,16 @@
     }];
     [self addIndexGesture:self.reviewBtn];
     [self addIndexGesture:self.likeBtn];
-   // [self addIndexGesture:self.watchBtn];
-    [self addIndexGesture:self.wannaBtn];
+    // [self addIndexGesture:self.watchBtn];
+    //[self addIndexGesture:self.wannaBtn];
     [self addIndexGesture:self.shareBtn];
     
     UITapGestureRecognizer *indexTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(watchClick:)];
     [self.watchBtn addGestureRecognizer:indexTap];
+    
+    
+    UITapGestureRecognizer *indexTap2 = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(wantWatchClick:)];
+    [self.wannaBtn addGestureRecognizer:indexTap2];
     
     [self addMask];
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(moreClick)];
@@ -328,7 +332,10 @@
 }
 -(void)watchClick:(UITapGestureRecognizer *)gesture{
     self.watchGesture =gesture;
-    if([[self.movieDetailInfo objectForKey:@"IsViewed"]boolValue]){
+    
+    if([[self.movieDetailInfo objectForKey:@"IsWantView"]boolValue]&&![[self.movieDetailInfo objectForKey:@"IsViewed"]boolValue]){
+        [self failAlert];
+    }else if([[self.movieDetailInfo objectForKey:@"IsViewed"]boolValue]){
         UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"提示"
                                                        message:@"你確定要取消看過嗎？"
                                                       delegate:self
@@ -339,6 +346,18 @@
         [self indexClick:gesture];
     }
 
+}
+
+-(void)wantWatchClick:(UITapGestureRecognizer*)gesture{
+    if([[self.movieDetailInfo objectForKey:@"IsViewed"]boolValue]&&![[self.movieDetailInfo objectForKey:@"IsWantView"]boolValue]){
+        [self failAlert];
+    }else{
+        [self indexClick:gesture];
+    }
+}
+-(void)failAlert{
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"錯誤" message:@"想看跟看過不能共存" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil,nil];
+    [alert show];
 }
 
 - (void) alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
