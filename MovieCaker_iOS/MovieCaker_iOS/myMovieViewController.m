@@ -23,13 +23,13 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     if(self.type==0){
-        self.title=@"我看過的電影";
+        self.title = NSLocalizedStringFromTableInBundle(@"mywatch.title", @"Main", [NSBundle mainBundle], nil);
     }
     if(self.type==1){
-        self.title=@"我喜歡的電影";
+        self.title = NSLocalizedStringFromTableInBundle(@"mylike.title", @"Main", [NSBundle mainBundle], nil);
     }
     if(self.type==2){
-        self.title=@"我想看的電影";
+        self.title = NSLocalizedStringFromTableInBundle(@"mywant.title", @"Main", [NSBundle mainBundle], nil);
     }
     self.helper = [[MainVerticalScroller alloc]init];
     self.helper.nav = self.navigationController;

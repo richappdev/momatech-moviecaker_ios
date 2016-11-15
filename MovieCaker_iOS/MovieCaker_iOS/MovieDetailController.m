@@ -60,8 +60,10 @@
 @property (strong, nonatomic) IBOutlet UIView *moreBtn;
 @property (strong, nonatomic) IBOutlet UIImageView *Chervon;
 @property (strong, nonatomic) IBOutlet UILabel *moreLabel;
+@property UITapGestureRecognizer *watchGesture;
 @property BOOL newReview;
 @property BOOL opened;
+@property BOOL simplified;
 @property MainVerticalScroller *scrollDelegate;
 @end
 
@@ -69,7 +71,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
+    self.simplified = [[[NSUserDefaults standardUserDefaults] objectForKey:@"simplified"] boolValue];
     [buttonHelper gradientBg:self.bgImage width:self.view.frame.size.width];
     
     self.scrollDelegate = [[MainVerticalScroller alloc] init];
@@ -125,9 +127,16 @@
     }];
     [self addIndexGesture:self.reviewBtn];
     [self addIndexGesture:self.likeBtn];
-    [self addIndexGesture:self.watchBtn];
-    [self addIndexGesture:self.wannaBtn];
+    // [self addIndexGesture:self.watchBtn];
+    //[self addIndexGesture:self.wannaBtn];
     [self addIndexGesture:self.shareBtn];
+    
+    UITapGestureRecognizer *indexTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(watchClick:)];
+    [self.watchBtn addGestureRecognizer:indexTap];
+    
+    
+    UITapGestureRecognizer *indexTap2 = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(wantWatchClick:)];
+    [self.wannaBtn addGestureRecognizer:indexTap2];
     
     [self addMask];
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(moreClick)];
@@ -183,14 +192,20 @@
     }else{
         [self setStars:10];
     }
-    self.title = self.ChineseName.text = [self.movieDetailInfo objectForKey:@"CNName"];
+    if(self.simplified){
+        self.movieDescription.text = [self.movieDetailInfo objectForKey:@"CNIntro"];
+        self.title = self.ChineseName.text = [self.movieDetailInfo objectForKey:@"CNName"];
+    }
+    else{
+        self.movieDescription.text = [self.movieDetailInfo objectForKey:@"Intro"];
+        self.title = self.ChineseName.text = [self.movieDetailInfo objectForKey:@"Name"];
+    }
     self.EnglishName.text = [self.movieDetailInfo objectForKey:@"ENName"];
     [self.smallImage sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@?width=90",[self.movieDetailInfo objectForKey:@"PosterUrl"]]] placeholderImage:[UIImage imageNamed:@"img-placeholder.jpg"]];
     
     self.bgImage.contentMode = UIViewContentModeScaleAspectFill;
     [self.bgImage sd_setImageWithURL:[NSURL URLWithString:[self.movieDetailInfo objectForKey:@"BannerUrl"]] placeholderImage:[UIImage imageNamed:@"img-placeholder.jpg"]];
     self.releaseDate.text = [NSString stringWithFormat:@"%@ 上映",[[self.movieDetailInfo objectForKey:@"ReleaseDate"]stringByReplacingOccurrencesOfString:@"-" withString:@"/"]];
-    self.movieDescription.text = [self.movieDetailInfo objectForKey:@"Intro"];
     
   /*  if([buttonHelper isLabelTruncated:self.movieDescription]==NO){
         self.readMoreBtn.hidden = YES;
@@ -228,7 +243,7 @@
     
     UIImageView *view = [[UIImageView alloc]init];
     view.frame = CGRectMake(margin+width*count, 0, width-margin*2, height);
-    [view sd_setImageWithURL:[NSURL URLWithString:[row objectForKey:@"Avatar"]]  placeholderImage:[UIImage imageNamed:@"img-placeholder.jpg"]];
+    [view sd_setImageWithURL:[NSURL URLWithString:[row objectForKey:@"Avatar"]]  placeholderImage:[UIImage imageNamed:@"nobody-big.jpg"]];
     UILabel *label  = [[UILabel alloc]initWithFrame:CGRectMake(margin+width*count, height, width-margin*2, 20)];
     label.textAlignment =NSTextAlignmentLeft;
     label.textColor  = [[UIColor alloc]initWithRed:51.0/255.0f green:68.0/255.0f blue:85.0/255.0f alpha:1];
@@ -316,6 +331,43 @@
         }}
     }
 }
+-(void)watchClick:(UITapGestureRecognizer *)gesture{
+    self.watchGesture =gesture;
+    
+    if([[self.movieDetailInfo objectForKey:@"IsWantView"]boolValue]&&![[self.movieDetailInfo objectForKey:@"IsViewed"]boolValue]){
+        [self failAlert];
+    }else if([[self.movieDetailInfo objectForKey:@"IsViewed"]boolValue]){
+        UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"提示"
+                                                       message:@"你確定要取消看過嗎？"
+                                                      delegate:self
+                                             cancelButtonTitle:@"好"
+                                             otherButtonTitles:@"不要",nil];
+        [alert show];
+    }else{
+        [self indexClick:gesture];
+    }
+
+}
+
+-(void)wantWatchClick:(UITapGestureRecognizer*)gesture{
+    if([[self.movieDetailInfo objectForKey:@"IsViewed"]boolValue]&&![[self.movieDetailInfo objectForKey:@"IsWantView"]boolValue]){
+        [self failAlert];
+    }else{
+        [self indexClick:gesture];
+    }
+}
+-(void)failAlert{
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"錯誤" message:@"想看跟看過不能共存" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil,nil];
+    [alert show];
+}
+
+- (void) alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    if (buttonIndex == 0)
+    {
+        [self indexClick:self.watchGesture];
+    }
+}
 -(void)indexClick:(UITapGestureRecognizer *)gesture{
     if([[NSUserDefaults standardUserDefaults] objectForKey:@"userkey"]==nil){
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"注意" message:@"请登入" delegate:self cancelButtonTitle:@"关闭" otherButtonTitles:nil,nil];
@@ -400,7 +452,7 @@
         }
     }
 }
--(void)addMask{
+-(void)addMask{/*
     CAGradientLayer *maskLayer = [CAGradientLayer layer];
     maskLayer.colors = @[
                          (id)[UIColor whiteColor].CGColor,
@@ -408,7 +460,7 @@
                          (id)[UIColor clearColor].CGColor];
     maskLayer.locations = @[ @0.0f, @0.0f, @1.0f ];
     maskLayer.frame = CGRectMake(0,0, self.view.frame.size.width, self.movieDescriptionHeight.constant);
-    self.movieDescription.layer.mask = maskLayer;
+    self.movieDescription.layer.mask = maskLayer;*/
 }
 -(void)moreClick{
     if(self.opened){

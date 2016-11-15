@@ -213,7 +213,8 @@
 -(void)changeReal{
     [self.bgImage sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@",[self.data objectForKey:@"VideoPosterUrl"]]] placeholderImage:[UIImage imageNamed:@"img-placeholder.jpg"]];
     [self.userAvatar sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@/Uploads/UserAvatar/%@",[[AustinApi sharedInstance] getBaseUrl],[self.data objectForKey:@"UserAvatar"]]]];
-    self.title = self.UserNickName.text = [self.data objectForKey:@"UserNickName"];
+    self.title = [self.data objectForKey:@"VideoName"];
+    self.UserNickName.text = [self.data objectForKey:@"UserNickName"];
     self.reviewTitle.text = [NSString stringWithFormat:@"%@ 的影評", [self.data objectForKey:@"VideoName"]];
     [self.starView setStars:[[self.data objectForKey:@"OwnerLinkVideo_Score"] integerValue]];
     
@@ -433,7 +434,7 @@
     self.navigationController.navigationBarHidden = NO;
     [self testFriend];
 }
--(void)addMask{
+-(void)addMask{/*
     CAGradientLayer *maskLayer = [CAGradientLayer layer];
     maskLayer.colors = @[
                          (id)[UIColor whiteColor].CGColor,
@@ -441,7 +442,7 @@
                          (id)[UIColor clearColor].CGColor];
     maskLayer.locations = @[ @0.0f, @0.0f, @1.0f ];
     maskLayer.frame = CGRectMake(0,0, self.view.frame.size.width, self.contentHeight.constant);
-    self.content.layer.mask = maskLayer;
+    self.content.layer.mask = maskLayer;*/
 }
 -(void)moreClick{
     if(self.opened){

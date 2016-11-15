@@ -58,6 +58,15 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    NSString * language = [[NSLocale preferredLanguages] objectAtIndex:0];
+    NSLog(@"%@",language);
+    if([language containsString:@"zh-Hans"]){
+        [[NSUserDefaults standardUserDefaults] setObject:[NSNumber numberWithBool:YES] forKey:@"simplified"];
+    }else{
+        [[NSUserDefaults standardUserDefaults] setObject:[NSNumber numberWithBool:NO] forKey:@"simplified"];
+    }
+    
     self.refresh = NO;
     self.notSelected = YES;
     self.scrollView.scrollView = self.imageScroll;
@@ -80,7 +89,7 @@
     [self addIndexGesture:self.iconTopicIndex];
     [self addIndexGesture:self.moreBtn];
     [self addIndexGesture:self.moreBtn2];
-    self.title = @"首頁";
+    self.title = NSLocalizedStringFromTableInBundle(@"acW-dT-cKf.title", @"Main", [NSBundle mainBundle], nil);
     
     self.scrollDelegate = [[MainVerticalScroller alloc] init];
     self.MainScroll.delegate = self.scrollDelegate;
@@ -103,7 +112,7 @@
     self.movieTable2Controller = [[MovieTableViewController alloc] init:1];
     self.movieTableController = [[MovieTableViewController alloc] init:0];
     self.movieTable.scrollEnabled = NO;
-    
+
     [self imageScrollCall];
     [self topicCall];
     [self reviewCall];
@@ -162,7 +171,13 @@
         for(NSDictionary *row in returnData){
             [self.returnData addObject:[[NSMutableDictionary alloc] initWithDictionary:row]];
             movieModel *temp = [movieModel alloc];
-            temp.title = [row objectForKey:@"CNName"];
+            NSString * language = [[NSLocale preferredLanguages] objectAtIndex:0];
+            if([language containsString:@"zh-Hans"]){
+                temp.title = [row objectForKey:@"CNName"];
+            }
+            else{
+                temp.title = [row objectForKey:@"Name"];
+            }
             temp.rating = [NSString stringWithFormat:@"%@", [row objectForKey:@"AverageScore"]];
             temp.IsViewed = [[row objectForKey:@"IsViewed"]boolValue];
             temp.IsLiked = [[row objectForKey:@"IsLiked"]boolValue];
@@ -192,7 +207,8 @@
             UILabel *label = [[UILabel alloc]initWithFrame:CGRectMake(3, 36, 52, 21)];
             if(![[row objectForKey:@"AverageScore"] isKindOfClass:[NSNull class]]){
                 label.text = [NSString stringWithFormat:@"%0.1f", [[row objectForKey:@"AverageScore"]floatValue]];}else{
-                label.text = @"10";
+                label.text = @"";
+                star.image = [UIImage imageWithIcon:@"fa-star-o" backgroundColor:[UIColor clearColor] iconColor:[UIColor whiteColor] andSize:CGSizeMake(18, 18)];
                 }
             label.textColor = [UIColor whiteColor];
             label.textAlignment = NSTextAlignmentCenter;
