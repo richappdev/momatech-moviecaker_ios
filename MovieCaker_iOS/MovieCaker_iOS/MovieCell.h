@@ -26,6 +26,7 @@
 @property (strong, nonatomic) IBOutlet UIImageView *four;
 @property (strong, nonatomic) IBOutlet UIImageView *five;
 @property (strong, nonatomic) IBOutlet UILabel *viewCount;
+@property NSString *userId;
 @property NSMutableDictionary *data;
 @property NSArray *imageArray;
 @property NSArray *labelArray;
