@@ -131,6 +131,7 @@
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         NSDictionary *data =[self.data objectAtIndex:indexPath.row];
    //     NSLog(@"%@",data);
+        cell.userId = [[data objectForKey:@"UserId"] stringValue];
         cell.Id = [data objectForKey:@"ReviewId"];
         cell.videoId = [data objectForKey:@"VideoId"];
         if(self.simplified){

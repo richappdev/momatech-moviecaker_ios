@@ -28,6 +28,7 @@
 @property (strong, nonatomic) IBOutlet UILabel *Views;
 @property (strong, nonatomic) IBOutlet UILabel *Author;
 @property (strong, nonatomic) IBOutlet UIImageView *Heart;
+@property NSString *userId;
 @property NSArray *starArray;
 -(void)setStars:(int)rating;
 -(void)setLikeState:(BOOL)state;
