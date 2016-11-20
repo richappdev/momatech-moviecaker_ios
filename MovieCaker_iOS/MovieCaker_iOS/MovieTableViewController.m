@@ -160,6 +160,7 @@
         }else{
             cell.Heart.image = [UIImage imageNamed:@"iconHeartListLiked.png"];
         }
+        cell.likeLabel.text = [NSString stringWithFormat:@"喜歡   %@",[data objectForKey:@"LikedNum"]];
         [cell setLikeState:[[data objectForKey:@"IsLiked"] boolValue]];
         [cell setShareState:[[data objectForKey:@"IsShared"] boolValue]];
         cell.parent =self;

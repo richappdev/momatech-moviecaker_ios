@@ -1542,6 +1542,7 @@
                                                     <outlet property="Views" destination="da0-nY-Bxd" id="NfL-Lq-5bq"/>
                                                     <outlet property="createdOn" destination="GJX-p0-RCe" id="jrN-LB-XY3"/>
                                                     <outlet property="likeBtn" destination="fHG-JM-2bq" id="CFA-IH-k7Q"/>
+                                                    <outlet property="likeLabel" destination="c2T-tS-1qm" id="enm-E2-iMQ"/>
                                                     <outlet property="mainPic" destination="OQu-ul-5C4" id="zKX-yK-rzD"/>
                                                     <outlet property="shareBtn" destination="tFz-Jm-JT0" id="UkI-Hs-QgQ"/>
                                                     <outlet property="star1" destination="5mc-Qo-h0H" id="CDg-F1-xpF"/>
@@ -3849,7 +3850,7 @@
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="MovieCell" rowHeight="300" id="GrC-cf-EE8" customClass="MovieCell">
-                                        <rect key="frame" x="0.0" y="28" width="320" height="300"/>
+                                        <rect key="frame" x="0.0" y="92" width="320" height="300"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="GrC-cf-EE8" id="3mc-8T-HDW">
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="299"/>

@@ -30,6 +30,7 @@
 @property (strong, nonatomic) IBOutlet UIImageView *Heart;
 @property NSString *userId;
 @property NSArray *starArray;
+@property (strong, nonatomic) IBOutlet UILabel *likeLabel;
 -(void)setStars:(int)rating;
 -(void)setLikeState:(BOOL)state;
 -(void)setShareState:(BOOL)state;
