@@ -61,7 +61,7 @@
                                     <constraint firstItem="EM0-KI-8sb" firstAttribute="leading" secondItem="S5Z-Qd-37I" secondAttribute="trailing" constant="8" id="wry-dA-omB"/>
                                 </constraints>
                             </view>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="f4g-qb-LNl">
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="f4g-qb-LNl">
                                 <rect key="frame" x="-4" y="-108" width="328" height="563"/>
                                 <subviews>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="on" translatesAutoresizingMaskIntoConstraints="NO" id="loY-Dg-I61">
@@ -1190,6 +1190,7 @@
                                                     <outlet property="five" destination="8w2-dV-j5a" id="XPb-cZ-ASZ"/>
                                                     <outlet property="four" destination="nrG-0K-1gd" id="2BA-08-wHq"/>
                                                     <outlet property="likeBtn" destination="ZtF-nm-wZB" id="sib-LW-kEp"/>
+                                                    <outlet property="likeLabel" destination="v3R-Gy-JvX" id="WxW-Hw-VIs"/>
                                                     <outlet property="one" destination="1ZY-19-HnJ" id="ocI-iK-0a0"/>
                                                     <outlet property="percentageLabel" destination="6E4-d2-f2L" id="GAw-cC-sGL"/>
                                                     <outlet property="shareBtn" destination="hDi-F2-l5D" id="Jaj-vz-oor"/>
@@ -1752,7 +1753,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dep-Bu-YLG">
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="dep-Bu-YLG">
                                 <rect key="frame" x="-4" y="-64" width="328" height="583"/>
                                 <subviews>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="on" translatesAutoresizingMaskIntoConstraints="NO" id="iDB-9S-VRO">
@@ -4839,7 +4840,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hpU-nl-EIH">
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="hpU-nl-EIH">
                                 <rect key="frame" x="0.0" y="-64" width="414" height="751"/>
                                 <subviews>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="img-placeholder" translatesAutoresizingMaskIntoConstraints="NO" id="ApQ-on-j71">
@@ -7685,6 +7686,7 @@
                                             <outlet property="five" destination="WrG-Xr-930" id="buD-BW-dMX"/>
                                             <outlet property="four" destination="9J0-9J-sOG" id="KBT-Fk-LT8"/>
                                             <outlet property="likeBtn" destination="X8F-QE-UTn" id="NO8-7V-w8y"/>
+                                            <outlet property="likeLabel" destination="Ws6-r0-AYx" id="Qsg-Ra-Wy3"/>
                                             <outlet property="one" destination="WVx-KA-ntX" id="8jK-9I-jzU"/>
                                             <outlet property="percentageLabel" destination="A2v-fq-v4j" id="U0A-CG-Tvw"/>
                                             <outlet property="shareBtn" destination="3BT-EB-HSc" id="Vgt-Og-dVH"/>
@@ -7912,8 +7914,8 @@
         <image name="tabbarBg" width="80" height="49"/>
     </resources>
     <inferredMetricsTieBreakers>
+        <segue reference="PzN-K3-JBc"/>
         <segue reference="Hgx-67-v6k"/>
-        <segue reference="ahc-KO-PJx"/>
         <segue reference="ABz-EY-h1x"/>
     </inferredMetricsTieBreakers>
 </document>

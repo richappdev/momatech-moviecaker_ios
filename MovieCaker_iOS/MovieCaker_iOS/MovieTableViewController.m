@@ -86,6 +86,7 @@
         }
     MovieCell *cell = [tableView dequeueReusableCellWithIdentifier:@"MovieCell" forIndexPath:indexPath];
         cell.data = [self.data objectAtIndex:indexPath.row];
+        cell.likeLabel.text = [NSString stringWithFormat:@"喜歡   %@",[[self.data objectAtIndex:indexPath.row] objectForKey:@"LikeNum"]];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         cell.userId = [[[[self.data objectAtIndex:indexPath.row]objectForKey:@"Author"]objectForKey:@"Id"]stringValue];
         cell.Id = [[self.data objectAtIndex:indexPath.row]objectForKey:@"Id"];
