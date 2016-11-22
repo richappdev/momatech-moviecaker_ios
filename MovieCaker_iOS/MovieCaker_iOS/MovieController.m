@@ -245,6 +245,8 @@
 }
 -(void)viewWillAppear:(BOOL)animated{
     [self.navigationController setNavigationBarHidden:NO];
+    [self.MainScroll setContentOffset:CGPointZero];
+    [self.scrollDelegate disappear];
     self.notSelected = YES;
     self.MainScroll.delegate = self.scrollDelegate;
     if(self.refresh){
@@ -262,6 +264,7 @@
         [self imageScrollCall];
         [self topicCall];
         [self reviewCall];
+        
     }else{
         int indexOfPage = self.imageScroll.contentOffset.x / self.imageScroll.frame.size.width;
         [self setMovieDetails:[self.movieArray objectAtIndex:indexOfPage] blur:YES];

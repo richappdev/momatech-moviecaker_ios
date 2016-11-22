@@ -34,7 +34,13 @@
         
     }*/
 }
-
+-(void)disappear{
+    int alpha = 0;
+    self.nav.navigationBar.backgroundColor = [UIColor colorWithRed:(128/255.0) green:(203/255.0) blue:(196/255.0) alpha:alpha];
+    self.statusbar.backgroundColor = [UIColor colorWithRed:(77/255.0) green:(182/255.0) blue:(172/255.0) alpha:alpha];
+    [self.nav.navigationBar setTitleTextAttributes:
+     @{NSForegroundColorAttributeName:[UIColor colorWithRed:(255/255.0) green:(255/255.0) blue:(255/255.0) alpha:alpha]}];
+}
 -(void)setupBackBtn:(UIViewController*)view{
     
     UIBarButtonItem *barButtonItem =[[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"iconPageBackNoheader.png"] style:UIBarButtonItemStylePlain target:self action:@selector(goBack)];
