@@ -129,7 +129,7 @@
     [UIView beginAnimations:nil context:nil];
     [UIView setAnimationDuration:0.2];
     
-    self.lowerBar.frame = CGRectMake(label.frame.origin.x, label.frame.origin.y+30, label.frame.size.width, 4);
+    self.lowerBar.frame = CGRectMake(label.frame.origin.x, label.frame.origin.y+43, label.frame.size.width, 4);
     
     [UIView commitAnimations];
     
