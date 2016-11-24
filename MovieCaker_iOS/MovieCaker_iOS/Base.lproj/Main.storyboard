@@ -20,7 +20,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="MOm-eH-Aiw">
+                            <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="MOm-eH-Aiw">
                                 <rect key="frame" x="-4" y="479" width="328" height="40"/>
                                 <subviews>
                                     <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="S5Z-Qd-37I">
@@ -7916,6 +7916,6 @@
     <inferredMetricsTieBreakers>
         <segue reference="PzN-K3-JBc"/>
         <segue reference="Hgx-67-v6k"/>
-        <segue reference="ABz-EY-h1x"/>
+        <segue reference="joH-vB-8to"/>
     </inferredMetricsTieBreakers>
 </document>
