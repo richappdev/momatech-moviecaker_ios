@@ -159,6 +159,9 @@
     [self.moreBtn addGestureRecognizer:tap4];
     self.Chervon.image = [UIImage imageWithIcon:@"fa-chevron-down" backgroundColor:[UIColor clearColor] iconColor:[UIColor whiteColor] andSize:CGSizeMake(18, 20)];
     self.automaticallyAdjustsScrollViewInsets = false;
+    
+    [self moreClick];
+    self.moreBtn.hidden = YES;
 }
 -(void)addFriend{
     self.friendAdd.hidden = YES;
