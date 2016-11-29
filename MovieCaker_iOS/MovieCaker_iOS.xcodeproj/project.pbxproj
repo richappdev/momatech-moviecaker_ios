@@ -31,6 +31,7 @@
 		6C698C8B1D9DE42F00B0C2CA /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C698C8A1D9DE42F00B0C2CA /* MBProgressHUD.m */; };
 		6C758B911CED42EC001E5252 /* MovieTwoTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C758B901CED42EC001E5252 /* MovieTwoTableViewController.m */; };
 		6C758B941CEE4A0A001E5252 /* MovieTabCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C758B931CEE4A0A001E5252 /* MovieTabCell.m */; };
+		6C78D9A51DECEC6C009155E6 /* FriendProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C78D9A41DECEC6C009155E6 /* FriendProfileViewController.m */; };
 		6C7AB0301D9C85D7001276E0 /* Fabric.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6C7AB02E1D9C85D7001276E0 /* Fabric.framework */; };
 		6C7AB0311D9C85D7001276E0 /* Crashlytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6C7AB02F1D9C85D7001276E0 /* Crashlytics.framework */; };
 		6C7F9F5C1CDE9870001BE238 /* MKAnnotationView+WebCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C7F9F3C1CDE9870001BE238 /* MKAnnotationView+WebCache.m */; };
@@ -362,6 +363,8 @@
 		6C758B901CED42EC001E5252 /* MovieTwoTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MovieTwoTableViewController.m; sourceTree = "<group>"; };
 		6C758B921CEE4A0A001E5252 /* MovieTabCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MovieTabCell.h; sourceTree = "<group>"; };
 		6C758B931CEE4A0A001E5252 /* MovieTabCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MovieTabCell.m; sourceTree = "<group>"; };
+		6C78D9A31DECEC6C009155E6 /* FriendProfileViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FriendProfileViewController.h; sourceTree = "<group>"; };
+		6C78D9A41DECEC6C009155E6 /* FriendProfileViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FriendProfileViewController.m; sourceTree = "<group>"; };
 		6C7AB02E1D9C85D7001276E0 /* Fabric.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Fabric.framework; sourceTree = "<group>"; };
 		6C7AB02F1D9C85D7001276E0 /* Crashlytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Crashlytics.framework; sourceTree = "<group>"; };
 		6C7F9F3B1CDE9870001BE238 /* MKAnnotationView+WebCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "MKAnnotationView+WebCache.h"; sourceTree = "<group>"; };
@@ -1916,6 +1919,8 @@
 				6CD653371DB94B19005B271E /* tabBarViewController.m */,
 				6CD653391DC27417005B271E /* myMovieViewController.h */,
 				6CD6533A1DC27417005B271E /* myMovieViewController.m */,
+				6C78D9A31DECEC6C009155E6 /* FriendProfileViewController.h */,
+				6C78D9A41DECEC6C009155E6 /* FriendProfileViewController.m */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -2170,6 +2175,7 @@
 				6C94C2211D7CF5A700C0F519 /* ZXAlignmentPattern.m in Sources */,
 				6C94C21F1D7CF5A700C0F519 /* ZXQRCodeDecoder.m in Sources */,
 				6C94C1FD1D7CF5A700C0F519 /* ZXUPCEANWriter.m in Sources */,
+				6C78D9A51DECEC6C009155E6 /* FriendProfileViewController.m in Sources */,
 				6C94C1C81D7CF5A700C0F519 /* ZXAbstractExpandedDecoder.m in Sources */,
 				6C94C2011D7CF5A700C0F519 /* ZXPDF417ECErrorCorrection.m in Sources */,
 				6C12507D1CC3857B0009549B /* AFHTTPRequestOperation.m in Sources */,
