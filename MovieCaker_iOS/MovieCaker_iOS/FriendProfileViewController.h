@@ -10,4 +10,9 @@
 
 @interface FriendProfileViewController : UIViewController
 @property NSDictionary *data;
+@property (strong, nonatomic) IBOutlet UIImageView *banner;
+@property (strong, nonatomic) IBOutlet UIImageView *avatar;
+@property (strong, nonatomic) IBOutlet UILabel *location;
+@property (strong, nonatomic) IBOutlet UILabel *name;
+@property (strong, nonatomic) IBOutlet UIImageView *gender;
 @end
