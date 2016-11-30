@@ -47,12 +47,22 @@
         [alert show];
     }else{
     NSString *act;
-        NSLog(@"%@",self.data);
+    NSLog(@"%@",self.data);
+    BOOL work=YES;
     if(sender.view.tag==0||sender.view.tag==2){
+        NSDictionary *returnData = [NSKeyedUnarchiver unarchiveObjectWithData:[[NSUserDefaults standardUserDefaults] objectForKey:@"userkey"]];
+        if([self.userId isEqualToString:[[[returnData objectForKey:@"Data"] objectForKey:@"UserId"]stringValue]]){
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"注意" message:@"自己的專題無法喜歡" delegate:self cancelButtonTitle:@"关闭" otherButtonTitles:nil,nil];
+            [alert show];
+            work = NO;
+        }else{
+        
         if(sender.view.tag==0){
             [self.data setObject:[NSNumber numberWithBool:TRUE] forKey:@"IsLiked"];
         }else{
             [self.data setObject:[NSNumber numberWithBool:FALSE] forKey:@"IsLiked"];
+        }
+        
         }
         act =@"1";
     }else{
@@ -84,12 +94,25 @@
 
         act =@"3";
     }
+        if(work){
+            
+            NSArray *temp = [self.likeLabel.text componentsSeparatedByString:@"   "];
+            int num = [[temp objectAtIndex:1]intValue];
+            
+            if(sender.view.tag ==0){
+                num++;
+            }else{
+                num--;
+            }
+            self.likeLabel.text =[NSString stringWithFormat:@"喜歡   %d",num];
+            [self.data setObject:[NSNumber numberWithInt:num] forKey:@"LikeNum"];
         [[AustinApi sharedInstance]socialAction:self.Id act:act obj:@"3" function:^(NSString *returnData) {
             NSLog(@"%@",returnData);
         } error:^(NSError *error) {
             NSLog(@"%@",error);
         }];
-        [buttonHelper likeShareClick:sender.view];}
+            [buttonHelper likeShareClick:sender.view];}
+    }
 }
 -(void)setLikeState:(BOOL)state{
     if(state){

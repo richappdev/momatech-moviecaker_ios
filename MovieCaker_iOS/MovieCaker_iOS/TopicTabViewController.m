@@ -129,7 +129,7 @@
     [UIView beginAnimations:nil context:nil];
     [UIView setAnimationDuration:0.2];
     
-    self.lowerBar.frame = CGRectMake(label.frame.origin.x, label.frame.origin.y+30, label.frame.size.width, 4);
+    self.lowerBar.frame = CGRectMake(label.frame.origin.x, label.frame.origin.y+43, label.frame.size.width, 4);
     
     [UIView commitAnimations];
     
@@ -193,6 +193,7 @@
 if([[segue identifier] isEqualToString:@"topicSegue"]){
     TopicDetailViewController *vc = segue.destinationViewController;
     vc.data = [[NSMutableDictionary alloc]initWithDictionary:[self.movieTableController.data objectAtIndex:self.movieTableController.selectIndex]];
+    NSLog(@"%@",vc.data);
     if(![[self.movieTableController.circlePercentage objectAtIndex:self.movieTableController.selectIndex]isKindOfClass:[NSNull class]]){
         vc.percent = [self.movieTableController.circlePercentage objectAtIndex:self.movieTableController.selectIndex];}else{
             vc.percent = [[NSNumber alloc]initWithInt:-1];NSLog(@"aaaaaa");

@@ -74,6 +74,7 @@
     [cell.avatar sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@",[[self.data objectAtIndex:indexPath.row]objectForKey:@"AvatarUrl"]]] placeholderImage:[UIImage imageNamed:@"img-placeholder.jpg"]];
     cell.nickName.text = [[self.data objectAtIndex:indexPath.row]objectForKey:@"NickName"];
     cell.location.text = [[self.data objectAtIndex:indexPath.row]objectForKey:@"LocationName"];
+    cell.selectionStyle = UITableViewCellSelectionStyleNone;
     return cell;
 }
 
@@ -93,6 +94,10 @@
         [self.data removeObjectAtIndex:path.row];
         [self.tableView reloadData];
     }
+}
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    self.selectedIndex = indexPath.row;
+    [self.parentController performSegueWithIdentifier:@"friendDetailSegue" sender:self.parentController];
 }
 /*
 // Override to support conditional editing of the table view.

@@ -86,7 +86,9 @@
         }
     MovieCell *cell = [tableView dequeueReusableCellWithIdentifier:@"MovieCell" forIndexPath:indexPath];
         cell.data = [self.data objectAtIndex:indexPath.row];
+        cell.likeLabel.text = [NSString stringWithFormat:@"喜歡   %@",[[self.data objectAtIndex:indexPath.row] objectForKey:@"LikeNum"]];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        cell.userId = [[[[self.data objectAtIndex:indexPath.row]objectForKey:@"Author"]objectForKey:@"Id"]stringValue];
         cell.Id = [[self.data objectAtIndex:indexPath.row]objectForKey:@"Id"];
         cell.title.text = [[self.data objectAtIndex:indexPath.row]objectForKey:@"Title"];
         cell.Author.text =  [[[self.data objectAtIndex:indexPath.row]objectForKey:@"Author"]objectForKey:@"NickName"];
@@ -131,6 +133,7 @@
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         NSDictionary *data =[self.data objectAtIndex:indexPath.row];
    //     NSLog(@"%@",data);
+        cell.userId = [[data objectForKey:@"UserId"] stringValue];
         cell.Id = [data objectForKey:@"ReviewId"];
         cell.videoId = [data objectForKey:@"VideoId"];
         if(self.simplified){
@@ -158,6 +161,7 @@
         }else{
             cell.Heart.image = [UIImage imageNamed:@"iconHeartListLiked.png"];
         }
+        cell.likeLabel.text = [NSString stringWithFormat:@"喜歡   %@",[data objectForKey:@"LikedNum"]];
         [cell setLikeState:[[data objectForKey:@"IsLiked"] boolValue]];
         [cell setShareState:[[data objectForKey:@"IsShared"] boolValue]];
         cell.parent =self;

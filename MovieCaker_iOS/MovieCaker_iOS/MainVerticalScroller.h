@@ -18,4 +18,6 @@
 -(void)setupStatusbar:(UIView*)view;
 -(void)setupBackBtn2:(UIViewController *)view;
 -(void)setupSinglePage:(UIView*)view;
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView;
+-(void)disappear;
 @end

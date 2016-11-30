@@ -14,5 +14,6 @@
 @property NSMutableArray *data;
 @property int page;
 @property friendsViewController *parentController;
+@property int selectedIndex;
 -(void)acceptFriend:(NSIndexPath*)path;
 @end

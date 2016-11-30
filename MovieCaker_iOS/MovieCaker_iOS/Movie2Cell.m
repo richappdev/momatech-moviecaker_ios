@@ -40,7 +40,15 @@
     }else{
         [self.parent sync];
         NSString *act;
+        BOOL work = YES;;
         if(sender.view.tag==0||sender.view.tag==2){
+            NSDictionary *returnData = [NSKeyedUnarchiver unarchiveObjectWithData:[[NSUserDefaults standardUserDefaults] objectForKey:@"userkey"]];
+            if([self.userId isEqualToString:[[[returnData objectForKey:@"Data"] objectForKey:@"UserId"]stringValue]]){
+                UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"注意" message:@"自己的影評無法喜歡" delegate:self cancelButtonTitle:@"关闭" otherButtonTitles:nil,nil];
+                [alert show];
+                work = NO;
+            };
+            
             act =@"1";
         }else{
             WXMediaMessage *message = [WXMediaMessage message];
@@ -70,13 +78,27 @@
 
             act =@"3";
         }
+        
+        if(work){
+            
+            NSArray *temp = [self.likeLabel.text componentsSeparatedByString:@"   "];
+            int num = [[temp objectAtIndex:1]intValue];
+            
+            if(sender.view.tag ==0){
+                num++;
+            }else{
+                num--;
+            }
+            self.likeLabel.text =[NSString stringWithFormat:@"喜歡   %d",num];
+            
         [[AustinApi sharedInstance]socialAction:self.Id act:act obj:@"2" function:^(NSString *returnData) {
             NSLog(@"%@",returnData);
         } error:^(NSError *error) {
             NSLog(@"%@",error);
         }];
         [buttonHelper likeShareClick:sender.view];}
-}
+        }
+    }
 -(void)setStars:(int)rating{
     int main =floor(rating/2);
     int remain = rating%2;

@@ -10,6 +10,7 @@
 #import "MainVerticalScroller.h"
 #import "AustinApi.h"
 #import "friendTableViewController.h"
+#import "FriendProfileViewController.h"
 #import "MBProgressHUD.h"
 @interface friendsViewController ()
 @property MainVerticalScroller *helper;
@@ -42,7 +43,7 @@
     self.tableController.page = 999;
     self.tableController.parentController = self;
     self.tableController.tableView = self.tableview;
-    self.tableview.allowsSelection = NO;
+  //  self.tableview.allowsSelection = NO;
     self.tableview.dataSource = self.tableController;
     self.tableview.delegate = self.tableController;
     self.tableController.type = 0;
@@ -120,6 +121,13 @@
     [UIView commitAnimations];
     
 }
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    FriendProfileViewController *dest =  segue.destinationViewController;
+    dest.data = [self.tableController.data objectAtIndex:self.tableController.selectedIndex];
+}
+
 -(void)loadMore:(int)page{
     [MBProgressHUD showHUDAddedTo:self.view animated:YES];
 

@@ -58,6 +58,7 @@
 @property (strong, nonatomic) IBOutlet UIImageView *friendAdd;
 @property (strong, nonatomic) IBOutlet UIImageView *Chervon;
 @property (strong, nonatomic) IBOutlet UILabel *moreLabel;
+@property (strong, nonatomic) IBOutlet NSLayoutConstraint *jumpWidth;
 @property BOOL opened;
 @end
 
@@ -158,6 +159,9 @@
     [self.moreBtn addGestureRecognizer:tap4];
     self.Chervon.image = [UIImage imageWithIcon:@"fa-chevron-down" backgroundColor:[UIColor clearColor] iconColor:[UIColor whiteColor] andSize:CGSizeMake(18, 20)];
     self.automaticallyAdjustsScrollViewInsets = false;
+    
+    [self moreClick];
+    self.moreBtn.hidden = YES;
 }
 -(void)addFriend{
     self.friendAdd.hidden = YES;
@@ -241,6 +245,8 @@
         
     }
     self.movieJumpLabel.text = [NSString stringWithFormat:@"電影 - %@",[self.data objectForKey:@"VideoName"]];
+    [self.movieJumpLabel sizeToFit];
+    self.jumpWidth.constant = self.movieJumpLabel.frame.size.width+35;
     if([[self.data objectForKey:@"IsLiked"]boolValue]){
         self.likeBtn.tag = 2;
     }else{
