@@ -10,9 +10,15 @@
 #import "MainVerticalScroller.h"
 #import "UIImageView+WebCache.h"
 #import "UIImage+FontAwesome.h"
+#import "AustinApi.h"
 
 @interface FriendProfileViewController ()
 @property MainVerticalScroller *helper;
+@property (strong, nonatomic) IBOutlet UILabel *viewLabel;
+@property (strong, nonatomic) IBOutlet UILabel *likeLabel;
+@property (strong, nonatomic) IBOutlet UILabel *wantLabel;
+@property (strong, nonatomic) IBOutlet UILabel *topicLabel;
+@property (strong, nonatomic) IBOutlet UILabel *btnLabel;
 @end
 
 @implementation FriendProfileViewController
@@ -37,7 +43,18 @@
         self.gender.image =[UIImage imageWithIcon:@"fa-female" backgroundColor:[UIColor clearColor] iconColor:[UIColor colorWithRed:(255/255.0f) green:(136/255.0f) blue:(153/255.0f) alpha:1.0] andSize:CGSizeMake(13, 18)];
     }
 
-
+    self.btnLabel.text = [NSString stringWithFormat:@"%@的電影",[self.data objectForKey:@"NickName"]];
+    [[AustinApi sharedInstance] getStatistics:[self.data objectForKey:@"UserId"] function:^(NSDictionary *returnData) {
+        self.viewLabel.text = [[returnData objectForKey:@"ViewCount"]stringValue];
+        self.likeLabel.text = [[returnData objectForKey:@"LikeCount"] stringValue];
+        self.wantLabel.text = [[returnData objectForKey:@"WantViewCount"] stringValue];
+        self.topicLabel.text = [[returnData objectForKey:@"TopicCount"] stringValue];
+        
+        NSLog(@"%@",returnData);
+    } error:^(NSError *error) {
+        NSLog(@"%@",error);
+    }];
+    
 }
 
 - (void)didReceiveMemoryWarning {
