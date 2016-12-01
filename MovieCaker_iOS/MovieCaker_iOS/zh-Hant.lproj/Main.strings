@@ -666,7 +666,7 @@
 "z9y-pW-vaR.text" = "開始掃瞄";
 
 "edit.title" = "編輯暱稱";
-"mywatch.title" = "我看過的電影";
-"mylike.title" = "我喜歡的電影";
-"mywant.title" = "我想看的電影";
+"mywatch.title" = "看過的電影";
+"mylike.title" = "喜歡的電影";
+"mywant.title" = "想看的電影";
 "scan.title" = "掃瞄";

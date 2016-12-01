@@ -17,20 +17,20 @@
                         <viewControllerLayoutGuide type="bottom" id="6qy-bo-Wbp"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="Hir-mm-6uK">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="MOm-eH-Aiw">
-                                <rect key="frame" x="0.0" y="647" width="414" height="40"/>
+                                <rect key="frame" x="-4" y="479" width="328" height="40"/>
                                 <subviews>
                                     <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="S5Z-Qd-37I">
-                                        <rect key="frame" x="16" y="8" width="332" height="22"/>
+                                        <rect key="frame" x="16" y="8" width="246" height="22"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="12"/>
                                         <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                     </textView>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="EM0-KI-8sb">
-                                        <rect key="frame" x="356" y="5" width="50" height="25"/>
+                                        <rect key="frame" x="270" y="5" width="50" height="25"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="回應" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QPL-Pt-HQz">
                                                 <rect key="frame" x="4" y="2" width="42" height="21"/>
@@ -62,7 +62,7 @@
                                 </constraints>
                             </view>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="f4g-qb-LNl">
-                                <rect key="frame" x="-4" y="-64" width="328" height="756"/>
+                                <rect key="frame" x="-8" y="-64" width="328" height="756"/>
                                 <subviews>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="on" translatesAutoresizingMaskIntoConstraints="NO" id="loY-Dg-I61">
                                         <rect key="frame" x="0.0" y="0.0" width="328" height="200"/>
@@ -4999,11 +4999,15 @@
                         <outlet property="btnLabel" destination="FkD-nn-gxs" id="4sU-fc-RsD"/>
                         <outlet property="gender" destination="e5a-9T-N72" id="rOE-f7-yJJ"/>
                         <outlet property="likeLabel" destination="clf-zZ-Phq" id="MeB-XW-0vd"/>
+                        <outlet property="likedIcon" destination="zrQ-PY-hpI" id="Wlo-kb-bv8"/>
                         <outlet property="location" destination="SAf-fW-5e4" id="FMz-bC-AEV"/>
                         <outlet property="name" destination="ypZ-UU-a96" id="GAi-gN-6Xi"/>
                         <outlet property="topicLabel" destination="U9u-aW-kxy" id="jLj-2o-HgD"/>
                         <outlet property="viewLabel" destination="Nsz-lr-Mx5" id="U5q-qh-T92"/>
+                        <outlet property="wannaWatchIcon" destination="ckj-9A-LVf" id="Lc5-wF-2qR"/>
                         <outlet property="wantLabel" destination="OZ9-e4-Pvn" id="2aH-ff-Nj4"/>
+                        <outlet property="watchedIcon" destination="xfP-rC-jQ1" id="l64-LI-kAC"/>
+                        <segue destination="AKZ-Gi-xh9" kind="push" identifier="myMovieSegue" id="Ds7-rC-UPS"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Q38-LV-nPa" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -8215,8 +8219,9 @@
         <image name="tabbarBg" width="80" height="49"/>
     </resources>
     <inferredMetricsTieBreakers>
+        <segue reference="Ds7-rC-UPS"/>
         <segue reference="NoJ-6H-TL0"/>
         <segue reference="Ope-LB-hkT"/>
-        <segue reference="qtw-ST-1hK"/>
+        <segue reference="I4m-Mn-2yn"/>
     </inferredMetricsTieBreakers>
 </document>

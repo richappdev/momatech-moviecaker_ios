@@ -11,6 +11,7 @@
 #import "UIImageView+WebCache.h"
 #import "UIImage+FontAwesome.h"
 #import "AustinApi.h"
+#import "myMovieViewController.h"
 
 @interface FriendProfileViewController ()
 @property MainVerticalScroller *helper;
@@ -19,6 +20,10 @@
 @property (strong, nonatomic) IBOutlet UILabel *wantLabel;
 @property (strong, nonatomic) IBOutlet UILabel *topicLabel;
 @property (strong, nonatomic) IBOutlet UILabel *btnLabel;
+@property (strong, nonatomic) IBOutlet UIView *watchedIcon;
+@property (strong, nonatomic) IBOutlet UIView *likedIcon;
+@property (strong, nonatomic) IBOutlet UIView *wannaWatchIcon;
+@property int movieTemp;
 @end
 
 @implementation FriendProfileViewController
@@ -44,6 +49,9 @@
     }
 
     self.btnLabel.text = [NSString stringWithFormat:@"%@的電影",[self.data objectForKey:@"NickName"]];
+    [self addMovieClick:self.watchedIcon];
+    [self addMovieClick:self.wannaWatchIcon];
+    [self addMovieClick:self.likedIcon];
     [[AustinApi sharedInstance] getStatistics:[self.data objectForKey:@"UserId"] function:^(NSDictionary *returnData) {
         self.viewLabel.text = [[returnData objectForKey:@"ViewCount"]stringValue];
         self.likeLabel.text = [[returnData objectForKey:@"LikeCount"] stringValue];
@@ -54,6 +62,24 @@
     } error:^(NSError *error) {
         NSLog(@"%@",error);
     }];
+    
+}
+
+-(void)addMovieClick:(UIView*)view{
+    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(movieClick:)];
+    [view addGestureRecognizer:tap];
+}
+-(void)movieClick:(UITapGestureRecognizer*)gesture{
+    self.movieTemp =(int)gesture.view.tag;
+    [self performSegueWithIdentifier:@"myMovieSegue" sender:self];
+}
+
+-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
+
+    if([[segue identifier]isEqualToString:@"myMovieSegue"]){
+        myMovieViewController *temp = segue.destinationViewController;
+        temp.type =self.movieTemp;
+    }
     
 }
 
