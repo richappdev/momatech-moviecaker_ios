@@ -60,6 +60,7 @@
 @property (strong, nonatomic) IBOutlet UILabel *moreLabel;
 @property (strong, nonatomic) IBOutlet NSLayoutConstraint *jumpWidth;
 @property BOOL opened;
+@property BOOL likeLock;
 @end
 
 
@@ -67,6 +68,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.likeLock = NO;
     self.scrollHelp = [[MainVerticalScroller alloc]init];
     self.scrollHelp.nav = self.navigationController;
     [self.scrollHelp setupBackBtn:self];
@@ -368,6 +370,8 @@
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"注意" message:@"请登入" delegate:self cancelButtonTitle:@"关闭" otherButtonTitles:nil,nil];
         [alert show];
     }else{
+        if(self.likeLock==NO){
+            self.likeLock = YES;
         [self refreshMain];
         NSString *act;
         if(sender.view.tag==0||sender.view.tag==2){
@@ -400,21 +404,21 @@
             NSLog(@"%@",message.title);
             act =@"3";
         }
-        [[AustinApi sharedInstance]socialAction:[self.data objectForKey:@"ReviewId"] act:act obj:@"2" function:^(NSString *returnData) {
+            BOOL test = [buttonHelper likeShareClick:sender.view];
             if([act isEqualToString:@"1"]){
                 int temp = [[self.data objectForKey:@"LikedNum"]integerValue];
-                if([returnData isEqualToString:@"1"]){
+                if(test){
                     temp++;
                 }else{
                     temp--;
                 }
                 [self.data setValue:[NSString stringWithFormat:@"%d",temp] forKey:@"LikedNum"];
-            self.like.text = [NSString stringWithFormat:@"喜歡   %d",temp];
-
+                self.like.text = [NSString stringWithFormat:@"喜歡   %d",temp];
+                
             }
             
             if([act isEqualToString:@"3"]){
-                if([returnData isEqualToString:@"1"]){
+                if(test){
                     int temp = [[self.data objectForKey:@"LikedNum"]integerValue];
                     temp++;
                     self.share.text = [NSString stringWithFormat:@"分享   %d",temp];
@@ -423,12 +427,20 @@
                 
             }
             
+        [[AustinApi sharedInstance]socialAction:[self.data objectForKey:@"ReviewId"] act:act obj:@"2" function:^(NSString *returnData) {
             
+            self.likeLock = NO;
             NSLog(@"%@",returnData);
         } error:^(NSError *error) {
             NSLog(@"%@",error);
+            self.likeLock = NO;
         }];
-        [buttonHelper likeShareClick:sender.view];}
+            }else{
+                UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"注意" message:@"請稍候" delegate:self cancelButtonTitle:@"关闭" otherButtonTitles:nil,nil];
+                [alert show];
+            }
+    
+    }
     }
 }
 -(void)refreshMain{

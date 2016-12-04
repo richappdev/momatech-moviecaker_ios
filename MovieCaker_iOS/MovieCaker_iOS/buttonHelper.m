@@ -10,19 +10,23 @@
 #import "UIImage+FontAwesome.h"
 
 @implementation buttonHelper
-+(void)likeShareClick:(UIView*)view{
++(BOOL)likeShareClick:(UIView*)view{
     if(view.tag==0){
         view.tag=2;
         [self adjustLike:view];
+        return YES;
     }else
     if(view.tag==1){
         view.tag=3;
         [self adjustShare:view];
+        return YES;
     }else
     if(view.tag==2){
         view.tag=0;
         [self adjustLike:view];
+        return NO;
     }
+    return NO;
 }
 
 +(void)adjustLike:(UIView *)view{
