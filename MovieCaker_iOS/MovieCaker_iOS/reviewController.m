@@ -76,7 +76,7 @@
     
     self.mainScroll.delegate = self.scrollHelp;
     
-    [buttonHelper gradientBg:self.bgImage width:self.view.frame.size.width];
+    [buttonHelper gradientBg:self.bgImage width:self.view.frame.size.width+5];
     
     self.editBtn.layer.borderWidth=1;
     self.editBtn.layer.cornerRadius =3;
