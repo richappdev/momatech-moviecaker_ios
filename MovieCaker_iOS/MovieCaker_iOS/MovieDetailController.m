@@ -72,7 +72,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.simplified = [[[NSUserDefaults standardUserDefaults] objectForKey:@"simplified"] boolValue];
-    [buttonHelper gradientBg:self.bgImage width:self.view.frame.size.width];
+    [buttonHelper gradientBg:self.bgImage width:self.view.frame.size.width+5];
     
     self.scrollDelegate = [[MainVerticalScroller alloc] init];
     self.scrollDelegate.nav = self.navigationController;

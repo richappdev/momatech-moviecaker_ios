@@ -65,7 +65,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
      [MBProgressHUD showHUDAddedTo:self.view animated:YES];
-    [buttonHelper gradientBg:self.mainBg width:self.view.frame.size.width];
+    [buttonHelper gradientBg:self.mainBg width:self.view.frame.size.width+5];
     
     [self addMask];
     
