@@ -10,9 +10,20 @@
 #import "MainVerticalScroller.h"
 #import "UIImageView+WebCache.h"
 #import "UIImage+FontAwesome.h"
+#import "AustinApi.h"
+#import "myMovieViewController.h"
 
 @interface FriendProfileViewController ()
 @property MainVerticalScroller *helper;
+@property (strong, nonatomic) IBOutlet UILabel *viewLabel;
+@property (strong, nonatomic) IBOutlet UILabel *likeLabel;
+@property (strong, nonatomic) IBOutlet UILabel *wantLabel;
+@property (strong, nonatomic) IBOutlet UILabel *topicLabel;
+@property (strong, nonatomic) IBOutlet UILabel *btnLabel;
+@property (strong, nonatomic) IBOutlet UIView *watchedIcon;
+@property (strong, nonatomic) IBOutlet UIView *likedIcon;
+@property (strong, nonatomic) IBOutlet UIView *wannaWatchIcon;
+@property int movieTemp;
 @end
 
 @implementation FriendProfileViewController
@@ -37,7 +48,39 @@
         self.gender.image =[UIImage imageWithIcon:@"fa-female" backgroundColor:[UIColor clearColor] iconColor:[UIColor colorWithRed:(255/255.0f) green:(136/255.0f) blue:(153/255.0f) alpha:1.0] andSize:CGSizeMake(13, 18)];
     }
 
+    self.btnLabel.text = [NSString stringWithFormat:@"%@的電影",[self.data objectForKey:@"NickName"]];
+    [self addMovieClick:self.watchedIcon];
+    [self addMovieClick:self.wannaWatchIcon];
+    [self addMovieClick:self.likedIcon];
+    [[AustinApi sharedInstance] getStatistics:[self.data objectForKey:@"UserId"] function:^(NSDictionary *returnData) {
+        self.viewLabel.text = [[returnData objectForKey:@"ViewCount"]stringValue];
+        self.likeLabel.text = [[returnData objectForKey:@"LikeCount"] stringValue];
+        self.wantLabel.text = [[returnData objectForKey:@"WantViewCount"] stringValue];
+        self.topicLabel.text = [[returnData objectForKey:@"TopicCount"] stringValue];
+        
+        NSLog(@"%@",returnData);
+    } error:^(NSError *error) {
+        NSLog(@"%@",error);
+    }];
+    
+}
 
+-(void)addMovieClick:(UIView*)view{
+    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(movieClick:)];
+    [view addGestureRecognizer:tap];
+}
+-(void)movieClick:(UITapGestureRecognizer*)gesture{
+    self.movieTemp =(int)gesture.view.tag;
+    [self performSegueWithIdentifier:@"myMovieSegue" sender:self];
+}
+
+-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
+
+    if([[segue identifier]isEqualToString:@"myMovieSegue"]){
+        myMovieViewController *temp = segue.destinationViewController;
+        temp.type =self.movieTemp;
+    }
+    
 }
 
 - (void)didReceiveMemoryWarning {

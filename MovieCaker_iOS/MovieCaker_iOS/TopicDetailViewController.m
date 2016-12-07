@@ -19,6 +19,7 @@
 #import "WXApi.h"
 #import "WechatAccess.h"
 #import "reviewController.h"
+#import "MBProgressHUD.h"
 
 @interface TopicDetailViewController ()
 @property MainVerticalScroller *scrollDelegate;
@@ -63,7 +64,8 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [buttonHelper gradientBg:self.mainBg width:self.view.frame.size.width];
+     [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    [buttonHelper gradientBg:self.mainBg width:self.view.frame.size.width+5];
     
     [self addMask];
     
@@ -123,8 +125,10 @@
         [self.mainScroll setContentSize:CGSizeMake(self.view.frame.size.width, self.tableHeight.constant+550)];
         self.tableLabel.text = [NSString stringWithFormat:@"專題單片%lu部",(unsigned long)[returnData count]];
         [self.movieTableController.tableView reloadData];
+         [MBProgressHUD hideHUDForView:self.view animated:YES];
     } error:^(NSError *error) {
         NSLog(@"%@",error);
+         [MBProgressHUD hideHUDForView:self.view animated:YES];
     }];
     
     [self filterAddTap:self.eyeBtn];
