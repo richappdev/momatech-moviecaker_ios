@@ -122,7 +122,8 @@
             cell.Circle.hidden = NO;
             [cell setCirclePercentage:[[returnData objectForKey:@"PercentComplete"]floatValue]*0.01];
             [cell.Circle setNeedsDisplay];
-            [self.circlePercentage replaceObjectAtIndex:indexPath.row withObject:[[NSNumber alloc] initWithFloat:cell.Circle.percentage]];
+            if([self.circlePercentage count]>0){
+                [self.circlePercentage replaceObjectAtIndex:indexPath.row withObject:[[NSNumber alloc] initWithFloat:cell.Circle.percentage]];}
         } error:^(NSError *error) {
             NSLog(@"%@",error);
         }];}
