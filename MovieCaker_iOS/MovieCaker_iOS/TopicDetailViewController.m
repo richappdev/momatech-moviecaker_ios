@@ -102,6 +102,7 @@
     self.mainTxt.text = [self.data objectForKey:@"Content"];
     self.viewCount.text = [[self.data objectForKey:@"ViewNum"]stringValue];
     self.date.text = [[self.data objectForKey:@"ModifiedOn"] stringByReplacingOccurrencesOfString:@"-" withString:@"/"];
+    self.mainBg.contentMode = UIViewContentModeScaleAspectFill;
     [self.mainBg sd_setImageWithURL:[NSURL URLWithString:[self.data objectForKey:@"BannerUrl"]]  placeholderImage:[UIImage imageNamed:@"img-placeholder.jpg"]];
     
     self.Chervon.image = [UIImage imageWithIcon:@"fa-chevron-down" backgroundColor:[UIColor clearColor] iconColor:[UIColor whiteColor] andSize:CGSizeMake(18, 20)];
