@@ -89,8 +89,9 @@
             }else{
                 num--;
             }
+            if([act isEqualToString:@"1"]){
             self.likeLabel.text =[NSString stringWithFormat:@"喜歡   %d",num];
-            
+            }
         [[AustinApi sharedInstance]socialAction:self.Id act:act obj:@"2" function:^(NSString *returnData) {
             NSLog(@"%@",returnData);
         } error:^(NSError *error) {

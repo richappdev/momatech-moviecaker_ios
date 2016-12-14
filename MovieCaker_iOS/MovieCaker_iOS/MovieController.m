@@ -117,6 +117,15 @@
     [self topicCall];
     [self reviewCall];
 
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(applicationIsActive:)
+                                                 name:UIApplicationDidBecomeActiveNotification
+                                               object:nil];
+
+}
+
+-(void)applicationIsActive:(NSNotification *)notification{
+    [self refreshPage];
 }
 -(void)reviewCall{
     [[AustinApi sharedInstance]getReview:@"2" page:nil function:^(NSArray *returnData) {
@@ -250,21 +259,7 @@
     self.notSelected = YES;
     self.MainScroll.delegate = self.scrollDelegate;
     if(self.refresh){
-        [[self.imageScroll subviews] makeObjectsPerformSelector:@selector(removeFromSuperview)];
-        [self.imageScroll setContentOffset:CGPointMake(0, 0) animated:NO];
-        self.uititle.text= @"";
-        self.blurredBg.image =nil;
-        self.movieArray =nil;
-        self.returnData =nil;
-        self.iconEyeIndex.image = [UIImage imageNamed:@"iconEyeIndex.png"];
-        self.iconLikeIndex.image = [UIImage imageNamed:@"iconLikeIndex.png"];
-        self.iconPoketIndex.image = [UIImage imageNamed:@"iconPoketIndex.png"];
-        self.lastIndex =0;
-        self.refresh =NO;
-        [self imageScrollCall];
-        [self topicCall];
-        [self reviewCall];
-        
+        [self refreshPage];
     }else{
         int indexOfPage = self.imageScroll.contentOffset.x / self.imageScroll.frame.size.width;
         [self setMovieDetails:[self.movieArray objectAtIndex:indexOfPage] blur:YES];
@@ -275,7 +270,23 @@
         [[AustinApi sharedInstance]getFriends:[[[returnData objectForKey:@"Data"] objectForKey:@"UserId"]stringValue] page:1 function:nil refresh:NO];
     }
 }
-
+-(void)refreshPage{
+    [[self.imageScroll subviews] makeObjectsPerformSelector:@selector(removeFromSuperview)];
+    [self.imageScroll setContentOffset:CGPointMake(0, 0) animated:NO];
+    self.uititle.text= @"";
+    self.blurredBg.image =nil;
+    self.movieArray =nil;
+    self.returnData =nil;
+    self.iconEyeIndex.image = [UIImage imageNamed:@"iconEyeIndex.png"];
+    self.iconLikeIndex.image = [UIImage imageNamed:@"iconLikeIndex.png"];
+    self.iconPoketIndex.image = [UIImage imageNamed:@"iconPoketIndex.png"];
+    self.lastIndex =0;
+    self.refresh =NO;
+    [self imageScrollCall];
+    [self topicCall];
+    [self reviewCall];
+    
+}
 -(void)addIndexGesture:(UIView*)view{
     UITapGestureRecognizer *indexTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(indexClick:)];
     [view addGestureRecognizer:indexTap];
