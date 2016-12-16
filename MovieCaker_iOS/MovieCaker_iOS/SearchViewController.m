@@ -8,6 +8,7 @@
 
 #import "SearchViewController.h"
 #import "AustinApi.h"
+#import "MovieDetailController.h"
 
 @interface SearchViewController ()
 @property (strong, nonatomic) IBOutlet UISearchBar *searchBar;
@@ -15,6 +16,7 @@
 @property NSArray *data;
 @property BOOL simplified;
 @property BOOL lock;
+@property int selectedIndex;
 @end
 
 @implementation SearchViewController
@@ -26,7 +28,9 @@
     self.data = [[NSArray alloc]init];
     self.simplified = [[[NSUserDefaults standardUserDefaults] objectForKey:@"simplified"] boolValue];
 }
-
+-(void)viewWillAppear:(BOOL)animated{
+    [self.navigationController.navigationBar setHidden:YES];
+}
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
@@ -44,6 +48,7 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     UITableViewCell *cell =[[UITableViewCell alloc]init];
+    cell.selectionStyle = UITableViewCellSelectionStyleNone;
     if(self.simplified){
         cell.textLabel.text= [[self.data objectAtIndex:indexPath.row]objectForKey:@"lableCn"];
     }else{
@@ -85,5 +90,17 @@
     // Pass the selected object to the new view controller.
 }
 */
+
+-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
+    MovieDetailController *vc = segue.destinationViewController;
+    vc.movieDetailInfo = [[NSDictionary alloc] initWithObjectsAndKeys:[[self.data objectAtIndex:self.selectedIndex] objectForKey:@"id"],@"Id", nil];
+    vc.loadLater = YES;
+}
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    
+    self.selectedIndex = indexPath.row;
+    [self performSegueWithIdentifier:@"movieSegue" sender:self];
+
+}
 
 @end
