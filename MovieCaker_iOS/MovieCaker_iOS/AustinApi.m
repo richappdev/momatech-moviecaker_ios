@@ -466,4 +466,15 @@
     }];
 
 }
+
+-(void)searchMovie:(NSString*)term completion:(void (^)(NSArray *returnData))completion error:(void (^)(NSError *error))error{
+    NSDictionary *params = [[NSDictionary alloc]initWithObjectsAndKeys:term,@"term",@"100",@"limit",nil];
+    
+    [self apiGetMethod:@"api/Search" parameter:params addTokenHeader:@"1" completion:^(id response) {
+        completion([response objectForKey:@"Data"]);
+    } error:^(NSError *error2) {
+        error(error2);
+    }];
+
+}
 @end
