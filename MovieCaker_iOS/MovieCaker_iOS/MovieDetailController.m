@@ -17,6 +17,7 @@
 #import "WechatAccess.h"
 #import "TopicDetailViewController.h"
 #import "UIImage+FontAwesome.h"
+#import "MBProgressHUD.h"
 
 @interface MovieDetailController ()
 @property (strong, nonatomic) IBOutlet UIImageView *bgImage;
@@ -95,7 +96,7 @@
     [self.secondTableController ParentController:self];
 
     [self reviewCall];
-    
+    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     self.starArray = [[NSArray alloc]initWithObjects:self.starOne,self.starTwo,self.starThree,self.starFour,self.starFive, nil];
     if(self.loadLater!=YES){
         [self changeReal];
@@ -108,7 +109,8 @@
             self.movieDetailInfo = [[NSMutableDictionary alloc] initWithDictionary:returnData];
             [self changeReal];
         }
-        
+        [MBProgressHUD hideHUDForView:self.view animated:YES];
+
         int count = 0;
         NSMutableArray *array = [[NSMutableArray alloc]initWithArray:[returnData objectForKey:@"Actor"]];
         for (NSDictionary *row in array) {
@@ -166,6 +168,7 @@
             [self.firstTableController.tableView reloadData];}
         [self scrollSize];
     } error:^(NSError *error) {
+        [MBProgressHUD hideHUDForView:self.view animated:YES];
         NSLog(@"%@",error);
     }];
 }

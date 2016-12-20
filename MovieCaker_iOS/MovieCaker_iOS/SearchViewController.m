@@ -9,6 +9,7 @@
 #import "SearchViewController.h"
 #import "AustinApi.h"
 #import "MovieDetailController.h"
+#import "MBProgressHUD.h"
 
 @interface SearchViewController ()
 @property (strong, nonatomic) IBOutlet UISearchBar *searchBar;
@@ -62,6 +63,7 @@
     return cell;
 }
 -(void)searchBarSearchButtonClicked:(UISearchBar*)searchBar{
+    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     [self search];
 }
 -(void)search{
@@ -69,7 +71,9 @@
         NSLog(@"%@",returnData);
         self.data = returnData;
         [self.searchController.searchResultsTableView reloadData];
+        [MBProgressHUD hideHUDForView:self.view animated:YES];
     } error:^(NSError *error) {
+        [MBProgressHUD hideHUDForView:self.view animated:YES];
         NSLog(@"%@",error);
     }];
 
