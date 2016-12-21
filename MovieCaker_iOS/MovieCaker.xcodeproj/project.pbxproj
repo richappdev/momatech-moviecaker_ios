@@ -31,6 +31,8 @@
 		6C698C8B1D9DE42F00B0C2CA /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C698C8A1D9DE42F00B0C2CA /* MBProgressHUD.m */; };
 		6C758B911CED42EC001E5252 /* MovieTwoTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C758B901CED42EC001E5252 /* MovieTwoTableViewController.m */; };
 		6C758B941CEE4A0A001E5252 /* MovieTabCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C758B931CEE4A0A001E5252 /* MovieTabCell.m */; };
+		6C786F821E01776E000E2FD9 /* NotificationCenter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6C786F811E01776E000E2FD9 /* NotificationCenter.framework */; };
+		6C786F851E040186000E2FD9 /* SearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C786F841E040186000E2FD9 /* SearchViewController.m */; };
 		6C78D9A51DECEC6C009155E6 /* FriendProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C78D9A41DECEC6C009155E6 /* FriendProfileViewController.m */; };
 		6C7AB0301D9C85D7001276E0 /* Fabric.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6C7AB02E1D9C85D7001276E0 /* Fabric.framework */; };
 		6C7AB0311D9C85D7001276E0 /* Crashlytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6C7AB02F1D9C85D7001276E0 /* Crashlytics.framework */; };
@@ -363,6 +365,9 @@
 		6C758B901CED42EC001E5252 /* MovieTwoTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MovieTwoTableViewController.m; sourceTree = "<group>"; };
 		6C758B921CEE4A0A001E5252 /* MovieTabCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MovieTabCell.h; sourceTree = "<group>"; };
 		6C758B931CEE4A0A001E5252 /* MovieTabCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MovieTabCell.m; sourceTree = "<group>"; };
+		6C786F811E01776E000E2FD9 /* NotificationCenter.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = NotificationCenter.framework; path = System/Library/Frameworks/NotificationCenter.framework; sourceTree = SDKROOT; };
+		6C786F831E040186000E2FD9 /* SearchViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchViewController.h; sourceTree = "<group>"; };
+		6C786F841E040186000E2FD9 /* SearchViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchViewController.m; sourceTree = "<group>"; };
 		6C78D9A31DECEC6C009155E6 /* FriendProfileViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FriendProfileViewController.h; sourceTree = "<group>"; };
 		6C78D9A41DECEC6C009155E6 /* FriendProfileViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FriendProfileViewController.m; sourceTree = "<group>"; };
 		6C7AB02E1D9C85D7001276E0 /* Fabric.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Fabric.framework; sourceTree = "<group>"; };
@@ -964,6 +969,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6C786F821E01776E000E2FD9 /* NotificationCenter.framework in Frameworks */,
 				6C94C2491D807B1100C0F519 /* libiconv.tbd in Frameworks */,
 				6C94C2431D7CFC4000C0F519 /* Foundation.framework in Frameworks */,
 				6C94C2411D7CFB4D00C0F519 /* UIKit.framework in Frameworks */,
@@ -1921,6 +1927,8 @@
 				6CD6533A1DC27417005B271E /* myMovieViewController.m */,
 				6C78D9A31DECEC6C009155E6 /* FriendProfileViewController.h */,
 				6C78D9A41DECEC6C009155E6 /* FriendProfileViewController.m */,
+				6C786F831E040186000E2FD9 /* SearchViewController.h */,
+				6C786F841E040186000E2FD9 /* SearchViewController.m */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -1962,6 +1970,7 @@
 		6CD58C341CACBD3F0089DB38 = {
 			isa = PBXGroup;
 			children = (
+				6C786F811E01776E000E2FD9 /* NotificationCenter.framework */,
 				6C94C2481D807B1100C0F519 /* libiconv.tbd */,
 				6C94C2401D7CFB4D00C0F519 /* UIKit.framework */,
 				6C084AC21CCBBF5100DB07E5 /* Foundation.framework */,
@@ -2376,6 +2385,7 @@
 				6C94C1C91D7CF5A700C0F519 /* ZXAI013103decoder.m in Sources */,
 				6C94C19B1D7CF5A700C0F519 /* ZXReedSolomonDecoder.m in Sources */,
 				6C94C18C1D7CF5A700C0F519 /* ZXURIResultParser.m in Sources */,
+				6C786F851E040186000E2FD9 /* SearchViewController.m in Sources */,
 				6C94C19A1D7CF5A700C0F519 /* ZXGenericGFPoly.m in Sources */,
 				6C7F9F611CDE9870001BE238 /* SDWebImageDownloader.m in Sources */,
 				6C94C1F51D7CF5A700C0F519 /* ZXOneDimensionalCodeWriter.m in Sources */,

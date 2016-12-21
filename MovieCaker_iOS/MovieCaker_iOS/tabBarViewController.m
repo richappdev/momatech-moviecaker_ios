@@ -27,11 +27,14 @@
 
 - (void)tabBarController:(UITabBarController *)tabBarController didSelectViewController:(UIViewController *)viewController
 {
-    UINavigationController *nav = viewController;
-    NSArray *viewControllers = nav.viewControllers;
-    if([[viewControllers objectAtIndex:0]isKindOfClass:[LoginController class]]){
-        [nav popViewControllerAnimated:YES];
-    };
-}
+    if([viewController isKindOfClass:[UINavigationController class]]){
+        UINavigationController *nav = viewController;
+        NSArray *viewControllers = nav.viewControllers;
+        if([[viewControllers objectAtIndex:0]isKindOfClass:[LoginController class]]){
+            [nav popViewControllerAnimated:YES];
+        };
+
+    }
+ }
 
 @end

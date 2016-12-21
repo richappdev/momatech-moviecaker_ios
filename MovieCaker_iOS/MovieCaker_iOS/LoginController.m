@@ -144,6 +144,18 @@
     self.iconFilm.image = [UIImage imageWithIcon:@"fa-film" backgroundColor:[UIColor whiteColor] iconColor:[UIColor colorWithRed:(51/255.0f) green:(68/255.0f) blue:(85/255.0f) alpha:1] andSize:CGSizeMake(18, 16)];
     
     self.archive.image = [UIImage imageWithIcon:@"fa-archive" backgroundColor:[UIColor whiteColor] iconColor:[UIColor colorWithRed:(51/255.0f) green:(68/255.0f) blue:(85/255.0f) alpha:1] andSize:CGSizeMake(16, 16)];
+    
+    UIUserNotificationType types = UIUserNotificationTypeBadge | UIUserNotificationTypeSound | UIUserNotificationTypeAlert;
+    UIUserNotificationSettings *mySettings = [UIUserNotificationSettings settingsForTypes:types categories:nil];
+    [[UIApplication sharedApplication] registerUserNotificationSettings:mySettings];
+
+}
+-(void)sendNotification{
+    UILocalNotification *local = [[UILocalNotification alloc]init];
+    local.alertAction = @"回去";
+    local.alertBody = @"你有新通知";
+    local.fireDate = [[NSDate alloc]initWithTimeIntervalSinceNow:1];
+    [[UIApplication sharedApplication] scheduleLocalNotification:local];
 }
 -(void)viewDidLayoutSubviews{
     [self.scrollView setContentSize:CGSizeMake(self.view.frame.size.width, 750)];
@@ -309,12 +321,14 @@
 
 -(void)testDot{
     NSLog(@"test");
+    
    NSNumber *num = [[NSUserDefaults standardUserDefaults] objectForKey:@"noticeCount"];
     
     [[AustinApi sharedInstance] getNotice:^(NSArray *returnData) {
         if([returnData count]>[num integerValue]){
             [self.dotTimer invalidate];
             self.noticeDot.hidden = NO;
+            [self sendNotification];
         }
     } error:^(NSError *error) {
         

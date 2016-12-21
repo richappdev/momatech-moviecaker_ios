@@ -124,6 +124,11 @@
 
 }
 
+-(void)failAlert{
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"錯誤" message:@"想看跟看過不能共存" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil,nil];
+    [alert show];
+}
+
 -(void)applicationIsActive:(NSNotification *)notification{
     [self refreshPage];
 }
@@ -235,7 +240,7 @@
             }
             count++;
             
-            UINavigationController *nav = [self.tabBarController.viewControllers objectAtIndex:3];
+            UINavigationController *nav = [self.tabBarController.viewControllers objectAtIndex:4];
             LoginController *login = [[nav viewControllers]objectAtIndex:0];
             login.images = self.movieArray;
         }
@@ -407,16 +412,24 @@
                 movieModel *model = [self.movieArray objectAtIndex:indexOfPage];
                 NSMutableDictionary *data = [self.returnData objectAtIndex:indexOfPage];
                 if(sender.view.tag==0){
+                    if(model.IsWantView){
+                        [self failAlert];
+                    }else{
                     model.IsViewed =!model.IsViewed;
                     [data setObject:[[NSNumber alloc] initWithBool:model.IsViewed] forKey:@"IsViewed"];
+                    }
                 }
                 if(sender.view.tag==1){
                     model.IsLiked =!model.IsLiked;
                     [data setObject:[[NSNumber alloc] initWithBool:model.IsLiked] forKey:@"IsLiked"];
                 }
                 if(sender.view.tag==2){
+                    if(model.IsViewed){
+                        [self failAlert];
+                    }else{
                     model.IsWantView = !model.IsWantView;
-                    [data setObject:[[NSNumber alloc] initWithBool:model.IsWantView] forKey:@"IsWantView"];
+                        [data setObject:[[NSNumber alloc] initWithBool:model.IsWantView] forKey:@"IsWantView"];
+                    }
                 }
                 [self setMovieDetails:[self.movieArray objectAtIndex:indexOfPage] blur:NO];
             } error:^(NSError *error) {
