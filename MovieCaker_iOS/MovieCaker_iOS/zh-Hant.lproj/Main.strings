@@ -398,8 +398,8 @@
 /* Class = "UILabel"; text = "sfdsfsfsfdsfsfsfdsfsfsfdsfsfsfdsfsfsfdsfsfsfdsfsfsfdsfsfsfdsfsfsfdsfsfsfdsfsfsfdsfsfsfdsfsfsfdsfsfsfdsfsfsfdsfsfsfdsfsfsfdsfsf"; ObjectID = "cD1-YI-jDq"; */
 "cD1-YI-jDq.text" = "sfdsfsfsfdsfsfsfdsfsfsfdsfsfsfdsfsfsfdsfsfsfdsfsfsfdsfsfsfdsfsfsfdsfsfsfdsfsfsfdsfsfsfdsfsfsfdsfsfsfdsfsfsfdsfsfsfdsfsfsfdsfsf";
 
-/* Class = "UILabel"; text = "很多字很多字很多字很多字很多字很多字很多字很多字很多字很多字很多字很多字很多字很多字很多字很多字很多字很多字很多字很多字很多字很多字很多字很多字很多字很多字很多字很多字很多字很多字很多字很多字很多字很多字很多字很多字很多字很多字很多字很多字很多字很多字"; ObjectID = "cIQ-qb-MJd"; */
-"cIQ-qb-MJd.text" = "很多字很多字很多字很多字很多字很多字很多字很多字很多字很多字很多字很多字很多字很多字很多字很多字很多字很多字很多字很多字很多字很多字很多字很多字很多字很多字很多字很多字很多字很多字很多字很多字很多字很多字很多字很多字很多字很多字很多字很多字很多字很多字";
+/* Class = "UILabel"; text = "..."; ObjectID = "cIQ-qb-MJd"; */
+"cIQ-qb-MJd.text" = "...";
 
 /* Class = "UITabBarItem"; title = "電影"; ObjectID = "cPa-gy-q4n"; */
 "cPa-gy-q4n.title" = "電影";
