@@ -441,26 +441,34 @@
             [alert show];
         }
     }
-    if(sender.view.tag==4){
+    if(sender.view.tag==4){ //Moving Btn: Movie-New 院線熱映
+        // GoTO: Topic page(1) and JumpTO: Movie-New(1)
         UINavigationController *nav = [self.tabBarController.viewControllers objectAtIndex:1];
         MovieViewController *movie = [[nav viewControllers]objectAtIndex:0];
         movie.jump = 1;
         self.tabBarController.selectedIndex =1;
     }
-    if(sender.view.tag==5){
+    if(sender.view.tag==5){ //Moving Btn: Movie-Hot 熱門電影
+        // GoTO: Topic page(1) and JumpTO: Movie-Hot(2)
         UINavigationController *nav = [self.tabBarController.viewControllers objectAtIndex:1];
         MovieViewController *movie = [[nav viewControllers]objectAtIndex:0];
         movie.jump = 2;
         self.tabBarController.selectedIndex = 1;
     }
-    if(sender.view.tag==6){
-        self.tabBarController.selectedIndex = 3;    //3 for topic page
+    if(sender.view.tag==6){ //必刷專題-More
+        // GoTO: Topic page(3) and JumpTO: Classical topic(0)
+        self.tabBarController.selectedIndex = 3;
     }
-    if(sender.view.tag==7){
+    if(sender.view.tag==7){ //熱門影評-More
+        // GoTO: Topic page(1) and JumpTO: Review(4)
         UINavigationController *nav = [self.tabBarController.viewControllers objectAtIndex:1];
         MovieViewController *movie = [[nav viewControllers]objectAtIndex:0];
         movie.jump = 3;
         self.tabBarController.selectedIndex = 1;
+    }
+    if(sender.view.tag==8){ //Moving-Btn: Topic-Index 熱映專題
+        // GoTO: Topic page(3) and JumpTO: Hot topic(?)
+        self.tabBarController.selectedIndex = 3;
     }
 }
 -(void)loadMore:(int)page{
