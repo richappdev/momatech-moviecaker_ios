@@ -2782,7 +2782,7 @@
                                     <constraint firstItem="HC2-6D-K6M" firstAttribute="top" secondItem="gdA-WZ-ZXf" secondAttribute="bottom" constant="16" id="y0j-VW-pYX"/>
                                 </constraints>
                             </view>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="CWC-Tc-WOy">
+                            <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="CWC-Tc-WOy">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="519"/>
                                 <subviews>
                                     <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4UK-Sk-aoN">
@@ -8294,6 +8294,6 @@
         <segue reference="q4E-J5-Bp9"/>
         <segue reference="Ope-LB-hkT"/>
         <segue reference="qtw-ST-1hK"/>
-        <segue reference="Ds7-rC-UPS"/>
+        <segue reference="Jao-Qb-uFS"/>
     </inferredMetricsTieBreakers>
 </document>
