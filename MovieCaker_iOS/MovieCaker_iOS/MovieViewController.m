@@ -161,16 +161,19 @@
 }
 -(void)doJump{
     if(self.jump==1){
+        // 熱映 Movie-New
         self.index =0;
         [self moveBar:self.firstLabel];
         [self setFilter];
     }
     if(self.jump==2){
+        // 熱門 Movie-Hot
         self.index =1;
         [self moveBar:self.secondLabel];
         [self setFilter];
     }
     if(self.jump==3){
+        // 影評
         self.index = 3;
         [self moveBar:self.fourthLabel];
         [self setFilter];
