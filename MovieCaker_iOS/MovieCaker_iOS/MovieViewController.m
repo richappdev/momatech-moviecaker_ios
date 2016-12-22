@@ -230,6 +230,8 @@
                 
                 self.movieTableController.data = self.tabFourData;
             }else{
+                // tag 1/2:本月影評/本週影評
+
                 NSMutableArray *data = [[NSMutableArray alloc]init];
                 for (NSDictionary *row in self.tabFourData) {
                     
@@ -237,10 +239,14 @@
                     [dateFormatter setDateFormat:@"yyyy/MM/dd'T'HH:mm:ss"];
                     NSString *test= [[row objectForKey:@"CreateOn"] substringWithRange:NSMakeRange(0,19)];
                     NSDate *dateFromString = [dateFormatter dateFromString:test];
+                    
+                    // tag 2: 本週影評
                     if([self within7Days:dateFromString]&&current.tag==2)
                     {
                         [data addObject:row];
                     }
+
+                    // tag 1: 本月影評
                     if(current.tag==1){
                         NSDateComponents *components = [[NSCalendar currentCalendar] components:NSCalendarUnitDay | NSCalendarUnitMonth | NSCalendarUnitYear fromDate:dateFromString];
                         NSInteger month = [components month];
@@ -388,7 +394,7 @@
 }
 -(void)loadMore:(int)page{
     NSString *pageString = [NSString stringWithFormat:@"%d",page];
-    NSLog(@"load:%@",pageString);
+    NSLog(@"loadMore: page=%@",pageString);
     if(self.filterIndex==0){
         if(self.fOneIndex.tag!=2){
             [self getMovieList:@"6" location:[[self.locationBackend objectAtIndex:self.locationIndex]objectForKey:@"Id"] type:(int)self.fOneIndex.tag page:pageString];}
@@ -527,25 +533,32 @@
         BOOL change = false;
         
         self.movieTableController.type = self.filterIndex;
+
+        // 熱映
         if(self.filterIndex ==0){
             if(self.tabOneData!=nil){
                 self.movieTableController.data = self.tabOneData;
                 self.movieTableController.page = 1;
                 [self.movieTableController.tableView reloadData];
             }
-            self.currentFilter = self.firstFilter;
+            self.currentFilter = self.firstFilter;  // First Filter:本月/下月/週票房
             change = true;
         }
-        if(self.filterIndex==1){
-            self.currentFilter = self.secondFilter;
-            change = true;
+
+        // 熱門
+        if(self.filterIndex==1){            
             if(self.tabTwoData!=nil){
                 self.movieTableController.data= self.tabTwoData;
                 self.movieTableController.page = 1;
                 [self.movieTable reloadData];
             }else{
-                [self getMovieList:@"month" location:nil type:3 page:nil];}
+                [self getMovieList:@"month" location:nil type:3 page:nil];
+            }
+            self.currentFilter = self.secondFilter; // Second Filter:一月熱門/一週熱門/年度熱門
+            change = true;
         }
+
+        // 朋友在看
         if(self.filterIndex==2){
             if(self.tabThreeData!=nil){
                 self.movieTableController.data =self.tabThreeData;
@@ -556,9 +569,9 @@
             }
             self.topMargin.constant = -36;
         }
+
+        // 影評
         if(self.filterIndex==3){
-            self.currentFilter = self.thirdFilter;
-            change = true;
             if(self.tabFourData!=nil){
                 self.movieTableController.data =self.tabFourData;
                 self.movieTableController.page = (int)([self.tabFourData count]-1)/10+1;
@@ -566,17 +579,21 @@
             }else{
                 [self loadReviews:nil reviewSort:@"2"];
             }
+            self.currentFilter = self.thirdFilter;  // Third Filter:最新影評/本月(熱門)熱門/本週(熱門)熱門
+            change = true;
         }
+
         if(change){
-            self.currentFilter.alpha = 1;}
-        [UIView commitAnimations];
-        
+            self.currentFilter.alpha = 1;
         }
+
+        [UIView commitAnimations];
+    }
 }
 -(void)loadReviews:(NSString*)page reviewSort:(NSString*)sort{
     [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     self.locked = YES;
-    NSLog(@"loadReviews");
+    NSLog(@"loadReviews: page=%@, sort=%@", page, sort);
     [[AustinApi sharedInstance]getReview:sort page:page function:^(NSArray *returnData) {
         if(page==nil){
             self.movieTableController.page=1;
