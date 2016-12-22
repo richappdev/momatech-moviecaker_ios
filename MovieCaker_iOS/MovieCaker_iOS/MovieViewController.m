@@ -183,6 +183,8 @@
 -(void)filterClick:(UIGestureRecognizer*)gesture{
     UILabel *previous;
     UILabel *current = (UILabel*)gesture.view;
+
+    // View-First Filter 熱映
     if(self.currentFilter.tag==0){
         previous = self.fOneIndex;
         if(previous!=current){
@@ -200,6 +202,8 @@
             self.fOneIndex = current;
         }
     }
+
+    // View-Second Filter 熱門
     if (self.currentFilter.tag==1){
         previous = self.fTwoIndex;
         if(previous!=current){
@@ -214,10 +218,16 @@
         self.fTwoIndex = current;
     }
     
+    // View-Third Filter 影評
     if (self.currentFilter.tag==2){
         previous = self.fFourIndex;
         if(previous!=current){
+
+            NSLog(@"current: %d", current.tag);
             if(current.tag==0){
+                // tag 0:最新影評
+                // api/revire: ReviewSort=New
+                
                 self.movieTableController.data = self.tabFourData;
             }else{
                 NSMutableArray *data = [[NSMutableArray alloc]init];
@@ -396,7 +406,7 @@
     }else if (self.filterIndex==2){
         [self loadFriends:pageString];
     }else if(self.filterIndex==3&&self.fFourIndex.tag==0){
-        [self loadReviews:pageString];
+        [self loadReviews:pageString reviewSort:@"2"];
     }
 }
 -(void)setLocationBtnColor:(int)index{
@@ -554,7 +564,7 @@
                 self.movieTableController.page = (int)([self.tabFourData count]-1)/10+1;
                 [self.movieTableController.tableView reloadData];
             }else{
-                [self loadReviews:nil];
+                [self loadReviews:nil reviewSort:@"2"];
             }
         }
         if(change){
@@ -563,10 +573,11 @@
         
         }
 }
--(void)loadReviews:(NSString*)page{
+-(void)loadReviews:(NSString*)page reviewSort:(NSString*)sort{
     [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     self.locked = YES;
-    [[AustinApi sharedInstance]getReview:@"2" page:page function:^(NSArray *returnData) {
+    NSLog(@"loadReviews");
+    [[AustinApi sharedInstance]getReview:sort page:page function:^(NSArray *returnData) {
         if(page==nil){
             self.movieTableController.page=1;
             self.tabFourData =returnData;
