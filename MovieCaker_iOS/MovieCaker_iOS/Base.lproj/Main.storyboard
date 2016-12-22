@@ -21,20 +21,20 @@
                         <viewControllerLayoutGuide type="bottom" id="6qy-bo-Wbp"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="Hir-mm-6uK">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="MOm-eH-Aiw">
-                                <rect key="frame" x="-4" y="578" width="383" height="40"/>
+                                <rect key="frame" x="-4" y="479" width="328" height="40"/>
                                 <subviews>
                                     <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="S5Z-Qd-37I">
-                                        <rect key="frame" x="16" y="8" width="301" height="22"/>
-                                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <rect key="frame" x="16" y="8" width="246" height="22"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="12"/>
                                         <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                     </textView>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="EM0-KI-8sb">
-                                        <rect key="frame" x="325" y="5" width="50" height="25"/>
+                                        <rect key="frame" x="270" y="5" width="50" height="25"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="回應" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QPL-Pt-HQz">
                                                 <rect key="frame" x="4" y="2" width="42" height="21"/>
@@ -66,7 +66,7 @@
                                 </constraints>
                             </view>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="f4g-qb-LNl">
-                                <rect key="frame" x="-4" y="-64" width="328" height="756"/>
+                                <rect key="frame" x="-8" y="-64" width="328" height="756"/>
                                 <subviews>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="on" translatesAutoresizingMaskIntoConstraints="NO" id="loY-Dg-I61">
                                         <rect key="frame" x="0.0" y="0.0" width="328" height="200"/>
@@ -1757,8 +1757,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dep-Bu-YLG">
-                                <rect key="frame" x="-4" y="-64" width="383" height="682"/>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="dep-Bu-YLG">
+                                <rect key="frame" x="0.0" y="-64" width="414" height="751"/>
                                 <subviews>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="on" translatesAutoresizingMaskIntoConstraints="NO" id="iDB-9S-VRO">
                                         <rect key="frame" x="0.0" y="0.0" width="383" height="200"/>
@@ -2785,8 +2785,8 @@
                                     <constraint firstItem="HC2-6D-K6M" firstAttribute="top" secondItem="gdA-WZ-ZXf" secondAttribute="bottom" constant="16" id="y0j-VW-pYX"/>
                                 </constraints>
                             </view>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="CWC-Tc-WOy">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="618"/>
+                            <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="CWC-Tc-WOy">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="519"/>
                                 <subviews>
                                     <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4UK-Sk-aoN">
                                         <rect key="frame" x="0.0" y="0.0" width="375" height="618"/>
@@ -5150,7 +5150,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hpU-nl-EIH">
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="hpU-nl-EIH">
                                 <rect key="frame" x="0.0" y="-64" width="414" height="751"/>
                                 <subviews>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="img-placeholder" translatesAutoresizingMaskIntoConstraints="NO" id="ApQ-on-j71">
@@ -7363,6 +7363,7 @@
                                         </tableViewCellContentView>
                                         <connections>
                                             <outlet property="Author" destination="JjM-ci-hM2" id="nem-8i-a5K"/>
+                                            <outlet property="AvatarPic" destination="J0d-P6-rft" id="zHd-R9-6eW"/>
                                             <outlet property="Content" destination="cD1-YI-jDq" id="Jfg-eo-dgN"/>
                                             <outlet property="CreatedOn" destination="bCV-gI-eW0" id="Fhx-Qz-8Nj"/>
                                             <outlet property="Heart" destination="WA5-d0-X4g" id="vRd-tc-baA"/>
@@ -8304,9 +8305,9 @@
         <simulatedScreenMetrics key="destination" type="retina4_7.fullscreen"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="Ds7-rC-UPS"/>
-        <segue reference="RsI-kC-Fb5"/>
-        <segue reference="faQ-HW-B4Q"/>
-        <segue reference="efM-b9-q38"/>
+        <segue reference="I4m-Mn-2yn"/>
+        <segue reference="YKh-Cl-wBT"/>
+        <segue reference="Ope-LB-hkT"/>
+        <segue reference="Jao-Qb-uFS"/>
     </inferredMetricsTieBreakers>
 </document>
