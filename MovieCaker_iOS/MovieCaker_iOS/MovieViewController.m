@@ -180,6 +180,8 @@
     }
     self.jump =0;
 }
+
+// 點選第二層Tab, 也就是 Filter 所觸發
 -(void)filterClick:(UIGestureRecognizer*)gesture{
     UILabel *previous;
     UILabel *current = (UILabel*)gesture.view;
@@ -188,13 +190,13 @@
     if(self.currentFilter.tag==0){
         previous = self.fOneIndex;
         if(previous!=current){
-            if(current.tag==0){
+            if(current.tag==0){         //本月
                 self.movieTableController.hideRating = YES;
                 [self getMovieList:@"6" location:[[self.locationBackend objectAtIndex:self.locationIndex]objectForKey:@"Id"] type:0 page:nil];
-            }else if (current.tag==1){
+            }else if (current.tag==1){  //下月
                 self.movieTableController.hideRating = YES;
                 [self getMovieList:@"6" location:[[self.locationBackend objectAtIndex:self.locationIndex]objectForKey:@"Id"] type:1 page:nil];
-            }else if (current.tag==2){
+            }else if (current.tag==2){  //週票房
                 self.movieTableController.hideRating = NO;
                 [self getMovieList:@"released" location:[[self.locationBackend objectAtIndex:self.locationIndex]objectForKey:@"Id"] type:2 page:nil];
             }
@@ -222,47 +224,16 @@
     if (self.currentFilter.tag==2){
         previous = self.fFourIndex;
         if(previous!=current){
-
-            NSLog(@"current: %d", current.tag);
-            if(current.tag==0){
-                // tag 0:最新影評
-                // api/revire: ReviewSort=New
-                
-                self.movieTableController.data = self.tabFourData;
-            }else{
-                // tag 1/2:本月影評/本週影評
-
-                NSMutableArray *data = [[NSMutableArray alloc]init];
-                for (NSDictionary *row in self.tabFourData) {
-                    
-                    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-                    [dateFormatter setDateFormat:@"yyyy/MM/dd'T'HH:mm:ss"];
-                    NSString *test= [[row objectForKey:@"CreateOn"] substringWithRange:NSMakeRange(0,19)];
-                    NSDate *dateFromString = [dateFormatter dateFromString:test];
-                    
-                    // tag 2: 本週影評
-                    if([self within7Days:dateFromString]&&current.tag==2)
-                    {
-                        [data addObject:row];
-                    }
-
-                    // tag 1: 本月影評
-                    if(current.tag==1){
-                        NSDateComponents *components = [[NSCalendar currentCalendar] components:NSCalendarUnitDay | NSCalendarUnitMonth | NSCalendarUnitYear fromDate:dateFromString];
-                        NSInteger month = [components month];
-                        components = [[NSCalendar currentCalendar] components:NSCalendarUnitDay | NSCalendarUnitMonth | NSCalendarUnitYear fromDate:[[NSDate alloc]init]];
-                        
-                        if(month==[components month]){
-                            [data addObject:row];
-                        }}
-                    
-                }
-                self.movieTableController.data =data;
-                
-                
+            if(current.tag==0){             // tag 0:最新影評 api/revire: ReviewReturnType=CreateOn
+                [self loadReviews:nil reviewSort:@"CreateOn"];
+            }else if(current.tag == 1){     // tag 1:本月(熱門)影評 api/revire: ReviewReturnType=Hot1M
+                [self loadReviews:nil reviewSort:@"LikeNum"];   ///////////等API新增並且更新到正式機之後，要改成 Hot1M
+            }else if(current.tag == 2){     // tag 2:本週(熱門)影評 api/revire: ReviewReturnType=Hot1W
+                [self loadReviews:nil reviewSort:@"Hot1W"];
             }
+
             self.movieTableController.page = (int)([self.movieTableController.data count]-1)/10+1;
-                            NSLog(@"ppp:%d",self.movieTableController.page);
+            NSLog(@"ppp:%d",self.movieTableController.page);
             [self.movieTableController.tableView reloadData];
         }
         self.fFourIndex = current;
@@ -394,7 +365,6 @@
 }
 -(void)loadMore:(int)page{
     NSString *pageString = [NSString stringWithFormat:@"%d",page];
-    NSLog(@"loadMore: page=%@",pageString);
     if(self.filterIndex==0){
         if(self.fOneIndex.tag!=2){
             [self getMovieList:@"6" location:[[self.locationBackend objectAtIndex:self.locationIndex]objectForKey:@"Id"] type:(int)self.fOneIndex.tag page:pageString];}
@@ -411,8 +381,13 @@
         }
     }else if (self.filterIndex==2){
         [self loadFriends:pageString];
-    }else if(self.filterIndex==3&&self.fFourIndex.tag==0){
-        [self loadReviews:pageString reviewSort:@"2"];
+    }else if(self.filterIndex==3){
+        if (self.fFourIndex.tag==0)         //最新
+            [self loadReviews:pageString reviewSort:@"CreateOn"];
+        else if (self.fFourIndex.tag==1)    //本月熱門
+            [self loadReviews:pageString reviewSort:@"LikeNum"];
+        else if (self.fFourIndex.tag==2)    //本週熱門
+            [self loadReviews:pageString reviewSort:@"Hot1W"];
     }
 }
 -(void)setLocationBtnColor:(int)index{
@@ -521,6 +496,8 @@
         NSLog(@"%@",error);
     }];
 }
+
+// 點選第一層 Tab(filterIndex) 所觸發
 -(void)setFilter{
     [self cancelLocation];
     if(self.index!=self.filterIndex){
@@ -577,7 +554,7 @@
                 self.movieTableController.page = (int)([self.tabFourData count]-1)/10+1;
                 [self.movieTableController.tableView reloadData];
             }else{
-                [self loadReviews:nil reviewSort:@"2"];
+                [self loadReviews:nil reviewSort:@"CreateOn"];
             }
             self.currentFilter = self.thirdFilter;  // Third Filter:最新影評/本月(熱門)熱門/本週(熱門)熱門
             change = true;
