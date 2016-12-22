@@ -151,6 +151,7 @@
     if(self.loaded) {
         [self doJump];}
     [self.movieTable reloadData];
+    [self.movieTable setContentOffset:CGPointZero animated:YES];
 }
 -(void)refresh{
     self.view = nil;
