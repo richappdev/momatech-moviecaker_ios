@@ -156,7 +156,6 @@
             NSMutableDictionary *dict = [[NSMutableDictionary alloc]initWithDictionary:row];
             if ([array count] < 2)
                 [array addObject:dict];
-            [array addObject:dict];
         }
         self.movieTableController.data =array;
         self.movieTable.delegate = self.movieTableController;
