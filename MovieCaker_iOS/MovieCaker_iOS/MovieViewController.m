@@ -186,6 +186,8 @@
     UILabel *previous;
     UILabel *current = (UILabel*)gesture.view;
 
+    [self.movieTable setContentOffset:CGPointZero animated:YES];
+    
     // View-First Filter 熱映
     if(self.currentFilter.tag==0){
         previous = self.fOneIndex;
@@ -500,6 +502,8 @@
 // 點選第一層 Tab(filterIndex) 所觸發
 -(void)setFilter{
     [self cancelLocation];
+    [self.movieTable setContentOffset:CGPointZero animated:YES];
+    
     if(self.index!=self.filterIndex){
         self.filterIndex = self.index;
         [UIView beginAnimations:nil context:nil];
