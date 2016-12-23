@@ -228,11 +228,11 @@
         previous = self.fFourIndex;
         if(previous!=current){
             if(current.tag==0){             // tag 0:最新影評 api/revire: ReviewReturnType=CreateOn
-                [self loadReviews:nil reviewSort:@"CreateOn"];
+                [self loadReviews:nil reviewSort:API_REVIEW_ORDER_CREATEON];
             }else if(current.tag == 1){     // tag 1:本月(熱門)影評 api/revire: ReviewReturnType=Hot1M
-                [self loadReviews:nil reviewSort:@"LikeNum"];   ///////////等API新增並且更新到正式機之後，要改成 Hot1M
+                [self loadReviews:nil reviewSort:API_REVIEW_ORDER_LIKENUM];   ///////////等API新增並且更新到正式機之後，要改成 Hot1M
             }else if(current.tag == 2){     // tag 2:本週(熱門)影評 api/revire: ReviewReturnType=Hot1W
-                [self loadReviews:nil reviewSort:@"Hot1W"];
+                [self loadReviews:nil reviewSort:API_REVIEW_ORDER_HOT1W];
             }
 
             self.movieTableController.page = (int)([self.movieTableController.data count]-1)/10+1;
@@ -386,11 +386,11 @@
         [self loadFriends:pageString];
     }else if(self.filterIndex==3){
         if (self.fFourIndex.tag==0)         //最新
-            [self loadReviews:pageString reviewSort:@"CreateOn"];
+            [self loadReviews:pageString reviewSort:API_REVIEW_ORDER_CREATEON];
         else if (self.fFourIndex.tag==1)    //本月熱門
-            [self loadReviews:pageString reviewSort:@"LikeNum"];
+            [self loadReviews:pageString reviewSort:API_REVIEW_ORDER_LIKENUM];
         else if (self.fFourIndex.tag==2)    //本週熱門
-            [self loadReviews:pageString reviewSort:@"Hot1W"];
+            [self loadReviews:pageString reviewSort:API_REVIEW_ORDER_HOT1W];
     }
 }
 -(void)setLocationBtnColor:(int)index{

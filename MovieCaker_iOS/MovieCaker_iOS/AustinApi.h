@@ -12,6 +12,22 @@
 
 + (instancetype)sharedInstance;
 
+// API Document http://moviecaker.com/Help
+
+// Review
+#define API_REVIEW_ORDER_HOT1W      @"Hot1W"
+#define API_REVIEW_ORDER_HOT        @"Hot"
+#define API_REVIEW_ORDER_CREATEON   @"CreateOn"
+#define API_REVIEW_ORDER_MYFRIEND   @"MyFriend"
+#define API_REVIEW_ORDER_MODIFIEDON @"ModifiedOn"
+#define API_REVIEW_ORDER_RELEASEON  @"ReleaseOn"
+#define API_REVIEW_ORDER_CLICKONNUM @"ClickOnNum"
+#define API_REVIEW_ORDER_LIKENUM    @"LikeNum"
+#define API_REVIEW_ORDER_MESSAGENUM @"MessageNum"
+#define API_REVIEW_ORDER_MINE       @"Mine"
+#define API_REVIEW_ORDER_NEW        @"New"
+#define API_REVIEW_ORDER_VIEW       @"View"
+
 -(void)apiRegisterPost:(NSString*)unionId completion:(void (^)(NSMutableDictionary *returnData))completion error:(void (^)(NSError *error))error;
 
 -(void)movieList:(void (^)(NSArray *returnData))completion error:(void (^)(NSError *error))error;
