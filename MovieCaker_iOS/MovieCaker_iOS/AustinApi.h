@@ -28,6 +28,24 @@
 #define API_REVIEW_ORDER_NEW        @"New"
 #define API_REVIEW_ORDER_VIEW       @"View"
 
+// Video
+#define API_VIDEO_TYPE_WEEK         @"Week"
+#define API_VIDEO_TYPE_FRIEND       @"Friend"
+#define API_VIDEO_TYPE_GLOBAL       @"Global"
+#define API_VIDEO_TYPE_INTOPIC      @"InTopic"
+#define API_VIDEO_TYPE_ACTOR        @"Actor"
+#define API_VIDEO_TYPE_MY           @"My"
+#define API_VIDEO_TYPE_RELEASE      @"Release"
+#define API_VIDEO_TYPE_MONTH        @"Month"
+#define API_VIDEO_TYPE_YEAR         @"Year"
+#define API_VIDEO_TYPE_RELEASEON    @"ReleaseOn"
+#define API_VIDEO_TYPE_NEW          @"New"
+#define API_VIDEO_TYPE_POS          @"POS"
+#define API_VIDEO_TYPE_TOPIC        @"Topic"
+#define API_VIDEO_TYPE_TOP          @"TOP"
+#define API_VIDEO_TYPE_AWARD        @"Award"
+
+
 -(void)apiRegisterPost:(NSString*)unionId completion:(void (^)(NSMutableDictionary *returnData))completion error:(void (^)(NSError *error))error;
 
 -(void)movieList:(void (^)(NSArray *returnData))completion error:(void (^)(NSError *error))error;
