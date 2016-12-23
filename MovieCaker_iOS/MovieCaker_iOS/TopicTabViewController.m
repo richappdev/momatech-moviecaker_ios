@@ -145,11 +145,13 @@
     });
 }
 -(void)setFilter:(int)page{
-    NSLog(@"%d",page);
-
+    NSLog(@"TopicTabViewController-setFilter: %d",page);
+    
+    [self.tableView setContentOffset:CGPointZero animated:YES];
+    
     if(self.index!=page){
         self.index = page;
-        if(self.index==0){
+        if(self.index==0){          // 必刷片單
             if(self.tabOneData==nil){
                 [self setData:@"6" page:nil];
             }else{
@@ -161,7 +163,7 @@
                     [self.tableView reloadData];
                 }
             }
-        }else if(self.index==1){
+        }else if(self.index==1){    // 最新專題
             if(self.tabTwoData==nil){
                 [self setData:@"1" page:nil];
             }else{
@@ -173,7 +175,7 @@
                     [self.tableView reloadData];
                 }
             }
-        }else if(self.index==2){
+        }else if(self.index==2){    // 熱門專題
             if(self.tabThreeData==nil){
                 [self setData:@"0" page:nil];
             }else{
