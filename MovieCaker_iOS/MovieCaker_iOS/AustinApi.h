@@ -76,6 +76,17 @@
 #define API_VIDEO_ORDER_MYFRIEND  	@"MyFriend"
 #define API_VIDEO_ORDER_SEQ  		@"Seq"
 
+// Topic
+#define API_TOPIC_TYPE_TEN			@"Ten"
+#define API_TOPIC_TYPE_WEEK			@"Week"
+#define API_TOPIC_TYPE_FRIEND		@"Friend"
+#define API_TOPIC_TYPE_MY			@"My"
+#define API_TOPIC_TYPE_LIKE			@"Like"
+#define API_TOPIC_TYPE_VIDEONOTIN	@"VideoNotIn"
+#define API_TOPIC_TYPE_CLASSIC		@"Classic"
+#define API_TOPIC_TYPE_VIDEOINTOPIC	@"VideoInTopic"
+#define API_TOPIC_TYPE_RECOMMEND	@"Recommend"
+
 
 -(void)apiRegisterPost:(NSString*)unionId completion:(void (^)(NSMutableDictionary *returnData))completion error:(void (^)(NSError *error))error;
 
