@@ -87,6 +87,11 @@
 #define API_TOPIC_TYPE_VIDEOINTOPIC	@"VideoInTopic"
 #define API_TOPIC_TYPE_RECOMMEND	@"Recommend"
 
+// Location
+#define API_LOCATION_TYPE_REGULAR	@"Regular"
+#define API_LOCATION_TYPE_RELEASED	@"Released"
+#define API_LOCATION_TYPE_WETHEATER	@"WeTheater"
+
 
 -(void)apiRegisterPost:(NSString*)unionId completion:(void (^)(NSMutableDictionary *returnData))completion error:(void (^)(NSError *error))error;
 
