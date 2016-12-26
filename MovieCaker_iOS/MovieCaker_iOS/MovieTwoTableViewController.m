@@ -146,7 +146,9 @@
         }
         [cell setLikeState:[[data objectForKey:@"IsLiked"] boolValue]];
         [cell setShareState:[[data objectForKey:@"IsShared"] boolValue]];
+        
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        cell.likeLabel.text = [NSString stringWithFormat:@"喜歡   %@",[data objectForKey:@"LikedNum"]];
         return cell;
     }
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
