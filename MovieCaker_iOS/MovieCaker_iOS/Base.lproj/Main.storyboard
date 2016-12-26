@@ -7365,6 +7365,7 @@
                                             <outlet property="Title" destination="hjm-ux-Gld" id="9vA-2D-I5E"/>
                                             <outlet property="Views" destination="L7r-LM-cDv" id="GU7-ai-REE"/>
                                             <outlet property="likeBtn" destination="t92-4V-PJe" id="Ret-81-Ulr"/>
+                                            <outlet property="likeLabel" destination="kcf-gJ-lgb" id="bPo-Bs-8Dg"/>
                                             <outlet property="mainPic" destination="BhJ-i8-fKG" id="FnU-VW-qxD"/>
                                             <outlet property="shareBtn" destination="QY0-IX-Hvd" id="IAe-O3-oMt"/>
                                             <outlet property="star1" destination="JAK-nq-suA" id="OPy-mO-sPj"/>
