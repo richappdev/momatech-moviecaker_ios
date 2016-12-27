@@ -28,6 +28,71 @@
 #define API_REVIEW_ORDER_NEW        @"New"
 #define API_REVIEW_ORDER_VIEW       @"View"
 
+// Video
+#define API_VIDEO_TYPE_WEEK         @"Week"
+#define API_VIDEO_TYPE_FRIEND       @"Friend"
+#define API_VIDEO_TYPE_GLOBAL       @"Global"
+#define API_VIDEO_TYPE_INTOPIC      @"InTopic"
+#define API_VIDEO_TYPE_ACTOR        @"Actor"
+#define API_VIDEO_TYPE_MY           @"My"
+#define API_VIDEO_TYPE_RELEASE      @"Release"
+#define API_VIDEO_TYPE_MONTH        @"Month"
+#define API_VIDEO_TYPE_YEAR         @"Year"
+#define API_VIDEO_TYPE_RELEASEON    @"ReleaseOn"
+#define API_VIDEO_TYPE_NEW          @"New"
+#define API_VIDEO_TYPE_POS          @"POS"
+#define API_VIDEO_TYPE_TOPIC        @"Topic"
+#define API_VIDEO_TYPE_TOP          @"TOP"
+#define API_VIDEO_TYPE_AWARD        @"Award"
+
+#define API_VIDEO_MYTYPE_VIEWWD		@"Viewed"
+#define API_VIDEO_MYTYPE_LIKE		@"Like"
+#define API_VIDEO_MYTYPE_WANTVIEW	@"WantView"
+
+#define API_VIDEO_ORDER_NONE		@"None"
+#define API_VIDEO_ORDER_SIGN		@"Sign"
+#define API_VIDEO_ORDER_SCORE		@"Score"
+#define API_VIDEO_ORDER_RELEASEON	@"ReleaseOn"
+#define API_VIDEO_ORDER_COMINGSOON	@"ComingSoon"
+#define API_VIDEO_ORDER_NEW			@"New"
+#define API_VIDEO_ORDER_VIEWNUM		@"ViewNum"
+#define API_VIDEO_ORDER_LIKENUM		@"LikeNum"
+#define API_VIDEO_ORDER_WANTNUM		@"WantNum"
+#define API_VIDEO_ORDER_AVGSCORE	@"AverageScore"
+#define API_VIDEO_ORDER_PERSCORE	@"PersonalScore"
+#define API_VIDEO_ORDER_VIEWON		@"ViewOn"
+#define API_VIDEO_ORDER_MODIFIEDON	@"ModifiedOn"
+#define API_VIDEO_ORDER_CLICKONNUM	@"ClickOnNum"
+#define API_VIDEO_ORDER_WHOSLIKENUM	@"WhosLikeNum"
+#define API_VIDEO_ORDER_MSGNUM		@"MessageNum"
+#define API_VIDEO_ORDER_ITEMNUM		@"ItemNum"
+#define API_VIDEO_ORDER_TOPICCOMPLETE	@"TopicComplete"
+#define API_VIDEO_ORDER_CREATEON	@"CreateOn"
+#define API_VIDEO_ORDER_TOP  		@"Top"
+#define API_VIDEO_ORDER_HOT  		@"Hot"
+#define API_VIDEO_ORDER_HOT1W  		@"Hot1W"
+#define API_VIDEO_ORDER_HOT1M  		@"Hot1M"
+#define API_VIDEO_ORDER_HOT1Y  		@"Hot1Y"
+#define API_VIDEO_ORDER_MYFRIEND  	@"MyFriend"
+#define API_VIDEO_ORDER_SEQ  		@"Seq"
+
+// Topic
+#define API_TOPIC_TYPE_TEN			@"Ten"
+#define API_TOPIC_TYPE_WEEK			@"Week"
+#define API_TOPIC_TYPE_FRIEND		@"Friend"
+#define API_TOPIC_TYPE_MY			@"My"
+#define API_TOPIC_TYPE_LIKE			@"Like"
+#define API_TOPIC_TYPE_VIDEONOTIN	@"VideoNotIn"
+#define API_TOPIC_TYPE_CLASSIC		@"Classic"
+#define API_TOPIC_TYPE_VIDEOINTOPIC	@"VideoInTopic"
+#define API_TOPIC_TYPE_RECOMMEND	@"Recommend"
+
+// Location
+#define API_LOCATION_TYPE_REGULAR	@"Regular"
+#define API_LOCATION_TYPE_RELEASED	@"Released"
+#define API_LOCATION_TYPE_WETHEATER	@"WeTheater"
+
+
 -(void)apiRegisterPost:(NSString*)unionId completion:(void (^)(NSMutableDictionary *returnData))completion error:(void (^)(NSError *error))error;
 
 -(void)movieList:(void (^)(NSArray *returnData))completion error:(void (^)(NSError *error))error;
