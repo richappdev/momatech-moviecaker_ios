@@ -76,7 +76,7 @@
     
     self.mainScroll.delegate = self.scrollHelp;
     
-    [buttonHelper gradientBg:self.bgImage width:self.view.frame.size.width+5];
+    //[buttonHelper gradientBg:self.bgImage width:self.view.frame.size.width+5];
     
     self.editBtn.layer.borderWidth=1;
     self.editBtn.layer.cornerRadius =3;
@@ -217,7 +217,11 @@
         self.respondText.text =@"";}
 }
 -(void)changeReal{
-    [self.bgImage sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@",[self.data objectForKey:@"VideoPosterUrl"]]] placeholderImage:[UIImage imageNamed:@"img-placeholder.jpg"]];
+    self.bgImage.contentMode = UIViewContentModeScaleAspectFit;
+    self.bgImage.clipsToBounds = true;
+    [self.bgImage sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@",[self.data objectForKey:@"VideoBannerUrl"]]] placeholderImage:[UIImage imageNamed:@"img-placeholder.jpg"]];
+    NSLog(@"self.data:\r\n%@", self.data);
+    
     [self.userAvatar sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@/Uploads/UserAvatar/%@",[[AustinApi sharedInstance] getBaseUrl],[self.data objectForKey:@"UserAvatar"]]]];
     self.title = [self.data objectForKey:@"VideoName"];
     self.UserNickName.text = [self.data objectForKey:@"UserNickName"];
