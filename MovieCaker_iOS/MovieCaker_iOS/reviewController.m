@@ -217,7 +217,7 @@
         self.respondText.text =@"";}
 }
 -(void)changeReal{
-    self.bgImage.contentMode = UIViewContentModeScaleAspectFit;
+    self.bgImage.contentMode = UIViewContentModeScaleAspectFill;
     self.bgImage.clipsToBounds = true;
     [self.bgImage sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@",[self.data objectForKey:@"VideoBannerUrl"]]] placeholderImage:[UIImage imageNamed:@"img-placeholder.jpg"]];
     NSLog(@"self.data:\r\n%@", self.data);
