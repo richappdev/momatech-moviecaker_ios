@@ -367,7 +367,7 @@
 
 - (void) alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
 {
-    if (buttonIndex == 0)
+    if (buttonIndex == 0&&[[NSUserDefaults standardUserDefaults] objectForKey:@"userkey"]!=nil)
     {
         [self indexClick:self.watchGesture];
     }
