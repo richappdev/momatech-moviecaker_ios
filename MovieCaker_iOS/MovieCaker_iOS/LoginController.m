@@ -79,6 +79,7 @@
 @property (strong, nonatomic) IBOutlet UIView *likedIcon;
 @property (strong, nonatomic) IBOutlet UIView *wannaWatchIcon;
 @property (strong, nonatomic) IBOutlet UILabel *invitingDot;
+@property (strong, nonatomic) IBOutlet UIView *reviewIcon;
 @property int movieTemp;
 @end
 
@@ -131,6 +132,7 @@
     [self addMovieClick:self.watchedIcon];
     [self addMovieClick:self.wannaWatchIcon];
     [self addMovieClick:self.likedIcon];
+    [self addMovieClick:self.reviewIcon];
    
     self.bullhorn.image = [UIImage imageWithIcon:@"fa-bullhorn" backgroundColor:[UIColor clearColor] iconColor:[UIColor colorWithRed:(51/255.0f) green:(68/255.0f) blue:(85/255.0f) alpha:1.0] andSize:CGSizeMake(16, 16)];
     self.friendListIcon.image =  [UIImage imageWithIcon:@"fa-users" backgroundColor:[UIColor clearColor] iconColor:[UIColor colorWithRed:(51/255.0f) green:(68/255.0f) blue:(85/255.0f) alpha:1.0] andSize:CGSizeMake(16, 16)];

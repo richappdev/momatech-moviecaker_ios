@@ -12,6 +12,7 @@
 #import "MovieDetailController.h"
 #import "AustinApi.h"
 #import "MBProgressHUD.h"
+#import "reviewController.h"
 @interface myMovieViewController ()
 @property MainVerticalScroller *helper;
 @property MovieTwoTableViewController *movieTableController;
@@ -31,6 +32,9 @@
     if(self.type==2){
         self.title = NSLocalizedStringFromTableInBundle(@"mywant.title", @"Main", [NSBundle mainBundle], nil);
     }
+    if(self.type==3){
+        self.title = NSLocalizedStringFromTableInBundle(@"review.title", @"Main", [NSBundle mainBundle], nil);
+    }
     self.helper = [[MainVerticalScroller alloc]init];
     self.helper.nav = self.navigationController;
     [self.helper setupBackBtn2:self];
@@ -44,6 +48,25 @@
     self.movieTableController.page = 1;
     
     [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    if(self.type==3){
+        [[AustinApi sharedInstance] getReview:@"9" page:@"1" function:^(NSArray *returnData) {
+            
+            NSMutableArray *array = [[NSMutableArray alloc]init];
+            for (NSDictionary *row in returnData) {
+                [array addObject:[[NSMutableDictionary alloc] initWithDictionary:row]];
+            }
+            self.movieTableController.data = array;
+            self.movieTableController.type =3;
+            [self.tableView reloadData];
+            [MBProgressHUD hideHUDForView:self.view animated:YES];
+            
+        [MBProgressHUD hideHUDForView:self.view animated:YES];
+        } error:^(NSError *error) {
+            
+        [MBProgressHUD hideHUDForView:self.view animated:YES];
+        }];
+    }else{
+    
     [[AustinApi sharedInstance] movieListCustom:@"5" myType:[NSString stringWithFormat:@"%d",self.type] location:nil year:nil month:nil page:nil topicId:nil function:^(NSArray *returnData) {
         NSMutableArray *array = [[NSMutableArray alloc]init];
         for (NSDictionary *row in returnData) {
@@ -54,7 +77,7 @@
         [MBProgressHUD hideHUDForView:self.view animated:YES];
     } error:^(NSError *error) {
         [MBProgressHUD hideHUDForView:self.view animated:YES];
-    }];
+    }];}
 }
 
 - (void)didReceiveMemoryWarning {
@@ -70,11 +93,18 @@
         MovieDetailController *vc = segue.destinationViewController;
         vc.movieDetailInfo = [self.movieTableController.data objectAtIndex:self.movieTableController.selectIndex];
     }
+    if([[segue identifier]isEqualToString:@"reviewSegue"]){
+        reviewController *vc = segue.destinationViewController;
+        vc.data = [[NSMutableDictionary alloc]initWithDictionary:[self.movieTableController.data objectAtIndex:self.movieTableController.selectIndex]];
+        
+    }
 }
 
 -(void)loadMore:(int)page{
     [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     NSString *pageString = [NSString stringWithFormat:@"%d",page];
+    
+    if(self.type!=3){
     [[AustinApi sharedInstance] movieListCustom:@"5" myType:[NSString stringWithFormat:@"%d",self.type] location:nil year:nil month:nil page:pageString topicId:nil function:^(NSArray *returnData) {
         NSMutableArray *array = [[NSMutableArray alloc]init];
         for (NSDictionary *row in returnData) {
@@ -87,7 +117,24 @@
     } error:^(NSError *error) {
         [MBProgressHUD hideHUDForView:self.view animated:YES];
     }];
-
-
+    }else{
+    [[AustinApi sharedInstance] getReview:@"9" page:pageString function:^(NSArray *returnData) {
+        
+        NSMutableArray *array = [[NSMutableArray alloc]init];
+        for (NSDictionary *row in returnData) {
+            [array addObject:[[NSMutableDictionary alloc] initWithDictionary:row]];
+        }
+        NSArray *new = [self.movieTableController.data arrayByAddingObjectsFromArray:array];
+        self.movieTableController.data = new;
+        [self.tableView reloadData];
+        [MBProgressHUD hideHUDForView:self.view animated:YES];
+        
+        [MBProgressHUD hideHUDForView:self.view animated:YES];
+    } error:^(NSError *error) {
+        
+        [MBProgressHUD hideHUDForView:self.view animated:YES];
+    }];
+    }
 }
+
 @end
