@@ -402,8 +402,10 @@
         if([[NSUserDefaults standardUserDefaults] objectForKey:@"userkey"]!=nil){
             
             if(sender.view.tag==3){
-                self.movieTable2Controller.selectIndex = -1;
-                [self performSegueWithIdentifier:@"reviewSegue" sender:self];
+                UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"注意" message:@"此功能未開放" delegate:self cancelButtonTitle:@"关闭" otherButtonTitles:nil,nil];
+                [alert show];
+           //     self.movieTable2Controller.selectIndex = -1;
+             //   [self performSegueWithIdentifier:@"reviewSegue" sender:self];
             }else{
             
             int indexOfPage = self.imageScroll.contentOffset.x / self.imageScroll.frame.size.width;
