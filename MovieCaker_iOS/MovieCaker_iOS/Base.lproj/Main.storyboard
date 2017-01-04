@@ -71,10 +71,10 @@
                                         </constraints>
                                     </imageView>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="rabbit-512" translatesAutoresizingMaskIntoConstraints="NO" id="kUF-92-hxA">
-                                        <rect key="frame" x="13" y="139" width="50" height="50"/>
+                                        <rect key="frame" x="13" y="114" width="50" height="75"/>
                                         <color key="backgroundColor" red="0.86666666670000003" green="0.86666666670000003" blue="0.86666666670000003" alpha="1" colorSpace="calibratedRGB"/>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="50" id="I6h-SC-CfT"/>
+                                            <constraint firstAttribute="height" constant="75" id="I6h-SC-CfT"/>
                                             <constraint firstAttribute="width" constant="50" id="R7g-7Y-C9v"/>
                                         </constraints>
                                     </imageView>
@@ -607,7 +607,7 @@
                                     <constraint firstItem="cGf-Zy-hPT" firstAttribute="leading" secondItem="1sd-SU-ewR" secondAttribute="leading" id="aMY-yq-5xJ"/>
                                     <constraint firstItem="yEQ-iV-6r1" firstAttribute="top" secondItem="px8-VQ-0Se" secondAttribute="bottom" constant="26" id="asq-Ay-Dy3"/>
                                     <constraint firstAttribute="trailing" secondItem="ZbB-Eh-8KW" secondAttribute="trailing" constant="12" id="bYb-px-5Jb"/>
-                                    <constraint firstItem="kUF-92-hxA" firstAttribute="top" secondItem="f4g-qb-LNl" secondAttribute="top" constant="139" id="dj5-TL-8lU"/>
+                                    <constraint firstItem="kUF-92-hxA" firstAttribute="top" secondItem="f4g-qb-LNl" secondAttribute="top" constant="114" id="dj5-TL-8lU"/>
                                     <constraint firstItem="kRr-nN-Z5L" firstAttribute="top" secondItem="oZ2-uF-AfE" secondAttribute="bottom" constant="4" id="doE-5q-VQz"/>
                                     <constraint firstItem="BzU-ef-hiL" firstAttribute="top" secondItem="cGf-Zy-hPT" secondAttribute="bottom" id="eLz-my-f7a"/>
                                     <constraint firstItem="px8-VQ-0Se" firstAttribute="leading" secondItem="f4g-qb-LNl" secondAttribute="leading" id="eYt-0Q-tQX"/>
