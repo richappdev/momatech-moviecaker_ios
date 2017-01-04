@@ -155,7 +155,7 @@
                                             <outlet property="star5" destination="4sE-PW-kA8" id="Wja-a2-o3N"/>
                                         </connections>
                                     </view>
-                                    <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="TNZ-PR-ks9">
+                                    <view hidden="YES" contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="TNZ-PR-ks9">
                                         <rect key="frame" x="264" y="238" width="50" height="20"/>
                                         <subviews>
                                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Yv2-iY-AyJ">
@@ -8589,7 +8589,7 @@
     <inferredMetricsTieBreakers>
         <segue reference="Jao-Qb-uFS"/>
         <segue reference="59C-H6-4BD"/>
-        <segue reference="NoJ-6H-TL0"/>
+        <segue reference="joH-vB-8to"/>
         <segue reference="Ope-LB-hkT"/>
     </inferredMetricsTieBreakers>
 </document>
