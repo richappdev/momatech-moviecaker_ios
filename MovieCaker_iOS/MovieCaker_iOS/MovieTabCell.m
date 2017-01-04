@@ -73,7 +73,7 @@
                 NSLog(@"%@",error);
             }];
         }else if (view.tag==3){
-            [self.parent gotoEdit:self.index];
+        //    [self.parent gotoEdit:self.index];
         }
     }
 }

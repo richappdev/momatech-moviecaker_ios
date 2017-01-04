@@ -222,7 +222,7 @@
     [self.bgImage sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@",[self.data objectForKey:@"VideoBannerUrl"]]] placeholderImage:[UIImage imageNamed:@"img-placeholder.jpg"]];
     NSLog(@"self.data:\r\n%@", self.data);
     
-    [self.userAvatar sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@/Uploads/UserAvatar/%@",[[AustinApi sharedInstance] getBaseUrl],[self.data objectForKey:@"UserAvatar"]]]];
+    [self.userAvatar sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@/Uploads/UserAvatar/%@",[[AustinApi sharedInstance] getBaseUrl],[self.data objectForKey:@"UserAvatar"]]] placeholderImage:[UIImage imageNamed:@"nobody-big.jpg"]];
     self.title = [self.data objectForKey:@"VideoName"];
     self.UserNickName.text = [self.data objectForKey:@"UserNickName"];
     self.reviewTitle.text = [NSString stringWithFormat:@"%@ 的影評", [self.data objectForKey:@"VideoName"]];
