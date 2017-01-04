@@ -451,8 +451,8 @@
                 NSLog(@"%@",error);
             }];
         }else if(view.tag==4){
-            self.newReview =YES;
-            [self performSegueWithIdentifier:@"reviewSegue" sender:self];
+            /*self.newReview =YES;
+            [self performSegueWithIdentifier:@"reviewSegue" sender:self];*/
         }
     }
 }
