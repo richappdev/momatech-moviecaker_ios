@@ -5070,27 +5070,7 @@
                                             <userDefinedRuntimeAttribute type="string" keyPath="layer.cornerRadius" value="22"/>
                                         </userDefinedRuntimeAttributes>
                                     </view>
-                                    <view tag="2" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ckj-9A-LVf">
-                                        <rect key="frame" x="180" y="10" width="44" height="44"/>
-                                        <subviews>
-                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="iconPocketIndexActive-1" translatesAutoresizingMaskIntoConstraints="NO" id="gOs-Ax-acf">
-                                                <rect key="frame" x="13" y="12" width="18" height="20"/>
-                                            </imageView>
-                                        </subviews>
-                                        <color key="backgroundColor" red="0.50196078430000002" green="0.79607843140000001" blue="0.76862745099999996" alpha="1" colorSpace="calibratedRGB"/>
-                                        <constraints>
-                                            <constraint firstItem="gOs-Ax-acf" firstAttribute="centerY" secondItem="ckj-9A-LVf" secondAttribute="centerY" id="9ym-mz-giA"/>
-                                            <constraint firstItem="gOs-Ax-acf" firstAttribute="centerX" secondItem="ckj-9A-LVf" secondAttribute="centerX" id="FBA-rI-RWV"/>
-                                            <constraint firstItem="gOs-Ax-acf" firstAttribute="top" secondItem="ckj-9A-LVf" secondAttribute="top" constant="12" id="TQL-Sx-P7C"/>
-                                            <constraint firstAttribute="height" constant="44" id="hmE-N1-62H"/>
-                                            <constraint firstAttribute="width" constant="44" id="tpI-P6-bY8"/>
-                                            <constraint firstItem="gOs-Ax-acf" firstAttribute="leading" secondItem="ckj-9A-LVf" secondAttribute="leading" constant="13" id="vRQ-1b-C5p"/>
-                                        </constraints>
-                                        <userDefinedRuntimeAttributes>
-                                            <userDefinedRuntimeAttribute type="string" keyPath="layer.cornerRadius" value="22"/>
-                                        </userDefinedRuntimeAttributes>
-                                    </view>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6rZ-Zv-vhB">
+                                    <view tag="3" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6rZ-Zv-vhB">
                                         <rect key="frame" x="249" y="10" width="44" height="44"/>
                                         <subviews>
                                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="iconPenIndexActive-1" translatesAutoresizingMaskIntoConstraints="NO" id="weZ-P8-w6G">
@@ -5158,6 +5138,26 @@
                                         <color key="textColor" red="0.95686274510000002" green="0.60392156860000001" blue="0.2666666667" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
+                                    <view tag="2" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ckj-9A-LVf">
+                                        <rect key="frame" x="180" y="10" width="44" height="44"/>
+                                        <subviews>
+                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="iconPocketIndexActive-1" translatesAutoresizingMaskIntoConstraints="NO" id="gOs-Ax-acf">
+                                                <rect key="frame" x="13" y="12" width="18" height="20"/>
+                                            </imageView>
+                                        </subviews>
+                                        <color key="backgroundColor" red="0.50196078430000002" green="0.79607843140000001" blue="0.76862745099999996" alpha="1" colorSpace="calibratedRGB"/>
+                                        <constraints>
+                                            <constraint firstItem="gOs-Ax-acf" firstAttribute="centerY" secondItem="ckj-9A-LVf" secondAttribute="centerY" id="9ym-mz-giA"/>
+                                            <constraint firstItem="gOs-Ax-acf" firstAttribute="centerX" secondItem="ckj-9A-LVf" secondAttribute="centerX" id="FBA-rI-RWV"/>
+                                            <constraint firstItem="gOs-Ax-acf" firstAttribute="top" secondItem="ckj-9A-LVf" secondAttribute="top" constant="12" id="TQL-Sx-P7C"/>
+                                            <constraint firstAttribute="height" constant="44" id="hmE-N1-62H"/>
+                                            <constraint firstAttribute="width" constant="44" id="tpI-P6-bY8"/>
+                                            <constraint firstItem="gOs-Ax-acf" firstAttribute="leading" secondItem="ckj-9A-LVf" secondAttribute="leading" constant="13" id="vRQ-1b-C5p"/>
+                                        </constraints>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="string" keyPath="layer.cornerRadius" value="22"/>
+                                        </userDefinedRuntimeAttributes>
+                                    </view>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
@@ -5296,6 +5296,7 @@
                         <outlet property="likedIcon" destination="zrQ-PY-hpI" id="Wlo-kb-bv8"/>
                         <outlet property="location" destination="SAf-fW-5e4" id="FMz-bC-AEV"/>
                         <outlet property="name" destination="ypZ-UU-a96" id="GAi-gN-6Xi"/>
+                        <outlet property="reviewIcon" destination="6rZ-Zv-vhB" id="1eR-cb-O0H"/>
                         <outlet property="topicLabel" destination="U9u-aW-kxy" id="jLj-2o-HgD"/>
                         <outlet property="viewLabel" destination="Nsz-lr-Mx5" id="U5q-qh-T92"/>
                         <outlet property="wannaWatchIcon" destination="ckj-9A-LVf" id="Lc5-wF-2qR"/>
@@ -8587,7 +8588,7 @@
         <image name="tabbarBg" width="80" height="49"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="Jao-Qb-uFS"/>
+        <segue reference="Ds7-rC-UPS"/>
         <segue reference="59C-H6-4BD"/>
         <segue reference="joH-vB-8to"/>
         <segue reference="Ope-LB-hkT"/>

@@ -10,4 +10,6 @@
 
 @interface myMovieViewController : UIViewController
 @property int type;
+@property BOOL friendBool;
+@property NSString *friendId;
 @end

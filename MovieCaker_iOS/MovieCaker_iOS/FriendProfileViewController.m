@@ -23,6 +23,7 @@
 @property (strong, nonatomic) IBOutlet UIView *watchedIcon;
 @property (strong, nonatomic) IBOutlet UIView *likedIcon;
 @property (strong, nonatomic) IBOutlet UIView *wannaWatchIcon;
+@property (strong, nonatomic) IBOutlet UIView *reviewIcon;
 @property int movieTemp;
 @end
 
@@ -52,6 +53,7 @@
     [self addMovieClick:self.watchedIcon];
     [self addMovieClick:self.wannaWatchIcon];
     [self addMovieClick:self.likedIcon];
+    [self addMovieClick:self.reviewIcon];
     [[AustinApi sharedInstance] getStatistics:[self.data objectForKey:@"UserId"] function:^(NSDictionary *returnData) {
         self.viewLabel.text = [[returnData objectForKey:@"ViewCount"]stringValue];
         self.likeLabel.text = [[returnData objectForKey:@"LikeCount"] stringValue];
@@ -79,6 +81,8 @@
     if([[segue identifier]isEqualToString:@"myMovieSegue"]){
         myMovieViewController *temp = segue.destinationViewController;
         temp.type =self.movieTemp;
+        temp.friendId = [self.data objectForKey:@"Id"];
+        temp.friendBool = YES;
     }
     
 }
