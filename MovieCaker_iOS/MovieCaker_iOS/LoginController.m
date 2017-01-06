@@ -497,9 +497,9 @@
         self.viewLabel.text = [[returnData objectForKey:@"ViewCount"]stringValue];
         self.likeLabel.text = [[returnData objectForKey:@"LikeCount"] stringValue];
         self.wantLabel.text = [[returnData objectForKey:@"WantViewCount"] stringValue];
-        self.topicSLabel.text = [[returnData objectForKey:@"TopicCount"] stringValue];
+        self.topicSLabel.text = [[returnData objectForKey:@"ReviewCount"] stringValue];
         
-        NSLog(@"%@",returnData);
+        NSLog(@"getStatistics %@",returnData);
     } error:^(NSError *error) {
         NSLog(@"%@",error);
     }];
