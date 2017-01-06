@@ -480,6 +480,7 @@
 }
 -(void)populate:(NSDictionary*)dict{
     [self.BannerUrl sd_setImageWithURL:[NSURL URLWithString:[dict objectForKey:@"BannerUrl"]] placeholderImage:[UIImage imageNamed:@"img-placeholder.jpg"]];
+    self.BannerUrl.contentMode = UIViewContentModeScaleAspectFill;
     [self.avatar sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@",[dict objectForKey:@"AvatarUrl"]]] placeholderImage:[UIImage imageNamed:@"img-placeholder.jpg"]];
     self.nickname.text = [dict objectForKey:@"NickName"];
     self.location.text = [dict objectForKey:@"LocationName"];
