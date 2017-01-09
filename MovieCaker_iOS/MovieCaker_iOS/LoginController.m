@@ -68,7 +68,7 @@
 @property (strong, nonatomic) IBOutlet UILabel *viewLabel;
 @property (strong, nonatomic) IBOutlet UILabel *likeLabel;
 @property (strong, nonatomic) IBOutlet UILabel *wantLabel;
-@property (strong, nonatomic) IBOutlet UILabel *topicSLabel;
+@property (strong, nonatomic) IBOutlet UILabel *reviewLabel;
 @property (strong, nonatomic) IBOutlet UIView *wechatLine;
 @property (strong, nonatomic) IBOutlet UILabel *wechatOr;
 @property (strong, nonatomic) IBOutlet UILabel *noticeDot;
@@ -498,9 +498,9 @@
         self.viewLabel.text = [[returnData objectForKey:@"ViewCount"]stringValue];
         self.likeLabel.text = [[returnData objectForKey:@"LikeCount"] stringValue];
         self.wantLabel.text = [[returnData objectForKey:@"WantViewCount"] stringValue];
-        self.topicSLabel.text = [[returnData objectForKey:@"TopicCount"] stringValue];
+        self.reviewLabel.text = [[returnData objectForKey:@"ReviewCount"] stringValue];
         
-        NSLog(@"%@",returnData);
+        NSLog(@"getStatistics %@",returnData);
     } error:^(NSError *error) {
         NSLog(@"%@",error);
     }];
