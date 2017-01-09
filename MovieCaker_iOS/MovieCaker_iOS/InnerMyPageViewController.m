@@ -36,7 +36,7 @@
     
     NSDictionary *returnData = [[NSKeyedUnarchiver unarchiveObjectWithData:[[NSUserDefaults standardUserDefaults] objectForKey:@"userkey"]] objectForKey:@"Data"];
     self.nickname.text = [returnData objectForKey:@"NickName"];
-    [self.avatar sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@",[returnData objectForKey:@"AvatarUrl"]]] placeholderImage:[UIImage imageNamed:@"img-placeholder.jpg"]];
+    [self.avatar sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@",[returnData objectForKey:@"AvatarUrl"]]] placeholderImage:[UIImage imageNamed:@"placeholder-poster.jpg"]];
     
     if(![[returnData objectForKey:@"Gender"]isKindOfClass:[NSNull class]]&&[[returnData objectForKey:@"Gender"] integerValue]==1){
         self.sex.text = @"男";

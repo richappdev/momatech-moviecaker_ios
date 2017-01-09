@@ -37,9 +37,9 @@
     self.title = [self.data objectForKey:@"NickName"];
     NSLog(@"%@",self.data);
 
-    [self.banner sd_setImageWithURL:[NSURL URLWithString:[self.data objectForKey:@"BannerUrl"]] placeholderImage:[UIImage imageNamed:@"img-placeholder.jpg"]];
+    [self.banner sd_setImageWithURL:[NSURL URLWithString:[self.data objectForKey:@"BannerUrl"]] placeholderImage:[UIImage imageNamed:@"placeholder-banner.jpg"]];
     self.banner.contentMode = UIViewContentModeScaleAspectFill;
-    [self.avatar sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@",[self.data objectForKey:@"AvatarUrl"]]] placeholderImage:[UIImage imageNamed:@"img-placeholder.jpg"]];
+    [self.avatar sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@",[self.data objectForKey:@"AvatarUrl"]]] placeholderImage:[UIImage imageNamed:@"placeholder-poster.jpg"]];
     self.name.text = [self.data objectForKey:@"NickName"];
     self.location.text = [self.data objectForKey:@"LocationName"];
     if(![[self.data objectForKey:@"Gender"] isKindOfClass:[NSNull class]]&&[[self.data objectForKey:@"Gender"] integerValue]==1

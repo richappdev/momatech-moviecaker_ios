@@ -198,7 +198,7 @@
             temp.IsLiked = [[row objectForKey:@"IsLiked"]boolValue];
             temp.IsWantView = [[row objectForKey:@"IsWantView"]boolValue];
             
-            UIImage *placeholder = [UIImage imageNamed:@"img-placeholder.jpg"];
+            UIImage *placeholder = [UIImage imageNamed:@"placeholder-poster.jpg"];
             UIImageView *image = [[UIImageView alloc] initWithImage:temp.movieImage];
             image.layer.masksToBounds = YES;
             image.layer.cornerRadius = 5;

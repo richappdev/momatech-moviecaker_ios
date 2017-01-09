@@ -71,7 +71,7 @@
     }
     
     
-    [cell.avatar sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@",[[self.data objectAtIndex:indexPath.row]objectForKey:@"AvatarUrl"]]] placeholderImage:[UIImage imageNamed:@"img-placeholder.jpg"]];
+    [cell.avatar sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@",[[self.data objectAtIndex:indexPath.row]objectForKey:@"AvatarUrl"]]] placeholderImage:[UIImage imageNamed:@"placeholder-poster.jpg"]];
     cell.nickName.text = [[self.data objectAtIndex:indexPath.row]objectForKey:@"NickName"];
     cell.location.text = [[self.data objectAtIndex:indexPath.row]objectForKey:@"LocationName"];
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
