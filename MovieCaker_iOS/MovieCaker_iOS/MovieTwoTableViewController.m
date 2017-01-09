@@ -80,7 +80,7 @@
             cell.title.text = [data objectForKey:@"Name"];
         }
     NSString *url = [NSString stringWithFormat:@"http://www.funmovie.tv/Content/pictures/files/%@?width=88",[data objectForKey:@"Picture"]];
-    [cell.image sd_setImageWithURL:[NSURL URLWithString:url] placeholderImage:[UIImage imageNamed:@"img-placeholder.jpg"]];
+    [cell.image sd_setImageWithURL:[NSURL URLWithString:url] placeholderImage:[UIImage imageNamed:@"placeholder-poster.jpg"]];
     cell.imdb.text = [self testNil:[data objectForKey:@"Ratings_IMDB"]];
     if([cell.imdb.text isEqualToString:@""]){
         cell.imdbWhole.hidden = YES;
@@ -131,7 +131,7 @@
         cell.Messages.text = [[data objectForKey:@"MessageNum"]stringValue];
         cell.Views.text = [[data objectForKey:@"PageViews"]stringValue];
         NSString *url = [NSString stringWithFormat:@"http://www.funmovie.tv/Content/pictures/files/%@?width=88",[data objectForKey:@"VideoPicture"]];
-        [cell.mainPic sd_setImageWithURL:[NSURL URLWithString:url] placeholderImage:[UIImage imageNamed:@"img-placeholder.jpg"]];
+        [cell.mainPic sd_setImageWithURL:[NSURL URLWithString:url] placeholderImage:[UIImage imageNamed:@"placeholder-poster.jpg"]];
         
         [cell.AvatarPic sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@/Uploads/UserAvatar/%@",[[AustinApi sharedInstance] getBaseUrl],[data objectForKey:@"UserAvatar"]]]];
          if(![[data objectForKey:@"OwnerLinkVideo_Score"] isKindOfClass:[NSNull class]]){
@@ -148,7 +148,8 @@
         [cell setShareState:[[data objectForKey:@"IsShared"] boolValue]];
         
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
-        cell.likeLabel.text = [NSString stringWithFormat:@"喜歡   %@",[data objectForKey:@"LikedNum"]];
+        if ([data objectForKey:@"LikedNum"] != NULL)
+            cell.likeLabel.text = [NSString stringWithFormat:@"喜歡   %@",[data objectForKey:@"LikedNum"]];
         return cell;
     }
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
