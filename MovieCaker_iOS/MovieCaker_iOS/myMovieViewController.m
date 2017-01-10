@@ -48,8 +48,15 @@
     self.movieTableController.page = 1;
     
     [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    NSString *uid = nil;
+    if(self.friendBool ==YES){
+        uid = self.friendId;
+        NSLog(@"%@",uid);
+    }else{
+        NSLog(@"NO");
+    }
     if(self.type==3){
-        [[AustinApi sharedInstance] getReview:@"9" page:@"1" function:^(NSArray *returnData) {
+        [[AustinApi sharedInstance] getReview:@"9" page:@"1" uid:uid function:^(NSArray *returnData) {
             
             NSMutableArray *array = [[NSMutableArray alloc]init];
             for (NSDictionary *row in returnData) {
@@ -66,8 +73,7 @@
         [MBProgressHUD hideHUDForView:self.view animated:YES];
         }];
     }else{
-    
-    [[AustinApi sharedInstance] movieListCustom:@"5" myType:[NSString stringWithFormat:@"%d",self.type] location:nil year:nil month:nil page:nil topicId:nil function:^(NSArray *returnData) {
+    [[AustinApi sharedInstance] movieListCustom:@"5" myType:[NSString stringWithFormat:@"%d",self.type] location:nil year:nil month:nil page:nil topicId:nil uid:uid function:^(NSArray *returnData) {
         NSMutableArray *array = [[NSMutableArray alloc]init];
         for (NSDictionary *row in returnData) {
             [array addObject:[[NSMutableDictionary alloc] initWithDictionary:row]];
@@ -102,10 +108,14 @@
 
 -(void)loadMore:(int)page{
     [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    NSString *uid = nil;
+    if(self.friendBool ==YES){
+        uid = self.friendId;
+    }
     NSString *pageString = [NSString stringWithFormat:@"%d",page];
     
     if(self.type!=3){
-    [[AustinApi sharedInstance] movieListCustom:@"5" myType:[NSString stringWithFormat:@"%d",self.type] location:nil year:nil month:nil page:pageString topicId:nil function:^(NSArray *returnData) {
+        [[AustinApi sharedInstance] movieListCustom:@"5" myType:[NSString stringWithFormat:@"%d",self.type] location:nil year:nil month:nil page:pageString topicId:nil uid:uid function:^(NSArray *returnData) {
         NSMutableArray *array = [[NSMutableArray alloc]init];
         for (NSDictionary *row in returnData) {
             [array addObject:[[NSMutableDictionary alloc] initWithDictionary:row]];
@@ -118,7 +128,7 @@
         [MBProgressHUD hideHUDForView:self.view animated:YES];
     }];
     }else{
-    [[AustinApi sharedInstance] getReview:@"9" page:pageString function:^(NSArray *returnData) {
+        [[AustinApi sharedInstance] getReview:@"9" page:pageString uid:uid function:^(NSArray *returnData) {
         
         NSMutableArray *array = [[NSMutableArray alloc]init];
         for (NSDictionary *row in returnData) {

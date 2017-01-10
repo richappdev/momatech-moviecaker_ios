@@ -81,7 +81,7 @@
     if([[segue identifier]isEqualToString:@"myMovieSegue"]){
         myMovieViewController *temp = segue.destinationViewController;
         temp.type =self.movieTemp;
-        temp.friendId = [self.data objectForKey:@"Id"];
+        temp.friendId = [self.data objectForKey:@"UserId"];
         temp.friendBool = YES;
     }
     
