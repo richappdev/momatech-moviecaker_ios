@@ -234,7 +234,7 @@
     }
     NSMutableDictionary *parameter =[[NSMutableDictionary alloc] initWithDictionary:@{@"order":order,@"limit":@"10",@"page":pageNo}];
     if(uid!=nil){
-        [parameter setObject:uid forKey:@"uid"];
+        [parameter setObject:uid forKey:@"userId"];
     }
     NSLog(@"%@",parameter);
     [self apiGetMethod:@"api/Review" parameter:parameter addTokenHeader:@"1" completion:^(id response) {
