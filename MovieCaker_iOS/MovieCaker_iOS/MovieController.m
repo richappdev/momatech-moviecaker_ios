@@ -133,7 +133,7 @@
     [self refreshPage];
 }
 -(void)reviewCall{
-    [[AustinApi sharedInstance]getReview:API_REVIEW_ORDER_HOT1W page:nil function:^(NSArray *returnData) {
+    [[AustinApi sharedInstance]getReview:API_REVIEW_ORDER_HOT1W page:nil uid:nil function:^(NSArray *returnData) {
         //    NSLog(@"bbb%@",returnData);
         self.movieTable2Controller.data = returnData;
         self.movieTable2.delegate = self.movieTable2Controller;
