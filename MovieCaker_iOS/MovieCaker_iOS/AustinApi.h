@@ -12,7 +12,7 @@
 
 + (instancetype)sharedInstance;
 
-// API Document http://moviecaker.com/Help
+// API Document http://www.moviecaker.com/Help
 
 // Review
 #define API_REVIEW_ORDER_HOT1W      @"Hot1W"
