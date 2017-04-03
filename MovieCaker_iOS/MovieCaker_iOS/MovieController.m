@@ -20,6 +20,7 @@
 #import "TopicDetailViewController.h"
 #import "LoginController.h"
 #import "buttonHelper.h"
+#import <Crashlytics/Crashlytics.h>
 
 @interface MovieController ()
 @property (strong, nonatomic) IBOutlet scrollBoxView *scrollView;
@@ -122,6 +123,10 @@
                                                  name:UIApplicationDidBecomeActiveNotification
                                                object:nil];
 
+    if ([[NSUserDefaults standardUserDefaults] objectForKey:@"userkey"] == nil) {
+        // Not login
+        [self logUserWithDefault];
+    }
 }
 
 -(void)failAlert{
@@ -476,4 +481,12 @@
 -(void)loadMore:(int)page{
 
 }
+
+- (void) logUserWithDefault {
+    [CrashlyticsKit setUserIdentifier:@"MovieCaker-iOS"];
+    [CrashlyticsKit setUserEmail:@"MovieCaker-iOS"];
+    [CrashlyticsKit setUserName:@"MovieCaker-iOS"];
+    NSLog(@"CrashlyticsKit-logUser: Default");
+}
+
 @end
