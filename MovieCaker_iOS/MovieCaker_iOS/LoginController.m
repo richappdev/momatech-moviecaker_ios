@@ -21,6 +21,7 @@
 #import "myTopicsViewController.h"
 #import "MovieViewController.h"
 #import "myMovieViewController.h"
+#import <Crashlytics/Crashlytics.h>
 
 #define USERKEY @"userkey"
 @interface LoginController ()
@@ -429,6 +430,8 @@
                 [self.myView setHidden:NO];
                 [self stopTimer];
                 [self populate:[returnData objectForKey:@"data"]];
+                
+                [self logUser:[returnData objectForKey:@"NickName"] userEmail:[returnData objectForKey:@"UserName"] userID:[returnData objectForKey:@"UserId"]];
             }
             else{
                 UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"注意" message:@"用户名或密码不正确" delegate:self cancelButtonTitle:@"关闭" otherButtonTitles:nil,nil];
@@ -505,4 +508,12 @@
         NSLog(@"%@",error);
     }];
 }
+
+- (void) logUser:(NSString *)userName userEmail:(NSString *)userEmail userID:(NSString *)userId {
+    [CrashlyticsKit setUserIdentifier:userId];
+    [CrashlyticsKit setUserEmail:userEmail];
+    [CrashlyticsKit setUserName:userName];
+    NSLog(@"CrashlyticsKit-logUser: %@, %@, %@", userName, userEmail, userId);
+}
+
 @end
