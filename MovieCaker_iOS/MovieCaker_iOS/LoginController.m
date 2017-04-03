@@ -418,6 +418,7 @@
     UIButton *btn = (UIButton*)sender;
     if([[NSUserDefaults standardUserDefaults] objectForKey:USERKEY]!=nil){
         [self logout];
+        [self logUserWithDefault];
     }
     else if(btn.tag==1){
         [[AustinApi sharedInstance]loginWithAccount:self.username.text withPassword:self.password.text withRemember:YES function:^(NSDictionary *returnData) {
@@ -425,13 +426,12 @@
                 [self startDotTimer:[returnData objectForKey:@"data"]];
                 [self refreshFriend:[returnData objectForKey:@"data"]];
             NSDictionary *temp = [[NSDictionary alloc] initWithObjectsAndKeys:[returnData objectForKey:@"data"],@"Data", nil];
+                [self logUser:[[returnData objectForKey:@"data"] objectForKey:@"NickName"] userEmail:[[returnData objectForKey:@"data"] objectForKey:@"UserName"] userID:[[returnData objectForKey:@"data"] objectForKey:@"UserId"]];
             [[NSUserDefaults standardUserDefaults] setObject:[NSKeyedArchiver archivedDataWithRootObject:temp] forKey:USERKEY];
                 [self.Button2 setTitle:[NSString stringWithFormat:@"%@:log out",[[temp objectForKey:@"Data"] objectForKey:@"NickName"]] forState:UIControlStateNormal];
                 [self.myView setHidden:NO];
                 [self stopTimer];
                 [self populate:[returnData objectForKey:@"data"]];
-                
-                [self logUser:[returnData objectForKey:@"NickName"] userEmail:[returnData objectForKey:@"UserName"] userID:[returnData objectForKey:@"UserId"]];
             }
             else{
                 UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"注意" message:@"用户名或密码不正确" delegate:self cancelButtonTitle:@"关闭" otherButtonTitles:nil,nil];
@@ -514,6 +514,13 @@
     [CrashlyticsKit setUserEmail:userEmail];
     [CrashlyticsKit setUserName:userName];
     NSLog(@"CrashlyticsKit-logUser: %@, %@, %@", userName, userEmail, userId);
+}
+
+- (void) logUserWithDefault {
+    [CrashlyticsKit setUserIdentifier:@"MovieCaker-iOS"];
+    [CrashlyticsKit setUserEmail:@"MovieCaker-iOS"];
+    [CrashlyticsKit setUserName:@"MovieCaker-iOS"];
+    NSLog(@"CrashlyticsKit-logUser: Default");
 }
 
 @end
