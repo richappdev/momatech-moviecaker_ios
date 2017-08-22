@@ -484,7 +484,7 @@
             }else{
                 UILabel *label = [view viewWithTag:6];
                 NSNumber *boolValue;
-                int count;
+                int count=0;
                 
                 if(view.tag==0){
                     count = [[self.movieDetailInfo objectForKey:@"ViewNum"] integerValue];
@@ -504,16 +504,31 @@
                 }
             
                 if(view.tag==0){
+                    if ([boolValue boolValue] == 0) {
+                        [Answers logCustomEventWithName:@"Movie Watch"
+                                       customAttributes:@{@"Custom String" : [self.movieDetailInfo objectForKey:@"Id"]}];
+                    }
+                    
                     [buttonHelper v2AdjustWatch:self.watchBtn state:![boolValue boolValue]];
                     [self.movieDetailInfo setObject:[[NSNumber alloc] initWithBool:![boolValue boolValue]] forKey:@"IsViewed"];
                     [self.movieDetailInfo setObject:[NSNumber numberWithInt:count] forKey:@"ViewNum"];
                     self.model.IsViewed = ![boolValue boolValue];
                 }else if (view.tag==1){
+                    if ([boolValue boolValue] == 0) {
+                        [Answers logCustomEventWithName:@"Movie Like"
+                                       customAttributes:@{@"Custom String" : [self.movieDetailInfo objectForKey:@"Id"]}];
+                    }
+                    
                     [buttonHelper v2AdjustLike:self.likeBtn state:![boolValue boolValue]];
                     [self.movieDetailInfo setObject:[[NSNumber alloc] initWithBool:![boolValue boolValue]] forKey:@"IsLiked"];
                     [self.movieDetailInfo setObject:[NSNumber numberWithInt:count] forKey:@"LikeNum"];
                     self.model.IsLiked = ![boolValue boolValue];
                 }else if (view.tag==2){
+                    if ([boolValue boolValue] == 0) {
+                        [Answers logCustomEventWithName:@"Movie Want"
+                                       customAttributes:@{@"Custom String" : [self.movieDetailInfo objectForKey:@"Id"]}];
+                    }
+                    
                     [buttonHelper v2AdjustWanna:self.wannaBtn state:![boolValue boolValue]];
                     [self.movieDetailInfo setObject:[[NSNumber alloc] initWithBool:![boolValue boolValue]] forKey:@"IsWantView"];
                     [self.movieDetailInfo setObject:[NSNumber numberWithInt:count] forKey:@"WantViewNum"];
