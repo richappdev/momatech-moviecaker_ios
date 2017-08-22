@@ -88,16 +88,21 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(retract)];
     [self.view addGestureRecognizer:tap];
+    
     self.username.delegate = self;
     self.password.delegate = self;
+    
     CALayer *bottomBorder = [CALayer layer];
     bottomBorder.frame = CGRectMake(0.0f, self.username.frame.size.height - 1, self.view.frame.size.width, 1.0f);
     bottomBorder.backgroundColor = [UIColor colorWithRed:(128/255.0f) green:(203/255.0f) blue:(196/255.0f) alpha:1].CGColor;
+    
     CALayer *bottomBorder2 = [CALayer layer];
     bottomBorder2.frame = CGRectMake(0.0f, self.username.frame.size.height - 1, self.view.frame.size.width, 1.0f);
     bottomBorder2.backgroundColor = [UIColor colorWithRed:(128/255.0f) green:(203/255.0f) blue:(196/255.0f) alpha:1].CGColor;
+    
     [self.username.layer addSublayer:bottomBorder];
     [self.password.layer addSublayer:bottomBorder2];
     
@@ -106,6 +111,8 @@
     [self.wechatBtn addGestureRecognizer:tap2];
    
     self.count =0;
+    
+    // 背景動態更換電影海報
     movieModel *temp = [self.images objectAtIndex:0];
     self.bgOne.image = [buttonHelper blurImage:temp.movieImageView.image withBottomInset:0 blurRadius:4];
     movieModel *temp2 = [self.images objectAtIndex:1];
@@ -123,6 +130,7 @@
                          (id)[UIColor clearColor].CGColor];
     maskLayer.locations = @[ @0.0f, @0.8f, @1.0f ];
     maskLayer.frame = CGRectMake(0,0, self.view.frame.size.width, self.BannerUrl.frame.size.height);
+    
     self.BannerUrl.layer.mask = maskLayer;
     [self addIndexClick:self.noticeView];
     [self addIndexClick:self.qrcode];
@@ -148,11 +156,13 @@
     
     self.archive.image = [UIImage imageWithIcon:@"fa-archive" backgroundColor:[UIColor whiteColor] iconColor:[UIColor colorWithRed:(51/255.0f) green:(68/255.0f) blue:(85/255.0f) alpha:1] andSize:CGSizeMake(16, 16)];
     
+    // App notification center
     UIUserNotificationType types = UIUserNotificationTypeBadge | UIUserNotificationTypeSound | UIUserNotificationTypeAlert;
     UIUserNotificationSettings *mySettings = [UIUserNotificationSettings settingsForTypes:types categories:nil];
     [[UIApplication sharedApplication] registerUserNotificationSettings:mySettings];
 
 }
+
 -(void)sendNotification{
     UILocalNotification *local = [[UILocalNotification alloc]init];
     local.alertAction = @"回去";
@@ -160,22 +170,28 @@
     local.fireDate = [[NSDate alloc]initWithTimeIntervalSinceNow:1];
     [[UIApplication sharedApplication] scheduleLocalNotification:local];
 }
+
 -(void)viewDidLayoutSubviews{
     [self.scrollView setContentSize:CGSizeMake(self.view.frame.size.width, 750)];
 }
+
 -(void)addIndexClick:(UIView*)view{
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(indexClick:)];
     [view addGestureRecognizer:tap];
 }
+
 -(void)addMovieClick:(UIView*)view{
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(movieClick:)];
     [view addGestureRecognizer:tap];
 }
+
 -(void)indexClick:(UITapGestureRecognizer*)gesture{
     NSLog(@"%ld",gesture.view.tag);
+    
     if(gesture.view.tag==0){
         [self performSegueWithIdentifier:@"qrcodeSegue" sender:self];
     }
+    
     if(gesture.view.tag==1||gesture.view.tag==2){
         if(gesture.view.tag==2){
             self.invitingDot.hidden = YES;
@@ -183,9 +199,11 @@
         }
         [self performSegueWithIdentifier:@"friendsSegue" sender:self];
     }
+    
     if(gesture.view.tag==3){
         [self performSegueWithIdentifier:@"noticeSegue" sender:self];
     }
+    
     if(gesture.view.tag==4||gesture.view.tag==5){
         if(gesture.view.tag==5){
             self.jump2 = YES;
@@ -227,9 +245,11 @@
     }
 
 }
+
 -(void)detail{
     [self performSegueWithIdentifier:@"mypageSegue" sender:self];
 }
+
 -(void)timerTicked:(id)sender{
     if(self.count<[self.images count]-1){
         self.count++;
@@ -253,10 +273,12 @@
                      .movieImageView.image withBottomInset:0 blurRadius:4];
     }];
 }
+
 -(void)retract{
     [self.username resignFirstResponder];
     [self.password resignFirstResponder];
 }
+
 -(void)viewWillDisappear:(BOOL)animated{
     [self stopTimer];
     [[NSNotificationCenter defaultCenter] removeObserver:self
@@ -268,29 +290,36 @@
                                                   object:nil];
     [self stopDotTimers];
 }
+
 -(void)stopDotTimers{
     [self.dotTimer invalidate];
     self.dotTimer = nil;
     [self.inviteDotTimer invalidate];
     self.inviteDotTimer = nil;
 }
+
 -(void)startDotTimer:(NSDictionary*)data{
     if(self.noticeDot.hidden == YES){
         self.dotTimer = [NSTimer scheduledTimerWithTimeInterval:20.0 target:self selector:@selector(testDot) userInfo:nil repeats:YES];
         [self testDot];
     }
+    
     if(self.invitingDot.hidden == YES){
         self.inviteDotTimer = [NSTimer scheduledTimerWithTimeInterval:20.0 target:self selector:@selector(preRefresh:) userInfo:data repeats:YES];
         [self refreshFriend:data];
     }
 }
+
 -(void)preRefresh:(NSTimer*)timer{
     NSDictionary *temp = timer.userInfo;
     [self refreshFriend:temp];
 }
+
 -(void)viewWillAppear:(BOOL)animated{
+    
     NSDictionary *returnData = [NSKeyedUnarchiver unarchiveObjectWithData:[[NSUserDefaults standardUserDefaults] objectForKey:USERKEY]];
     NSLog(@"%@",returnData);
+    
     if(returnData!=nil){
         [self startDotTimer:[returnData objectForKey:@"Data"]];
         [self.Button2 setTitle:[NSString stringWithFormat:@"%@:log out",[[returnData objectForKey:@"Data"] objectForKey:@"NickName"]] forState:UIControlStateNormal];
@@ -298,7 +327,9 @@
         [self populate:[returnData objectForKey:@"Data"]];
         [self refreshFriend:[returnData objectForKey:@"Data"]];
     }else{
-        [self startTimer];}
+        [self startTimer];
+    }
+    
     [self.navigationController setNavigationBarHidden:YES];
     
     if([[WechatAccess sharedInstance]isWechatAppInstalled]==YES){
@@ -311,6 +342,7 @@
         self.wechatBtn.hidden = YES;
         self.wechatLine.hidden = YES;
     }
+    
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(keyboardWillShow)
                                                  name:UIKeyboardWillShowNotification
@@ -324,8 +356,7 @@
 
 -(void)testDot{
     NSLog(@"test");
-    
-   NSNumber *num = [[NSUserDefaults standardUserDefaults] objectForKey:@"noticeCount"];
+    NSNumber *num = [[NSUserDefaults standardUserDefaults] objectForKey:@"noticeCount"];
     
     [[AustinApi sharedInstance] getNotice:^(NSArray *returnData) {
         if([returnData count]>[num integerValue]){
@@ -334,107 +365,144 @@
             [self sendNotification];
         }
     } error:^(NSError *error) {
-        
     }];
-    
 }
+
 -(void)keyboardWillShow{
     [UIView beginAnimations:nil context:NULL];
     [UIView setAnimationDuration:0.3];
     self.loginConstraint.constant = -100;
     [UIView commitAnimations];
-    
 }
+
 -(void)keyboardWillHide{
     [UIView beginAnimations:nil context:NULL];
     [UIView setAnimationDuration:0.3];
     self.loginConstraint.constant = 0;
     [UIView commitAnimations];
 }
+
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+
 - (BOOL)textFieldShouldReturn:(UITextField *)textField
 {
     [self retract];
     return YES;
 }
+
 -(void)startTimer{
     self.timer = [NSTimer scheduledTimerWithTimeInterval:5.0 target:self selector:@selector(timerTicked:) userInfo:nil repeats:YES];
 }
+
 -(void)stopTimer{
     [self.timer invalidate];
     self.timer=nil;
 }
+
 -(void)logout{
     [self refresh];
+    
     [[NSUserDefaults standardUserDefaults] removeObjectForKey:USERKEY];
+    
     [self.Button2 setTitle:@"Login" forState:UIControlStateNormal];
+    
     NSArray *cookies = [[NSHTTPCookieStorage sharedHTTPCookieStorage] cookies];
     for (NSHTTPCookie *cookie in cookies) {
         // Here I see the correct rails session cookie
         NSLog(@"%@",cookie);
         [[NSHTTPCookieStorage sharedHTTPCookieStorage] deleteCookie:cookie];
     }
+    
     [self.myView setHidden:YES];
+    
     if(self.timer!=nil){
-        [self startTimer];}
+        [self startTimer];
+    }
     [self stopDotTimers];
 }
+
 -(void)wLogin:(UIGestureRecognizer*)gesture{
     [self Login:gesture.view];
 }
+
 -(void)refreshFriend:(NSDictionary*)returnData{
     [[AustinApi sharedInstance]getFriends:[[returnData objectForKey:@"UserId"]stringValue] page:1 function:^(NSString *returnData) {
-            AustinApi *temp3 = [AustinApi sharedInstance];
-            self.friendLabel.text = [NSString stringWithFormat:@"%lu 個朋友",(unsigned long)[temp3.friendList count]];
-        NSNumber *num = [[NSUserDefaults standardUserDefaults] objectForKey:@"inviteCount"];
         
+        AustinApi *temp3 = [AustinApi sharedInstance];
+        
+        self.friendLabel.text = [NSString stringWithFormat:@"%lu 個朋友",(unsigned long)[temp3.friendList count]];
+        
+        NSNumber *num = [[NSUserDefaults standardUserDefaults] objectForKey:@"inviteCount"];
         NSMutableArray *one= [[NSMutableArray alloc]init];
+        
         for (NSDictionary *row in temp3.friendWaitList) {
             if([[row objectForKey:@"IsInviting"]integerValue]==1){
                 [one addObject:row];
             }
         }
+        
         if([one count]>[num integerValue]){
             [self.inviteDotTimer invalidate];
             self.inviteDotTimer =nil;
             self.invitingDot.hidden =NO;
         }
-        } refresh:YES];
+    } refresh:YES];
 }
+
 -(void)refresh{
     UINavigationController *nav = [self.tabBarController.viewControllers objectAtIndex:0];
     MovieController *movie = [[nav viewControllers]objectAtIndex:0];
+    
     movie.refresh = YES;
     nav =  [self.tabBarController.viewControllers objectAtIndex:1];
+    
     MovieViewController *tab=[[nav viewControllers]objectAtIndex:0];
     [tab refresh];
 }
+
 - (IBAction)Login:(id)sender {
+    
     [self refresh];
     [self retract];
+    
     UIButton *btn = (UIButton*)sender;
+    
     if([[NSUserDefaults standardUserDefaults] objectForKey:USERKEY]!=nil){
         [self logout];
         [self logUserWithDefault];
     }
-    else if(btn.tag==1){
+    else if(btn.tag==1){    // Press Login btn
+        
         [[AustinApi sharedInstance]loginWithAccount:self.username.text withPassword:self.password.text withRemember:YES function:^(NSDictionary *returnData) {
+            
             if([[returnData objectForKey:@"success"]boolValue]==TRUE){
+                
+                [Answers logLoginWithMethod:@"username"
+                                    success:@YES
+                           customAttributes:@{
+                                              @"Custom String" : self.username.text}];
+                
                 [self startDotTimer:[returnData objectForKey:@"data"]];
                 [self refreshFriend:[returnData objectForKey:@"data"]];
-            NSDictionary *temp = [[NSDictionary alloc] initWithObjectsAndKeys:[returnData objectForKey:@"data"],@"Data", nil];
+                
+                NSDictionary *temp = [[NSDictionary alloc] initWithObjectsAndKeys:[returnData objectForKey:@"data"],@"Data", nil];
                 [self logUser:[[returnData objectForKey:@"data"] objectForKey:@"NickName"] userEmail:[[returnData objectForKey:@"data"] objectForKey:@"UserName"] userID:[[returnData objectForKey:@"data"] objectForKey:@"UserId"]];
-            [[NSUserDefaults standardUserDefaults] setObject:[NSKeyedArchiver archivedDataWithRootObject:temp] forKey:USERKEY];
+                [[NSUserDefaults standardUserDefaults] setObject:[NSKeyedArchiver archivedDataWithRootObject:temp] forKey:USERKEY];
+                
                 [self.Button2 setTitle:[NSString stringWithFormat:@"%@:log out",[[temp objectForKey:@"Data"] objectForKey:@"NickName"]] forState:UIControlStateNormal];
                 [self.myView setHidden:NO];
                 [self stopTimer];
                 [self populate:[returnData objectForKey:@"data"]];
             }
             else{
-                UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"注意" message:@"用户名或密码不正确" delegate:self cancelButtonTitle:@"关闭" otherButtonTitles:nil,nil];
+                UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"注意"
+                                                                message:@"用户名或密码不正确"
+                                                               delegate:self
+                                                      cancelButtonTitle:@"关闭"
+                                                      otherButtonTitles:nil,nil];
                 [alert show];
             }
             NSLog(@"%@",returnData);
@@ -442,45 +510,61 @@
             NSLog(@"%@",error);
         }];
 
-    }else{
+    }
+    else{   // Press WeChat login btn
+        
+        if([[WechatAccess sharedInstance]isWechatAppInstalled]==YES){
     
-    
-    if([[WechatAccess sharedInstance]isWechatAppInstalled]==YES){
-    
-        [[[WechatAccess sharedInstance] defaultAccess]login:^(BOOL succeeded, id object) {NSLog(@"wro");
-        if(succeeded){
-        //do Login Proccess
-        [[AustinApi sharedInstance] apiRegisterPost:[object objectForKey:@"unionid"] completion:^(NSMutableDictionary *returnData) {
-            NSLog(@"here%@",returnData);
-            [[NSUserDefaults standardUserDefaults] setObject:[NSKeyedArchiver archivedDataWithRootObject:returnData] forKey:USERKEY];
+            [[[WechatAccess sharedInstance] defaultAccess]login:^(BOOL succeeded, id object) {
+                if(succeeded){
+                    //do Login Proccess
+                    [[AustinApi sharedInstance] apiRegisterPost:[object objectForKey:@"unionid"] completion:^(NSMutableDictionary *returnData) {
+                        
+                        [[NSUserDefaults standardUserDefaults] setObject:[NSKeyedArchiver archivedDataWithRootObject:returnData] forKey:USERKEY];
 
-            [self.Button2 setTitle:[NSString stringWithFormat:@"%@:log out",[[returnData objectForKey:@"Data"] objectForKey:@"NickName"]] forState:UIControlStateNormal];
-            [self.myView setHidden:NO];
-            [self stopTimer];
-            [self startDotTimer:[returnData objectForKey:@"Data"]];
-            NSDictionary *test = [returnData objectForKey:@"Data"];
-            if([[test allKeys]count]<2){
-                test = returnData;
-            }
-            [self populate:test];
-            [self refreshFriend:test];
+                        [self.Button2 setTitle:[NSString stringWithFormat:@"%@:log out",[[returnData objectForKey:@"Data"] objectForKey:@"NickName"]]
+                                      forState:UIControlStateNormal];
+                        [self.myView setHidden:NO];
+                        [self stopTimer];
+                        [self startDotTimer:[returnData objectForKey:@"Data"]];
+                        
+                        NSDictionary *test = [returnData objectForKey:@"Data"];
+                        if([[test allKeys]count]<2){
+                            test = returnData;
+                        }
+                        
+                        [self populate:test];
+                        [self refreshFriend:test];
             
-        } error:^(NSError *error) {
-            NSLog(@"%@",error.description);
-        }];
-            
-        }else{
-            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"訊息" message:@"取消" delegate:self cancelButtonTitle:@"关闭" otherButtonTitles:nil,nil];
-            [alert show];
+                        [Answers logLoginWithMethod:@"wechat"
+                                            success:@YES
+                                   customAttributes:@{
+                                                      @"Custom String" : [[returnData objectForKey:@"Data"] objectForKey:@"NickName"]}];
+                    } error:^(NSError *error) {
+                        NSLog(@"%@",error.description);
+                    }];
+                }else{
+                    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"訊息"
+                                                                    message:@"取消"
+                                                                   delegate:self
+                                                          cancelButtonTitle:@"关闭"
+                                                          otherButtonTitles:nil,nil];
+                    [alert show];
+                }
+            } viewController:self];
         }
-    } viewController:self];}
-    else{
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"注意" message:@"请安裝微信" delegate:self cancelButtonTitle:@"关闭" otherButtonTitles:nil,nil];
-        [alert show];
-        NSLog(@"Wechat not installed");
+        else{
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"注意"
+                                                            message:@"请安裝微信"
+                                                           delegate:self
+                                                  cancelButtonTitle:@"关闭"
+                                                  otherButtonTitles:nil,nil];
+            [alert show];
+            NSLog(@"Wechat not installed");
+        }
     }
 }
-}
+
 -(void)populate:(NSDictionary*)dict{
     [self.BannerUrl sd_setImageWithURL:[NSURL URLWithString:[dict objectForKey:@"BannerUrl"]] placeholderImage:[UIImage imageNamed:@"placeholder-banner.jpg"]];
     self.BannerUrl.contentMode = UIViewContentModeScaleAspectFill;
