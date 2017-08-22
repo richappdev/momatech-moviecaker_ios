@@ -36,12 +36,12 @@
                                 };
     NSString *postString = [NSString stringWithFormat:@"api/Account/ExternalLogin"];
     
-    [self apiPostMethod:postString parameter:parameter addTokenHeader:nil completion:^(id response) { NSLog(@"response%@",response);
+    [self apiPostMethod:postString parameter:parameter addTokenHeader:nil completion:^(id response) { NSLog(@"[dev][AustinApi]apiRegisterPost response:%@",response);
         if ([response isKindOfClass:[NSDictionary class]]) {
             completion(response);
         }
     } error:^(NSError *err) {
-        NSLog(@"ERR");
+        NSLog(@"[dev][AustinApi]apiRegisterPost error:%@", err);
         error(err);
     }];
 }
@@ -186,10 +186,10 @@
     if(uid!=nil){
         [parameter setValue:uid forKey:@"uid"];
     }
-    NSLog(@"%@",parameter);
+    NSLog(@"[dev][AustinApi]movieListCustom parameter:%@",parameter);
     [self apiGetMethod:@"api/video" parameter:parameter addTokenHeader:@"1" completion:^(id response) {
         if([type isEqualToString:@"1"]){
-            NSLog(@"%@",response);
+            NSLog(@"[dev][AustinApi]movieListCustom response:%@",response);
         }
         completion([response objectForKey:@"Data"]);
     } error:^(NSError *error2) {
@@ -218,7 +218,7 @@
     if(uid!=nil){
         [parameter setObject:uid forKey:@"uid"];
     }
-    NSLog(@"%@",parameter);
+    NSLog(@"[dev][AustinApi]getTopic parameter:%@",parameter);
     [self apiGetMethod:@"api/topic" parameter:parameter addTokenHeader:@"1" completion:^(id response) {
         
         completion([response objectForKey:@"Data"]);
@@ -236,7 +236,7 @@
     if(uid!=nil){
         [parameter setObject:uid forKey:@"userId"];
     }
-    NSLog(@"%@",parameter);
+    NSLog(@"[dev][AustinApi]getReview parameter:%@",parameter);
     [self apiGetMethod:@"api/Review" parameter:parameter addTokenHeader:@"1" completion:^(id response) {
         
         completion([response objectForKey:@"Data"]);
@@ -293,12 +293,12 @@
     
     NSDictionary *param=nil;
     param=@{@"Email":account,@"Password":password,@"RememberMe":@"true"};
-    //NSLog(@"%@",param);
+    NSLog(@"[dev][AustinApi]loginWithAccount param:%@",param);
     [self apiPostMethod:@"account/ajaxlogin" parameter:param addTokenHeader:@"1" completion:^(id response) {
         NSArray *cookies = [[NSHTTPCookieStorage sharedHTTPCookieStorage] cookies];
         for (NSHTTPCookie *cookie in cookies) {
             // Here I see the correct rails session cookie
-            NSLog(@"logincookie: %@", cookie);
+            NSLog(@"[dev][AustinApi]loginWithAccount logincookie:%@",cookie);
         }
         completion(response);
     } error:^(NSError *error2) {
@@ -307,7 +307,8 @@
     
 }
 -(void)socialAction:(NSString*)Id act:(NSString*)act obj:(NSString*)obj function:(void (^)(NSString *returnData))completion error:(void (^)(NSError *error))error{
-//    NSLog(@"%@",[NSString stringWithFormat:@"api/Social?id=%@&act=%@&obj=%@",Id,act,obj]);
+    //NSLog(@"%@",[NSString stringWithFormat:@"api/Social?id=%@&act=%@&obj=%@",Id,act,obj]);
+    NSLog(@"[dev][AustinApi]socialAction Id:%@, act:%@, obj:%@",Id, act, obj);
 
     NSURL *baseURL = [NSURL URLWithString:SERVERAPI];
     
@@ -379,16 +380,16 @@
             completion(response);
         }
     } error:^(NSError *error) {
-    NSLog(@"%@",error);
+        NSLog(@"[dev][AustinApi]getFriends error:%@", error);
     }];
     [self apiGetMethod:[NSString stringWithFormat:@"api/friend/%@?invite=true",uid] parameter:nil addTokenHeader:nil completion:^(id response) {
         self.friendWaitList =[[NSMutableArray alloc] initWithArray:response];
-        NSLog(@"inviting%@",response);
+        NSLog(@"[dev][AustinApi]getFriends inviting:%@", response);
         if(completion!=nil){
             completion(response);
         }
     } error:^(NSError *error) {
-        NSLog(@"%@",error);
+        NSLog(@"[dev][AustinApi]getFriends error:%@", error);
     }];}
     
     if(self.date==nil){
@@ -396,7 +397,7 @@
         self.friendWaitList = [[NSMutableArray alloc] init];
         self.date = [[NSDate alloc]init];
     }else{
-        NSLog(@"%f",[now timeIntervalSinceDate:self.date]);
+        NSLog(@"[dev][AustinApi]getFriends nowtime:%f", [now timeIntervalSinceDate:self.date]);
     }
 }
 -(int)testFriend:(NSString*)uid{
@@ -416,9 +417,9 @@
 -(void)addFriend:(NSNumber *)uid{
     [self.friendWaitList addObject:[[NSDictionary alloc] initWithObjectsAndKeys:[NSNumber numberWithBool:TRUE],@"IsBeingInviting",uid,@"UserId", nil]];
     [self apiPostMethod:[NSString stringWithFormat:@"api/Inviting/Invite/%@",[uid stringValue]] parameter:@"nil" addTokenHeader:@"1" completion:^(id response) {
-        NSLog(@"%@",response);
+        NSLog(@"[dev][AustinApi]addFriend response:%@", response);
     } error:^(NSError *error) {
-        NSLog(@"%@",error);
+        NSLog(@"[dev][AustinApi]addFriends error:%@", error);
     }];
 }
 
@@ -431,19 +432,19 @@
 }
 -(void)acceptFriend:(NSString*)uid function:(void (^)(NSString *returnData))completion{
     [self apiPostMethod:[NSString stringWithFormat:@"api/Friend/Accept/%@",uid] parameter:nil addTokenHeader:@"1" completion:^(id response) {
-        NSLog(@"%@",response);
+        NSLog(@"[dev][AustinApi]acceptFriend response:%@", response);
         completion(response);
     } error:^(NSError *error2) {
-        NSLog(@"%@",error2);
+        NSLog(@"[dev][AustinApi]acceptFriend error:%@", error2);
     }];
 }
 
 -(void)inviteFriend:(NSString*)uid function:(void (^)(NSString *returnData))completion{
     [self apiPostMethod:[NSString stringWithFormat:@"api/Friend/Invite/%@",uid] parameter:nil addTokenHeader:@"1" completion:^(id response) {
-        NSLog(@"%@",response);
+        NSLog(@"[dev][AustinApi]inviteFriend response:%@", response);
         completion(response);
     } error:^(NSError *error2) {
-        NSLog(@"%@",error2);
+        NSLog(@"[dev][AustinApi]inviteFriend error:%@", error2);
     }];
 }
 
@@ -463,12 +464,12 @@
     }
     
     NSDictionary *params = [[NSDictionary alloc]initWithObjectsAndKeys:nick,@"NickName",genderString,@"Gender",birthday,@"BirthDay", nil];
-    NSLog(@"%@",params);
+    NSLog(@"[dev][AustinApi]changeProfile params:%@", params);
     [self apiPatchMethod:@"api/Account/UserInfo" parameter:params addTokenHeader:@"1" completion:^(id response) {
-        NSLog(@"%@",response);
+        NSLog(@"[dev][AustinApi]changeProfile response:%@", response);
         completion(response);
     } error:^(NSError *error2) {
-        NSLog(@"%@",error2);
+        NSLog(@"[dev][AustinApi]changeProfile error:%@", error2);
     }];
 
 }
