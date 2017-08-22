@@ -32,7 +32,14 @@
     }];*/
     [ZBarReaderView class];
     [Fabric with:@[[Crashlytics class]]];
+    [self logUser];
     return YES;
+}
+
+- (void) logUser {
+    [CrashlyticsKit setUserIdentifier:@"MovieCaker-iOS"];
+    [CrashlyticsKit setUserEmail:@"MovieCaker-iOS"];
+    [CrashlyticsKit setUserName:@"MovieCaker-iOS"];
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application {
