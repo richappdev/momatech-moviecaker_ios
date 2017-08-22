@@ -18,6 +18,7 @@
 #import "TopicDetailViewController.h"
 #import "UIImage+FontAwesome.h"
 #import "MBProgressHUD.h"
+#import <Crashlytics/Crashlytics.h> // If using Answers with Crashlytics
 
 @interface MovieDetailController ()
 @property (strong, nonatomic) IBOutlet UIImageView *bgImage;
@@ -154,7 +155,13 @@
     
     self.Chervon.image = [UIImage imageWithIcon:@"fa-chevron-down" backgroundColor:[UIColor clearColor] iconColor:[UIColor whiteColor] andSize:CGSizeMake(18, 20)];
     
-    NSLog(@"[dev][MovieDetailController]viewDidLoad MovieID:%@", [self.movieDetailInfo objectForKey:@"Id"]);
+    //NSLog(@"[dev][MovieDetailController]viewDidLoad MovieID:%@", [self.movieDetailInfo objectForKey:@"Id"]);
+    //NSLog(@"[dev][MovieDetailController]viewDidLoad CNName:%@", [self.movieDetailInfo objectForKey:@"CNName"]);
+
+    [Answers logContentViewWithName:[self.movieDetailInfo objectForKey:@"CNName"]
+                        contentType:@"Movie Detail"
+                          contentId:[self.movieDetailInfo objectForKey:@"Id"]
+                   customAttributes:@{}];
 }
 
 -(void)addIndexGesture:(UIView*)view{
