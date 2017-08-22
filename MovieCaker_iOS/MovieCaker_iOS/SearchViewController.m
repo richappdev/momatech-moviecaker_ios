@@ -10,6 +10,7 @@
 #import "AustinApi.h"
 #import "MovieDetailController.h"
 #import "MBProgressHUD.h"
+#import <Crashlytics/Crashlytics.h>
 
 @interface SearchViewController ()
 @property (strong, nonatomic) IBOutlet UISearchBar *searchBar;
@@ -24,17 +25,18 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+
     self.searchBar.delegate =self;
     self.view.backgroundColor =[UIColor colorWithWhite:0.8 alpha:1];
     self.data = [[NSArray alloc]init];
     self.simplified = [[[NSUserDefaults standardUserDefaults] objectForKey:@"simplified"] boolValue];
 }
--(void)viewWillAppear:(BOOL)animated{
+
+-(void)viewWillAppear:(BOOL)animated {
     [self.navigationController.navigationBar setHidden:YES];
 }
 
-- (void)viewDidAppear:(BOOL)animated
-{
+- (void)viewDidAppear:(BOOL)animated {
     [self.navigationController setNavigationBarHidden:YES animated:animated];
 }
 - (void)didReceiveMemoryWarning {
@@ -43,18 +45,20 @@
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-#warning Incomplete implementation, return the number of sections
+    #warning Incomplete implementation, return the number of sections
     return 1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-#warning Incomplete implementation, return the number of rows
+    #warning Incomplete implementation, return the number of rows
     return [self.data count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    
     UITableViewCell *cell =[[UITableViewCell alloc]init];
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
+    
     if(self.simplified){
         cell.textLabel.text= [[self.data objectAtIndex:indexPath.row]objectForKey:@"lableCn"];
     }else{
@@ -62,15 +66,23 @@
     }
     return cell;
 }
--(void)searchBarSearchButtonClicked:(UISearchBar*)searchBar{
+
+-(void)searchBarSearchButtonClicked:(UISearchBar*)searchBar {
+    
+    [Answers logSearchWithQuery:self.searchBar.text
+               customAttributes:@{}];
+    
     [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     [self search];
 }
+
 -(void)search{
+    
     [[AustinApi sharedInstance] searchMovie:self.searchBar.text completion:^(NSArray *returnData) {
         NSLog(@"%@",returnData);
         self.data = returnData;
         [self.searchController.searchResultsTableView reloadData];
+        
         [MBProgressHUD hideHUDForView:self.view animated:YES];
     } error:^(NSError *error) {
         [MBProgressHUD hideHUDForView:self.view animated:YES];
@@ -78,18 +90,21 @@
     }];
 
 }
-- (void)searchBar:(UISearchBar *)searchBar
-    textDidChange:(NSString *)searchText{
+
+-(void)searchBar:(UISearchBar *)searchBar
+    textDidChange:(NSString *)searchText {
+    
     if([self.searchBar.text length]==0){
         self.data = [[NSArray alloc]init];
         [self.searchController.searchResultsTableView reloadData];
     }
 }
 
-- (void)searchBarCancelButtonClicked:(UISearchBar *)searchBar{
+- (void)searchBarCancelButtonClicked:(UISearchBar *)searchBar {
     self.data = [[NSArray alloc]init];
     [self.searchController.searchResultsTableView reloadData];
 }
+
 /*
 #pragma mark - Navigation
 
@@ -100,16 +115,15 @@
 }
 */
 
--(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
+-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     MovieDetailController *vc = segue.destinationViewController;
     vc.movieDetailInfo = [[NSDictionary alloc] initWithObjectsAndKeys:[[self.data objectAtIndex:self.selectedIndex] objectForKey:@"id"],@"Id", nil];
     vc.loadLater = YES;
 }
--(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    
+
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     self.selectedIndex = indexPath.row;
     [self performSegueWithIdentifier:@"movieSegue" sender:self];
-
 }
 
 @end
